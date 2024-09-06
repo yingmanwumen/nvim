@@ -1,10 +1,5 @@
 local this = {}
-local themes = {}
-
-themes.tokyonight = {
-  package = "folke/tokyonight.nvim",
-  opts = { style = "moon" },
-}
+local themes = require("themes.themes")
 
 this.default = "tokyonight"
 this.themes = themes
