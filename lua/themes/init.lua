@@ -3,6 +3,7 @@ local themes = require("themes.themes")
 
 this.default = "tokyonight"
 this.themes = themes
+this.dark = false
 
 function this.get(theme)
   theme = theme or this.default
@@ -27,6 +28,11 @@ end
 
 function this.activate(theme)
   theme = theme or this.default
+  if this.dark then
+    vim.opt.background = "dark"
+  else
+    vim.opt.background = "light"
+  end
   vim.cmd("colorscheme " .. theme)
 end
 
