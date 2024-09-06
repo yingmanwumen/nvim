@@ -27,7 +27,7 @@ end
 
 ---@type fun(theme: string)
 function this.set(theme)
-  self.default = theme
+  this.default = theme
 end
 
 function this.activate(theme)
