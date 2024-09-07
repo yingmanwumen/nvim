@@ -4,4 +4,4 @@ require("opt").setup()
 -- load the package manager lazy.nvim
 require("lazy_nvim").setup()
 
-require("themes").activate()
+require("plugins.themes").activate()

@@ -1,5 +1,5 @@
 local this = {}
-local themes = require("themes.themes")
+local themes = require("plugins.themes.themes")
 
 this.default = "tokyonight"
 this.themes = themes
@@ -34,6 +34,14 @@ function this.activate(theme)
     vim.opt.background = "light"
   end
   vim.cmd("colorscheme " .. theme)
+end
+
+function this.list()
+  local res = {}
+  for _, v in pairs(this.get_themes()) do
+    res[#res + 1] = this.to_spec(v)
+  end
+  return res
 end
 
 return this

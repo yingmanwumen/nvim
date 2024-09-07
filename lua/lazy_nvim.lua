@@ -30,7 +30,7 @@ local function load_plugins()
   require("lazy").setup({
     spec = {
       -- import your plugins
-      { import = "plugins" },
+      { import = "plugin_loader" },
     },
     -- automatically check for plugin updates
     checker = { enabled = false },
