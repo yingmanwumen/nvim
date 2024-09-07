@@ -7,18 +7,11 @@ this.dark = false
 
 function this.get(theme)
   theme = theme or this.default
-  return this.to_spec(this.themes[theme])
+  return this.themes[theme]
 end
 
 function this.get_themes()
   return this.themes
-end
-
-function this.to_spec(theme)
-  return {
-    theme.package,
-    opt = theme.opts or nil,
-  }
 end
 
 ---@type fun(theme: string)
@@ -39,7 +32,7 @@ end
 function this.list()
   local res = {}
   for _, v in pairs(this.get_themes()) do
-    res[#res + 1] = this.to_spec(v)
+    res[#res + 1] = v
   end
   return res
 end

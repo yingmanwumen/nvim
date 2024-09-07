@@ -1,7 +1,6 @@
 return {
   tokyonight = {
-    package = "folke/tokyonight.nvim",
+    "folke/tokyonight.nvim",
     opts = { style = "moon" },
   },
 }
-
