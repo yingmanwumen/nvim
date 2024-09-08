@@ -18,4 +18,10 @@ load_plugins(themes.list())
 local dashboard = require('plugins.dashboard')
 load_plugin(dashboard)
 
+-- load treesitter
+local treesitter = require('plugins.treesitter')
+load_plugins(treesitter.list())
+
+load_plugin(require('plugins.comment'))
+
 return this
