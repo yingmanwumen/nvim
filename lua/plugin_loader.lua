@@ -15,8 +15,8 @@ local themes = require('plugins.themes')
 load_plugins(themes.list())
 
 -- load ui
-local dashboard = require('plugins.dashboard')
-load_plugin(dashboard)
+load_plugin(require('plugins.dashboard'))
+load_plugin(require('plugins.lualine'))
 
 -- load treesitter
 local treesitter = require('plugins.treesitter')
