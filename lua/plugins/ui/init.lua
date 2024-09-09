@@ -5,4 +5,5 @@ return {
   require('plugins.ui.noice'),
   require('plugins.ui.dressing'),
   require('plugins.ui.indent'),
+  require('plugins.ui.nvim-tree'),
 }

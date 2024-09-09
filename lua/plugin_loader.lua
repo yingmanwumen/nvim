@@ -22,6 +22,6 @@ local treesitter = require('plugins.treesitter')
 load_plugins(treesitter.list())
 
 load_plugin(require('plugins.comment'))
-load_plugin(require('plugins.nvim-tree'))
+load_plugin(require('plugins.codeium'))
 
 return this

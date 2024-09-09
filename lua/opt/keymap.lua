@@ -112,3 +112,23 @@ bind(
     desc = "shrink window vertically"
   }
 )
+
+bind(
+  { "n", "v" },
+  "<C-S-V>",
+  '"+P',
+  {
+    silent = true,
+    desc = "paste from clipboard"
+  }
+)
+
+bind(
+  { "c", "i" },
+  "<C-S-V>",
+  '<C-R>+',
+  {
+    silent = true,
+    desc = "paste from clipboard"
+  }
+)
