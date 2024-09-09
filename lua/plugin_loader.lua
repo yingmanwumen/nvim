@@ -15,13 +15,13 @@ local themes = require('plugins.themes')
 load_plugins(themes.list())
 
 -- load ui
-load_plugin(require('plugins.dashboard'))
-load_plugin(require('plugins.lualine'))
+load_plugins(require('plugins.ui'))
 
 -- load treesitter
 local treesitter = require('plugins.treesitter')
 load_plugins(treesitter.list())
 
 load_plugin(require('plugins.comment'))
+load_plugin(require('plugins.nvim-tree'))
 
 return this

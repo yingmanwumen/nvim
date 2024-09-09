@@ -22,3 +22,6 @@ vim.o.undofile = true
 vim.o.undodir = vim.fn.stdpath('cache') .. '/undo'
 vim.o.updatetime = 500
 vim.o.timeoutlen = 300
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
