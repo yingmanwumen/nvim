@@ -4,4 +4,6 @@ require("opt").setup()
 -- load the package manager lazy.nvim
 require("lazy_nvim").setup()
 
-require("plugins.themes").activate()
+local themes = require("plugins.themes")
+themes.dark = true
+themes.activate()

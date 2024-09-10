@@ -4,6 +4,16 @@ vim.g.maplocalleader = " "
 local bind = vim.keymap.set
 
 bind(
+  "n",
+  "<M-w>",
+  "<C-w>",
+  {
+    silent = true,
+    desc = "window"
+  }
+  )
+
+bind(
   { "n", "v" },
   "Q",
   ":q<CR>",
@@ -15,7 +25,7 @@ bind(
 
 bind(
   "n",
-  "<M-w>",
+  "<M-q>",
   ":bd %<CR>",
   {
     silent = true,
@@ -50,16 +60,6 @@ bind(
   {
     silent = true,
     desc = "indent"
-  }
-)
-
-bind(
-  "t",
-  "<M-->",
-  "<C-\\><C-n>:q<CR>",
-  {
-    silent = true,
-    desc = "close terminal"
   }
 )
 

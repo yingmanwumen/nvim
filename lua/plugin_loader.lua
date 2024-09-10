@@ -14,14 +14,16 @@ end
 local themes = require('plugins.themes')
 load_plugins(themes.list())
 
--- load ui
 load_plugins(require('plugins.ui'))
-
--- load treesitter
-local treesitter = require('plugins.treesitter')
-load_plugins(treesitter.list())
+load_plugins(require('plugins.treesitter'))
+load_plugins(require('plugins.lsp'))
+load_plugins(require('plugins.project'))
+load_plugins(require('plugins.git'))
 
 load_plugin(require('plugins.comment'))
 load_plugin(require('plugins.codeium'))
+load_plugin(require('plugins.hop'))
+load_plugin(require('plugins.autopair'))
+load_plugin(require('plugins.terminal'))
 
 return this

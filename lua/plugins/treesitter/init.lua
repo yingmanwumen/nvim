@@ -1,6 +1,6 @@
-local this = {}
+require('plugins.treesitter.keymap')
 
-this.plugins = {
+return {
   require('plugins.treesitter.rainbow-delimiters'),
   require('plugins.treesitter.treesitter'),
   require('plugins.treesitter.context'),
@@ -8,11 +8,3 @@ this.plugins = {
   require('plugins.treesitter.autotag'),
   require('plugins.treesitter.commentstring'),
 }
-
-require('plugins.treesitter.keymap')
-
-function this.list()
-  return this.plugins
-end
-
-return this
