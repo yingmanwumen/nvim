@@ -1,5 +1,5 @@
 return {
-  'akinsho/toggleterm.nvim',
+  "akinsho/toggleterm.nvim",
   cmd = "ToggleTerm",
   keys = {
     { "<C-`>", "<Cmd>ToggleTerm<CR>", mode = { "n", "i", "t" } },
@@ -11,5 +11,5 @@ return {
       size = 25,
       shade_terminals = false,
     })
-  end
+  end,
 }

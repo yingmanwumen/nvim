@@ -1,7 +1,7 @@
 return {
   "akinsho/bufferline.nvim",
   event = { "VeryLazy" },
-  dependencies = 'nvim-tree/nvim-web-devicons',
+  dependencies = "nvim-tree/nvim-web-devicons",
   keys = {
     { "<M-1>", "<Cmd>BufferLineGoToBuffer 1<CR>" },
     { "<M-2>", "<Cmd>BufferLineGoToBuffer 2<CR>" },
@@ -17,10 +17,10 @@ return {
     require("bufferline").setup({
       options = {
         always_show_bufferline = false,
-        separator_style        = "slant",
-        numbers                = "ordinal",
-        diagnostics            = "nvim_lsp",
-      }
+        separator_style = "slant",
+        numbers = "ordinal",
+        diagnostics = "nvim_lsp",
+      },
     })
-  end
+  end,
 }

@@ -1,9 +1,9 @@
 return {
-  'JoosepAlviste/nvim-ts-context-commentstring',
+  "JoosepAlviste/nvim-ts-context-commentstring",
   config = function()
-    require('ts_context_commentstring').setup({
+    require("ts_context_commentstring").setup({
       languages = {
-        c = '// %s',
+        c = "// %s",
       },
       enable_autocmd = false,
     })
@@ -11,9 +11,8 @@ return {
 
     ---@diagnostic disable-next-line: duplicate-set-field
     vim.filetype.get_option = function(filetype, option)
-      return option == "commentstring"
-          and require("ts_context_commentstring.internal").calculate_commentstring()
-          or get_option(filetype, option)
+      return option == "commentstring" and require("ts_context_commentstring.internal").calculate_commentstring()
+        or get_option(filetype, option)
     end
-  end
+  end,
 }

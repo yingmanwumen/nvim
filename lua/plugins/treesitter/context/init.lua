@@ -1,8 +1,10 @@
+require("plugins.treesitter.context.keymap")
+
 return {
   "nvim-treesitter/nvim-treesitter-context",
   event = { "BufReadPost", "BufNewFile" },
   config = function()
-    require 'treesitter-context'.setup({
+    require("treesitter-context").setup({
       -- Enable this plugin (Can be enabled/disabled later via commands)
       enable = true,
       -- How many lines the window should span. Values <= 0 mean no limit.
@@ -11,11 +13,11 @@ return {
       min_window_height = 0,
       line_numbers = true,
       -- Maximum number of lines to show for a single context
-      multiline_threshold = 20,
+      multiline_threshold = 1,
       -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-      trim_scope = 'outer',
+      trim_scope = "outer",
       -- Line used to calculate context. Choices: 'cursor', 'topline'
-      mode = 'cursor',
+      mode = "cursor",
       -- Separator between context and content. Should be a single character string, like '-'.
       -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
       separator = nil,

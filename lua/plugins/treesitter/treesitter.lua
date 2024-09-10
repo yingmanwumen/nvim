@@ -17,5 +17,5 @@ return {
         additional_vim_regex_highlighting = true,
       },
     })
-  end
+  end,
 }

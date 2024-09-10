@@ -23,15 +23,15 @@ return {
   config = function()
     require("gitsigns").setup({
       signs = {
-        add          = { text = "▎" },
-        change       = { text = "▎" },
+        add = { text = "▎" },
+        change = { text = "▎" },
         changedelete = { text = "▎" },
-        untracked    = { text = "▎" },
-        delete       = { text = "" },
-        topdelete    = { text = "" },
+        untracked = { text = "▎" },
+        delete = { text = "" },
+        topdelete = { text = "" },
       },
       current_line_blame = true,
-      on_attach = on_attach
+      on_attach = on_attach,
     })
-  end
+  end,
 }

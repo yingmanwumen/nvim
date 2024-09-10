@@ -1,3 +1,2 @@
-return {
-  require("plugins.project.rooter")
-}
+local modules = require("utils").module_list()
+return modules

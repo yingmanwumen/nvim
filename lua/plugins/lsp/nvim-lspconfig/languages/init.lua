@@ -1,30 +1,28 @@
 -- languages that are configured by nvim-lspconfig
-local lsp_list = {
-  require("plugins.lsp.languages.lua"),
-}
+local lsp_list = require("utils").module_list()
 
 local function keymap(bufnr)
   local function bind(lhs, rhs, desc, mode)
     if mode == nil then
-      mode = 'n'
+      mode = "n"
     end
     vim.keymap.set(mode, lhs, rhs, {
-      buffer = bufnr, desc = desc, silent = true
+      buffer = bufnr,
+      desc = desc,
+      silent = true,
     })
   end
 
-  -- bind('[d', vim.diagnostic.goto_prev, 'Go to previous diagnostic')
-  -- bind(']d', vim.diagnostic.goto_next, 'Go to next diagnostic')
-  bind('<C-.>', vim.lsp.buf.code_action, 'Code action')
+  bind("<C-.>", vim.lsp.buf.code_action, "Code action")
 end
 
 local function format_on_save(bufnr)
   vim.api.nvim_create_autocmd("BufWritePre", {
-    group    = vim.api.nvim_create_augroup("AutoFormat", { clear = false }),
-    buffer   = bufnr,
+    group = vim.api.nvim_create_augroup("AutoFormat", { clear = false }),
+    buffer = bufnr,
     callback = function()
       vim.lsp.buf.format({ bufnr = bufnr })
-    end
+    end,
   })
 end
 

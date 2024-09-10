@@ -11,12 +11,12 @@ local function bootstrap()
       "--filter=blob:none",
       "--branch=stable",
       lazyrepo,
-      lazypath
+      lazypath,
     })
     if vim.v.shell_error ~= 0 then
       vim.api.nvim_echo({
         { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-        { out,                            "WarningMsg" },
+        { out, "WarningMsg" },
         { "\nPress any key to exit..." },
       }, true, {})
       vim.fn.getchar()
@@ -35,7 +35,7 @@ local function load_plugins()
     -- automatically check for plugin updates
     checker = { enabled = false },
     defaults = {
-      lazy    = true,
+      lazy = true,
       version = false, -- always use the latest git commit
     },
   })

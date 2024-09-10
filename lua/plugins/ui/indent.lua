@@ -12,9 +12,9 @@ return {
         },
         indent = {
           char = "│",
-        }
+        },
       })
-    end
+    end,
   },
   {
     "echasnovski/mini.indentscope",
@@ -41,5 +41,5 @@ return {
         end,
       })
     end,
-  }
+  },
 }

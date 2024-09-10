@@ -3,5 +3,5 @@ return {
   event = "VeryLazy",
   config = function()
     require("nvim-rooter").setup()
-  end
+  end,
 }

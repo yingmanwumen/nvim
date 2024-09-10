@@ -1,8 +1,7 @@
 return {
-  'ryleelyman/latex.nvim',
-  ft = { 'tex', 'latex' },
+  "ryleelyman/latex.nvim",
+  ft = { "tex", "latex" },
   config = function()
-    require('latex').setup()
-  end
+    require("latex").setup()
+  end,
 }
-

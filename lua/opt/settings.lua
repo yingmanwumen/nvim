@@ -19,7 +19,7 @@ vim.o.signcolumn = "yes"
 vim.o.tabstop = 2
 vim.o.termguicolors = true
 vim.o.undofile = true
-vim.o.undodir = vim.fn.stdpath('cache') .. '/undo'
+vim.o.undodir = vim.fn.stdpath("cache") .. "/undo"
 vim.o.updatetime = 500
 vim.o.timeoutlen = 300
 
