@@ -12,7 +12,10 @@ return {
   },
   config = function()
     local ft = require("guard.filetype")
-    ft("zsh,sh,bash"):fmt("shfmt")
+    ft("bash,csh,ksh,sh,zsh"):fmt("shfmt")
+
+    ft("c,cpp"):fmt("clang-format"):extra("--style={BasedOnStyle: google, IndentWidth: 2}")
+
     ft("lua"):fmt("stylua")
     require("guard").setup({
       fmt_on_save = true,

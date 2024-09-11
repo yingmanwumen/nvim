@@ -11,6 +11,8 @@ local function setup()
     end
     lspconfig[language.lsp].setup(language.opts)
   end
+
+  vim.lsp.inlay_hint.enable(true)
 end
 
 local icons = require("plugins.lsp.nvim-lspconfig.icons")

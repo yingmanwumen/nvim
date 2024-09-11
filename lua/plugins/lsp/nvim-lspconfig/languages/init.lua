@@ -13,7 +13,8 @@ local function keymap(bufnr)
     })
   end
 
-  bind("<C-.>", vim.lsp.buf.code_action, "Code action")
+  bind("<leader>rn", vim.lsp.buf.rename, "Rename")
+  -- TODO: references, implementations, incoming calls, outgoing calls, codelens
 end
 
 local function format_on_save(bufnr)

@@ -3,7 +3,8 @@ return {
   opts = {
     on_init = function(client)
       local path = client.workspace_folders[1].name
-      if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
+      ---@diagnostic disable-next-line: undefined-field
+      if vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc") then
         return
       end
 
@@ -22,13 +23,18 @@ return {
             -- "${3rd}/luv/library"
             -- "${3rd}/busted/library",
           },
-          -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+          -- or pull in all of 'runtimepath'. note: this is a lot slower
           -- library = vim.api.nvim_get_runtime_file("", true)
         },
       })
     end,
     settings = {
-      Lua = {},
+      Lua = {
+        hint = {
+          enable = true,
+          setType = true,
+        },
+      },
     },
   },
 }

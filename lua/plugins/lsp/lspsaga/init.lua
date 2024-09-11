@@ -13,6 +13,9 @@ return {
         sign = false,
         virtual_text = true,
       },
+      code_action = {
+        extend_gitsigns = true,
+      },
     })
 
     require("plugins.lsp.lspsaga.keymap")
