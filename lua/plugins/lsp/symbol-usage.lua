@@ -18,7 +18,7 @@ local function text_format(symbol)
   -- Indicator that shows if there are any other symbols in the same line
   local stacked_functions_content = symbol.stacked_count > 0 and ("+%s"):format(symbol.stacked_count) or ""
 
-  if symbol.references then
+  if symbol.references and symbol.references > 0 then
     local usage = symbol.references <= 1 and "usage" or "usages"
     local num = symbol.references == 0 and "no" or symbol.references
     table.insert(res, round_start)
@@ -27,7 +27,7 @@ local function text_format(symbol)
     table.insert(res, round_end)
   end
 
-  if symbol.definition then
+  if symbol.definition and symbol.definition > 0 then
     if #res > 0 then
       table.insert(res, { " ", "NonText" })
     end
@@ -37,13 +37,15 @@ local function text_format(symbol)
     table.insert(res, round_end)
   end
 
-  if symbol.implementation then
+  if symbol.implementation and symbol.implementation > 0 then
     if #res > 0 then
       table.insert(res, { " ", "NonText" })
     end
+    local impl = symbol.implementation <= 1 and "impl" or "impls"
+    local num = symbol.implementation == 0 and "no" or symbol.implementation
     table.insert(res, round_start)
     table.insert(res, { "󰡱 ", "SymbolUsageImpl" })
-    table.insert(res, { symbol.implementation .. " impls", "SymbolUsageContent" })
+    table.insert(res, { ("%s %s"):format(num, impl), "SymbolUsageContent" })
     table.insert(res, round_end)
   end
 
@@ -63,6 +65,9 @@ end
 local function setup()
   require("symbol-usage").setup({
     text_format = text_format,
+    vt_position = "above",
+    references = { enabled = true },
+    implementation = { enabled = true },
   })
 end
 
