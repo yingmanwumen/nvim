@@ -1,8 +1,9 @@
 vim.o.mouse = "nv"
 vim.g.neovide_input_ime = true
 vim.g.neovide_input_macos_alt_is_meta = true
-vim.o.guifont = "Liga ComicShannsMono Nerd Font,PingFang SC,Apple Color Emoji"
 vim.g.neovide_refresh_rate = 120
 vim.g.neovide_no_idle = true
 vim.g.neovide_cursor_vfx_mode = "railgun"
 vim.g.neovide_hide_mouse_when_typing = true
+vim.o.guifont = "Liga ComicShannsMono Nerd Font,PingFang SC,Apple Color Emoji"
+-- vim.o.guifont = "Liga ComicShannsMono Nerd Font,PingFang SC"
