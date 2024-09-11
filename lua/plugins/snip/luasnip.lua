@@ -6,7 +6,7 @@ return {
     require("luasnip.loaders.from_snipmate").lazy_load()
 
     local function bind(lhs, rhs, desc)
-      vim.keymap.set({ "i", "s" }, lhs, rhs, { desc = desc, silent = true })
+      vim.keymap.set({ "i", "s" }, lhs, rhs, { desc = desc, silent = true, expr = true })
     end
     local ls = require("luasnip")
 

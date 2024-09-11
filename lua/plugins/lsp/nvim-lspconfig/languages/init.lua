@@ -1,38 +1,6 @@
 -- languages that are configured by nvim-lspconfig
+local common_on_attach = require("plugins.lsp.nvim-lspconfig.on_attach")
 local lsp_list = require("utils").module_list()
-
-local function keymap(bufnr)
-  local function bind(lhs, rhs, desc, mode)
-    if mode == nil then
-      mode = "n"
-    end
-    vim.keymap.set(mode, lhs, rhs, {
-      buffer = bufnr,
-      desc = desc,
-      silent = true,
-    })
-  end
-
-  bind("<leader>rn", vim.lsp.buf.rename, "Rename")
-  -- TODO: references, implementations, incoming calls, outgoing calls, codelens
-end
-
-local function format_on_save(bufnr)
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    group = vim.api.nvim_create_augroup("AutoFormat", { clear = false }),
-    buffer = bufnr,
-    callback = function()
-      vim.lsp.buf.format({ bufnr = bufnr })
-    end,
-  })
-end
-
-local function common_on_attach(lsp, bufnr)
-  if lsp.format_on_save then
-    format_on_save(bufnr)
-  end
-  keymap(bufnr)
-end
 
 local function default_on_attach(lsp)
   local on_attach = lsp.opts.on_attach

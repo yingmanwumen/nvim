@@ -23,5 +23,6 @@ load_plugins(require("plugins.editor"))
 load_plugins(require("plugins.dap"))
 load_plugins(require("plugins.cmp"))
 load_plugins(require("plugins.snip"))
+load_plugins(require("plugins.languages"))
 
 return this
