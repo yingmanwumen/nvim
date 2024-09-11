@@ -17,6 +17,9 @@ return {
     ft("c,cpp"):fmt("clang-format"):extra("--style={BasedOnStyle: google, IndentWidth: 2}")
 
     ft("lua"):fmt("stylua")
+
+    ft("python"):fmt("black")
+
     require("guard").setup({
       fmt_on_save = true,
       lsp_as_default_formatter = false,

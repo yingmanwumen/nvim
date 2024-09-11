@@ -20,7 +20,8 @@ load_plugins(require("plugins.lsp"))
 load_plugins(require("plugins.project"))
 load_plugins(require("plugins.git"))
 load_plugins(require("plugins.editor"))
-load_plugins(require("plugins.cmp"))
 load_plugins(require("plugins.dap"))
+load_plugins(require("plugins.cmp"))
+load_plugins(require("plugins.snip"))
 
 return this
