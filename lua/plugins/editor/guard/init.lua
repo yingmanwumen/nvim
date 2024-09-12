@@ -20,6 +20,8 @@ return {
 
     ft("python"):fmt("black")
 
+    ft("angular,css,flow,graphql,html,json,jsx,javascript,less,markdown,scss,typescript,vue,yaml"):fmt("prettier")
+
     require("guard").setup({
       fmt_on_save = true,
       lsp_as_default_formatter = false,
