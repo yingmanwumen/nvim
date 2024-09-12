@@ -11,8 +11,7 @@ return {
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           ["vim.lsp.util.stylize_markdown"] = true,
-          -- TODO
-          -- ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+          ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
         },
       },
       presets = {
@@ -27,6 +26,12 @@ return {
           filter = {
             event = "msg_show",
             find = "written",
+          },
+          opts = { skip = true },
+        },
+        {
+          filter = {
+            find = "-32603: Invalid offset",
           },
           opts = { skip = true },
         },
