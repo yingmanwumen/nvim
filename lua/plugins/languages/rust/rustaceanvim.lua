@@ -2,7 +2,11 @@ local default_on_attach = require("plugins.lsp.nvim-lspconfig.on_attach")
 
 vim.g.rustfmt_autosave = 1
 vim.g.rustaceanvim = {
-  tools = {},
+  tools = {
+    hover_actions = {
+      replace_builtin_hover = false,
+    },
+  },
   server = {
     on_attach = function(_, bufnr)
       default_on_attach(nil, bufnr)
