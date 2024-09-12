@@ -18,7 +18,7 @@ local function text_format(symbol)
   -- Indicator that shows if there are any other symbols in the same line
   local stacked_functions_content = symbol.stacked_count > 0 and ("+%s"):format(symbol.stacked_count) or ""
 
-  if symbol.references and symbol.references > 0 then
+  if symbol.references then
     local usage = symbol.references <= 1 and "usage" or "usages"
     local num = symbol.references == 0 and "no" or symbol.references
     table.insert(res, round_start)
