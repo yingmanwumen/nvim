@@ -62,12 +62,19 @@ local function text_format(symbol)
   return res
 end
 
+local symbol_kind = vim.lsp.protocol.SymbolKind
+
 local function setup()
   require("symbol-usage").setup({
     text_format = text_format,
     vt_position = "above",
     references = { enabled = true },
     implementation = { enabled = true },
+    kinds = {
+      symbol_kind.Function,
+      symbol_kind.Method,
+      symbol_kind.Struct,
+    },
   })
 end
 

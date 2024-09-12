@@ -5,7 +5,9 @@ local this = {}
 function this.setup()
   require("opt.settings")
   require("opt.keymap")
-  require("neovide")
+  if vim.g.neovide then
+    require("neovide")
+  end
 end
 
 return this

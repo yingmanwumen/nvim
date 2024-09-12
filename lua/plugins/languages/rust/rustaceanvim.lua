@@ -7,6 +7,13 @@ vim.g.rustaceanvim = {
     on_attach = function(_, bufnr)
       default_on_attach(nil, bufnr)
     end,
+    settings = {
+      ["rust-analyzer"] = {
+        check = {
+          command = "clippy",
+        },
+      },
+    },
   },
 }
 
