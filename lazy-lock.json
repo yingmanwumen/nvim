@@ -47,7 +47,7 @@
   "rustaceanvim": { "branch": "master", "commit": "5d0cec60d3ff20587c77e0851c919f89068da355" },
   "symbol-usage.nvim": { "branch": "main", "commit": "2842380132e87d31853851be48760de6fb78bdbb" },
   "symbols-outline.nvim": { "branch": "master", "commit": "564ee65dfc9024bdde73a6621820866987cbb256" },
-  "telescope.nvim": { "branch": "master", "commit": "fe999db6e0c39c8984519ead75660e0e2d3245d3" },
+  "telescope.nvim": { "branch": "master", "commit": "cfaf68420e9f493ee7783ba243e262be7c7f4d08" },
   "todo-comments.nvim": { "branch": "main", "commit": "319c01b99b7a8c9ac2066bf0efd4d6ec68fef444" },
   "toggleterm.nvim": { "branch": "main", "commit": "137d06fb103952a0fb567882bb8527e2f92d327d" },
   "tokyonight.nvim": { "branch": "main", "commit": "4b386e66a9599057587c30538d5e6192e3d1c181" },
