@@ -1,11 +1,11 @@
 local bind = vim.keymap.set
 
 local function neovide_scale(amount)
-  local temp = vim.g.neovide_scale_factor + amount
-  if temp < 0.5 then
+  local factor = vim.g.neovide_scale_factor + amount
+  if factor < 0.5 then
     return
   end
-  vim.g.neovide_scale_factor = temp
+  vim.g.neovide_scale_factor = factor
 end
 
 bind("n", "<C-=>", function()
