@@ -11,7 +11,9 @@ local function keymap(bufnr)
   end
 
   bind("<leader>rn", vim.lsp.buf.rename, "Rename")
-  bind("gd", "<Cmd>Telescope lsp_definitions<CR>", "Goto Definition")
+  -- NOTE: there are bugs with goto definition in Telescope
+  --
+  -- bind("gd", "<Cmd>Telescope lsp_definitions<CR>", "Goto Definition")
   bind("gr", "<Cmd>Telescope lsp_references<CR>", "Goto References")
   bind("gi", "<Cmd>Telescope lsp_implementations<CR>", "Goto Implementation")
   bind("<leader>i", "<Cmd>Telescope lsp_incoming_calls<CR>", "Goto Incoming Calls")
