@@ -31,8 +31,21 @@ local function format_on_save(bufnr)
   })
 end
 
-local function on_attach(opts, bufnr)
+local function codelens(client, bufnr)
+  if client.server_capabilities.codeLensProvider then
+    vim.api.nvim_create_autocmd({ "CursorHold", "BufEnter", "InsertLeave" }, {
+      group = vim.api.nvim_create_augroup("CodeLens", { clear = false }),
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.codelens.refresh({ bufnr = bufnr })
+      end,
+    })
+  end
+end
+
+local function on_attach(client, opts, bufnr)
   keymap(bufnr)
+  codelens(client, bufnr)
   if opts == nil then
     return
   end

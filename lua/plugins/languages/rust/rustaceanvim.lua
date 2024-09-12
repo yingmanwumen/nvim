@@ -1,6 +1,7 @@
 local default_on_attach = require("plugins.lsp.nvim-lspconfig.on_attach")
 
 vim.g.rustfmt_autosave = 1
+
 vim.g.rustaceanvim = {
   tools = {
     hover_actions = {
@@ -8,13 +9,15 @@ vim.g.rustaceanvim = {
     },
   },
   server = {
-    on_attach = function(_, bufnr)
-      default_on_attach(nil, bufnr)
+    on_attach = function(client, bufnr)
+      default_on_attach(client, nil, bufnr)
     end,
     settings = {
       ["rust-analyzer"] = {
-        check = {
-          command = "clippy",
+        check = { command = "clippy" },
+        lens = {
+          implementations = { enable = false },
+          run = { enable = false },
         },
       },
     },

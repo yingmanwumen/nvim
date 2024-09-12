@@ -4,11 +4,11 @@ local lsp_list = require("utils").module_list()
 
 local function default_on_attach(lsp)
   local on_attach = lsp.opts.on_attach
-  lsp.opts["on_attach"] = function(_, bufnr)
+  lsp.opts["on_attach"] = function(client, bufnr)
     if on_attach ~= nil then
-      on_attach(_, bufnr)
+      on_attach(client, bufnr)
     end
-    common_on_attach(lsp, bufnr)
+    common_on_attach(client, lsp, bufnr)
   end
 end
 
