@@ -14,6 +14,7 @@ local function keymap(bufnr)
   -- NOTE: there are bugs with goto definition in Telescope
   --
   -- bind("gd", "<Cmd>Telescope lsp_definitions<CR>", "Goto Definition")
+  bind("gd", vim.lsp.buf.definition, "Goto Definition")
   bind("gr", "<Cmd>Telescope lsp_references<CR>", "Goto References")
   bind("gi", "<Cmd>Telescope lsp_implementations<CR>", "Goto Implementation")
   bind("<leader>i", "<Cmd>Telescope lsp_incoming_calls<CR>", "Goto Incoming Calls")
