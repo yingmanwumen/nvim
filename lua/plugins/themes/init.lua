@@ -12,7 +12,7 @@ end
 
 function this.activate(theme)
   theme = theme or this.default
-  if this.dark then
+  if this.dark == true then
     vim.opt.background = "dark"
   else
     vim.opt.background = "light"

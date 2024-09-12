@@ -24,4 +24,18 @@ function this.module_list()
   return modules
 end
 
+function this.autosave(bufnr)
+  if bufnr == nil then
+    bufnr = vim.api.nvim_get_current_buf()
+  end
+  vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+    buffer = bufnr,
+    callback = function()
+      if vim.bo.buftype == "" and vim.bo.readonly == false then
+        vim.cmd([[write]])
+      end
+    end,
+  })
+end
+
 return this

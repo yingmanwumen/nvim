@@ -49,7 +49,7 @@ local function on_attach(client, opts, bufnr)
   if opts == nil then
     return
   end
-  if opts.format_on_save then
+  if opts.format_on_save ~= nil and opts.format_on_save == true then
     format_on_save(bufnr)
   end
 end

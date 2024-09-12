@@ -1,0 +1,4 @@
+return {
+  lsp = "bashls",
+  opts = {},
+}

@@ -27,6 +27,6 @@ return {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
   },
-  event = { "BufReadPost", "BufNewFile" },
+  event = "VeryLazy",
   config = setup,
 }
