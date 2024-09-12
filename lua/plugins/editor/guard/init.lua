@@ -20,7 +20,7 @@ return {
 
     ft("python"):fmt("black")
 
-    ft("angular,css,flow,graphql,html,json,jsx,javascript,less,markdown,scss,typescript,vue,yaml"):fmt("prettier")
+    ft("angular,css,flow,graphql,html,json,jsx,javascript,less,markdown,scss,typescript,vue,yaml"):fmt("prettierd")
 
     require("guard").setup({
       fmt_on_save = true,

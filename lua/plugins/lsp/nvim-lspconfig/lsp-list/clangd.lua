@@ -1,3 +1,5 @@
+-- for c, c++
+
 return {
   lsp = "clangd",
   opts = {
@@ -13,5 +15,6 @@ return {
         },
       },
     },
+    filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
   },
 }
