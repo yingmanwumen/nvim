@@ -14,7 +14,7 @@ local function setup()
       },
     },
     pickers = {
-      builtin = { theme = "ivy", previewer = false },
+      builtin = { theme = "dropdown", previewer = false },
     },
   })
 end
