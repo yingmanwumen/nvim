@@ -37,7 +37,7 @@
   "nvim-origami": { "branch": "main", "commit": "c1f8c7f191ef3f605acd2de5550b55a0884d0875" },
   "nvim-rooter.lua": { "branch": "main", "commit": "36c597962c5f136d6230f53837ff14fcaf81eff7" },
   "nvim-tree.lua": { "branch": "master", "commit": "d41b4ca013ed89e41b9c0ecbdae5f1633e42f7fa" },
-  "nvim-treesitter": { "branch": "master", "commit": "4af16a10b7f1e79275f712a1c6dcf725d301a303" },
+  "nvim-treesitter": { "branch": "master", "commit": "e0338f2b74fbad808f2569c7d4eadd8796af2118" },
   "nvim-treesitter-context": { "branch": "master", "commit": "e6cc783b74606d97ca9eff6494e3f5c2ca603a50" },
   "nvim-ts-autotag": { "branch": "main", "commit": "e239a560f338be31337e7abc3ee42515daf23f5e" },
   "nvim-ts-context-commentstring": { "branch": "main", "commit": "375c2d86cee6674afd75b4f727ce3a80065552f7" },
