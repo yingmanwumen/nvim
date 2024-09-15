@@ -1,9 +1,22 @@
 local utils = require("utils")
 
+local setup_cmp = function()
+  require("cmp").setup.filetype("markdown", {
+    sources = {
+      { name = "nvim_lsp" },
+      { name = "buffer" },
+      { name = "cmp_tabnine" },
+      { name = "path" },
+      { name = "nerdfont" },
+    },
+  })
+end
+
 local function setup()
   vim.wo.conceallevel = 3
   vim.wo.concealcursor = ""
   utils.autosave()
+  setup_cmp()
   -- vim.wo.number = false
 end
 
