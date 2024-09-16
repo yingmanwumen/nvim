@@ -5,6 +5,7 @@ local this = {}
 function this.setup()
   require("opt.settings")
   require("opt.keymap")
+  require("opt.autocmd")
   if vim.g.neovide then
     require("neovide")
   end
