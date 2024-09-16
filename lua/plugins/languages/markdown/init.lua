@@ -15,6 +15,7 @@ end
 local function setup()
   vim.wo.conceallevel = 3
   vim.wo.concealcursor = ""
+  vim.cmd([[setlocal shiftwidth=2]])
   utils.autosave()
   setup_cmp()
   -- vim.wo.number = false
