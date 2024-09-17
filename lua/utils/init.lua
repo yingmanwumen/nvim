@@ -38,4 +38,18 @@ function this.autosave(bufnr)
   })
 end
 
+function this.set_timer(interval, callback)
+  local timer = vim.uv.new_timer()
+  -- run interval
+  timer:start(interval, interval, function()
+    vim.schedule(callback)
+  end)
+  return timer
+end
+
+function this.clear_timer(timer)
+  timer:stop()
+  timer:close()
+end
+
 return this
