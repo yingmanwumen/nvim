@@ -11,6 +11,12 @@ local function setup()
 
   ft("angular,css,flow,graphql,html,json,jsx,javascript,less,markdown,scss,typescript,vue,yaml"):fmt("prettierd")
 
+  ft("sql"):fmt({
+    cmd = "sqlfmt",
+    stdin = false,
+    fname = true,
+  })
+
   require("guard").setup({
     fmt_on_save = true,
     lsp_as_default_formatter = false,
