@@ -1,3 +1,7 @@
+vim.cmd([[
+  syntax sync maxlines=2000
+]])
+
 vim.o.number = true
 vim.o.scrolloff = 3
 vim.o.shell = "/bin/zsh"
