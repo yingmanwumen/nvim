@@ -26,6 +26,8 @@ return {
   dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
+    -- neoconf.nvim should run before lspconfig
+    "folke/neoconf.nvim",
   },
   event = "VeryLazy",
   config = setup,

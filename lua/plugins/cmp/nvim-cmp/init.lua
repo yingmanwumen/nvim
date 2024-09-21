@@ -24,8 +24,10 @@ local function setup()
       { name = "path" },
       { name = "nerdfont" },
       { name = "luasnip" },
+      { name = "lazydev" },
     }),
 
+    ---@diagnostic disable-next-line: missing-fields
     formatting = {
       format = function(_, item)
         local icons = require("plugins.cmp.nvim-cmp.icons")

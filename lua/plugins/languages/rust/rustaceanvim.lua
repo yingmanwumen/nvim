@@ -14,7 +14,10 @@ vim.g.rustaceanvim = {
     end,
     settings = {
       ["rust-analyzer"] = {
-        check = { command = "clippy" },
+        check = {
+          command = "clippy",
+          extraArgs = { "--no-deps" },
+        },
         lens = {
           implementations = { enable = false },
           run = { enable = false },
