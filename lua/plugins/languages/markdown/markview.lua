@@ -29,9 +29,13 @@ return {
       },
       -- This is nice to have
       callbacks = {
-        on_enable = function(_, win)
-          vim.wo[win].conceallevel = 3
-          vim.wo[win].concealcursor = ""
+        on_enable = function(_, _)
+          vim.wo.conceallevel = 3
+          vim.wo.concealcursor = ""
+        end,
+        on_mode_change = function(_, _)
+          vim.wo.conceallevel = 3
+          vim.wo.concealcursor = ""
         end,
       },
     })

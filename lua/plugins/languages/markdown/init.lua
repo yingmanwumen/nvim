@@ -13,12 +13,12 @@ local setup_cmp = function()
 end
 
 local function setup()
-  vim.wo.conceallevel = 3
-  vim.wo.concealcursor = ""
   vim.cmd([[setlocal shiftwidth=2]])
   utils.autosave()
   setup_cmp()
   -- vim.wo.number = false
+  vim.wo.conceallevel = 3
+  vim.wo.concealcursor = ""
 end
 
 vim.api.nvim_create_autocmd("FileType", {
