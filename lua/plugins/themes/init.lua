@@ -1,7 +1,7 @@
 local this = {}
 local themes = require("plugins.themes.themes")
 
-this.default = "github_light"
+this.default = "PaperColorSlim"
 this.themes = themes
 this.dark = false
 
