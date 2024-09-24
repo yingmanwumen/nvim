@@ -5,5 +5,5 @@ require("opt").setup()
 require("lazy_nvim").setup()
 
 local themes = require("plugins.themes")
-themes.dark = true
+themes.dark = false
 themes.activate()
