@@ -1,0 +1,4 @@
+return {
+  lsp = "ocamllsp",
+  opts = {},
+}
