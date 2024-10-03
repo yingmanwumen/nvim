@@ -23,6 +23,13 @@ local function setup()
     fname = true,
   })
 
+  -- ft("haskell"):fmt({
+  --   cmd = "fourmolu",
+  --   args = { "-i" },
+  --   stdin = false,
+  --   fname = true,
+  -- })
+
   require("guard").setup({
     fmt_on_save = true,
     lsp_as_default_formatter = false,

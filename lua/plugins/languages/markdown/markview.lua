@@ -10,6 +10,7 @@ return {
       },
       code_blocks = {
         style = "minimal",
+        pad_amount = 0,
       },
       list_items = {
         shiftwidth = 2,

@@ -88,7 +88,8 @@ end
 
 return {
   "nvim-tree/nvim-tree.lua",
-  event = { "VimEnter" },
+  -- event = { "VimEnter" },
+  lazy = false,
   keys = {
     { "<M-e>", "<Cmd>NvimTreeToggle<CR>", desc = "Toggle NvimTree", mode = "n" },
   },
