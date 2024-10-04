@@ -3,7 +3,8 @@ local function setup()
 
   ft("bash,csh,ksh,sh,zsh"):fmt("shfmt")
 
-  ft("c,cpp"):fmt("clang-format"):extra("--style={BasedOnStyle: google, IndentWidth: 2}")
+  ft("cpp"):fmt("clang-format"):extra("--style={BasedOnStyle: google, IndentWidth: 2}")
+  ft("c"):fmt("clang-format"):extra("--style={BasedOnStyle: google, IndentWidth: 4}")
 
   ft("lua"):fmt("stylua")
 
