@@ -4,6 +4,5 @@ require("opt").setup()
 -- load the package manager lazy.nvim
 require("lazy_nvim").setup()
 
-local themes = require("plugins.themes")
-themes.dark = true
-themes.activate()
+vim.opt.background = "light"
+vim.cmd("colorscheme solarized")
