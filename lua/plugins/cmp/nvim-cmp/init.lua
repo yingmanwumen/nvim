@@ -2,8 +2,8 @@ local function setup()
   local cmp = require("cmp")
   cmp.setup({
     mapping = cmp.mapping.preset.insert({
-      ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-      ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+      ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+      ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
       ["<C-b>"] = cmp.mapping.scroll_docs(-1),
       ["<C-f>"] = cmp.mapping.scroll_docs(1),
       ["<CR>"] = cmp.mapping.confirm({ select = true }),
