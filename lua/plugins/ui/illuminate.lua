@@ -1,7 +1,3 @@
--- vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Visual" })
--- vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Visual" })
--- vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
-
 -- This plugin has bad performance with large files
 return {
   "RRethy/vim-illuminate",
@@ -17,5 +13,8 @@ return {
     require("illuminate").configure({
       large_file_cutoff = 500,
     })
+    vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Visual" })
+    vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Visual" })
+    vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
   end,
 }
