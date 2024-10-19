@@ -20,4 +20,6 @@ return {
       })
     end,
   },
+
+  { "ofirgall/ofirkai.nvim" },
 }

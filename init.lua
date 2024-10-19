@@ -4,5 +4,10 @@ require("opt").setup()
 -- load the package manager lazy.nvim
 require("lazy_nvim").setup()
 
-vim.opt.background = "light"
-vim.cmd("colorscheme solarized")
+if vim.uv.os_uname().sysname == "Darwin" then
+  vim.opt.background = "light"
+  vim.cmd("colorscheme solarized")
+else
+  vim.opt.background = "dark"
+  vim.cmd("colorscheme ofirkai")
+end
