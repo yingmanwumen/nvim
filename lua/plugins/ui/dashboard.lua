@@ -12,7 +12,7 @@ local this = {
         project = { enable = true },
         shortcut = {
           {
-            icon = "🔧",
+            icon = " ",
             icon_hl = "@variable",
             desc = "Lazy",
             group = "Label",
@@ -20,7 +20,7 @@ local this = {
             key = "L",
           },
           {
-            icon = "📚",
+            icon = " ",
             icon_hl = "@variable",
             desc = "Mason",
             group = "Label",

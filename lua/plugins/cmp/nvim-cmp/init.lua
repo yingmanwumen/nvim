@@ -32,7 +32,8 @@ local function setup()
       format = function(_, item)
         local icons = require("plugins.cmp.nvim-cmp.icons")
         if icons[item.kind] then
-          item.kind = icons[item.kind] .. item.kind
+          item.abbr = icons[item.kind] .. item.abbr
+          item.kind = nil
         end
         return item
       end,

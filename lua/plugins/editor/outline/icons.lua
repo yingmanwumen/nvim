@@ -28,7 +28,7 @@ return {
   Snippet = " ",
   String = " ",
   Struct = " ",
-  TabNine = " ",
+  TabNine = "󰁨 ",
   Text = " ",
   TypeParameter = " ",
   Unit = " ",
