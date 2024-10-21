@@ -12,6 +12,11 @@ return {
         style = "minimal",
         pad_amount = 0,
       },
+      -- latex = {
+      --   block = {
+      --     enable = false,
+      --   },
+      -- },
       list_items = {
         shiftwidth = 2,
         indent_width = 2,
