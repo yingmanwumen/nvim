@@ -8,6 +8,8 @@ if vim.uv.os_uname().sysname == "Darwin" then
   vim.opt.background = "light"
   vim.cmd("colorscheme solarized")
 else
+  -- vim.opt.background = "dark"
+  -- vim.cmd("colorscheme ofirkai")
   vim.opt.background = "dark"
-  vim.cmd("colorscheme ofirkai")
+  vim.cmd("colorscheme github_light")
 end
