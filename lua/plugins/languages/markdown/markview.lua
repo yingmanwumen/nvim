@@ -13,9 +13,10 @@ return {
         pad_amount = 0,
       },
       latex = {
-        block = {
-          enable = false,
-        },
+        enable = false,
+        -- block = {
+        --   enable = false,
+        -- },
       },
       list_items = {
         shiftwidth = 2,
