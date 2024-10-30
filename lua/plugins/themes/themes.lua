@@ -22,4 +22,12 @@ return {
   },
 
   { "ofirgall/ofirkai.nvim" },
+
+  { "diegoulloao/neofusion.nvim" },
+
+  { "sainnhe/everforest" },
+
+  { "shaunsingh/nord.nvim" },
+
+  { "ellisonleao/gruvbox.nvim" },
 }
