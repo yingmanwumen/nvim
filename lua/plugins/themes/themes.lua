@@ -30,4 +30,6 @@ return {
   { "shaunsingh/nord.nvim" },
 
   { "ellisonleao/gruvbox.nvim" },
+
+  { "sainnhe/gruvbox-material" },
 }

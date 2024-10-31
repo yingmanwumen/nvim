@@ -5,11 +5,11 @@ require("opt").setup()
 require("lazy_nvim").setup()
 
 if vim.uv.os_uname().sysname == "Darwin" then
-  vim.opt.background = "dark"
-  vim.cmd("colorscheme everforest")
+  vim.opt.background = "light"
+  vim.cmd("colorscheme gruvbox-material")
 else
   -- vim.opt.background = "dark"
   -- vim.cmd("colorscheme ofirkai")
-  vim.opt.background = "dark"
+  vim.opt.background = "light"
   vim.cmd("colorscheme github_light")
 end
