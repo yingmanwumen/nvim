@@ -89,6 +89,7 @@ end
 return {
   "nvim-tree/nvim-tree.lua",
   -- event = { "VimEnter" },
+  dependencies = "notjedi/nvim-rooter.lua",
   lazy = false,
   keys = {
     { "<M-e>", "<Cmd>NvimTreeToggle<CR>", desc = "Toggle NvimTree", mode = "n" },

@@ -32,4 +32,8 @@ return {
   { "ellisonleao/gruvbox.nvim" },
 
   { "sainnhe/gruvbox-material" },
+
+  { "navarasu/onedark.nvim" },
+
+  { "Mofiqul/vscode.nvim" },
 }

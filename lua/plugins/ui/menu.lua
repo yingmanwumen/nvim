@@ -8,7 +8,7 @@ return {
   dependencies = "NvChad/volt",
   keys = {
     {
-      "<C-m>",
+      "<C-s-m>",
       open_menu,
     },
   },
