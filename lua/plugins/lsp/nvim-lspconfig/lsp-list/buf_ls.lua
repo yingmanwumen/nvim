@@ -1,6 +1,6 @@
 -- for protobuf
 
 return {
-  lsp = "bufls",
+  lsp = "buf_ls",
   opts = {},
 }
