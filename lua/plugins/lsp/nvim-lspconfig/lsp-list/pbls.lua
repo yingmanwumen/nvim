@@ -1,0 +1,4 @@
+return {
+  lsp = "pbls",
+  opts = {},
+}

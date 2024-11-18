@@ -24,6 +24,13 @@ local function setup()
     fname = true,
   })
 
+  ft("protobuf"):fmt({
+    cmd = "buf",
+    args = { "format", "-w" },
+    stdin = false,
+    fname = true,
+  })
+
   -- ft("haskell"):fmt({
   --   cmd = "fourmolu",
   --   args = { "-i" },
