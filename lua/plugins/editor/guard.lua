@@ -24,7 +24,7 @@ local function setup()
     fname = true,
   })
 
-  ft("protobuf"):fmt({
+  ft("proto"):fmt({
     cmd = "buf",
     args = { "format", "-w" },
     stdin = false,
