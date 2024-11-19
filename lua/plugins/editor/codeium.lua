@@ -8,7 +8,9 @@ if vim.uv.os_uname().sysname == "Darwin" then
         show_label = false,
         silent = true,
       })
-      vim.keymap.set("i", "<tab>", neocodeium.accept)
+      vim.keymap.set("i", "<tab>", function()
+        return neocodeium.visible() and neocodeium.accept() or "<S-tab>"
+      end, { silent = true, expr = true })
       vim.keymap.set("i", "<M-c>", neocodeium.clear)
       vim.keymap.set("i", "<M-]>", function()
         neocodeium.cycle(1)
