@@ -11,5 +11,6 @@ if vim.uv.os_uname().sysname == "Darwin" then
   vim.o.guifont = "Liga ComicShannsMono Nerd Font"
 else
   vim.o.guifont = "Liga ComicShannsMono Nerd Font,LXGW WenKai,Apple Color Emoji"
+  vim.g.neovide_scale_factor = 0.9
   -- vim.o.guifont = "JetBrainsMono Nerd Font,LXGW WenKai,Apple Color Emoji"
 end
