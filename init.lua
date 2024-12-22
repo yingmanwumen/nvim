@@ -9,5 +9,5 @@ if vim.uv.os_uname().sysname == "Darwin" then
   vim.cmd("colorscheme gruvbox-material")
 else
   vim.opt.background = "light"
-  vim.cmd("colorscheme onedark")
+  vim.cmd("colorscheme github_light")
 end
