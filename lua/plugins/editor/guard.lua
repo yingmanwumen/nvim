@@ -31,25 +31,23 @@ local function setup()
     fname = true,
   })
 
-  -- ft("haskell"):fmt({
-  --   cmd = "fourmolu",
-  --   args = { "-i" },
-  --   stdin = false,
-  --   fname = true,
-  -- })
+  ft("haskell"):fmt({
+    cmd = "fourmolu",
+    args = { "--stdin-input-file" },
+    stdin = true,
+    fname = true,
+  })
 
   vim.g.guard_config = {
     fmt_on_save = true,
-    lsp_as_default_formatter = false,
+    lsp_as_default_formatter = true,
+    save_on_format = true,
   }
 end
 
 return {
   "nvimdev/guard.nvim",
-  event = {
-    "BufReadPost",
-    "BufNewFile",
-  },
+  ft = "*",
   -- Builtin configuration, optional
   dependencies = {
     "nvimdev/guard-collection",
