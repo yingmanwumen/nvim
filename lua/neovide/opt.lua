@@ -10,7 +10,7 @@ if vim.uv.os_uname().sysname == "Darwin" then
   vim.g.neovide_input_macos_option_key_is_meta = "both"
   vim.o.guifont = "Liga ComicShannsMono Nerd Font"
 else
-  vim.o.guifont = "Liga ComicShannsMono Nerd Font,LXGW WenKai,Apple Color Emoji:h12"
-  -- vim.g.neovide_scale_factor = 0.7
+  vim.o.guifont = "Liga ComicShannsMono Nerd Font,LXGW WenKai,Apple Color Emoji:h11"
+  -- vim.g.neovide_scale_factor = 1.1
   -- vim.o.guifont = "JetBrainsMono Nerd Font,LXGW WenKai,Apple Color Emoji"
 end
