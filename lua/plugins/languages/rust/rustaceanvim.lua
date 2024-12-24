@@ -19,7 +19,14 @@ vim.g.rustaceanvim = {
           extraArgs = { "--no-deps" },
         },
         lens = {
-          implementations = { enable = false },
+          implementations = { enable = true },
+          references = {
+            adt = { enable = true },
+            enumVariant = { enable = true },
+            method = { enable = true },
+            trait = { enable = true },
+          },
+          location = "above_whole_item",
           run = { enable = false },
         },
       },

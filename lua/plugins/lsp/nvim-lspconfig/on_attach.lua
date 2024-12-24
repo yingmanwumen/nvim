@@ -33,7 +33,7 @@ end
 
 local function codelens(client, bufnr)
   if client.server_capabilities.codeLensProvider then
-    vim.api.nvim_create_autocmd({ "CursorHold", "BufEnter", "InsertLeave" }, {
+    vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
       group = vim.api.nvim_create_augroup("CodeLens", { clear = false }),
       buffer = bufnr,
       callback = function()
