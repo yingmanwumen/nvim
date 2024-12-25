@@ -18,6 +18,9 @@ return {
       "CopilotChatStop",
       "CopilotChatReset",
       "CopilotChatExplain",
+      "CopilotChatOptimize",
+      "CopilotChatDocs",
+      "CopilotChatReview",
     },
   },
 }
