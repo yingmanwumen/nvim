@@ -10,7 +10,9 @@ local function setup()
 
   ft("python"):fmt("black")
 
-  ft("json,jsonc,angular,css,flow,graphql,html,jsx,javascript,less,markdown,scss,typescript,vue,yaml"):fmt("prettierd")
+  ft("json,jsonc,angular,css,flow,graphql,html,jsx,javascript,less,markdown,scss,typescript,vue,yaml,typescriptreact"):fmt(
+    "prettierd"
+  )
 
   ft("sql"):fmt({
     cmd = "sqlfmt",
