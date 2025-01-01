@@ -28,13 +28,20 @@ local function setup()
       { name = "lazydev" },
     }),
 
-    ---@diagnostic disable-next-line: missing-fields
     formatting = {
-      format = function(_, item)
+      expandable_indicator = false,
+      fields = { "kind", "abbr", "menu" },
+      format = function(entry, item)
         local icons = require("plugins.cmp.nvim-cmp.icons")
         if icons[item.kind] then
-          item.abbr = icons[item.kind] .. item.abbr
-          item.kind = nil
+          item.kind = icons[item.kind]
+        end
+        if item.menu ~= nil then
+          -- Limit the length of the menu text to 50
+          -- If the length of the menu text is greater than 50, truncate it and add "..."
+          if string.len(item.menu) > 30 then
+            item.menu = string.sub(item.menu, 1, 30) .. "..."
+          end
         end
         return item
       end,
