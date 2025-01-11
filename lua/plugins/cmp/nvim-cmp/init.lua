@@ -18,9 +18,9 @@ local function setup()
     },
 
     sources = cmp.config.sources({
-      -- { name = "cmp_tabnine" },
+      { name = "cmp_tabnine" },
       { name = "nvim_lsp" },
-      { name = "copilot" },
+      -- { name = "copilot" },
       { name = "buffer" },
       { name = "path" },
       { name = "nerdfont" },
@@ -31,7 +31,7 @@ local function setup()
     formatting = {
       expandable_indicator = false,
       fields = { "kind", "abbr", "menu" },
-      format = function(entry, item)
+      format = function(_, item)
         local icons = require("plugins.cmp.nvim-cmp.icons")
         if icons[item.kind] then
           item.kind = icons[item.kind]
