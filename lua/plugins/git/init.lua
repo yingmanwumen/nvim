@@ -1,2 +1,2 @@
-local modules = require("utils").module_list()
+local modules = require("misc").module_list()
 return modules

@@ -8,8 +8,8 @@ local function fcitx5()
 end
 
 local function autoread()
-  local utils = require("utils")
-  utils.set_timer(1000, function()
+  local misc = require("misc")
+  misc.set_timer(1000, function()
     vim.cmd([[silent! checktime]])
   end)
 end

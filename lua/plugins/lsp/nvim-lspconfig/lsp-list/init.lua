@@ -1,6 +1,6 @@
 -- languages that are configured by nvim-lspconfig
 local common_on_attach = require("plugins.lsp.nvim-lspconfig.on_attach")
-local lsp_list = require("utils").module_list()
+local lsp_list = require("misc").module_list()
 
 local function default_on_attach(lsp)
   local on_attach = lsp.opts.on_attach

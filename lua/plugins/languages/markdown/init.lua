@@ -1,4 +1,4 @@
-local utils = require("utils")
+local misc = require("misc")
 
 local setup_cmp = function()
   require("cmp").setup.filetype("markdown", {
@@ -14,7 +14,7 @@ end
 
 local function setup()
   vim.cmd([[setlocal shiftwidth=2]])
-  utils.autosave()
+  misc.autosave()
   setup_cmp()
   -- vim.wo.number = false
   vim.wo.conceallevel = 3
@@ -26,5 +26,5 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = setup,
 })
 
-local modules = require("utils").module_list()
+local modules = require("misc").module_list()
 return modules

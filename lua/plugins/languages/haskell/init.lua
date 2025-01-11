@@ -7,5 +7,5 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = setup,
 })
 
-local modules = require("utils").module_list()
+local modules = require("misc").module_list()
 return modules
