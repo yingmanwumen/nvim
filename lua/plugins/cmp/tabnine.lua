@@ -14,7 +14,7 @@ return {
       run_on_every_keystroke = true,
       snippet_placeholder = "󰇘",
       show_prediction_strength = true,
-      min_percent = 20,
+      min_percent = 10,
     })
   end,
 }
