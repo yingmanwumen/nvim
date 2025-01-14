@@ -36,4 +36,6 @@ return {
   { "navarasu/onedark.nvim" },
 
   { "Mofiqul/vscode.nvim" },
+
+  { "EdenEast/nightfox.nvim" },
 }
