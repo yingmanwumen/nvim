@@ -12,6 +12,8 @@ return {
     { "<M-7>", "<Cmd>BufferLineGoToBuffer 7<CR>" },
     { "<M-8>", "<Cmd>BufferLineGoToBuffer 8<CR>" },
     { "<M-9>", "<Cmd>BufferLineGoToBuffer 9<CR>" },
+    { "<M-Left>", "<Cmd>BufferLineCyclePrev<CR>" },
+    { "<M-Right>", "<Cmd>BufferLineCycleNext<CR>" },
   },
   config = function()
     require("bufferline").setup({
