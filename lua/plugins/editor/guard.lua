@@ -1,5 +1,6 @@
 local function setup()
   local ft = require("guard.filetype")
+  local lint = require("guard.lint")
 
   ft("bash,csh,ksh,sh,zsh"):fmt("shfmt")
 
@@ -8,7 +9,25 @@ local function setup()
 
   ft("lua"):fmt("stylua")
 
-  ft("python"):fmt("black")
+  ft("python"):fmt("black"):lint({
+    cmd = "pylint",
+    args = { "--output-format=json" },
+    stdin = false,
+    fname = true,
+    parse = lint.from_json({
+      attributes = {
+        severity = "type",
+        code = "symbol",
+      },
+      severities = {
+        convention = lint.severities.info,
+        refactor = lint.severities.info,
+        informational = lint.severities.info,
+        fatal = lint.severities.error,
+      },
+      source = "pylint",
+    }),
+  })
 
   ft("json,jsonc,angular,css,flow,graphql,html,jsx,javascript,less,markdown,scss,typescript,vue,yaml,typescriptreact"):fmt(
     "prettierd"
@@ -48,13 +67,15 @@ local function setup()
 end
 
 return {
-  "nvimdev/guard.nvim",
+  -- "nvimdev/guard.nvim",
+  "yingmanwumen/guard.nvim",
   ft = "*",
   -- Builtin configuration, optional
   dependencies = {
     "nvimdev/guard-collection",
     -- Most binariese of mine are managed by Mason
     "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
   },
   config = setup,
 }
