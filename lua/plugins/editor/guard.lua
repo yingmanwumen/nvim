@@ -54,7 +54,7 @@ return {
   -- Builtin configuration, optional
   dependencies = {
     "nvimdev/guard-collection",
-    -- Most binariese of mine are managed by Mason
+    -- Most binaries of mine are managed by Mason
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
   },

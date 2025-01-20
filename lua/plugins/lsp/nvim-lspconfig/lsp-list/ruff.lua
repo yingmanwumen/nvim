@@ -1,4 +1,0 @@
-return {
-  lsp = "ruff",
-  opts = {},
-}
