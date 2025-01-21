@@ -12,15 +12,12 @@ return {
     -- See Commands section for default commands if you want to lazy load on them
     cmd = {
       "CopilotChat",
-      "CopilotChatOpen",
-      "CopilotChatClose",
-      "CopilotChatToggle",
-      "CopilotChatStop",
-      "CopilotChatReset",
+      "CopilotChatCommit",
       "CopilotChatExplain",
       "CopilotChatOptimize",
       "CopilotChatDocs",
       "CopilotChatReview",
+      "CopilotChatTests",
     },
   },
 }
