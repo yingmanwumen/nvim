@@ -15,6 +15,13 @@ if vim.uv.os_uname().sysname == "Darwin" then
           return "<tab>"
         end
       end, { silent = true, expr = true })
+      vim.keymap.set("i", "<C-CR>", function()
+        if neocodeium.visible() then
+          neocodeium.accept()
+        else
+          return "<tab>"
+        end
+      end, { silent = true, expr = true })
       vim.keymap.set("i", "<M-c>", neocodeium.clear)
       vim.keymap.set("i", "<M-]>", function()
         neocodeium.cycle(1)
