@@ -25,8 +25,8 @@ return {
     },
   },
   opts = {
-    -- provider = "copilot",
-    provider = "openai",
+    provider = "copilot",
+    -- provider = "openai",
     behaviour = {
       support_paste_from_clipboard = true,
     },
