@@ -1,9 +1,14 @@
 return {
   "OXY2DEV/markview.nvim",
-  ft = "markdown", -- If you decide to lazy-load anyway
+  ft = { "markdown", "codecompanion" }, -- If you decide to lazy-load anyway
   config = function()
     require("markview").setup({
       modes = { "n", "i", "no", "c" },
+      filetypes = {
+        "markdown",
+        "codecompanion",
+      },
+      buf_ignore = {},
       hybrid_modes = { "i" },
       checkboxes = {
         checked = { text = " " },

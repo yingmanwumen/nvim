@@ -30,7 +30,7 @@ return {
     behaviour = {
       support_paste_from_clipboard = true,
     },
-    mapping = {
+    mappings = {
       sidebar = {
         switch_windows = "<C-Tab>",
         reverse_switch_windows = "<C-S-Tab>",
@@ -40,7 +40,7 @@ return {
       endpoint = "https://api.deepseek.com/v1",
       model = "deepseek-chat",
       timeout = 30000, -- Timeout in milliseconds
-      temperature = 0,
+      temperature = 0.5,
       max_tokens = 4096,
       -- optional
       api_key_name = "DEEPSEEK_API_KEY", -- Default OPENAI_API_KEY if not set
@@ -48,9 +48,6 @@ return {
     windows = {
       sidebar_header = {
         enabled = false,
-      },
-      input = {
-        prefix = "$ ",
       },
     },
   },
