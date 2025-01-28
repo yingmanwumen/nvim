@@ -32,19 +32,26 @@ return {
     },
     mapping = {
       sidebar = {
-        switch_windows = false,
-        reverse_switch_windows = false,
+        switch_windows = "<C-Tab>",
+        reverse_switch_windows = "<C-S-Tab>",
       },
     },
     openai = {
       endpoint = "https://api.deepseek.com/v1",
       model = "deepseek-chat",
-      -- model = "deepseek-reasoner", -- Too expensive
       timeout = 30000, -- Timeout in milliseconds
       temperature = 0,
       max_tokens = 4096,
       -- optional
       api_key_name = "DEEPSEEK_API_KEY", -- Default OPENAI_API_KEY if not set
+    },
+    windows = {
+      sidebar_header = {
+        enabled = false,
+      },
+      input = {
+        prefix = "$ ",
+      },
     },
   },
 }
