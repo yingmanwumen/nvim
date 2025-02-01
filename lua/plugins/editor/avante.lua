@@ -32,11 +32,16 @@ return {
     openai = {
       endpoint = "https://api.deepseek.com/v1",
       model = "deepseek-chat",
+      -- model = "deepseek-reasoner",
       timeout = 30000, -- Timeout in milliseconds
       temperature = 0.5,
       max_tokens = 4096,
       -- optional
       api_key_name = "DEEPSEEK_API_KEY", -- Default OPENAI_API_KEY if not set
+    },
+    copilot = {
+      model = "claude-3.5-sonnet",
+      temperature = 0.5,
     },
     windows = {
       sidebar_header = {

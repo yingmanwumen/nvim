@@ -24,34 +24,30 @@ return {
   config = function()
     require("codecompanion").setup({
       adapters = {
-        -- deepseek = function()
-        --   return require("codecompanion.adapters").extend("openai_compatible", {
-        --     env = {
-        --       url = "https://api.deepseek.com",
-        --       api_key = os.getenv("DEEPSEEK_API_KEY"),
-        --     },
-        --     schema = {
-        --       model = {
-        --         default = "deepseek-chat",
-        --       },
-        --       temperature = {
-        --         default = 0.5,
-        --       },
-        --     },
-        --   })
-        -- end,
         deepseek = function()
           return require("codecompanion.adapters").extend("deepseek", {
             env = {
-              -- url = "https://api.deepseek.com",
               api_key = os.getenv("DEEPSEEK_API_KEY"),
             },
             schema = {
               model = {
                 default = "deepseek-chat",
+                -- default = "deepseek-reasoner",
               },
               temperature = {
                 default = 0.5,
+              },
+            },
+          })
+        end,
+        copilot = function()
+          return require("codecompanion.adapters").extend("copilot", {
+            schema = {
+              temperature = {
+                default = 0.5,
+              },
+              model = {
+                default = "claude-3.5-sonnet",
               },
             },
           })
