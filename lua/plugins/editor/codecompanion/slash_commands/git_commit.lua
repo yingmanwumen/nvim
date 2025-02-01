@@ -30,14 +30,18 @@ function SlashCommand:generate_commit_message()
     [[
 @cmd_runner
 
-Write commit message for the change with **commitizen convention**.
+MISSION:
+- Write commit message for the change with **commitizen convention**
+- After generating commit message, commit it with `git commit -m "<message>"`
+
 Make sure:
 - the title has maximum 50 characters
 - the message is wrapped at 72 characters.
 
-Wrap the whole message in code block with language gitcommit.
+Attention:
+- Wrap the whole message in code block with language gitcommit.
+- ALL content below this line is DIFF
 
-After generating commit message, commit it with `git commit -m "<message>"`.
 
 ```diff
 %s
