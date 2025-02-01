@@ -1,4 +1,4 @@
--- preload settings before loading the package manager and other plugins
+-- Preload settings before loading the package manager and other plugins
 require("opt").setup()
 
 -- load the package manager lazy.nvim
@@ -9,6 +9,6 @@ if vim.uv.os_uname().sysname == "Darwin" then
   -- vim.cmd("colorscheme github_light")
   vim.cmd("colorscheme dawnfox")
 else
-  vim.opt.background = "light"
-  vim.cmd("colorscheme dawnfox")
+  vim.opt.background = "dark"
+  vim.cmd("colorscheme nightfox")
 end
