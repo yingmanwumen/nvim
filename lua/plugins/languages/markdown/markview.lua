@@ -1,5 +1,6 @@
 return {
   "OXY2DEV/markview.nvim",
+  enabled = false,
   ft = { "markdown", "codecompanion" }, -- If you decide to lazy-load anyway
   config = function()
     require("markview").setup({

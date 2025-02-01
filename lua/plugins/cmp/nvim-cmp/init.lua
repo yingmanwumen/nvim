@@ -27,6 +27,7 @@ local function setup()
       { name = "nerdfont" },
       { name = "luasnip" },
       { name = "lazydev" },
+      { name = "render-markdown" },
     }),
 
     formatting = {
