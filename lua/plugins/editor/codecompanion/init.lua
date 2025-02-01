@@ -1,3 +1,5 @@
+local slash_commands_prefix = vim.fn.stdpath("config") .. "/lua/plugins/editor/codecompanion/slash_commands/"
+
 return {
   "olimorris/codecompanion.nvim",
   cmd = {
@@ -40,6 +42,15 @@ return {
         -- agent = { adapter = "deepseek" },
         chat = {
           adapter = "copilot",
+          slash_commands = {
+            ["git_commit"] = {
+              description = "Generate git commit message and commit it",
+              callback = slash_commands_prefix .. "git_commit.lua",
+              opts = {
+                contains_code = true,
+              },
+            },
+          },
           variables = {
             ["just_do_it"] = {
               callback = function()
