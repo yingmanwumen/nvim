@@ -18,10 +18,10 @@ local function setup()
     },
 
     sources = cmp.config.sources({
+      { name = "copilot" },
       { name = "cmp_tabnine" },
       { name = "codecompanion" },
       { name = "nvim_lsp" },
-      -- { name = "copilot" },
       { name = "buffer" },
       { name = "path" },
       { name = "nerdfont" },

@@ -8,5 +8,5 @@ return {
       panel = { enabled = false },
     })
   end,
-  enabled = false,
+  -- enabled = false,
 }
