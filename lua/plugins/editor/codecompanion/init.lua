@@ -3,6 +3,7 @@ local slash_commands_prefix = vim.fn.stdpath("config") .. "/lua/plugins/editor/c
 local just_do_it = require("plugins.editor.codecompanion.variables.just_do_it")
 
 local adapter = "copilot"
+-- local adapter = "gemini"
 -- local adapter = "deepseek"
 
 return {

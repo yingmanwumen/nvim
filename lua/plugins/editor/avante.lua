@@ -43,6 +43,9 @@ return {
       model = "claude-3.5-sonnet",
       temperature = 0.5,
     },
+    gemini = {
+      temperature = 0.5,
+    },
     windows = {
       sidebar_header = {
         enabled = false,
