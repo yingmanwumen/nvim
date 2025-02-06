@@ -46,6 +46,9 @@ return {
               },
               model = {
                 default = "claude-3.5-sonnet",
+                -- default = "o1",
+                -- default = "o3-mini",
+                -- default = "gpt-4o",
               },
             },
           })

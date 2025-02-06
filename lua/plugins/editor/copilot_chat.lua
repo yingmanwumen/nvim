@@ -19,7 +19,7 @@ return {
     },
     opts = {
       temperature = 0.5,
-      model = "claude-3.5-sonnet",
+      -- model = "o1",
     },
   },
 }
