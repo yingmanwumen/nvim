@@ -1,6 +1,6 @@
-local slash_commands_prefix = vim.fn.stdpath("config") .. "/lua/plugins/editor/codecompanion/slash_commands/"
+local slash_commands_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codecompanion/slash_commands/"
 
-local just_do_it = require("plugins.editor.codecompanion.variables.just_do_it")
+local just_do_it = require("plugins.ai.codecompanion.variables.just_do_it")
 
 local adapter = "copilot"
 -- local adapter = "gemini"
