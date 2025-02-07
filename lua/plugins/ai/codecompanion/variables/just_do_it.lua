@@ -1,4 +1,4 @@
-return function()
+local function callback()
   return [[
 ### Quick Assistant
 
@@ -26,3 +26,11 @@ Guidelines:
 - Consider edge cases
 ]]
 end
+
+return {
+  callback = callback,
+  description = "Automated",
+  opts = {
+    contains_code = false,
+  },
+}

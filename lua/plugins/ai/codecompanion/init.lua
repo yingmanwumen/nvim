@@ -119,27 +119,9 @@ return {
             },
           },
           variables = {
-            ["just_do_it"] = {
-              callback = just_do_it,
-              description = "Automated",
-              opts = {
-                contains_code = false,
-              },
-            },
-            ["chinese"] = {
-              callback = chinese,
-              description = "中文",
-              opts = {
-                contains_code = false,
-              },
-            },
-            ["bilingual"] = {
-              callback = bilingual,
-              description = "中英双语",
-              opts = {
-                contains_code = false,
-              },
-            },
+            ["just_do_it"] = just_do_it,
+            ["chinese"] = chinese,
+            ["bilingual"] = bilingual,
           },
         },
         inline = { adapter = adapter },
