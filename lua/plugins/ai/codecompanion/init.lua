@@ -2,9 +2,7 @@ local slash_commands_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codec
 
 local just_do_it = require("plugins.ai.codecompanion.variables.just_do_it")
 
-local adapter = "copilot"
--- local adapter = "gemini"
--- local adapter = "deepseek"
+local adapter = "copilot_claude"
 
 return {
   "olimorris/codecompanion.nvim",
@@ -29,11 +27,47 @@ return {
             },
             schema = {
               model = {
-                default = "deepseek-chat",
-                -- default = "deepseek-reasoner",
+                -- default = "deepseek-chat",
+                default = "deepseek-reasoner",
               },
               temperature = {
-                default = 0.5,
+                default = 0.2,
+              },
+            },
+          })
+        end,
+        copilot_claude = function()
+          return require("codecompanion.adapters").extend("copilot", {
+            schema = {
+              temperature = {
+                default = 0,
+              },
+              model = {
+                default = "claude-3.5-sonnet",
+              },
+            },
+          })
+        end,
+        copilot_o1 = function()
+          return require("codecompanion.adapters").extend("copilot", {
+            schema = {
+              temperature = {
+                default = 0.1,
+              },
+              model = {
+                default = "o1",
+              },
+            },
+          })
+        end,
+        copilot_o3_mini = function()
+          return require("codecompanion.adapters").extend("copilot", {
+            schema = {
+              temperature = {
+                default = 0.3,
+              },
+              model = {
+                default = "o3-mini",
               },
             },
           })
@@ -42,13 +76,22 @@ return {
           return require("codecompanion.adapters").extend("copilot", {
             schema = {
               temperature = {
-                default = 0.5,
+                default = 0.3,
               },
               model = {
-                default = "claude-3.5-sonnet",
-                -- default = "o1",
-                -- default = "o3-mini",
-                -- default = "gpt-4o",
+                default = "gpt-4o",
+              },
+            },
+          })
+        end,
+        copilot_gemini = function()
+          return require("codecompanion.adapters").extend("copilot", {
+            schema = {
+              temperature = {
+                default = 0.3,
+              },
+              model = {
+                default = "gemini-2.0-flash-001",
               },
             },
           })

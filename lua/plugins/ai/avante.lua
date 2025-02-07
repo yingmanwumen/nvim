@@ -19,7 +19,6 @@ return {
   },
   opts = {
     provider = "copilot",
-    -- provider = "openai",
     behaviour = {
       support_paste_from_clipboard = true,
     },
@@ -33,21 +32,19 @@ return {
       deepseek = {
         __inherited_from = "openai",
         endpoint = "https://api.deepseek.com/v1",
-        model = "deepseek-chat",
-        -- model = "deepseek-reasoner",
-        timeout = 30000, -- Timeout in milliseconds
-        temperature = 0.5,
-        max_tokens = 4096,
+        -- model = "deepseek-chat",
+        model = "deepseek-reasoner",
+        temperature = 0.1,
         -- optional
-        api_key_name = "DEEPSEEK_API_KEY", -- Default `OPENAI_API_KEY` if not set
+        api_key_name = "DEEPSEEK_API_KEY",
       },
     },
     copilot = {
       model = "claude-3.5-sonnet",
-      temperature = 0.5,
+      temperature = 0.1,
     },
     gemini = {
-      temperature = 0.5,
+      temperature = 0.1,
     },
     windows = {
       sidebar_header = {
