@@ -1,5 +1,7 @@
 local slash_commands_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codecompanion/slash_commands/"
 
+local bilingual = require("plugins.ai.codecompanion.variables.bilingual")
+local chinese = require("plugins.ai.codecompanion.variables.chinese")
 local just_do_it = require("plugins.ai.codecompanion.variables.just_do_it")
 
 local adapter = "copilot_claude"
@@ -72,7 +74,7 @@ return {
             },
           })
         end,
-        copilot = function()
+        copilot_4o = function()
           return require("codecompanion.adapters").extend("copilot", {
             schema = {
               temperature = {
@@ -108,11 +110,32 @@ return {
                 contains_code = true,
               },
             },
+            ["git_diff"] = {
+              description = "Generate git diff",
+              callback = slash_commands_prefix .. "git_diff.lua",
+              opts = {
+                contains_code = true,
+              },
+            },
           },
           variables = {
             ["just_do_it"] = {
               callback = just_do_it,
               description = "Automated",
+              opts = {
+                contains_code = false,
+              },
+            },
+            ["chinese"] = {
+              callback = chinese,
+              description = "中文",
+              opts = {
+                contains_code = false,
+              },
+            },
+            ["bilingual"] = {
+              callback = bilingual,
+              description = "中英双语",
               opts = {
                 contains_code = false,
               },
@@ -124,6 +147,7 @@ return {
       },
       display = {
         chat = {
+          -- show_settings = true,
           window = {
             position = "right",
           },
