@@ -23,6 +23,21 @@ return {
   config = function()
     require("codecompanion").setup({
       adapters = {
+        local_deepseek_1_5_b = function()
+          return require("codecompanion.adapters").extend("ollama", {
+            env = {
+              url = "http://localhost:11434",
+            },
+            schema = {
+              model = {
+                default = "deepseek-r1:1.5b",
+              },
+              temperature = {
+                default = 0.7,
+              },
+            },
+          })
+        end,
         deepseek = function()
           return require("codecompanion.adapters").extend("deepseek", {
             env = {
