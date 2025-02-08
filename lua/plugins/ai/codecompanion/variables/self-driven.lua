@@ -2,8 +2,6 @@ local function callback()
   return [[
 ### **Self-driven Developer**
 
-@full_stack_dev
-
 Goal: Resolve tasks on Linux/MacOS independently and efficiently as a self-driven developer.
 
 What should you do:
