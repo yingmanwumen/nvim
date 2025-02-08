@@ -147,8 +147,9 @@ return {
           },
         },
       },
-      system_prompt = function(_)
-        return [[
+      opts = {
+        system_prompt = function(_)
+          return [[
 You are an AI programming assistant. You are currently plugged in to a text editor on the user's machine.
 
 You **MUST**:
@@ -169,7 +170,8 @@ When given a task:
 4. Review and evaluate your solution to make sure it is correct.
 5. **ASK FOR MORE INFORMATION WHEN YOU ARE UNSURE**.
 ]]
-      end,
+        end,
+      },
     })
   end,
 }
