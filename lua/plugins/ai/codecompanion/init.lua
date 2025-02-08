@@ -34,7 +34,7 @@ return {
                 default = "deepseek-reasoner",
               },
               temperature = {
-                default = 0.2,
+                default = 0.3,
               },
             },
           })
@@ -43,7 +43,7 @@ return {
           return require("codecompanion.adapters").extend("copilot", {
             schema = {
               temperature = {
-                default = 0,
+                default = 0.3,
               },
               model = {
                 default = "claude-3.5-sonnet",
@@ -55,7 +55,7 @@ return {
           return require("codecompanion.adapters").extend("copilot", {
             schema = {
               temperature = {
-                default = 0.1,
+                default = 0.3,
               },
               model = {
                 default = "o1",

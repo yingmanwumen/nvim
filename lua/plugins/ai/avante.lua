@@ -34,17 +34,17 @@ return {
         endpoint = "https://api.deepseek.com/v1",
         -- model = "deepseek-chat",
         model = "deepseek-reasoner",
-        temperature = 0.1,
+        temperature = 0.3,
         -- optional
         api_key_name = "DEEPSEEK_API_KEY",
       },
     },
     copilot = {
       model = "claude-3.5-sonnet",
-      temperature = 0.1,
+      temperature = 0.3,
     },
     gemini = {
-      temperature = 0.1,
+      temperature = 0.3,
     },
     windows = {
       sidebar_header = {

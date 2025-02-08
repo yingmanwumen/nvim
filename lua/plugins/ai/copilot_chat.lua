@@ -19,7 +19,7 @@ return {
     },
     opts = {
       temperature = 0.7,
-      model = "o1",
+      -- model = "o1",
     },
   },
 }
