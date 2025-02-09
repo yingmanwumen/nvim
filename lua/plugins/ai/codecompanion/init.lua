@@ -3,7 +3,7 @@ local slash_commands_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codec
 local bilingual = require("plugins.ai.codecompanion.variables.bilingual")
 local chinese = require("plugins.ai.codecompanion.variables.chinese")
 local just_do_it = require("plugins.ai.codecompanion.variables.just_do_it")
-local self_driven = require("plugins.ai.codecompanion.variables.self-driven")
+local self_driven = require("plugins.ai.codecompanion.variables.self_driven")
 
 local adapter = "copilot_claude"
 
@@ -132,10 +132,10 @@ return {
             },
           },
           variables = {
-            ["just-do-it"] = just_do_it,
+            ["just_do_it"] = just_do_it,
             ["chinese"] = chinese,
             ["bilingual"] = bilingual,
-            ["self-driven"] = self_driven,
+            ["self_driven"] = self_driven,
           },
         },
         inline = { adapter = adapter },
@@ -150,12 +150,6 @@ return {
           -- show_settings = true,
           window = {
             position = "right",
-          },
-          roles = {
-            ---@type string|fun(adapter: CodeCompanion.Adapter): string
-            llm = function(adapter)
-              return adapter.formatted_name
-            end,
           },
         },
       },
