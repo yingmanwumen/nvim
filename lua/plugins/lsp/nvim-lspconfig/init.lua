@@ -9,7 +9,9 @@ local function setup()
         default_config = language.config,
       }
     end
-    lspconfig[language.lsp].setup(language.opts)
+    if language.opts ~= nil then
+      lspconfig[language.lsp].setup(language.opts)
+    end
   end
 
   vim.lsp.inlay_hint.enable(true)
