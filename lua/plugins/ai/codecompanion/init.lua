@@ -4,7 +4,7 @@ local bilingual = require("plugins.ai.codecompanion.variables.bilingual")
 local chinese = require("plugins.ai.codecompanion.variables.chinese")
 local self_driven = require("plugins.ai.codecompanion.variables.self_driven")
 
-local adapter = "copilot_claude"
+local adapter = "copilot_0"
 
 return {
   "olimorris/codecompanion.nvim",
@@ -50,62 +50,47 @@ return {
             },
           })
         end,
-        copilot_claude = function()
+        copilot_0 = function()
           return require("codecompanion.adapters").extend("copilot", {
             schema = {
               temperature = {
-                default = 0.3,
-              },
-              model = {
-                default = "claude-3.5-sonnet",
+                default = 0,
               },
             },
           })
         end,
-        copilot_o1 = function()
+        copilot_0_3 = function()
           return require("codecompanion.adapters").extend("copilot", {
             schema = {
               temperature = {
                 default = 0.3,
-              },
-              model = {
-                default = "o1",
               },
             },
           })
         end,
-        copilot_o3_mini = function()
+        copilot_0_5 = function()
           return require("codecompanion.adapters").extend("copilot", {
             schema = {
               temperature = {
-                default = 0.3,
-              },
-              model = {
-                default = "o3-mini",
+                default = 0.5,
               },
             },
           })
         end,
-        copilot_4o = function()
+        copilot_0_7 = function()
           return require("codecompanion.adapters").extend("copilot", {
             schema = {
               temperature = {
-                default = 0.3,
-              },
-              model = {
-                default = "gpt-4o",
+                default = 0.7,
               },
             },
           })
         end,
-        copilot_gemini = function()
+        copilot_1_0 = function()
           return require("codecompanion.adapters").extend("copilot", {
             schema = {
               temperature = {
-                default = 0.3,
-              },
-              model = {
-                default = "gemini-2.0-flash-001",
+                default = 1.0,
               },
             },
           })
@@ -125,6 +110,13 @@ return {
             ["git_diff"] = {
               description = "Generate git diff",
               callback = slash_commands_prefix .. "git_diff.lua",
+              opts = {
+                contains_code = true,
+              },
+            },
+            ["git_files"] = {
+              description = "List git files",
+              callback = slash_commands_prefix .. "git_files.lua",
               opts = {
                 contains_code = true,
               },

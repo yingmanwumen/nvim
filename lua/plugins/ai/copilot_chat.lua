@@ -18,7 +18,6 @@ return {
       "CopilotChatTests",
     },
     opts = {
-      temperature = 0.7,
       -- model = "o1",
     },
   },
