@@ -2,7 +2,6 @@ local slash_commands_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codec
 
 local bilingual = require("plugins.ai.codecompanion.variables.bilingual")
 local chinese = require("plugins.ai.codecompanion.variables.chinese")
-local just_do_it = require("plugins.ai.codecompanion.variables.just_do_it")
 local self_driven = require("plugins.ai.codecompanion.variables.self_driven")
 
 local adapter = "copilot_claude"
@@ -132,7 +131,6 @@ return {
             },
           },
           variables = {
-            ["just_do_it"] = just_do_it,
             ["chinese"] = chinese,
             ["bilingual"] = bilingual,
             ["self_driven"] = self_driven,
@@ -175,6 +173,7 @@ When given a task:
 3. Output the code in a single code block, being careful to only return relevant code.
 4. Review and evaluate your solution to make sure it is correct.
 5. **ASK FOR MORE INFORMATION WHEN YOU ARE UNSURE**.
+6. When running tools, **RUN ONLY ONE TOOL FOR EACH CONVERSATION TURN** and wait for its result.
 ]]
         end,
       },
