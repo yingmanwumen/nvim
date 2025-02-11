@@ -38,6 +38,8 @@ Make sure:
 
 Attention:
 - Wrap the whole message in code block with language `gitcommit`
+- Use actual line breaks instead of '\n' in your response to begin new lines.
+- Use '\n' only when you want a literal backslash followed by a character 'n'.
 - ALL content below this line is DIFF
 
 

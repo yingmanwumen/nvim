@@ -24,11 +24,10 @@ function SlashCommand:generate_commit_message()
 
   return fmt(
     [[
-- `git ls-files`:
-
-  ```txt
-  %s
-  ```
+- output of `git ls-files`:
+```txt
+%s
+```
 
 ]],
     git_files

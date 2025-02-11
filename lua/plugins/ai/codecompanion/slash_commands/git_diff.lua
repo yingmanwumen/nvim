@@ -24,10 +24,10 @@ function SlashCommand:generate_commit_message()
 
   return fmt(
     [[
+- output of `git diff --no-ext-diff --staged`:
 ```diff
 %s
 ```
-
 ]],
     git_diff
   )
