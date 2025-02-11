@@ -28,7 +28,12 @@ function SlashCommand:generate_commit_message()
 
 MISSION:
 - Write commit message for the change with **COMMITIZEN CONVENTION**
-- After generating commit message, commit it with `git commit -m "<message>"`
+- After generating commit message, commit it with
+```sh
+git commit -F- <<EOF
+...
+EOF
+```
 - **IF YOU ARE UNSURE, ASK FOR MORE INFORMATION.**
 
 Make sure:
@@ -38,7 +43,6 @@ Make sure:
 
 Attention:
 - Wrap the whole message in code block with language `gitcommit`
-- Deal with linebreaks with `-F` flag
 - ALL content below this line is DIFF
 
 
