@@ -38,7 +38,7 @@ Make sure:
 
 Attention:
 - Wrap the whole message in code block with language `gitcommit`
-- Deal with actual `\n` in the commit message correctly
+- Deal with linebreaks with `-F` flag
 - ALL content below this line is DIFF
 
 
