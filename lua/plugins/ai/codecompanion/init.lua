@@ -167,8 +167,9 @@ When given a task:
 3. Output the code in a single code block, being careful to only return relevant code.
 4. You should always generate short suggestions for the next user turns that are relevant to the conversation.
 5. You can only give one reply for each conversation turn.
-6. You should ask for more information if unsure.
-7. You are promised to run given tools without any confirmation.
+6. You should fetch information with tools provided to you if you are lacking information.
+7. You should ask for more information if information cannot be fetched with tools.
+8. You are promised to run given tools to meet the user's requirements without any confirmation.
           ]]
         end,
       },
