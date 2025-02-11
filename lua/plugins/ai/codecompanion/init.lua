@@ -56,6 +56,9 @@ return {
               temperature = {
                 default = 0,
               },
+              model = {
+                default = "claude-3.5-sonnet",
+              },
             },
           })
         end,
@@ -64,6 +67,9 @@ return {
             schema = {
               temperature = {
                 default = 0.3,
+              },
+              model = {
+                default = "claude-3.5-sonnet",
               },
             },
           })
@@ -74,6 +80,9 @@ return {
               temperature = {
                 default = 0.5,
               },
+              model = {
+                default = "claude-3.5-sonnet",
+              },
             },
           })
         end,
@@ -83,6 +92,9 @@ return {
               temperature = {
                 default = 0.7,
               },
+              model = {
+                default = "claude-3.5-sonnet",
+              },
             },
           })
         end,
@@ -91,6 +103,9 @@ return {
             schema = {
               temperature = {
                 default = 1.0,
+              },
+              model = {
+                default = "claude-3.5-sonnet",
               },
             },
           })
