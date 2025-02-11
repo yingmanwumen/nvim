@@ -1,7 +1,10 @@
 local function callback()
   return [[
-请您同时使用中文和英文回答问题。
-Please answer this question in both Chinese and English.]]
+### 双语回复 Bilingual Mode
+
+请您同时使用中文和英文回复非代码内容。
+Please use both Chinese and English to reply non-code content.
+]]
 end
 
 return {
