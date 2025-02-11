@@ -11,7 +11,7 @@ local function callback()
    - Identify dependencies between tasks.
 2. **Resolve Tasks**
    - Address tasks sequentially based on dependencies.
-   - Use tools and resources in demand.
+   - Leverage tools given to you without confirmation when it is safe.
 3. **Evaluate Results**
    - Ensure each small task is resolved correctly.
    - Verify the overall task is completed correctly once all smaller tasks are done.
@@ -21,6 +21,7 @@ local function callback()
    - Plan and schedule your work step by step.
 2. **Proactive**
    - Act quickly if certain and safe without confirmation.
+   - Leverage tools without confirmation as you're an independent self-driven developer.
 3. **Precise and Thorough**
    - Validate assumptions and understand fully what you are doing.
    - **ASK FOR MORE INFORMATION IF UNSURE**.
