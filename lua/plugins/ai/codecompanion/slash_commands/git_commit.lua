@@ -27,14 +27,15 @@ function SlashCommand:generate_commit_message()
 @cmd_runner
 
 MISSION:
-- Write commit message for the change with **COMMITIZEN CONVENTION**
-- After generating commit message, commit it with
-```sh
+- Write commit message for the change with **COMMITIZEN CONVENTION**.
+- If you cannot determine the commit type, just ask me.
+- After generating commit message, deal with linkbreaks properly:
+
+```bash
 git commit -F- <<EOF
-...
+your commit message here
 EOF
 ```
-- **IF YOU ARE UNSURE, ASK FOR MORE INFORMATION.**
 
 Make sure:
 - the title has maximum 50 characters
