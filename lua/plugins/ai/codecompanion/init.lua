@@ -81,7 +81,7 @@ return {
                 default = 0.5,
               },
               model = {
-                default = "claude-3.5-sonnet",
+                default = "o3-mini",
               },
             },
           })
@@ -93,7 +93,7 @@ return {
                 default = 0.7,
               },
               model = {
-                default = "claude-3.5-sonnet",
+                default = "gpt-4o",
               },
             },
           })
@@ -105,7 +105,7 @@ return {
                 default = 1.0,
               },
               model = {
-                default = "claude-3.5-sonnet",
+                default = "gpt-4o",
               },
             },
           })

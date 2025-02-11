@@ -29,7 +29,7 @@ function SlashCommand:generate_commit_message()
 Task:
 - Write commit message for the change with `commitizen convention`.
 - If you cannot determine the commit type, just ask me.
-- After generating commit message, commit it with `git commit -m "commit message"`.
+- After generating commit message, commit it with `git commit -F- <<EOF`.
 
 Make sure:
 - the title has maximum 50 characters
