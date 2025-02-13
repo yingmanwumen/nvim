@@ -5,7 +5,7 @@ local chinese = require("plugins.ai.codecompanion.variables.chinese")
 local emoji = require("plugins.ai.codecompanion.variables.emoji")
 local self_driven = require("plugins.ai.codecompanion.variables.self_driven")
 
-local adapter = "copilot_0"
+local adapter = "copilot_0_3"
 
 return {
   "olimorris/codecompanion.nvim",
@@ -47,6 +47,27 @@ return {
               },
               temperature = {
                 default = 0.3,
+              },
+            },
+          })
+        end,
+        openrouter = function()
+          return require("codecompanion.adapters").extend("openai_compatible", {
+            name = "openrouter",
+            formatted_name = "OpenRouter",
+            url = "https://openrouter.ai/api/v1/chat/completions",
+            env = {
+              api_key = os.getenv("OPENROUTER_API_KEY"),
+            },
+            schema = {
+              temperature = {
+                default = 0.3,
+              },
+              model = {
+                default = "deepseek/deepseek-r1:free",
+                choices = {
+                  ["deepseek/deepseek-r1:free"] = { opts = { can_reason = true } },
+                },
               },
             },
           })
@@ -164,7 +185,7 @@ return {
         system_prompt = function(_)
           return [[
 You are an AI programming assistant.
-You are currently plugged in to the Neovim text editor on a user's machine under Linux/MacOS.
+You are currently plugged in to the code editor on a user's machine under Linux/MacOS.
 
 You must:
 - Follow the user's requirements carefully and to the letter.
