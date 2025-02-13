@@ -4,6 +4,7 @@ local auto_assistant = require("plugins.ai.codecompanion.variables.auto_assistan
 local bilingual = require("plugins.ai.codecompanion.variables.bilingual")
 local chinese = require("plugins.ai.codecompanion.variables.chinese")
 local emoji = require("plugins.ai.codecompanion.variables.emoji")
+local thinking = require("plugins.ai.codecompanion.variables.thinking")
 
 local adapter = "copilot_0_3"
 
@@ -165,6 +166,7 @@ return {
             ["bilingual"] = bilingual,
             ["auto_assistant"] = auto_assistant,
             ["emoji"] = emoji,
+            ["thinking"] = thinking,
           },
         },
         inline = { adapter = adapter },
