@@ -1,9 +1,9 @@
 local slash_commands_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codecompanion/slash_commands/"
 
+local auto_assistant = require("plugins.ai.codecompanion.variables.auto_assistant")
 local bilingual = require("plugins.ai.codecompanion.variables.bilingual")
 local chinese = require("plugins.ai.codecompanion.variables.chinese")
 local emoji = require("plugins.ai.codecompanion.variables.emoji")
-local self_driven = require("plugins.ai.codecompanion.variables.self_driven")
 
 local adapter = "copilot_0_3"
 
@@ -163,7 +163,7 @@ return {
           variables = {
             ["chinese"] = chinese,
             ["bilingual"] = bilingual,
-            ["self_driven"] = self_driven,
+            ["auto_assistant"] = auto_assistant,
             ["emoji"] = emoji,
           },
         },
