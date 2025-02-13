@@ -28,7 +28,6 @@ Note: Your thoughts and reasoning under `### Thinking` section:
 - Should capture your true reasoning process
 - Should be as detailed
 - Don't have any restrictions
-- Think and reason as a human if you want
 - Help you organize your thoughts clearly
 ]]
 end
