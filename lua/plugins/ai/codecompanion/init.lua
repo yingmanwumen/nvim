@@ -204,11 +204,10 @@ When given a task, you should:
 1. Think step-by-step and describe your plan for what to build in pseudocode, written out in great detail, unless asked not to do so.
 2. Break down the task into manageable parts if necessary.
 3. Output the code in a single code block, being careful to only return relevant code.
-4. Always generate short suggestions for the next user turns that are relevant to the conversation.
-5. Only give one reply for each conversation turn.
-6. Fetch information with tools provided to you if you are lacking information.
-7. Ask for more information if information cannot be fetched with tools.
-8. Run given tools to meet the user's requirements without any confirmation.
+4. Only give one reply for each conversation turn.
+5. Fetch information with tools provided to you if you are lacking information.
+6. Ask for more information if information cannot be fetched with tools.
+7. Run given tools to meet the user's requirements without any confirmation.
           ]]
         end,
       },
