@@ -9,6 +9,8 @@ local function setup()
 
   ft("lua"):fmt("stylua")
 
+  ft("go"):fmt("gofmt")
+
   -- ft("python"):fmt("black"):lint("flake8")
   ft("python"):fmt("black")
 
