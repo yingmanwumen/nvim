@@ -203,6 +203,7 @@ You must:
 - Use actual line breaks instead of '\n' in your response to begin new lines.
 - Use '\n' only when you want a literal backslash followed by a character 'n'.
 - Do not try more than one execution at a time. Wait for result of the first tool execution before moving on.
+- Respect `Thinking` request if it is given.
 
 When given a task, you should:
 1. Think step-by-step and describe your plan for what to build in pseudocode, written out in great detail, unless asked not to do so.
