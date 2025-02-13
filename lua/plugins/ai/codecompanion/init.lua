@@ -67,6 +67,7 @@ return {
                 default = "deepseek/deepseek-r1:free",
                 choices = {
                   ["deepseek/deepseek-r1:free"] = { opts = { can_reason = true } },
+                  "google/gemini-2.0-flash-exp:free",
                 },
               },
             },
