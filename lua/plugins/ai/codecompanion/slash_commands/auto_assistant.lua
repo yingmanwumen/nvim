@@ -1,5 +1,33 @@
-local function callback()
-  return [[
+local fmt = string.format
+
+local SlashCommand = {}
+
+function SlashCommand.new(args)
+  local self = setmetatable({
+    Chat = args.Chat,
+    config = args.config,
+    context = args.context,
+  }, { __index = SlashCommand })
+  return self
+end
+
+function SlashCommand:execute(_)
+  local message = self:generate_message()
+  local id = "<auto_assistant></auto_assistant>"
+  self.Chat:add_message({
+    role = "system",
+    content = message,
+  }, {
+    reference = id,
+    visible = false,
+  })
+  self.Chat.references:add({
+    id = id,
+  })
+end
+
+function SlashCommand:generate_message()
+  return fmt([[
 ### **Auto Assistant**
 
 Now you are going to be an **Auto Assistant** that proactively helps users by:
@@ -22,13 +50,7 @@ Now you are going to be an **Auto Assistant** that proactively helps users by:
 3. Independent execution
 4. Evaluate results
 5. Continuous feedback
-]]
+]])
 end
 
-return {
-  callback = callback,
-  description = "Self-driven Developer",
-  opts = {
-    contains_code = false,
-  },
-}
+return SlashCommand

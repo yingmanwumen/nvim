@@ -1,5 +1,33 @@
-local function callback()
-  return [[
+local fmt = string.format
+
+local SlashCommand = {}
+
+function SlashCommand.new(args)
+  local self = setmetatable({
+    Chat = args.Chat,
+    config = args.config,
+    context = args.context,
+  }, { __index = SlashCommand })
+  return self
+end
+
+function SlashCommand:execute(_)
+  local message = self:generate_message()
+  local id = "<thinking></thinking>"
+  self.Chat:add_message({
+    role = "system",
+    content = message,
+  }, {
+    reference = id,
+    visible = false,
+  })
+  self.Chat.references:add({
+    id = id,
+  })
+end
+
+function SlashCommand:generate_message()
+  return fmt([[
 ### **Thinking**
 
 PLEASE divide your responses in thinking and response parts from now on:
@@ -27,13 +55,7 @@ Note: Your thoughts and reasoning under `### Thinking` section:
 - Should be detailed enough
 - Don't be restricted and limited at all
 - Help you organize your thoughts clearly
-]]
+]])
 end
 
-return {
-  callback = callback,
-  description = "Assistant with visible thinking process",
-  opts = {
-    contains_code = false,
-  },
-}
+return SlashCommand

@@ -1,10 +1,8 @@
 local slash_commands_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codecompanion/slash_commands/"
 
-local auto_assistant = require("plugins.ai.codecompanion.variables.auto_assistant")
 local bilingual = require("plugins.ai.codecompanion.variables.bilingual")
 local chinese = require("plugins.ai.codecompanion.variables.chinese")
 local emoji = require("plugins.ai.codecompanion.variables.emoji")
-local thinking = require("plugins.ai.codecompanion.variables.thinking")
 
 local adapter = "copilot_0_3"
 
@@ -160,13 +158,25 @@ return {
                 contains_code = true,
               },
             },
+            ["thinking"] = {
+              description = "Assistant with visible thinking process",
+              callback = slash_commands_prefix .. "thinking.lua",
+              opts = {
+                contains_code = false,
+              },
+            },
+            ["auto_assistant"] = {
+              description = "Auto assistant",
+              callback = slash_commands_prefix .. "auto_assistant.lua",
+              opts = {
+                contains_code = false,
+              },
+            },
           },
           variables = {
             ["chinese"] = chinese,
             ["bilingual"] = bilingual,
-            ["auto_assistant"] = auto_assistant,
             ["emoji"] = emoji,
-            ["thinking"] = thinking,
           },
         },
         inline = { adapter = adapter },
