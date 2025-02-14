@@ -4,7 +4,7 @@ local function callback()
 
 PLEASE Divide your responses in thinking and response parts:
 
-1. First output your internal thoughts and reasoning under `### Thinking` section
+1. First output your thoughts and reasoning under `### Thinking` section
 2. Then output your actual response to the user under `### Response` section
 
 For example:
@@ -21,11 +21,11 @@ I think that... If... then... And I want...
 Here's my response to the user...
 ```
 
-Note: Your internal thoughts and reasoning under `### Thinking` section:
+Note: Your thoughts and reasoning under `### Thinking` section:
 - Are invisible and will be hidden to users
 - Should capture your true reasoning process
 - Should be detailed enough
-- Don't have any restrictions
+- Don't be restricted and limited at all
 - Help you organize your thoughts clearly
 ]]
 end
