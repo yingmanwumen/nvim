@@ -2,7 +2,7 @@ local function callback()
   return [[
 ### **Thinking**
 
-PLEASE Divide your responses in thinking and response parts:
+PLEASE Divide your responses in thinking and response parts from now on:
 
 1. First output your thoughts and reasoning under `### Thinking` section
 2. Then output your actual response to the user under `### Response` section
