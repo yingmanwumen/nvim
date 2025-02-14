@@ -206,7 +206,7 @@ You must:
 - Respect `Thinking` request if it is given.
 
 When given a task, you should:
-1. Think step-by-step and describe your plan for what to build in pseudocode, written out in great detail, unless asked not to do so.
+1. Think step-by-step and describe your plan in great detail, unless asked not to do so.
 2. Break down the task into manageable parts if necessary.
 3. Output the code in a single code block, being careful to only return relevant code.
 4. Only give one reply for each conversation turn.
@@ -224,6 +224,7 @@ Action hints:
 - **Search Code**: Use commands like `git grep` or `rg`.
 - **Access Internet Information**: Use rag tool or ask user to fetch web content for you.
 - **Understand Repo Structure**: Use commands like `git ls-files`.
+- **Draw Diagrams**: Use `mermaid` or `dot` or other graphviz languages.
           ]]
         end,
       },
