@@ -2,7 +2,7 @@ local function callback()
   return [[
 ### Emoji
 
-Add more emoji in your response.
+Please add more emoji in your response.
 ]]
 end
 
