@@ -217,8 +217,7 @@ return {
       opts = {
         system_prompt = function(_)
           local now = os.date("%Y-%m-%d %H:%M:%S")
-          return string.format(
-            [[
+          return [[
 You are an AI programming assistant.
 You are currently plugged in to user's code editor under Linux/MacOS.
 
@@ -250,13 +249,8 @@ Be thorough in gathering information:
 3. When multiple options are possible, list them and ask for user's preference
 4. When encountering ambiguity, state what information is missing and ask for clarification
 5. Do not proceed with actions until all required information is confirmed
-
-Note:
-- Current time: %s
-- Not all known information is related to users requirements. You have to filter out the irrelevant information.
-          ]],
-            now
-          )
+6. Not all known information is related to users requirements. You have to filter out the irrelevant information.
+          ]]
         end,
       },
     })
