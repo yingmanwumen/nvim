@@ -16,6 +16,24 @@ return {
     "CodeCompanionActions",
   },
   event = "VeryLazy",
+  keys = {
+    {
+      "<leader>cc",
+      function()
+        require("codecompanion").toggle()
+      end,
+      desc = "Code Companion",
+      silent = true,
+    },
+    {
+      "<leader>ca",
+      ":'<,'>CodeCompanionChat Add<cr>",
+      desc = "Code Companion Add",
+      silent = true,
+      mode = "x",
+      noremap = true,
+    },
+  },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
