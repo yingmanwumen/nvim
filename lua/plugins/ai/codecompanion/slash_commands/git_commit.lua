@@ -38,6 +38,7 @@ Make sure:
 
 Attention:
 - Wrap the whole message in code block with language `gitcommit`
+- If you are asked to add emoji, add it at the end of the message
 - ALL content below this line is DIFF
 
 
