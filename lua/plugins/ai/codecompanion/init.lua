@@ -64,7 +64,7 @@ return {
                 default = "deepseek-reasoner",
               },
               temperature = {
-                default = 0.3,
+                default = 0.6, -- official recommendation
               },
             },
           })
@@ -79,7 +79,7 @@ return {
             },
             schema = {
               temperature = {
-                default = 0.3,
+                default = 0.6,
               },
               model = {
                 default = "deepseek/deepseek-r1:free",
