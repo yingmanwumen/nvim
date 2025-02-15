@@ -216,7 +216,6 @@ return {
       },
       opts = {
         system_prompt = function(_)
-          local now = os.date("%Y-%m-%d %H:%M:%S")
           return [[
 You are an AI programming assistant.
 You are currently plugged in to user's code editor under Linux/MacOS.
