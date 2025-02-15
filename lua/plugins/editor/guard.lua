@@ -46,6 +46,7 @@ local function setup()
 
   ft("ocaml"):fmt({
     cmd = "ocamlformat",
+    args = { "-i" },
     stdin = false,
     fname = true,
   })
