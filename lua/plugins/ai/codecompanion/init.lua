@@ -2,6 +2,7 @@ local slash_commands_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codec
 
 local bilingual = require("plugins.ai.codecompanion.variables.bilingual")
 local chinese = require("plugins.ai.codecompanion.variables.chinese")
+local codeforces_companion = require("plugins.ai.codecompanion.variables.codeforces_companion")
 local emoji = require("plugins.ai.codecompanion.variables.emoji")
 
 local adapter = "copilot_0_3"
@@ -177,6 +178,7 @@ return {
             ["chinese"] = chinese,
             ["bilingual"] = bilingual,
             ["emoji"] = emoji,
+            ["codeforces_companion"] = codeforces_companion,
           },
         },
         inline = { adapter = adapter },
