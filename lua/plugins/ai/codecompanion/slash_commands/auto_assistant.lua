@@ -13,7 +13,7 @@ end
 
 function SlashCommand:execute(_)
   local message = self:generate_message()
-  local id = "<auto_assistant></auto_assistant>"
+  local id = "<auto>assistant</auto>"
   self.Chat:add_message({
     role = "system",
     content = message,
@@ -42,6 +42,11 @@ Now you are going to be an **Auto Assistant** that proactively helps users by:
 2. Continuous feedback: Provide feedbacks to user as you go to ensure you are on the right track.
 3. Safety first: consider edge cases and avoid dangerous actions such as `rm -rf /`.
 4. Error handling: if you encounter errors, report them and try to resolve them. If you cannot resolve an error, ask for help.
+
+#### Hints:
+- **Search Code**: Use `git grep` ,`rg`, `fd` or `git ls-files`.
+- **Access Internet Information**: Use rag tool or ask user to fetch web content for you.
+- **Draw Diagrams**: Use `mermaid` or `dot`.
 
 #### Task Flow
 

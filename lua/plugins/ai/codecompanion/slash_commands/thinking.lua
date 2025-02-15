@@ -13,7 +13,7 @@ end
 
 function SlashCommand:execute(_)
   local message = self:generate_message()
-  local id = "<thinking></thinking>"
+  local id = "<thinking>reasoning</thinking>"
   self.Chat:add_message({
     role = "system",
     content = message,
@@ -28,9 +28,11 @@ end
 
 function SlashCommand:generate_message()
   return fmt([[
-### **Thinking**
+### **Thinking And Reasoning**
 
-PLEASE divide your responses in thinking and response parts from now on:
+You should ALWAYS follow the following output format from now on.
+
+Divide your responses into thinking and response parts:
 
 1. First output your thoughts and reasoning under `### Thinking` section
 2. Then output your actual response to the user under `### Response` section
@@ -51,10 +53,8 @@ Here's my response to the user...
 
 Note: Your thoughts and reasoning under `### Thinking` section:
 - Are invisible and will be hidden to users
-- Should capture your true reasoning process
-- Should be detailed enough
-- Don't be restricted and limited at all
-- Help you organize your thoughts clearly
+- Should capture your true reasoning process and be detailed enough
+- Are not restricted and limited at all
 ]])
 end
 
