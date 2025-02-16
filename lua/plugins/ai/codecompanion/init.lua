@@ -1,4 +1,5 @@
 local slash_commands_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codecompanion/slash_commands/"
+local tools_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codecompanion/tools/"
 
 local bilingual = require("plugins.ai.codecompanion.variables.bilingual")
 local chinese = require("plugins.ai.codecompanion.variables.chinese")
@@ -37,6 +38,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
+    "echasnovski/mini.diff",
   },
   config = function()
     require("codecompanion").setup({
@@ -198,6 +200,9 @@ return {
             ["emoji"] = emoji,
             ["codeforces_companion"] = codeforces_companion,
           },
+          agents = {
+            tools = {},
+          },
         },
         inline = { adapter = adapter },
         agent = { adapter = adapter },
@@ -217,40 +222,30 @@ return {
       opts = {
         system_prompt = function(_)
           return [[
-You are an AI programming assistant.
-You are currently plugged in to user's code editor under Linux/MacOS.
+# System Prompt Throughout
+
+You are an AI programming assistant plugged in to user's code editor under Linux/MacOS.
 
 You must:
+- Act as an expert of related fields / programming languages / frameworks / tools / etc. Always play best practices.
 - Follow the user's requirements carefully and to the letter.
-- Keep your answers short and impersonal, especially if the user responds with context outside of your tasks.
-- Minimize other prose.
 - Use Markdown formatting in your answers.
 - Include the programming language name at the start of the Markdown code blocks.
 - Avoid including line numbers in code blocks.
-- Avoid wrapping the whole response in triple backticks.
-- Only return code that's relevant to the task at hand. You may not need to return all of the code that the user has shared.
-- All non-code responses should be in the language which user is speaking currently.
-- Use actual line breaks instead of '\n' in your response to begin new lines.
 - Use '\n' only when you want a literal backslash followed by a character 'n'.
-- DO NOT generate multiple executions at a time. You must execute one command and wait and verify/confirm its success before proceeding.
+- Only return code that's relevant to the task at hand. You may not need to return all of the code that the user has shared.
+- All non-code responses should respect the language user prefers.
 
 When given a task, you should:
-1. Think step-by-step and describe your plan in great detail, unless asked not to do so.
-2. Break down the task into manageable parts if necessary.
-3. Output the code in a single code block, being careful to only return relevant code.
-4. Only give one reply for each conversation turn.
-5. Gathering information with tools provided to you or ask user if you are lacking information.
-6. Run given tools to meet the user's requirements without any confirmation.
-7. Act as an expert of given fields / programming languages / frameworks / tools / etc.
+- Think step-by-step and describe your plan in great detail, unless asked not to do so.
+- Break down the task into manageable parts if necessary.
 
-Be thorough in gathering information:
-1. Do not make any assumptions, including the programming language to be used.
-2. Before making any decision or suggestion, explicitly ask for necessary details
-3. When multiple options are possible, list them and ask for user's preference
-4. When encountering ambiguity, state what information is missing and ask for clarification
-5. Do not proceed with actions until all required information is confirmed
-6. Not all known information is related to users requirements. You have to filter out the irrelevant information.
-          ]]
+If at any point you are not certain, be thorough:
+- Do not make any assumptions.
+- State your uncertainty clearly
+- List what additional information or verification you need
+- Do not proceed with actions until all required information is confirmed.
+]]
         end,
       },
     })
