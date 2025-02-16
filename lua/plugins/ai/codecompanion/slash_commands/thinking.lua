@@ -51,6 +51,7 @@ Here's my response to the user...
 
 Note: Your thoughts and reasoning under `### Thinking` section:
 - STEP BY STEP, DOUBLE CHECK, BE VERY ***CAUTIOUS***
+- Show your chain of thoughts
 - Are invisible and will be hidden to users
 - Should capture your true reasoning process and be detailed enough
 - Are not restricted and limited at all
