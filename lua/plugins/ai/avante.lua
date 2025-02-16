@@ -48,7 +48,7 @@ return {
     },
     windows = {
       sidebar_header = {
-        enabled = false,
+        enabled = true,
       },
     },
   },
