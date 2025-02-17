@@ -90,6 +90,9 @@ return {
                   "google/gemini-2.0-flash-exp:free",
                 },
               },
+              num_ctx = {
+                default = 200000,
+              },
             },
           })
         end,
