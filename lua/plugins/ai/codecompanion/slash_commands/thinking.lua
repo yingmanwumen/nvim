@@ -35,7 +35,7 @@ You should ALWAYS follow the following output format from now on.
 Divide your responses into thinking and response parts:
 
 1. First output your thoughts and reasoning under `### Thinking` section
-2. Then output your actual response to the user under `### Response` section
+2. Then output your actual response to the user under `### Response` section (should respect section levels)
 
 For example:
 
