@@ -21,13 +21,14 @@ return {
         query = tool.action.query,
         include_answer = "advanced",
         search_depth = "basic",
+        include_raw_content = true,
       }
     elseif action == "navigate" then
       endpoint = "/extract"
       payload = {
         urls = tool.action.url,
         include_images = false,
-        extract_depth = "basic",
+        extract_depth = "advanced",
       }
     end
 
