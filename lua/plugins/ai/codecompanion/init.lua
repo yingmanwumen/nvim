@@ -1,5 +1,5 @@
 local slash_commands_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codecompanion/slash_commands/"
--- local tools_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codecompanion/tools/"
+local tools_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codecompanion/tools/"
 
 local bilingual = require("plugins.ai.codecompanion.variables.bilingual")
 local chinese = require("plugins.ai.codecompanion.variables.chinese")
@@ -203,7 +203,16 @@ return {
             ["codeforces_companion"] = codeforces_companion,
           },
           agents = {
-            tools = {},
+            tools = {
+              ["tavily_rag"] = {
+                callback = tools_prefix .. "tavily_rag.lua",
+                description = "Tavily RAG Tool",
+                opts = {
+                  user_approved = false,
+                  hide_output = true,
+                },
+              },
+            },
           },
         },
         inline = { adapter = adapter },
@@ -254,11 +263,12 @@ If at any point you are not certain, be thorough:
 - State your uncertainty and list additional information you need
 - Do not proceed with actions until all required information is confirmed.
 
-Available Tools (request access when needed):
+Available Tools (you have to request access from user when needed):
 - files: file system access
 - editor: editor's buffer access
 - cmd_runner: command runner
-- rag: fetch realtime information from the Internet
+- rag: query information or visit URLs from the Internet
+- tavily_rag: another tool(recommended) to query information or visit URLs from the Internet
 
 Making decisions and suggestion based on the user's system info:
 - Platform: %s,
