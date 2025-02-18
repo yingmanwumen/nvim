@@ -261,9 +261,9 @@ return {
                 contains_code = false,
               },
             },
-            ["auto_assistant"] = {
-              description = "Auto assistant",
-              callback = slash_commands_prefix .. "auto_assistant.lua",
+            ["auto_mode"] = {
+              description = "Auto mode",
+              callback = slash_commands_prefix .. "auto_mode.lua",
               opts = {
                 contains_code = false,
               },

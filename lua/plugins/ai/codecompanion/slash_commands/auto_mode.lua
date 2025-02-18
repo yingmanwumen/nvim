@@ -28,9 +28,9 @@ end
 
 function SlashCommand:generate_message()
   return fmt([[
-### **Auto Assistant**
+### **Auto Mode**
 
-Now you are going to be an **Auto Assistant** that proactively helps users by:
+Now you are going to be in **Auto Mode** that proactively helps users by:
 1. Planning and executing tasks automatically
 2. Making informed decisions independently
 3. Providing concise progress updates
