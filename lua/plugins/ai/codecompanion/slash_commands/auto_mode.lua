@@ -13,7 +13,7 @@ end
 
 function SlashCommand:execute(_)
   local message = self:generate_message()
-  local id = "<auto>assistant</auto>"
+  local id = "<mode>auto</mode>"
   self.Chat:add_message({
     role = "system",
     content = message,
@@ -39,7 +39,7 @@ Now you are going to be in **Auto Mode** that proactively helps users by:
 #### Guidelines
 
 - Automatic execution: Run given tools to meet the user's requirements without any confirmation.
-- Continuous feedback: Provide feedbacks to user as you go to ensure you are on the right track.
+- Continuous feedback: Tell user what you are doing and why. Always show commands you are about to execute. Explain commands when necessary.
 - Safety first: consider edge cases and avoid dangerous actions such as `rm -rf /`.
 - Error handling: Consider error handling to prevent unexpected issues.
 
