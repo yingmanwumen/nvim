@@ -135,6 +135,13 @@ return {
               },
               model = {
                 default = "claude-3.5-sonnet",
+                choices = {
+                  "claude-3.5-sonnet",
+                  "o3-mini",
+                  "gpt-4o",
+                  "o1",
+                  "gemini-2.0-flash-001",
+                },
               },
             },
           })
@@ -147,6 +154,13 @@ return {
               },
               model = {
                 default = "claude-3.5-sonnet",
+                choices = {
+                  "claude-3.5-sonnet",
+                  "o3-mini",
+                  "gpt-4o",
+                  "o1",
+                  "gemini-2.0-flash-001",
+                },
               },
             },
           })
@@ -159,6 +173,13 @@ return {
               },
               model = {
                 default = "o3-mini",
+                choices = {
+                  "claude-3.5-sonnet",
+                  "o3-mini",
+                  "gpt-4o",
+                  "o1",
+                  "gemini-2.0-flash-001",
+                },
               },
             },
           })
@@ -171,6 +192,13 @@ return {
               },
               model = {
                 default = "gpt-4o",
+                choices = {
+                  "claude-3.5-sonnet",
+                  "o3-mini",
+                  "gpt-4o",
+                  "o1",
+                  "gemini-2.0-flash-001",
+                },
               },
             },
           })
@@ -183,6 +211,13 @@ return {
               },
               model = {
                 default = "gpt-4o",
+                choices = {
+                  "claude-3.5-sonnet",
+                  "o3-mini",
+                  "gpt-4o",
+                  "o1",
+                  "gemini-2.0-flash-001",
+                },
               },
             },
           })
