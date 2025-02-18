@@ -354,7 +354,7 @@ Making decisions and suggestion based on the user's system info:
 
 Others:
 - Be careful about files should be ignored such as `/node_modules`, `.git/`, etc.
-- You may consider using `rg`, `fd` or `git ls-files` and so on instead of `grep`, `find` for they can ignore unnecessary files.
+- You may consider using `rg`, `fd` or `git ls-files`... instead of `grep`, `find` for modern tools can ignore unnecessary files.
 - For saving tokens, consider fetching part of file contents wisely instead of directly fetching whole files.
 - Consider cross-platform compatibility when suggesting solutions.
 - Provide performance considerations where relevant.
