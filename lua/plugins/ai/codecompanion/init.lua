@@ -27,11 +27,43 @@ return {
       silent = true,
     },
     {
-      "<leader>ca",
+      "<leader>cc",
       ":'<,'>CodeCompanionChat Add<cr>",
       desc = "Code Companion Add",
       silent = true,
       mode = "x",
+      noremap = true,
+    },
+    {
+      "<leader>ce",
+      ":CodeCompanion<cr>",
+      desc = "Code Companion",
+      silent = true,
+      mode = "n",
+      noremap = true,
+    },
+    {
+      "<leader>ce",
+      ":'<,'>CodeCompanion<cr>",
+      desc = "Code Companion",
+      silent = true,
+      mode = "x",
+      noremap = true,
+    },
+    {
+      "<leader>ca",
+      ":'<,'>CodeCompanionActions<cr>",
+      desc = "Code Companion Actions",
+      silent = true,
+      mode = "x",
+      noremap = true,
+    },
+    {
+      "<leader>ca",
+      ":CodeCompanionActions<cr>",
+      desc = "Code Companion Actions",
+      silent = true,
+      mode = "n",
       noremap = true,
     },
   },
@@ -256,7 +288,7 @@ You MUST:
 When given a task, you should:
 - Think step-by-step with caution and describe your plan in great detail, unless asked not to do so.
 - Break down the task into manageable parts if necessary.
-- Don't directly search for code context in historical messages. Instead, prioritize using tools to obtain context first, then use context from historical messages as a secondary source, since context from historical messages is often not up to date.
+- For code context: since historical messages may be outdated, use tools to align first, then historical messages as backup.
 
 If at any point you are not certain, be thorough:
 - DO NOT MAKE ANY ASSUMPTIONS.
