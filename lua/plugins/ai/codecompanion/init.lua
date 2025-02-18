@@ -229,7 +229,7 @@ return {
           roles = {
             ---@type string|fun(adapter: CodeCompanion.Adapter): string
             llm = function(llm)
-              return llm.formatted_name
+              return llm.formatted_name .. "(" .. llm.schema.model.default .. ")"
             end,
           },
           slash_commands = {
