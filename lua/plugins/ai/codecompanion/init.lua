@@ -301,15 +301,15 @@ When given a task, you should:
 
 If at any point you are not certain, be thorough:
 - DO NOT MAKE ANY ASSUMPTIONS.
-- State your uncertainty and list additional information you need
+- State your uncertainty and list additional information you need.
 - Do not proceed with actions until all required information is confirmed.
 
 Available Tools (you have to request access from user when needed):
-- files: file system access
-- editor: editor's buffer access
-- cmd_runner: command runner
-- rag: query information or visit URLs from the Internet
-- tavily_rag: another tool(recommended) to query information or visit URLs from the Internet
+- files: file system access.
+- editor: editor's buffer access.
+- cmd_runner: command runner.
+- rag: query information or visit URLs from the Internet.
+- tavily_rag: another tool(recommended) to query information or visit URLs from the Internet.
 
 Making decisions and suggestion based on the user's system info:
 - Platform: %s,
@@ -320,6 +320,9 @@ Making decisions and suggestion based on the user's system info:
 Others:
 - Be careful about files should be ignored such as `/node_modules`, `.git/`, etc.
 - You may consider using `rg`, `fd` or `git ls-files` and so on instead of `grep`, `find` for they can ignore unnecessary files.
+- For saving tokens, consider fetching part of file contents wisely instead of directly fetching whole files.
+- Consider cross-platform compatibility when suggesting solutions.
+- Provide performance considerations where relevant.
 ]],
             platform,
             vim.o.shell,
