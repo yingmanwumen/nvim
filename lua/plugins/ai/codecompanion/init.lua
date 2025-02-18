@@ -191,6 +191,12 @@ return {
       strategies = {
         chat = {
           adapter = adapter,
+          roles = {
+            ---@type string|fun(adapter: CodeCompanion.Adapter): string
+            llm = function(llm)
+              return llm.formatted_name
+            end,
+          },
           slash_commands = {
             ["git_commit"] = {
               description = "Generate git commit message and commit it",
@@ -253,7 +259,7 @@ return {
       display = {
         chat = {
           icons = {
-            pinned_buffer = " ",
+            pinned_buffer = "📌 ",
             watched_buffer = "👀 ",
           },
           -- show_settings = true,
@@ -261,6 +267,9 @@ return {
             position = "right",
           },
         },
+        -- diff = {
+        --   enabled = false,
+        -- },
       },
       opts = {
         system_prompt = function(_)
