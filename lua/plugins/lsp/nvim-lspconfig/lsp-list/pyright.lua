@@ -1,7 +1,7 @@
 return {
   lsp = "pyright",
   opts = {},
-  config = {
-    enable = false,
-  },
+  -- config = {
+  -- enable = false,
+  -- },
 }
