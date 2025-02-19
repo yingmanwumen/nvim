@@ -277,9 +277,9 @@ return {
           },
           agents = {
             tools = {
-              ["tavily_rag"] = {
-                callback = tools_prefix .. "tavily_rag.lua",
-                description = "Tavily RAG Tool",
+              ["search"] = {
+                callback = tools_prefix .. "search.lua",
+                description = "Online Search Tool",
                 opts = {
                   user_approved = false,
                   hide_output = true,
@@ -344,7 +344,7 @@ Available Tools (you have to request access from user when needed):
 - editor: editor's buffer access.
 - cmd_runner: command runner.
 - rag: query information or visit URLs from the Internet.
-- tavily_rag: another tool(recommended) to query information or visit URLs from the Internet.
+- search: another tool(recommended) to query information or visit URLs from the Internet.
 
 Environment Awareness:
 - Platform: %s,

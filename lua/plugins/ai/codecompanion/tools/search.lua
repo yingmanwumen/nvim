@@ -1,21 +1,24 @@
 --[[
-*Tavily RAG Tool*
+* Search Tool*
 This tool can be used to search the internet using Tavily API.
 --]]
 
 local config = require("codecompanion.config")
 local xml2lua = require("codecompanion.utils.xml.xml2lua")
+local tool_name = "search"
+local ACTION_SEARCH = "search"
+local ACTION_NAVIGATE = "navigate"
 
 ---@class CodeCompanion.Tool
 return {
-  name = "tavily_rag",
+  name = tool_name,
   env = function(tool)
     local url = "https://api.tavily.com"
     local endpoint
     local payload = {}
 
     local action = tool.action._attr.type
-    if action == "search" then
+    if action == ACTION_SEARCH then
       endpoint = "/search"
       payload = {
         query = tool.action.query,
@@ -23,7 +26,7 @@ return {
         search_depth = "basic",
         include_raw_content = true,
       }
-    elseif action == "navigate" then
+    elseif action == ACTION_NAVIGATE then
       endpoint = "/extract"
       payload = {
         urls = tool.action.url,
@@ -56,18 +59,18 @@ return {
   schema = {
     {
       tool = {
-        _attr = { name = "tavily_rag" },
+        _attr = { name = tool_name },
         action = {
-          _attr = { type = "search" },
+          _attr = { type = ACTION_SEARCH },
           query = "<![CDATA[What's the newest version of Neovim?]]>",
         },
       },
     },
     {
       tool = {
-        _attr = { name = "tavily_rag" },
+        _attr = { name = tool_name },
         action = {
-          _attr = { type = "navigate" },
+          _attr = { type = ACTION_NAVIGATE },
           url = "<![CDATA[https://github.com/neovim/neovim/releases]]>",
         },
       },
@@ -75,7 +78,7 @@ return {
   },
   system_prompt = function(schema)
     return string.format(
-      [[### Tavily RAG Tool (`tavily_rag`)
+      [[### Search Tool
 
 1. **Purpose**: This gives you the ability to access the internet to find information that you may not know.
 
@@ -120,7 +123,7 @@ Remember:
       self.chat:add_message({
         role = config.constants.USER_ROLE,
         content = string.format(
-          [[After the Tavily RAG tool completed, there was an error:
+          [[After the Search tool completed, there was an error:
 
 <error>
 %s
@@ -132,7 +135,7 @@ Remember:
 
       self.chat:add_buf_message({
         role = config.constants.USER_ROLE,
-        content = "I've shared the error message from the Tavily RAG tool with you.\n",
+        content = "I've shared the error message from the Search tool with you.\n",
       })
     end,
 
@@ -144,7 +147,7 @@ Remember:
       self.chat:add_message({
         role = config.constants.USER_ROLE,
         content = string.format(
-          [[Here is the content the Tavily RAG tool retrieved:
+          [[Here is the content the Search tool retrieved:
 
 <content>
 %s
@@ -156,7 +159,7 @@ Remember:
 
       self.chat:add_buf_message({
         role = config.constants.USER_ROLE,
-        content = "I've shared the content from the Tavily RAG tool with you.\n",
+        content = "I've shared the content from the Search tool with you.\n",
       })
     end,
   },
