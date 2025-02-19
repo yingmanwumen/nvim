@@ -35,6 +35,22 @@ return {
       noremap = true,
     },
     {
+      "<C-?>",
+      function()
+        require("codecompanion").toggle()
+      end,
+      desc = "Code Companion",
+      silent = true,
+    },
+    {
+      "<C-?>",
+      ":'<,'>CodeCompanionChat Add<cr>",
+      desc = "Code Companion Add",
+      silent = true,
+      mode = "x",
+      noremap = true,
+    },
+    {
       "<leader>ce",
       ":CodeCompanion<cr>",
       desc = "Code Companion",
@@ -44,6 +60,22 @@ return {
     },
     {
       "<leader>ce",
+      ":'<,'>CodeCompanion<cr>",
+      desc = "Code Companion",
+      silent = true,
+      mode = "x",
+      noremap = true,
+    },
+    {
+      "<C-i>",
+      ":CodeCompanion<cr>",
+      desc = "Code Companion",
+      silent = true,
+      mode = "n",
+      noremap = true,
+    },
+    {
+      "<C-i>",
       ":'<,'>CodeCompanion<cr>",
       desc = "Code Companion",
       silent = true,
