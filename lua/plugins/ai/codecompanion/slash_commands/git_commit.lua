@@ -30,7 +30,6 @@ Task:
 - Write commit message for the change with `commitizen convention`.
 - After generating commit message, commit it with `git commit -F- <<EOF`.
 - Wrap the whole message in code block with language `gitcommit`
-- Add emoji if you are asked to
 
 === Diff Start, All content below this line is diff ===
 
