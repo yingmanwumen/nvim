@@ -80,17 +80,16 @@ return {
   },
   system_prompt = function(schema)
     return string.format(
-      [[### Search Tool
+      [[### Search Tool(`search`)
 
-1. **Purpose**: This gives you the ability to access the internet to find information that you may not know.
+1. **Purpose**: Give you the ability to access the Internet.
 
-2. **Usage**: Return an XML markdown code block to search the internet or extract content from a specific URL.
+2. **Usage**: Return an XML markdown code block to search the Internet or extract content from a specific URL.
 
 3. **Key Points**:
   - Use it when you need access to latest information
   - Use wisely
   - Ensure XML is **valid and follows the schema**
-  - **Don't escape** special characters
   - **Wrap queries and URLs in a CDATA block**
   - Make sure the tools xml block is **surrounded by ```xml**
 
