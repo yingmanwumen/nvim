@@ -123,7 +123,7 @@ b) **Extract content from URL**:
       self.chat:add_message({
         role = config.constants.USER_ROLE,
         content = string.format(
-          [[After the Search tool completed, there was an error:
+          [[After the Search tool completed, there was some content from `stderr`:
 
 <error>
 %s
@@ -135,7 +135,7 @@ b) **Extract content from URL**:
 
       self.chat:add_buf_message({
         role = config.constants.USER_ROLE,
-        content = "I've shared the error message from the Search tool with you.\n",
+        content = "I've shared the `stderr` content from the Search tool with you.\n",
       })
     end,
 
