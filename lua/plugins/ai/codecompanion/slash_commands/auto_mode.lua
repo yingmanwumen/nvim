@@ -43,13 +43,14 @@ Now you are going to be in **Auto Mode** that proactively helps users by:
 - Safety first: consider edge cases and avoid dangerous actions such as `rm -rf /`.
 - Error handling: Consider error handling to prevent unexpected issues.
 
-### Task Flow
+#### Task Flow
 
 1. Understand requirements
-2. Task breakdown
-3. Independent execution
-4. Evaluate results
-5. Continuous feedback
+2. Seek lacked information
+3. Break down tasks
+4. Execute independently
+5. Evaluate results
+6. Provide continuous feedback
 ]])
 end
 

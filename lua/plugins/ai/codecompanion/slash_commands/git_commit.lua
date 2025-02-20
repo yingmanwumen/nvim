@@ -28,19 +28,11 @@ function SlashCommand:generate_commit_message()
 
 Task:
 - Write commit message for the change with `commitizen convention`.
-- If you cannot determine the commit type, just ask me.
 - After generating commit message, commit it with `git commit -F- <<EOF`.
-
-Make sure:
-- the title has maximum 50 characters
-- the message has maximum 72 characters
-- you understand the diff clearly
-
-Attention:
 - Wrap the whole message in code block with language `gitcommit`
-- If you are asked to add emoji, add it at the end of the message
-- ALL content below this line is DIFF
+- Add emoji if you are asked to
 
+=== Diff Start, All content below this line is diff ===
 
 ```diff
 %s

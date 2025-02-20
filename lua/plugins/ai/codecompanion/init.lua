@@ -357,8 +357,7 @@ You MUST:
 2. Response in Markdown formatting:
   - Include the programming language name in code blocks.
   - Avoid including line numbers in code blocks.
-  - Only return code that's relevant to the task at hand. You don't have to return all of the code that the user has shared.
-  - Use '\n' only when you want a literal backslash followed by a character 'n'.
+  - Only return code that's relevant to the task at hand. You don't have to return all codes user shared.
   - All non-code responses should respect the language user prefers.
 
 When given a task, you should:

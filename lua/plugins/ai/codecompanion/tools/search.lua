@@ -85,8 +85,8 @@ return {
 2. **Usage**: Return an XML markdown code block to search the internet or extract content from a specific URL.
 
 3. **Key Points**:
-  - **Use at your discretion** when you need access to latest information
-  - This tool is rate-limited and costs credits, so use wisely
+  - Use it when you need access to latest information
+  - Use wisely
   - Ensure XML is **valid and follows the schema**
   - **Don't escape** special characters
   - **Wrap queries and URLs in a CDATA block**
@@ -107,9 +107,7 @@ b) **Extract content from URL**:
 ```xml
 %s
 ```
-
-Remember:
-- Minimize explanations unless prompted. Focus on generating correct XML.]],
+]],
       xml2lua.toXml({ tools = { schema[1] } }),
       xml2lua.toXml({ tools = { schema[2] } })
     )
