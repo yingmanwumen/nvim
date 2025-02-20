@@ -24,7 +24,7 @@ return {
         query = tool.action.query,
         include_answer = "advanced",
         search_depth = "basic",
-        include_raw_content = true,
+        include_raw_content = false,
       }
     elseif action == ACTION_NAVIGATE then
       endpoint = "/extract"
