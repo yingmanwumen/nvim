@@ -45,6 +45,8 @@ return {
   cmds = {
     {
       "curl",
+      "-sS",
+      "-f",
       "-X",
       "POST",
       "${url}",

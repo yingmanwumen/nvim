@@ -317,6 +317,11 @@ return {
                   hide_output = true,
                 },
               },
+              opts = {
+                system_prompt = [[]], -- disable default system prompt of tools
+                auto_submit_success = true,
+                auto_submit_errors = false,
+              },
             },
           },
         },
