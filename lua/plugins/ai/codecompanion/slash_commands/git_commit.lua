@@ -31,7 +31,7 @@ Task:
 - After generating commit message, commit it with `git commit -F- <<EOF`.
 - Wrap the whole message in code block with language `gitcommit`
 
-=== Diff Start, All content below this line is diff ===
+== Diff Start, All content below this line is diff ==
 
 ```diff
 %s
