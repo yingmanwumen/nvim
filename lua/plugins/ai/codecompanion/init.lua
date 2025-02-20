@@ -371,5 +371,16 @@ Others:
         end,
       },
     })
+
+    local group = vim.api.nvim_create_augroup("CodeCompanionHooks", {})
+
+    vim.api.nvim_create_autocmd({ "User" }, {
+      pattern = "CodeCompanionChatCreated",
+      group = group,
+      callback = function()
+        vim.wo.number = false
+        vim.wo.relativenumber = false
+      end,
+    })
   end,
 }
