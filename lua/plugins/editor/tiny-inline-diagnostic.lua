@@ -26,7 +26,7 @@ return {
 
         -- Color blending option for the diagnostic background
         -- Use "None" or a hexadecimal color (#RRGGBB) to blend with another color
-        mixing_color = "None",
+        -- mixing_color = "",
       },
 
       options = {
