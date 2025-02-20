@@ -35,8 +35,6 @@ return {
       }
     end
 
-    print(string.format("Authorization: Bearer %s", vim.env.TAVILY_API_KEY or ""))
-
     return {
       url = url .. endpoint,
       payload = vim.json.encode(payload),
@@ -51,7 +49,7 @@ return {
       "POST",
       "${url}",
       "-H",
-      "Content-Type: application/json",
+      "'Content-Type: application/json'",
       "-H",
       string.format("'Authorization: Bearer %s'", vim.env.TAVILY_API_KEY or ""),
       "-d",
