@@ -1,33 +1,6 @@
-local fmt = string.format
+require("codecompanion")
 
-local SlashCommand = {}
-
-function SlashCommand.new(args)
-  local self = setmetatable({
-    Chat = args.Chat,
-    config = args.config,
-    context = args.context,
-  }, { __index = SlashCommand })
-  return self
-end
-
-function SlashCommand:execute(_)
-  local message = self:generate_message()
-  local id = "<thinking>reasoning</thinking>"
-  self.Chat:add_message({
-    role = "system",
-    content = message,
-  }, {
-    reference = id,
-    visible = false,
-  })
-  self.Chat.references:add({
-    id = id,
-  })
-end
-
-function SlashCommand:generate_message()
-  return fmt([[
+local prompt = [[
 ### **Thinking And Reasoning**
 
 You should ALWAYS follow the following output format from now on.
@@ -64,7 +37,20 @@ Note: Your thoughts and reasoning under `### Thinking` section:
 - Follow the first-principles thinking.
 - Don't make any assumption. Again, don't make any assumption.
 - Should capture your reasoning process and be detailed enough.
-]])
+]]
+
+---@param chat CodeCompanion.Chat
+local function callback(chat)
+  chat:add_reference({
+    content = prompt,
+    role = "system",
+  }, "system-prompt", "<mode>thinking</mode>")
 end
 
-return SlashCommand
+return {
+  description = "Assistant with visible thinking process",
+  callback = callback,
+  opts = {
+    contains_code = false,
+  },
+}

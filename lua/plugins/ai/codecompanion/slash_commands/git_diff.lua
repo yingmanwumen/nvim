@@ -1,37 +1,47 @@
-local fmt = string.format
+require("codecompanion")
 
-local SlashCommand = {}
+---@param chat CodeCompanion.Chat
+local function callback(chat)
+  local handle_staged = io.popen("git diff --no-ext-diff --staged")
+  local handle_unstaged = io.popen("git diff")
 
-function SlashCommand.new(args)
-  local self = setmetatable({
-    Chat = args.Chat,
-    config = args.config,
-    context = args.context,
-  }, { __index = SlashCommand })
-  return self
-end
+  if handle_staged == nil and handle_staged == nil then
+    return vim.notify("No git diff available", vim.log.levels.INFO, { title = "CodeCompanion" })
+  end
 
-function SlashCommand:execute(SlashCommands)
-  local message = self:generate_commit_message()
-  self.Chat:add_buf_message({
-    role = "user",
-    content = message,
-  })
-end
+  local staged = ""
+  local unstaged = ""
+  if handle_staged ~= nil then
+    staged = handle_staged:read("*a")
+    handle_staged:close()
+  end
+  if handle_unstaged ~= nil then
+    unstaged = handle_unstaged:read("*a")
+    handle_unstaged:close()
+  end
 
-function SlashCommand:generate_commit_message()
-  local git_diff = vim.fn.system("git diff --no-ext-diff --staged")
-
-  return fmt(
-    [[
-- Output of `git diff --no-ext-diff --staged`:
-
-```diff
+  local content = string.format(
+    [[== Staged Changes(`git diff --no-ext-diff --staged`) ==
 %s
-```
-]],
-    git_diff
+
+== Unstaged Changes(`git diff`) ==
+%s
+    ]],
+    staged,
+    unstaged
   )
+
+  local time = os.date("%H:%M:%S")
+  chat:add_reference({
+    content = content,
+    role = "user",
+  }, "git", "<git>diff " .. time .. "</git>")
 end
 
-return SlashCommand
+return {
+  description = "Generate git diff",
+  callback = callback,
+  opts = {
+    contains_code = true,
+  },
+}

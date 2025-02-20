@@ -1,10 +1,4 @@
-local slash_commands_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codecompanion/slash_commands/"
 local tools_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codecompanion/tools/"
-
-local bilingual = require("plugins.ai.codecompanion.variables.bilingual")
-local chinese = require("plugins.ai.codecompanion.variables.chinese")
-local codeforces_companion = require("plugins.ai.codecompanion.variables.codeforces_companion")
-local emoji = require("plugins.ai.codecompanion.variables.emoji")
 
 local adapter = "copilot_0_3"
 
@@ -265,48 +259,17 @@ return {
             end,
           },
           slash_commands = {
-            ["git_commit"] = {
-              description = "Generate git commit message and commit it",
-              callback = slash_commands_prefix .. "git_commit.lua",
-              opts = {
-                contains_code = true,
-              },
-            },
-            ["git_diff"] = {
-              description = "Generate git diff",
-              callback = slash_commands_prefix .. "git_diff.lua",
-              opts = {
-                contains_code = true,
-              },
-            },
-            ["git_files"] = {
-              description = "List git files",
-              callback = slash_commands_prefix .. "git_files.lua",
-              opts = {
-                contains_code = true,
-              },
-            },
-            ["thinking"] = {
-              description = "Assistant with visible thinking process",
-              callback = slash_commands_prefix .. "thinking.lua",
-              opts = {
-                contains_code = false,
-              },
-            },
-            ["auto_mode"] = {
-              description = "Auto mode",
-              callback = slash_commands_prefix .. "auto_mode.lua",
-              opts = {
-                contains_code = false,
-              },
-            },
+            ["git_commit"] = require("plugins.ai.codecompanion.slash_commands.git_commit"),
+            ["git_diff"] = require("plugins.ai.codecompanion.slash_commands.git_diff"),
+            ["git_files"] = require("plugins.ai.codecompanion.slash_commands.git_files"),
+            ["thinking"] = require("plugins.ai.codecompanion.slash_commands.thinking"),
+            ["auto_mode"] = require("plugins.ai.codecompanion.slash_commands.auto_mode"),
+            ["bilingual"] = require("plugins.ai.codecompanion.slash_commands.bilingual"),
+            ["emoji"] = require("plugins.ai.codecompanion.slash_commands.emoji"),
+            ["chinese"] = require("plugins.ai.codecompanion.slash_commands.chinese"),
+            ["codeforces_companion"] = require("plugins.ai.codecompanion.slash_commands.codeforces_companion"),
           },
-          variables = {
-            ["chinese"] = chinese,
-            ["bilingual"] = bilingual,
-            ["emoji"] = emoji,
-            ["codeforces_companion"] = codeforces_companion,
-          },
+          variables = {},
           agents = {
             tools = {
               ["search"] = {

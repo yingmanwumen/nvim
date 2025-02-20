@@ -1,38 +1,33 @@
-local fmt = string.format
+require("codecompanion")
 
-local SlashCommand = {}
-
-function SlashCommand.new(args)
-  local self = setmetatable({
-    Chat = args.Chat,
-    config = args.config,
-    context = args.context,
-  }, { __index = SlashCommand })
-  return self
-end
-
-function SlashCommand:execute(SlashCommands)
-  local message = self:generate_commit_message()
-  self.Chat:add_buf_message({
-    role = "user",
-    content = message,
-  })
-end
-
-function SlashCommand:generate_commit_message()
-  local git_files = vim.fn.system("git ls-files")
-
-  return fmt(
-    [[
-- Output of `git ls-files`:
-
-```txt
+---@param chat CodeCompanion.Chat
+local function callback(chat)
+  local handle = io.popen("git ls-files")
+  if handle ~= nil then
+    local result = handle:read("*a")
+    handle:close()
+    local content = string.format(
+      [[- Output of `git ls-files`:
+```plaintext
 %s
 ```
+    ]],
+      result
+    )
 
-]],
-    git_files
-  )
+    local time = os.date("%H:%M:%S")
+    chat:add_reference({
+      content = content,
+      role = "user",
+    }, "git", "<git>files " .. time .. "<git>")
+  else
+    return vim.notify("No git files available", vim.log.levels.INFO, { title = "CodeCompanion" })
+  end
 end
-
-return SlashCommand
+return {
+  description = "List git files",
+  callback = callback,
+  opts = {
+    contains_code = false,
+  },
+}

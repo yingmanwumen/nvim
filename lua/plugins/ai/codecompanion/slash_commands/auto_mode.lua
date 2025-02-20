@@ -1,33 +1,6 @@
-local fmt = string.format
+require("codecompanion")
 
-local SlashCommand = {}
-
-function SlashCommand.new(args)
-  local self = setmetatable({
-    Chat = args.Chat,
-    config = args.config,
-    context = args.context,
-  }, { __index = SlashCommand })
-  return self
-end
-
-function SlashCommand:execute(_)
-  local message = self:generate_message()
-  local id = "<mode>auto</mode>"
-  self.Chat:add_message({
-    role = "system",
-    content = message,
-  }, {
-    reference = id,
-    visible = false,
-  })
-  self.Chat.references:add({
-    id = id,
-  })
-end
-
-function SlashCommand:generate_message()
-  return fmt([[
+local prompt = [[
 ### **Auto Mode**
 
 Now you are going to be in **Auto Mode** that proactively helps users by:
@@ -51,7 +24,17 @@ Now you are going to be in **Auto Mode** that proactively helps users by:
 4. Execute independently
 5. Evaluate results
 6. Provide continuous feedback
-]])
+]]
+
+---@param chat CodeCompanion.Chat
+local function callback(chat)
+  chat:add_reference({ content = prompt, role = "system" }, "system-prompt", "<mode>auto</mode>")
 end
 
-return SlashCommand
+return {
+  description = "Auto mode",
+  callback = callback,
+  opts = {
+    contains_code = false,
+  },
+}
