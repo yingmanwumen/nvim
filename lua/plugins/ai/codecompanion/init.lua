@@ -281,7 +281,7 @@ return {
                 },
               },
               opts = {
-                system_prompt = [[- You need to generate XML inside "```xml```" to execute tools.
+                system_prompt = [[- You need to generate XML inside "```xml```" to execute tools. You shouldn't generate XML if you don't want to execute tools.
 - Once XML is generated, stop and wait for feedback.
 - Describe your purpose before every execution with the following format: `I would use the **<tool name>** to <your purpose>`]],
                 auto_submit_success = true,
