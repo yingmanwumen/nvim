@@ -38,7 +38,8 @@ Now you are going to be in **Auto Mode**.
 ---@param chat CodeCompanion.Chat
 local function callback(chat)
   chat:add_reference({ content = prompt, role = "system" }, "system-prompt", "<mode>auto</mode>")
-  vim.g.codecompanion_auto_tool_mode = true -- run tools without confirmation
+  -- Disable this for safety
+  -- vim.g.codecompanion_auto_tool_mode = true -- run tools without confirmation
 end
 
 return {
