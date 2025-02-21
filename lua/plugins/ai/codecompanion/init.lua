@@ -378,7 +378,7 @@ Others:
     local group = vim.api.nvim_create_augroup("CodeCompanionHooks", {})
 
     vim.api.nvim_create_autocmd({ "User" }, {
-      pattern = "CodeCompanionChatCreated",
+      pattern = "CodeCompanionChatOpened",
       group = group,
       callback = function()
         vim.wo.number = false
