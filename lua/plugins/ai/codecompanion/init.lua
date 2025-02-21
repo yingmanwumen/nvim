@@ -276,12 +276,12 @@ return {
                 callback = tools_prefix .. "search.lua",
                 description = "Online Search Tool",
                 opts = {
-                  user_approved = false,
+                  user_approval = true,
                   hide_output = true,
                 },
               },
               opts = {
-                system_prompt = [[]], -- disable default system prompt of tools
+                system_prompt = [[Once the request XML is generated, stop and wait for feedback]],
                 auto_submit_success = false,
                 auto_submit_errors = false,
               },
@@ -337,7 +337,7 @@ When given a task, you should:
 
 If at any point you are not certain, be thorough:
 - DO NOT MAKE ANY ASSUMPTIONS.
-- State your uncertainty and list additional information you need.
+- State your uncertainty and list additional information you need, and then stop and wait.
 - Do not proceed with actions until all required information is confirmed.
 
 Available Tools (you have to request access from user when needed):

@@ -111,8 +111,38 @@ b) **Extract content from URL**:
       xml2lua.toXml({ tools = { schema[2] } })
     )
   end,
+  handlers = {
+    ---Approve the command to be run
+    ---@param self CodeCompanion.Tools The tool object
+    ---@param action table
+    ---@return boolean
+    approved = function(self, action)
+      if vim.g.codecompanion_auto_tool_mode then
+        return true
+      end
+
+      local prompts = {
+        search = function(action)
+          return string.format('Allow to query "%s"', action.query)
+        end,
+        navigate = function(action)
+          return string.format("Allow to navigate to %s", action.url)
+        end,
+      }
+
+      local prompt = prompts.search(action)
+      if action.type == ACTION_NAVIGATE then
+        prompt = prompts.navigate(action.url)
+      end
+      local ok, choice = pcall(vim.fn.confirm, prompt, "No\nYes")
+      if not ok or choice ~= 2 then
+        return false
+      end
+      return true
+    end,
+  },
   output = {
-    error = function(self, cmd, stderr)
+    error = function(self, _, stderr)
       if type(stderr) == "table" then
         stderr = table.concat(stderr, "\n")
       end
@@ -136,7 +166,7 @@ b) **Extract content from URL**:
       })
     end,
 
-    success = function(self, cmd, stdout)
+    success = function(self, _, stdout)
       if type(stdout) == "table" then
         stdout = table.concat(stdout, "\n")
       end
@@ -157,6 +187,12 @@ b) **Extract content from URL**:
       self.chat:add_buf_message({
         role = config.constants.USER_ROLE,
         content = "I've shared the content from the Search tool with you.\n",
+      })
+    end,
+    rejected = function(self, action)
+      self.chat:add_buf_message({
+        role = config.constants.USER_ROLE,
+        content = string.format("I reject the action %s.\n", action._attr.type),
       })
     end,
   },
