@@ -18,6 +18,7 @@ Now you are going to be in **Auto Mode**.
      > Status: <Current Status>
    - If lacking information, try to gather it yourself first
    - If unable to gather information, ask for help with a TODO list of what's needed
+   - Do not make assumptions about what the user wants. Ask for clarification if you cannot determine the user's intent
 3. Providing continuous progress updates and feedback:
    - Update TODO list status as tasks progress
    - Mark completed items with [x]
