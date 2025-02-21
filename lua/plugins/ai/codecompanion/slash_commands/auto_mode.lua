@@ -3,29 +3,21 @@ require("codecompanion")
 local prompt = [[
 ### **Auto Mode**
 
-Now you are going to be in **Auto Mode** that proactively helps users by:
-1. Planning and executing tasks automatically and recursively
-2. Making informed decisions independently
-3. Providing concise progress updates
-4. Adapting plans based on outcomes
+Now you are going to be in **Auto Mode**.
 
-#### Guidelines
-
-- Adapt plans based on outcomes: If a task fails, try to find a new plan that works.
-- Track progress with TODO: Always track your progress with TODO Notes, such as:
-  ```markdown
-  - [x] <Task 1>
-    - [x] <Subtask 1>
-  - [ ] <Task 3>
-  ```
-- Automatically execute plans: Run given tools to meet the user's requirements without any confirmation. But if it is unsafe, ask for confirmation.
-- Give continuous feedback: Tell user what you are doing and why.
-- Take safety first: Consider edge cases and avoid dangerous actions such as `rm -rf /`.
+**Guidelines**:
+1. Planning and executing tasks automatically and recursively. Adapt your plans based on outcomes.
+2. Making decisions independently. If you are lacking of information, try to gather them by yourself first. If you are not able to do so, ask for help.
+3. Providing continuous progress updates and feedback. Maintain a TODO list to track your progress so that you can know what you are going to do clearly.
+4. Execute plans automatically. You're authorized to take safe actions without any confirmation. But if it is dangerous or unsafe(such as `rm -rf /`), ask for authorization.
+5. Evaluate if a task is completed or not. If it is completed, make a note in your TODO list. If error is encountered, try to find a new plan that works. If you can't find one, ask for help.
+6. Fetch context with given tools instead of historic messages since historic messages may be outdated.
 ]]
 
 ---@param chat CodeCompanion.Chat
 local function callback(chat)
   chat:add_reference({ content = prompt, role = "system" }, "system-prompt", "<mode>auto</mode>")
+  vim.g.codecompanion_auto_tool_mode = true -- run tools without confirmation
 end
 
 return {
