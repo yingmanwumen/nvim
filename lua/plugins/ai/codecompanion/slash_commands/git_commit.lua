@@ -26,10 +26,10 @@ local function generate_commit_message()
   end
 
   local content = [[@cmd_runner
--Task:
--- Write commit message for the diffs with `commitizen convention`.
--- Wrap the whole message in code block with language `gitcommit`
--- After generating commit message, stage diffs and then commit them with `git commit -F- <<EOF`.
+- Task:
+  - Write commit message for the diffs with `commitizen convention`.
+  - Wrap the whole message in code block with language `gitcommit`
+  - After generating commit message, stage diffs and then commit them with `git commit -F- <<EOF`.
 
 ### Git Diff
 
