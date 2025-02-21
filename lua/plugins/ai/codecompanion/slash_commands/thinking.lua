@@ -34,7 +34,7 @@ Here's my response to the user...
 Note: Your thoughts and reasoning under `### Thinking` section:
 - Step by step, be very ***CAUTIOUS***, doubt your result. Again, **doubt your result cautiously**.
 - Follow the first-principles thinking.
-- Don't make any assumption. Again, don't make any assumption.
+- Derive anything based on known information. Don't make any assumption.
 - Should capture your reasoning process and be detailed enough.
 ]]
 
