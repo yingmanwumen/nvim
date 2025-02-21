@@ -27,6 +27,7 @@ Now you are going to be in **Auto Mode**.
    - You're authorized to take safe actions without any confirmation
    - Update TODO status after each action
    - If action is dangerous or unsafe (such as `rm -rf /`), ask for authorization with current TODO status
+   - If action will affect the system/environment (such as `pip install`), ask for authorization either.
    - You have to stop immediately and wait for feadback after each tool executing. The result comes in the next conversation turn.
 5. Evaluate task completion:
    - Mark tasks as complete in TODO list
