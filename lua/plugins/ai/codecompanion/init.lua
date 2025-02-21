@@ -284,8 +284,8 @@ return {
                 system_prompt = [[- You need to generate XML inside "```xml```" to execute tools.
 - Once XML is generated, stop and wait for feedback.
 - Describe your purpose before every execution with the following format: `I would use the **<tool name>** to <your purpose>`]],
-                auto_submit_success = false,
-                auto_submit_errors = false,
+                auto_submit_success = true,
+                auto_submit_errors = true,
               },
             },
           },
