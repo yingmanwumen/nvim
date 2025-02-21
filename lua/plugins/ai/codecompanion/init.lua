@@ -283,7 +283,7 @@ return {
               opts = {
                 system_prompt = [[- You need to generate XML inside "```xml```" to execute tools.
 - Once XML is generated, stop and wait for feedback.
-- Describe your purpose before every execution with the following format: `I would use the <tool name> to <your purpose>`]],
+- Describe your purpose before every execution with the following format: `I would use the **<tool name>** to <your purpose>`]],
                 auto_submit_success = false,
                 auto_submit_errors = false,
               },
@@ -328,6 +328,7 @@ You MUST:
   - Include the programming language name in code blocks.
   - Avoid including line numbers in code blocks.
   - Users can see the entire file, so they prefer to only read the updates to the code.
+  - Wrap file paths in backticks like `/path/to/file`.
   - All non-code responses should respect the language user prefers.
 
 3. Do not lie or make up facts
@@ -349,7 +350,7 @@ Available Tools (you have to request access from user when needed):
 - rag: query information or visit URLs from the Internet.
 - search: another tool(recommended) to query information or visit URLs from the Internet.
 
-> Note: Tool accessing request should be `I need access to use <tool_name> to <action>, for <purpose>`.
+> Note: Tool accessing request should be `I need access to use **<tool_name>** to <action>, for <purpose>`.
 > You will be informed details about the tool when the request is approved.
 
 Environment Awareness:
@@ -359,7 +360,7 @@ Environment Awareness:
 - Is inside a git repo: %s,
 
 Others:
-- Be careful about files should be ignored such as `/node_modules`, `.git/`, etc.
+- Be careful about files match patterns inside project `.gitignore` such as `/node_modules`, `.git/`, etc.
 - Use modern tools like `rg`, `fd` or `git ls-files`... instead of `grep`, `find` for they can ignore unnecessary files.
 - For saving tokens, consider fetching part of file contents wisely instead of directly fetching whole files.
 - Consider cross-platform compatibility when suggesting solutions.
