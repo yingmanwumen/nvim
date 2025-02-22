@@ -121,19 +121,7 @@ b) **Extract content from URL**:
         return true
       end
 
-      local prompts = {
-        search = function(action)
-          return string.format('Allow to query "%s"', action.query)
-        end,
-        navigate = function(action)
-          return string.format("Allow to navigate to %s", action.url)
-        end,
-      }
-
-      local prompt = prompts.search(action)
-      if action.type == ACTION_NAVIGATE then
-        prompt = prompts.navigate(action.url)
-      end
+      local prompt = string.format("Allow to search/navigate")
       local ok, choice = pcall(vim.fn.confirm, prompt, "No\nYes")
       if not ok or choice ~= 2 then
         return false
@@ -189,10 +177,10 @@ b) **Extract content from URL**:
         content = "I've shared the content from the Search tool with you.\n",
       })
     end,
-    rejected = function(self, action)
+    rejected = function(self, _)
       self.chat:add_buf_message({
         role = config.constants.USER_ROLE,
-        content = string.format("I reject the action %s.\n", action._attr.type),
+        content = string.format("I reject to to action of search/navigate\n"),
       })
     end,
   },
