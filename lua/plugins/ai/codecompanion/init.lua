@@ -271,6 +271,16 @@ return {
           },
           variables = {},
           agents = {
+            ["full_stack_dev"] = {
+              description = "Full Dev Developer",
+              system_prompt = [[You are now granted access to use `search`, `cmd_runner`, `editor` and `files` tools. Use them wisely with caution.]],
+              tools = {
+                "search",
+                "cmd_runner",
+                "editor",
+                "files",
+              },
+            },
             tools = {
               ["search"] = {
                 callback = tools_prefix .. "search.lua",
@@ -352,6 +362,14 @@ Available tools:
 - cmd_runner: command runner.
 - rag: query information or visit URLs from the Internet.
 - search: another tool(recommended) to query information or visit URLs from the Internet.
+
+Your current status is shared with "Shared" references from user. For example:
+```markdown
+> Sharing:
+> - <tool>cmd_runner</tool>
+> - <mode>thinking</mode>
+```
+means you have access to cmd_runner and are in thinking mode.
 
 Environment Awareness:
 - Platform: %s,
