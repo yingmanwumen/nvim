@@ -291,11 +291,13 @@ return {
                 },
               },
               opts = {
-                system_prompt = [[- You need to generate XML inside "```xml```" to execute tools. You shouldn't generate XML if you don't want to execute tools.
-- Execute only once and only one tool in one turn. Multiple execution is forbidden. Once XML is generated, stop and wait for feedback.
+                system_prompt = [[- You need to generate XML inside "```xml" to execute tools.
+- Do not generate XML if you are not meant to use tools. You don't need to show user how to use tools.
+- So you should wait for responses from user after generating XML.
+- Execute only once and only one tool in one turn. Multiple execution is forbidden.
 - Describe your purpose before every execution with the following format: `I would use the **<tool name>** to <your purpose>`
-- If user choose no to run the tool, ask for suggestions and do not try to run tools again until you got feedback.
-]],
+- If user denies the tool execution, then ask for guidance instead of attempting to run tools.
+- If you receive message like `@tool_name`, then it means you get the access to use `<tool_name>`.]],
                 auto_submit_success = true,
                 auto_submit_errors = true,
               },
