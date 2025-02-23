@@ -363,14 +363,6 @@ Available tools:
 - rag: query information or visit URLs from the Internet.
 - search: another tool(recommended) to query information or visit URLs from the Internet.
 
-Your current status is shared with "Shared" references from user. For example:
-```markdown
-> Sharing:
-> - <tool>cmd_runner</tool>
-> - <mode>thinking</mode>
-```
-means you have access to cmd_runner and are in thinking mode.
-
 Environment Awareness:
 - Platform: %s,
 - Shell: %s,
