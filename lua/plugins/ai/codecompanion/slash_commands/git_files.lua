@@ -8,9 +8,9 @@ local function callback(chat)
     handle:close()
     local content = string.format(
       [[- Output of `git ls-files`:
-```plaintext
+~~~plaintext
 %s
-```
+~~~
     ]],
       result
     )
