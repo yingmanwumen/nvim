@@ -294,7 +294,8 @@ return {
                 system_prompt = [[- You need to generate XML inside "```xml```" to execute tools. You shouldn't generate XML if you don't want to execute tools.
 - Once XML is generated, stop and wait for feedback.
 - Describe your purpose before every execution with the following format: `I would use the **<tool name>** to <your purpose>`
-- If user choose no to run the tool, ask for suggestions and do not try to run tools again until you got feedback.]],
+- If user choose no to run the tool, ask for suggestions and do not try to run tools again until you got feedback.
+- Execute only once and only one tool in one turn. Multiple execution is forbidden.]],
                 auto_submit_success = true,
                 auto_submit_errors = true,
               },
