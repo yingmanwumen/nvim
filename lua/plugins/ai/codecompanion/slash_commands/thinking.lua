@@ -36,6 +36,7 @@ Note: Your thoughts and reasoning under `### Thinking` section:
 - Follow the first-principles thinking.
 - Derive anything based on known information. Don't make any assumption.
 - Should capture your reasoning process and be detailed enough.
+- Should help you build the chain of thoughts.
 ]]
 
 ---@param chat CodeCompanion.Chat

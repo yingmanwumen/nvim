@@ -372,6 +372,7 @@ Environment Awareness:
 - Shell: %s,
 - Current date: %s, timezone: %s(%s),
 - Is inside a git repo: %s,
+- Current working directory: %s,
 
 Others:
 - Be careful about files match patterns inside `.gitignore`.
@@ -384,7 +385,8 @@ Others:
             os.date("%Y-%m-%d"),
             os.date("%Z"),
             os.date("%z"),
-            vim.fn.isdirectory(".git") == 1
+            vim.fn.isdirectory(".git") == 1,
+            vim.fn.getcwd()
           )
         end,
       },
