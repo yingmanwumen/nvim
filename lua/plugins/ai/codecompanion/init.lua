@@ -296,7 +296,7 @@ return {
 - So you should wait for responses from user after generating XML.
 - Execute only once and only one tool in one turn. Multiple execution is forbidden.
 - Describe your purpose before every execution with the following format: `I would use the **<tool name>** to <your purpose>`
-- If user denies the tool execution, then ask for guidance instead of attempting to run tools.
+- If user denies the tool execution(chooses not to run), then ask for guidance instead of attempting to run tools.
 - If you receive message like `@tool_name`, then it means you get the access to use `<tool_name>`.]],
                 auto_submit_success = true,
                 auto_submit_errors = true,
