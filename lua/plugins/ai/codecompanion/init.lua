@@ -291,7 +291,7 @@ return {
                 },
               },
               opts = {
-                system_prompt = [[- You need to generate XML inside "```xml" to execute tools.
+                system_prompt = [[- You need to generate XML inside codeblock to execute tools. Be cautious with the "backticks-rule" mentioned before.
 - Do not generate XML if you are not meant to use tools. You don't need to show user how to use tools.
 - So you should wait for responses from user after generating XML.
 - Execute only once and only one tool in one turn. Multiple execution is forbidden.
@@ -345,7 +345,15 @@ You MUST:
   - Wrap file paths in backticks like `/path/to/file`.
   - All non-code responses should respect the language user prefers.
 
-3. Do not lie or make up facts. If at any point you are not certain, be thorough:
+3. CRITICAL BACKTICKS RULE: when you have to express codeblock inside a codeblock(means "```" inside "```"), you MUST ensure that the number of backticks of outer codeblock is always greater than the interior codeblock. For example,
+  ````
+  ```lua
+  print("Hello, world!")
+  ```
+  ````
+  This is a non-negotiable rule that must be followed at all times.
+
+4. Do not lie or make up facts. If at any point you are not certain, be thorough:
   - You have limitations. You cannot do anything you don't know how to do. Don't pretend to do so. Be honest, be truthful.
   - You may have hallucinations, so you should only make decisions based on known/given context. Avoid to make decisions based on assumptions.
   - If you don't know, state your uncertainty and list additional information you need, and then stop and wait.
