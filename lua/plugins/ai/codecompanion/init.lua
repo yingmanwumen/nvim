@@ -145,6 +145,8 @@ return {
                 choices = {
                   ["deepseek/deepseek-r1:free"] = { opts = { can_reason = true } },
                   "google/gemini-2.0-flash-exp:free",
+                  "google/gemini-2.0-pro-exp-02-05:free",
+                  ["google/gemini-2.0-flash-thinking-exp-1219:free"] = { opts = { can_reason = true } },
                 },
               },
               num_ctx = {
