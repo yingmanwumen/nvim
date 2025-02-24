@@ -268,6 +268,8 @@ return {
             ["emoji"] = require("plugins.ai.codecompanion.slash_commands.emoji"),
             ["chinese"] = require("plugins.ai.codecompanion.slash_commands.chinese"),
             ["codeforces_companion"] = require("plugins.ai.codecompanion.slash_commands.codeforces_companion"),
+            ["review_merge_request"] = require("plugins.ai.codecompanion.slash_commands.review_merge_request"),
+            ["review_git_diffs"] = require("plugins.ai.codecompanion.slash_commands.review_git_diffs"),
           },
           variables = {},
           agents = {
@@ -291,13 +293,13 @@ return {
                 },
               },
               opts = {
-                system_prompt = [[- You need to generate XML inside codeblock to execute tools. Be cautious with the "backticks-rule" mentioned before.
+                system_prompt = [[- You need to generate XML inside codeblock to execute tools. Be cautious with the "backticks-rule" mentioned before: the XML is the most outer one.
 - Do not generate XML if you are not meant to use tools. You don't need to show user how to use tools.
-- So you should wait for responses from user after generating XML.
+- You should wait for responses from user after generating XML.
 - Execute only once and only one tool in one turn. Multiple execution is forbidden.
 - Describe your purpose before every execution with the following format: `I would use the **<tool name>** to <your purpose>`
 - If user denies the tool execution(chooses not to run), then ask for guidance instead of attempting to run tools.
-- If you receive message like `@tool_name`, then it means you get the access to use `<tool_name>`.]],
+- If you receive message like `@tool_name`, then it means you've got the access to use `<tool_name>`.]],
                 auto_submit_success = true,
                 auto_submit_errors = true,
               },
@@ -318,9 +320,9 @@ return {
             position = "right",
           },
         },
-        -- diff = {
-        --   enabled = false,
-        -- },
+        diff = {
+          enabled = false,
+        },
       },
       opts = {
         system_prompt = function(_)
