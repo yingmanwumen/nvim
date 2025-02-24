@@ -272,6 +272,7 @@ return {
             ["codeforces_companion"] = require("plugins.ai.codecompanion.slash_commands.codeforces_companion"),
             ["review_merge_request"] = require("plugins.ai.codecompanion.slash_commands.review_merge_request"),
             ["review_git_diffs"] = require("plugins.ai.codecompanion.slash_commands.review_git_diffs"),
+            ["graphviz"] = require("plugins.ai.codecompanion.slash_commands.graphviz"),
           },
           variables = {},
           agents = {
