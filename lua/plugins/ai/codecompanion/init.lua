@@ -163,6 +163,8 @@ return {
                   ["google/gemini-2.0-flash-exp:free"] = { opts = { can_reason = true } }, -- context: 1.05M
                   ["google/gemini-2.0-pro-exp-02-05:free"] = { opts = { can_reason = true } }, -- context: 2M
                   ["google/gemini-2.0-flash-thinking-exp-1219:free"] = { opts = { can_reason = true } }, -- context: 40K
+                  -- Notice: the following models are not for free! Use them with caution.
+                  ["anthropic/claude-3.7-sonnet"] = { opts = { can_reason = true } }, -- context: 200K
                 },
               },
               num_ctx = {
