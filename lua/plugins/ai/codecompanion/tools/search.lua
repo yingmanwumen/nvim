@@ -93,7 +93,9 @@ return {
 
 4. **How it is works**: You ask user to execute this tool via xml, so you have to wait for the result from user's feedback.
 
-5. **Actions**:
+5. **Reference Source**: When generating responses based on the Internet sources, you should add references to them.
+
+6. **Actions**:
 
 a) **Search the internet**:
 
