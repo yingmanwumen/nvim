@@ -2,6 +2,15 @@ local tools_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codecompanion/
 
 local adapter = "copilot_0_3"
 
+local copilot_model_choices = {
+  "claude-3.5-sonnet",
+  "claude-3.7-sonnet",
+  "o3-mini",
+  "gpt-4o",
+  "o1",
+  "gemini-2.0-flash-001",
+}
+
 return {
   "olimorris/codecompanion.nvim",
   cmd = {
@@ -180,14 +189,8 @@ return {
                 default = 0,
               },
               model = {
-                default = "claude-3.5-sonnet",
-                choices = {
-                  "claude-3.5-sonnet",
-                  "o3-mini",
-                  "gpt-4o",
-                  "o1",
-                  "gemini-2.0-flash-001",
-                },
+                default = "claude-3.7-sonnet",
+                choices = copilot_model_choices,
               },
             },
           })
@@ -199,14 +202,8 @@ return {
                 default = 0.3,
               },
               model = {
-                default = "claude-3.5-sonnet",
-                choices = {
-                  "claude-3.5-sonnet",
-                  "o3-mini",
-                  "gpt-4o",
-                  "o1",
-                  "gemini-2.0-flash-001",
-                },
+                default = "claude-3.7-sonnet",
+                choices = copilot_model_choices,
               },
             },
           })
@@ -219,13 +216,7 @@ return {
               },
               model = {
                 default = "o3-mini",
-                choices = {
-                  "claude-3.5-sonnet",
-                  "o3-mini",
-                  "gpt-4o",
-                  "o1",
-                  "gemini-2.0-flash-001",
-                },
+                choices = copilot_model_choices,
               },
             },
           })
@@ -238,13 +229,7 @@ return {
               },
               model = {
                 default = "gpt-4o",
-                choices = {
-                  "claude-3.5-sonnet",
-                  "o3-mini",
-                  "gpt-4o",
-                  "o1",
-                  "gemini-2.0-flash-001",
-                },
+                choices = copilot_model_choices,
               },
             },
           })
@@ -257,13 +242,7 @@ return {
               },
               model = {
                 default = "gpt-4o",
-                choices = {
-                  "claude-3.5-sonnet",
-                  "o3-mini",
-                  "gpt-4o",
-                  "o1",
-                  "gemini-2.0-flash-001",
-                },
+                choices = copilot_model_choices,
               },
             },
           })
