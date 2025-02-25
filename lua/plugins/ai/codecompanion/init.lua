@@ -294,8 +294,8 @@ return {
                 },
               },
               opts = {
-                system_prompt = [[- You need to generate XML inside codeblock to execute tools. Be cautious with the "backticks-rule" mentioned before: the XML is the most outer one.
-- Do not generate XML if you are not meant to use tools. You don't need to show user how to use tools.
+                system_prompt = [[- You need to generate XML codeblock like "```xml" to execute tools. Be cautious with the "backticks-rule" mentioned before: the XML is the most outer one.
+- Do not generate XML codeblocks if you are not meant to use tools. You don't need to show user how to use tools.
 - You should wait for responses from user after generating XML.
 - Execute only once and only one tool in one turn. Multiple execution is forbidden.
 - Always saving tokens for user: fetch partial content instead of entire file and combine commands in single turns.
