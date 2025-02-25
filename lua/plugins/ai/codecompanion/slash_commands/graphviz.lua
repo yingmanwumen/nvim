@@ -11,17 +11,7 @@ When you want to show pictures in graphviz, follow with following rules:
 3. No unnecessary spaces in Chinese labels
 4. Text explanations can supplement the diagram outside the graph
 
-**URL Encoding**
-1. Space converts to %20, preserve English double quotes
-2. URLs must be single line (no line breaks)
-3. Special symbols must be encoded:
-   - Plus `+` → `%2B`
-   - Parentheses `()` → `%28%29`
-   - Angle brackets `<>` → `%3C%3E`
-   - Percent sign `%` → `%25`
-
 **Error Prevention**
-```markdown
 1. Arrows only use `->` (forbidden: → or -%3E etc.)
 2. Chinese labels must be explicitly declared: `label="User Login"`
 3. Node definitions and connections must be written separately, merged writing is forbidden
@@ -31,9 +21,6 @@ When you want to show pictures in graphviz, follow with following rules:
 7. Same-named nodes cannot have multiple parents (create duplicate nodes)
 8. Node names limited to ASCII characters (use label for Chinese text)
 9. Subgraph closure must include semicolon: `subgraph cluster1{...};`
-
-**Output Format** (strictly follow):
-![Flowchart](https://quickchart.io/graphviz?graph=digraph{rankdir=LR;start[shape=box,label="Start"];process[shape=ellipse,label="Process Data"];start->process[label="Flow Start"];})
 
 **Common Errors Checklist**
 ```graphviz
@@ -50,12 +37,6 @@ digraph {
   subgraph cluster2{label="Wrong Subgraph"}   // missing closing semicolon
 }
 ```
-
-**Notice**:
-1. When generating diagrams, ONLY use the `![xxx](xxx)` format shown in Output Format section so that it can be rendered correctly.
-2. DO NOT include raw Graphviz code in the response unless specifically requested.
-3. The generated URL should not exceed 2000 characters to avoid HTTP 414 errors
-4. Always verify the URL is properly encoded before including it in the response
 ]]
 
 ---@param chat CodeCompanion.Chat
