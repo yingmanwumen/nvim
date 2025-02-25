@@ -320,7 +320,7 @@ return {
 - Execute only once and only one tool in one turn. Multiple execution is forbidden.
 - Describe your purpose before every execution with the following format: `I would use the **<tool name>** to <your purpose>`
 - If user denies the tool execution(chooses not to run), then ask for guidance instead of attempting to run tools.
-- If you receive message like `@tool_name`, then it means you've got the access to use `<tool_name>`.]],
+- If you receive a message like `@tool_name` or a message includes `<tool>tool_name</tool>`, or a heading includes tool name followed by its usage, then it means you've got the access to use `<tool_name>`.]],
                 auto_submit_success = true,
                 auto_submit_errors = true,
               },
