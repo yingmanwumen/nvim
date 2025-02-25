@@ -4,6 +4,7 @@ local adapter = "copilot_0_3"
 
 local copilot_model_choices = {
   "claude-3.5-sonnet",
+  "claude-3.7-sonnet-thought",
   "claude-3.7-sonnet",
   "o3-mini",
   "gpt-4o",
