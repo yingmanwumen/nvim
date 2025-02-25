@@ -301,7 +301,7 @@ return {
 - Always saving tokens for user: fetch partial content instead of entire file and combine commands in single turns.
 - Describe your purpose before every execution with the following format: `I would use the **<tool name>** to <your purpose>`
 - If user denies the tool execution(chooses not to run), then ask for guidance instead of attempting to run tools.
-- If you receive a message like `@tool_name` or a message includes `<tool>tool_name</tool>`, or a heading includes tool name followed by its usage, then it means you've got the access to use `<tool_name>`.]],
+- If you receive a message including `@tool_name`, `tool_name` or `<tool>tool_name</tool>`, or a heading includes a tool followed by its usage, then it means you've got the access to use `<tool_name>`.]],
                 auto_submit_success = true,
                 auto_submit_errors = true,
               },
