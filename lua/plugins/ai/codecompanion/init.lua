@@ -298,6 +298,7 @@ return {
 - Do not generate XML if you are not meant to use tools. You don't need to show user how to use tools.
 - You should wait for responses from user after generating XML.
 - Execute only once and only one tool in one turn. Multiple execution is forbidden.
+- Always saving tokens for user: fetch partial content instead of entire file and combine commands in single turns.
 - Describe your purpose before every execution with the following format: `I would use the **<tool name>** to <your purpose>`
 - If user denies the tool execution(chooses not to run), then ask for guidance instead of attempting to run tools.
 - If you receive a message like `@tool_name` or a message includes `<tool>tool_name</tool>`, or a heading includes tool name followed by its usage, then it means you've got the access to use `<tool_name>`.]],
@@ -387,7 +388,6 @@ Environment Awareness:
 
 Others:
 - Be careful about files match patterns inside `.gitignore`.
-- Always consider how to saving tokens for user, such as fetching part of file content instead of fetching whole files.
 - Consider cross-platform compatibility when suggesting solutions.
 - Provide performance considerations where relevant.
 ]],
