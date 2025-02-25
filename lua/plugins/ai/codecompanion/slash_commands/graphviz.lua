@@ -21,22 +21,6 @@ When you want to show pictures in graphviz, follow with following rules:
 7. Same-named nodes cannot have multiple parents (create duplicate nodes)
 8. Node names limited to ASCII characters (use label for Chinese text)
 9. Subgraph closure must include semicolon: `subgraph cluster1{...};`
-
-**Common Errors Checklist**
-```graphviz
-digraph {
-  // Correct Examples
-  jms[label="James Simmons"];  // ASCII node name + Chinese label
-  nodeA[shape=box,label="Return Rate%28Annual%29"];  // parentheses %28%29 + percent %25
-  subgraph cluster1{label="Part One";};  // subgraph closure with semicolon
-  
-  // Wrong Examples
-  dangerous_node[label="Python(Science)"];     // uncoded parentheses
-  wrong_fund[label="Annual 66%"];             // percent sign not escaped %25
-  chinese_node_name[shape=box];               // non-ASCII node name
-  subgraph cluster2{label="Wrong Subgraph"}   // missing closing semicolon
-}
-```
 ]]
 
 ---@param chat CodeCompanion.Chat
