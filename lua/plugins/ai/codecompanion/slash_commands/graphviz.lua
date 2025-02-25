@@ -1,9 +1,9 @@
 require("codecompanion")
 
 local prompt = [[
-### Graphviz Mode
+### Graphviz Tips
 
-When you need to describe something in picture, use graphviz with following rules:
+When you want to show pictures in graphviz, follow with following rules:
 
 **Code Standards**
 1. Attributes must be comma-separated: `[shape=record, label="Data Flow"]`
@@ -63,7 +63,7 @@ local function callback(chat)
   chat:add_reference({
     content = prompt,
     role = "system",
-  }, "system-prompt", "<mode>graphviz</mode>")
+  }, "system-prompt", "<tips>graphviz</tips>")
 end
 
 return {
