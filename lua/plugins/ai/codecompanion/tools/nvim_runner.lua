@@ -9,16 +9,16 @@ local config = require("codecompanion.config")
 local log = require("codecompanion.utils.log")
 local xml2lua = require("codecompanion.utils.xml.xml2lua")
 
--- 判断高风险操作的辅助函数
+-- Helper function to determine high-risk operations
 ---@param action table
 ---@return boolean
 local function is_high_risk(action)
   local type = action._attr.type
 
-  -- Lua执行风险检测
+  -- Lua execution risk detection
   if type == "lua_exec" then
     local code = action.code
-    -- 检查是否包含高风险API调用
+    -- Check if it contains high-risk API calls
     if
       code:match("nvim_buf_delete")
       or code:match("nvim_command")
@@ -28,20 +28,20 @@ local function is_high_risk(action)
     then
       return true
     end
-    -- 检查代码长度
+    -- Check code length
     if #code > 150 then
       return true
     end
   end
 
-  -- Vim命令风险检测
+  -- Vim command risk detection
   if type == "vim_cmd" then
     local command = action.command
     if
-      command:match("^:%s*[qwabedhv]+%s*!") -- 强制命令
-      or command:match(":%s*g%s*/.+/d") -- 全局删除
+      command:match("^:%s*[qwabedhv]+%s*!") -- Force commands
+      or command:match(":%s*g%s*/.+/d") -- Global deletion
       or command:match(":%s*[%%s]")
-    then -- 全文替换
+    then -- Full text replacement
       return true
     end
   end
@@ -93,9 +93,9 @@ local function to_chat(msg, tool, opts)
   })
 end
 
--- 执行Vim命令
----@param action table 动作对象
----@return string 命令执行结果
+-- Execute Vim command
+---@param action table Action object
+---@return string Command execution result
 local function execute_vim_cmd(action)
   local command = action.command
   local success, result = pcall(vim.api.nvim_exec2, command, { output = true })
@@ -105,45 +105,45 @@ local function execute_vim_cmd(action)
   return result.output
 end
 
--- 执行Lua代码
----@param action table 动作对象
----@return string 包含执行结果和输出的表
+-- Execute Lua code
+---@param action table Action object
+---@return string Table containing execution results and output
 local function execute_lua_code(action)
   local code = action.code
 
-  -- 保存原始的 print 输出
+  -- Save original print output
   local old_print = print
   local output = {}
 
-  -- 重定向 print 输出
+  -- Redirect print output
   _G.print = function(...)
     local args = { ... }
     local str = table.concat(args, "\t")
     table.insert(output, str)
-    old_print(...) -- 保持原始输出功能
+    old_print(...) -- Keep original output functionality
   end
 
   local fn, load_err = loadstring(code)
   if not fn then
-    _G.print = old_print -- 恢复原始 print
+    _G.print = old_print -- Restore original print
     error(load_err)
   end
 
   local success, result = pcall(fn)
 
-  -- 恢复原始 print
+  -- Restore original print
   _G.print = old_print
   if not success then
     error(result)
   end
 
-  -- 返回包含执行结果和输出的表
+  -- Return table containing execution results and output
   local res = table.concat(output, "\n")
   print(res)
   return res
 end
 
--- 操作类型映射表
+-- Operation type mapping table
 local actions = {
   vim_cmd = execute_vim_cmd,
   lua_exec = execute_lua_code,
@@ -283,14 +283,14 @@ return {
 
       local action_type = action._attr.type
 
-      -- 创建不同类型操作的提示
+      -- Create prompts for different operation types
       local prompts = {
         vim_cmd = function(a)
           return string.format("Execute Vim command: `%s`?", a.command)
         end,
 
         lua_exec = function(a)
-          -- 对长代码截断显示
+          -- Truncate long code display
           local code = a.code
           if #code > 60 then
             code = code:sub(1, 57) .. "..."
@@ -306,7 +306,7 @@ return {
 
       local prompt = prompt_fn(action)
 
-      -- 对高风险操作添加警告
+      -- Add warning for high-risk operations
       if is_high_risk(action) then
         prompt = "⚠️ HIGH RISK OPERATION! " .. prompt
       end
