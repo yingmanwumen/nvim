@@ -260,12 +260,13 @@ return {
           agents = {
             ["full_stack_dev"] = {
               description = "Full Dev Developer",
-              system_prompt = [[You are now granted access to use `search`, `cmd_runner`, `editor` and `files` tools. Use them wisely with caution.]],
+              system_prompt = [[You are now granted access to use `search`, `cmd_runner`, `editor`, `files` and `nvim_runner` tools. Use them wisely with caution.]],
               tools = {
                 "search",
                 "cmd_runner",
                 "editor",
                 "files",
+                "nvim_runner",
               },
             },
             tools = {
@@ -371,6 +372,7 @@ Available tools:
 - files: file system access.
 - editor: editor's buffer access.
 - cmd_runner: command runner.
+- nvim_runner: run Neovim commands or lua scripts.
 - rag: query information or visit URLs from the Internet.
 - search: another tool(recommended) to query information or visit URLs from the Internet.
 

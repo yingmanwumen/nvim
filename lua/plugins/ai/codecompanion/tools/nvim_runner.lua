@@ -147,7 +147,6 @@ local function execute_lua_code(action)
   end
   -- Return table containing execution results and output
   local res = table.concat(output, "\n") .. (result or "")
-  print(res)
   return res
 end
 
