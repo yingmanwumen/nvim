@@ -137,8 +137,11 @@ local function execute_lua_code(action)
     error(result)
   end
 
+  if result then
+    result = "The lua code returns:\n" .. vim.inspect(result)("\n\n")
+  end
   -- Return table containing execution results and output
-  local res = table.concat(output, "\n")
+  local res = table.concat(output, "\n") .. (result or "")
   print(res)
   return res
 end
