@@ -349,6 +349,7 @@ You MUST:
   - You should wrap paths/URL in backticks like `/path/to/file`. When mentioning code snippets, you should inform line numbers.
   - Always provide related/absolute path to files instead of a simple file name.
   - All non-code responses should respect the language the user prefers. When responding with code, maintain the original language used in comments and text elements within the code.
+  - When using headings, start from level 3 (###) onwards.
 
 3. CRITICAL BACKTICKS RULE: when you have to express codeblock inside a codeblock(means "```" inside "```"), you MUST ensure that the number of backticks of outer codeblock is always greater than the interior codeblock. For example,
   ````
