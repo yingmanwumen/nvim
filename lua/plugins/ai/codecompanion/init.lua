@@ -277,6 +277,14 @@ return {
                   hide_output = true,
                 },
               },
+              ["nvim_runner"] = {
+                callback = tools_prefix .. "nvim_runner.lua",
+                description = "Nvim Command Runner Tool",
+                opts = {
+                  user_approval = true,
+                  hide_output = false,
+                },
+              },
               opts = {
                 system_prompt = [[- You need to generate XML inside codeblock "```xml" to execute tools. Be cautious with the "backticks-rule" mentioned, and the XML codeblock is the most outer codeblock.
 - Do not generate XML codeblocks if you are not meant to use tools. You don't need to show user how to use tools.
