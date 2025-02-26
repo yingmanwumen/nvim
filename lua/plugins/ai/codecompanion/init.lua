@@ -71,22 +71,6 @@ return {
       noremap = true,
     },
     {
-      "<C-i>",
-      ":CodeCompanion<cr>",
-      desc = "Code Companion",
-      silent = true,
-      mode = "n",
-      noremap = true,
-    },
-    {
-      "<C-i>",
-      ":'<,'>CodeCompanion<cr>",
-      desc = "Code Companion",
-      silent = true,
-      mode = "x",
-      noremap = true,
-    },
-    {
       "<C-CR>",
       ":CodeCompanion<cr>",
       desc = "Code Companion",
