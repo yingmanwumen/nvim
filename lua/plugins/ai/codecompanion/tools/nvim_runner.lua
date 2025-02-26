@@ -138,7 +138,12 @@ local function execute_lua_code(action)
   end
 
   if result then
-    result = "The lua code returns:\n" .. vim.inspect(result)("\n\n")
+    -- if result is string
+    if type(result) == "string" then
+      result = "The lua code returns:\n" .. result
+    else
+      result = "The lua code returns:\n" .. vim.inspect(result)
+    end
   end
   -- Return table containing execution results and output
   local res = table.concat(output, "\n") .. (result or "")
