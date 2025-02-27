@@ -1,11 +1,11 @@
 --[[
-* Search Tool*
+* Tavily Tool*
 This tool can be used to search the internet using Tavily API.
 --]]
 
 local config = require("codecompanion.config")
 local xml2lua = require("codecompanion.utils.xml.xml2lua")
-local tool_name = "search"
+local tool_name = "tavily"
 local ACTION_SEARCH = "search"
 local ACTION_NAVIGATE = "navigate"
 
@@ -78,7 +78,7 @@ return {
   },
   system_prompt = function(schema)
     return string.format(
-      [[### Search Tool(`search`)
+      [[### Tavily Tool(`tavily`)
 
 1. **Purpose**: Give you the ability to access the Internet.
 
