@@ -73,7 +73,6 @@ local function to_chat(msg, tool, opts)
 ```plaintext
 %s
 ```
-
 ]],
       msg,
       opts.cmd,
