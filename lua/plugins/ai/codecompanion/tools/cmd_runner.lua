@@ -29,7 +29,8 @@ local function to_chat(msg, tool, opts)
   local content
   if opts.output == "" then
     content = string.format(
-      [[%s:
+      [[
+%s:
 ~~~bash
 %s
 ~~~
@@ -39,7 +40,8 @@ local function to_chat(msg, tool, opts)
     )
   else
     content = string.format(
-      [[%s:
+      [[
+%s:
 ~~~terminal
 $ %s
 
