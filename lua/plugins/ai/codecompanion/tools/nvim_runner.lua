@@ -6,7 +6,6 @@ All operations must be approved by you before execution.
 
 local config = require("codecompanion.config")
 
-local log = require("codecompanion.utils.log")
 local xml2lua = require("codecompanion.utils.xml.xml2lua")
 
 -- Helper function to determine high-risk operations
@@ -258,17 +257,7 @@ return {
 - Avoid unnecessarily complex operations]],
       xml2lua.toXml({ tools = { schema[1] } }), -- Vim命令
       xml2lua.toXml({ tools = { schema[2] } }), -- Lua执行
-      xml2lua.toXml({ -- 多命令
-        tools = {
-          tool = {
-            _attr = { name = "nvim_runner" },
-            action = {
-              schema[3].tool.action[1],
-              schema[3].tool.action[2],
-            },
-          },
-        },
-      }),
+      xml2lua.toXml({ tools = { schema[3] } }),
       vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
     )
   end,
@@ -277,7 +266,6 @@ return {
     ---@return boolean
     approved = function(_, action)
       if vim.g.codecompanion_auto_tool_mode then
-        log:info("[Nvim Runner Tool] Auto-approved operation")
         return true
       end
 
@@ -313,11 +301,9 @@ return {
 
       local ok, choice = pcall(vim.fn.confirm, prompt, "No\nYes")
       if not ok or choice ~= 2 then
-        log:info("[Nvim Runner Tool] Rejected %s operation", string.upper(action_type))
         return false
       end
 
-      log:info("[Nvim Runner Tool] Approved %s operation", string.upper(action_type))
       return true
     end,
   },

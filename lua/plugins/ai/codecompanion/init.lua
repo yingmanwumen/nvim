@@ -303,6 +303,14 @@ return {
                   hide_output = false,
                 },
               },
+              ["cmd_runner"] = {
+                callback = tools_prefix .. "cmd_runner.lua",
+                description = "Command Runner Tool",
+                opts = {
+                  user_approval = true,
+                  hide_output = false,
+                },
+              },
               opts = {
                 system_prompt = [[- To execute tools, you need to generate XML codeblocks like "```xml". Remember the "backticks-rule" mentioned: the XML codeblock should be the most outer codeblock.
 - Do not generate XML codeblocks if you are not meant to use tools. You don't need to show user how to use tools.
