@@ -60,6 +60,65 @@ $ %s
   })
 end
 
+-- Helper function to determine high-risk shell commands
+---@param cmd table|string
+---@return boolean
+local function is_high_risk(cmd)
+  local cmd_str = type(cmd) == "table" and table.concat(cmd.cmd or cmd, " ") or tostring(cmd)
+
+  -- Check for dangerous system commands
+  if cmd_str:match("rm%s+%-") or cmd_str:match("rm%s+.*%-rf") then
+    -- File removal with switches
+    return true
+  end
+
+  -- Check for system modification commands
+  if
+    cmd_str:match("^sudo%s") -- sudo command
+    or cmd_str:match("apt%s") -- apt package manager
+    or cmd_str:match("yum%s") -- yum package manager
+    or cmd_str:match("pacman%s") -- pacman package manager
+    or cmd_str:match("dnf%s")
+  then -- dnf package manager
+    return true
+  end
+
+  -- Check for file permission or ownership changes
+  if cmd_str:match("chmod%s") or cmd_str:match("chown%s") then
+    return true
+  end
+
+  -- Check for process termination
+  if cmd_str:match("kill%s") or cmd_str:match("killall%s") then
+    return true
+  end
+
+  -- Check for potentially dangerous curl/wget usage
+  if
+    (cmd_str:match("curl%s") or cmd_str:match("wget%s"))
+    and (cmd_str:match("%-d%s") or cmd_str:match("--data%s") or cmd_str:match("POST"))
+  then
+    return true
+  end
+
+  -- Check for pipes to dangerous commands
+  if
+    cmd_str:match("|%s*rm%s")
+    or cmd_str:match("|%s*chmod%s")
+    or cmd_str:match("|%s*sudo%s")
+    or cmd_str:match("|%s*xargs%s+rm")
+  then
+    return true
+  end
+
+  -- Check for redirects that might overwrite important files
+  if cmd_str:match(">%s*/etc/") or cmd_str:match(">%s*/usr/") then
+    return true
+  end
+
+  return false
+end
+
 ---@class CodeCompanion.Tool
 return {
   name = "cmd_runner",
@@ -119,7 +178,7 @@ Execute safe, validated shell commands on the user's system when explicitly requ
 - **User Environment Awareness:**
   - **Neovim Version**: %s
 - **User Oversight:** The user retains full control with an approval mechanism before execution.
-- **Extensibility:** If environment details aren’t available (e.g., language version details), output the command first along with a request for more information.
+- **Extensibility:** If environment details aren't available (e.g., language version details), output the command first along with a request for more information.
 
 ## Reminder
 - Minimize explanations and focus on returning precise XML blocks with CDATA-wrapped commands.
@@ -157,7 +216,12 @@ Execute safe, validated shell commands on the user's system when explicitly requ
 
       local cmd_concat = table.concat(cmd.cmd or cmd, " ")
 
+      -- Check for high-risk operations and add warning if needed
       local msg = "Run command: `" .. cmd_concat .. "`?"
+      if is_high_risk(cmd) then
+        msg = "⚠️ HIGH RISK OPERATION! " .. msg
+      end
+
       local ok, choice = pcall(vim.fn.confirm, msg, "No\nYes")
       if not ok or choice ~= 2 then
         return false
