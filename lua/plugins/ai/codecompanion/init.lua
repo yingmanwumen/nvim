@@ -277,9 +277,9 @@ return {
           agents = {
             ["full_stack_dev"] = {
               description = "Full Dev Developer",
-              system_prompt = [[You are now granted access to use `search`, `cmd_runner`, `editor`, `files` and `nvim_runner` tools. Use them wisely with caution.]],
+              system_prompt = [[You are now granted access to use `tavily`, `cmd_runner`, `editor`, `files` and `nvim_runner` tools. Use them wisely with caution.]],
               tools = {
-                "search",
+                "tavily",
                 "cmd_runner",
                 "editor",
                 "files",
@@ -287,8 +287,8 @@ return {
               },
             },
             tools = {
-              ["search"] = {
-                callback = tools_prefix .. "search.lua",
+              ["tavily"] = {
+                callback = tools_prefix .. "tavily.lua",
                 description = "Online Search Tool",
                 opts = {
                   user_approval = true,
@@ -304,14 +304,14 @@ return {
                 },
               },
               opts = {
-                system_prompt = [[- You need to generate XML inside codeblock "```xml" to execute tools. Be cautious with the "backticks-rule" mentioned, and the XML codeblock is the most outer codeblock.
+                system_prompt = [[- To execute tools, you need to generate XML codeblocks like "```xml". Remember the "backticks-rule" mentioned: the XML codeblock should be the most outer codeblock.
 - Do not generate XML codeblocks if you are not meant to use tools. You don't need to show user how to use tools.
 - You should wait for responses from user after generating XML codeblocks.
 - Execute only once and only one tool in one turn. Multiple execution is forbidden.
 - Always saving tokens for user: fetch partial content instead of entire file and combine commands in single turns.
 - Describe your purpose before every execution with the following format: `I would use the **<tool name>** to <your purpose>`
-- If user denies the tool execution(chooses not to run), then ask for guidance instead of attempting to run tools.
-- If you receive a message including `@tool_name`, `tool_name` or `<tool>tool_name</tool>`, or a heading includes a tool followed by its usage, then it means you've got the access to use `<tool_name>`.]],
+- If user denies the tool execution(chooses not to run), then ask for guidance instead of attempting to run again.
+- If you receive a message including `@tool_name`, `tool_name` or `<tool>tool_name</tool>`, or a heading includes a tool name followed by its usage, then it means you've got the access to use `<tool_name>`.]],
                 auto_submit_success = true,
                 auto_submit_errors = true,
               },
@@ -390,10 +390,9 @@ After request is sent, stop immediately and wait for approval.
 Available tools:
 - files: file system access.
 - editor: editor's buffer access.
-- cmd_runner: command runner.
+- cmd_runner: run shell commands.
 - nvim_runner: run Neovim commands or lua scripts.
-- rag: query information or visit URLs from the Internet.
-- search: another tool(recommended) to query information or visit URLs from the Internet.
+- tavily: tool to query information or visit URLs from the Internet.
 
 Environment Awareness:
 - Platform: %s,
