@@ -70,7 +70,6 @@ local function to_chat(msg, tool, opts)
     content = string.format(
       [[%s:
 %s
-
 ```plaintext
 %s
 ```
@@ -328,7 +327,7 @@ return {
     ---Rejection message back to the LLM
     rejected = function(self, action)
       local action_type = action._attr.type
-      local display_cmd = string.format("\n```vim\n%s\n```\n", action.command)
+      local display_cmd = string.format("\n```vim\n%s\n```\n", string.gsub(action.command, "^%s*(.-)%s*$", "%1"))
       if action_type == "lua_exec" then
         display_cmd =
           string.format("\n~~~~~lua\n%s\n~~~~~\n", action.code:sub(1, 40) .. (#action.code > 40 and "\n-- ..." or ""))
@@ -345,7 +344,7 @@ return {
     ---@param err string Error message
     error = function(self, action, err)
       local action_type = action._attr.type
-      local display_cmd = string.format("\n```vim\n%s\n```\n", action.command)
+      local display_cmd = string.format("\n```vim\n%s\n```\n", string.gsub(action.command, "^%s*(.-)%s*$", "%1"))
       if action_type == "lua_exec" then
         display_cmd =
           string.format("\n~~~~~lua\n%s\n~~~~~\n", action.code:sub(1, 40) .. (#action.code > 40 and "\n-- ..." or ""))
@@ -362,7 +361,7 @@ return {
     ---@param output table The output with result
     success = function(self, action, output)
       local action_type = action._attr.type
-      local display_cmd = string.format("\n```vim\n%s\n```\n", action.command)
+      local display_cmd = string.format("\n```vim\n%s\n```\n", string.gsub(action.command, "^%s*(.-)%s*$", "%1"))
       if action_type == "lua_exec" then
         display_cmd =
           string.format("\n~~~~~lua\n%s\n~~~~~\n", action.code:sub(1, 40) .. (#action.code > 40 and "\n-- ..." or ""))
