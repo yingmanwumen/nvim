@@ -1,10 +1,9 @@
 require("codecompanion")
 
 local prompt = [[
-### 双语回复 Bilingual Mode
-
-请您同时使用中文和英文回复非代码内容。
-Please use both Chinese and English to reply non-code content.
+# 双语模式 Bilingual Mode
+同时使用中文和英文回复非代码内容。
+Use both Chinese and English to reply non-code content.
 ]]
 
 ---@param chat CodeCompanion.Chat

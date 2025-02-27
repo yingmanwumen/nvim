@@ -207,51 +207,43 @@ return {
   },
   system_prompt = function(schema)
     return string.format(
-      [[### Neovim Runner Tool (`nvim_runner`) – Usage Guidelines
+      [[# Neovim Runner Tool (`nvim_runner`) – Usage Guidelines
+Execute Neovim commands and Lua code directly within your Neovim instance.
 
-1. **Purpose**:
-  - Execute Neovim commands and Lua code directly within your Neovim instance.
+**How it is works**: You ask user to execute this tool via xml, so you have to wait for the result from user's feedback.
 
-2. **When to Use**:
-  - Any time when you need to execute a lua script or a Vim command.
-  - Perfect for automating editor operations, retrieving editor state, or executing complex editing sequences.
+## Execution Format
+- Always return an XML markdown code block.
+- Each operation should follow the XML schema exactly.
+- If several operations need to run sequentially, combine them in one XML block.
 
-3. **How it is works**: You ask user to execute this tool via xml, so you have to wait for the result from user's feedback.
+## XML Schema
+The XML must be valid. Each operation follows one of these structures:
 
-4. **Execution Format**:
-  - Always return an XML markdown code block.
-  - Each operation should follow the XML schema exactly.
-  - If several operations need to run sequentially, combine them in one XML block.
+a) Execute Vim command:
 
-5. **XML Schema**: The XML must be valid. Each operation follows one of these structures:
+```xml
+%s
+```
 
-  a) Execute Vim command:
+b) Execute Lua code:
 
-  ```xml
-  %s
-  ```
+```xml
+%s
+```
 
-  b) Execute Lua code:
+c) Execute multiple operations sequentially:
 
-  ```xml
-  %s
-  ```
+```xml
+%s
+```
 
-  c) Execute multiple operations sequentially:
-
-  ```xml
-  %s
-  ```
-
-#### Key Considerations
+## Key Considerations
 - **Safety First:** All operations will require user approval before execution.
 - **Neovim Version**: %s
-- **Limitations:**
-  - Access to potentially destructive API functions is restricted
-  - System-level operations are not permitted through this tool
+- **User Oversight:** The user retains full control with an approval mechanism before execution.
 
-#### Reminder
-- Every operation requires user approval
+## Reminder
 - Be precise in your commands
 - Chain multiple operations together
 - Avoid unnecessarily complex operations]],

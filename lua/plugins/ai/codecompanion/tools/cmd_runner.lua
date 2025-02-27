@@ -76,45 +76,32 @@ return {
       },
     },
     {
-      tool = { name = "cmd_runner" },
-      action = {
-        {
-          command = "<![CDATA[gem install rspec]]>",
-        },
-        {
-          command = "<![CDATA[gem install rubocop]]>",
-        },
-      },
-    },
-    {
       tool = {
         _attr = { name = "cmd_runner" },
         action = {
-          flag = "testing",
-          command = "<![CDATA[make test]]>",
+          {
+            command = "<![CDATA[gem install rspec]]>",
+          },
+          {
+            command = "<![CDATA[gem install rubocop]]>",
+          },
         },
       },
     },
   },
   system_prompt = function(schema)
     return string.format(
-      [[## Command Runner Tool (`cmd_runner`) – Enhanced Guidelines
+      [[# Command Runner Tool (`cmd_runner`) – Usage Guidelines
+Execute safe, validated shell commands on the user's system when explicitly requested.
 
-### Purpose:
-- Execute safe, validated shell commands on the user's system when explicitly requested.
-
-### When to Use:
-- Only invoke the command runner when the user specifically asks.
-- Use this tool strictly for command execution; file operations must be handled with the designated Files Tool.
-
-### Execution Format:
+## Execution Format:
 - Always return an XML markdown code block.
 - Each shell command execution should:
   - Be wrapped in a CDATA section to protect special characters.
   - Follow the XML schema exactly.
 - If several commands need to run sequentially, combine them in one XML block with separate <action> entries.
 
-### XML Schema:
+## XML Schema:
 - The XML must be valid. Each tool invocation should adhere to this structure:
 
 ```xml
@@ -127,39 +114,18 @@ return {
 %s
 ```
 
-- If the user asks you to run tests or a test suite, be sure to include a testing flag so the Neovim editor is aware:
-
-```xml
-%s
-```
-
-### Key Considerations
+## Key Considerations
 - **Safety First:** Ensure every command is safe and validated.
 - **User Environment Awareness:**
-  - **Shell**: %s
-  - **Operating System**: %s
   - **Neovim Version**: %s
 - **User Oversight:** The user retains full control with an approval mechanism before execution.
 - **Extensibility:** If environment details aren’t available (e.g., language version details), output the command first along with a request for more information.
 
-### Reminder
+## Reminder
 - Minimize explanations and focus on returning precise XML blocks with CDATA-wrapped commands.
 - Follow this structure each time to ensure consistency and reliability.]],
       xml2lua.toXml({ tools = { schema[1] } }), -- Regular
-      xml2lua.toXml({ -- Multiple
-        tools = {
-          tool = {
-            _attr = { name = "cmd_runner" },
-            action = {
-              schema[2].action[1],
-              schema[2].action[2],
-            },
-          },
-        },
-      }),
-      xml2lua.toXml({ tools = { schema[3] } }), -- Testing flag
-      vim.o.shell,
-      util.os(),
+      xml2lua.toXml({ tools = { schema[2] } }), -- Sequential
       vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
     )
   end,

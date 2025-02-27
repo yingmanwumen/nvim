@@ -78,24 +78,22 @@ return {
   },
   system_prompt = function(schema)
     return string.format(
-      [[### Tavily Tool(`tavily`)
+      [[# Tavily Tool(`tavily`) -- Usage Guidelines
+Gain the ability to access the Internet.
 
-1. **Purpose**: Give you the ability to access the Internet.
+Reference Source: When generating responses based on the Internet sources, you should add references to them.
 
-2. **Usage**: Return an XML markdown code block to search the Internet or extract content from a specific URL.
+**How it is works**: You ask user to execute this tool via xml, so you have to wait for the result from user's feedback.
 
-3. **Key Points**:
-  - Use it when you need access to latest information
-  - Use wisely
-  - Ensure XML is **valid and follows the schema**
-  - **Wrap queries and URLs in a CDATA block**
-  - Make sure the tools xml block is **surrounded by ```xml**
+Usage: Return an XML markdown code block to search the Internet or extract content from a specific URL.
 
-4. **How it is works**: You ask user to execute this tool via xml, so you have to wait for the result from user's feedback.
+## Key Points
+- Use it when you need access to latest information. Use it wisely.
+- Ensure XML is **valid and follows the schema**
+- **Wrap queries and URLs in a CDATA block**
+- Make sure the tools xml block is **surrounded by ```xml**
 
-5. **Reference Source**: When generating responses based on the Internet sources, you should add references to them.
-
-6. **Actions**:
+## XML Format
 
 a) **Search the internet**:
 

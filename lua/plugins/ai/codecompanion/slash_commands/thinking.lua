@@ -1,7 +1,7 @@
 require("codecompanion")
 
 local prompt = [[
-### **Thinking And Reasoning**
+# **Thinking And Reasoning**
 
 You should ALWAYS follow the following output format from now on.
 
@@ -17,7 +17,7 @@ Divide your responses into thinking and response parts:
 > 
 > Ensure that your answer starts from the fundamental principles rather than relying on conventional assumptions. When using first-principles thinking, always ask 'why' until you reach the fundamental truths or assumptions of the problem.
 
-2. Then output your actual response to the user under `### Response` section (should respect section levels)
+2. Then output your actual response to the user under `### Response` (should respect header levels)
 
 For example:
 
@@ -35,7 +35,6 @@ Note: Your thoughts and reasoning under `### Thinking` section:
 - Follow the first-principles thinking.
 - Derive anything based on known information. Don't make any assumption.
 - Should capture your reasoning process and be detailed enough.
-- Should help you build the chain of thoughts.
 ]]
 
 ---@param chat CodeCompanion.Chat

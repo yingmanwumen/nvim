@@ -27,7 +27,7 @@ local function generate_commit_message()
 
   local content = [[@cmd_runner
 - Task:
-  - Before proceeding, review the changes. If there're no mistakes/bugs, go ahead.
+  - Before proceeding, review the changes. If there're no mistakes/bugs, go ahead. You may need tools to gather context from other unchanged codes to understand the diffs.
   - Write commit message for the diffs with `commitizen convention`.
   - Keep the commit message short, clean but concise and comprehensive.
   - Wrap the whole message in code block with language `gitcommit`

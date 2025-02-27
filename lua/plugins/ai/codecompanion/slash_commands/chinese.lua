@@ -1,9 +1,8 @@
 require("codecompanion")
 
 local prompt = [[
-### 使用中文回复
-
-请你使用中文回复非代码内容。
+# 中文模式
+使用中文回复非代码内容。
 ]]
 
 ---@param chat CodeCompanion.Chat

@@ -1,9 +1,8 @@
 require("codecompanion")
 
 local prompt = [[
-### Emoji
-
-Please add more emoji in your response.
+# Emoji
+Add more emoji in your response.
 ]]
 
 ---@param chat CodeCompanion.Chat

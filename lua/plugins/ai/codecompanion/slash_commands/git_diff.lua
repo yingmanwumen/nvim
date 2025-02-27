@@ -26,7 +26,7 @@ local function callback(chat)
     handle_untracked:close()
   end
 
-  local content = "### Git Diff\n\n"
+  local content = "Git Diffs:\n\n"
   if #staged > 0 then
     content = content
       .. "== Staged Changes Start(`git diff --no-ext-diff --staged`) ==\n~~~diff\n"
