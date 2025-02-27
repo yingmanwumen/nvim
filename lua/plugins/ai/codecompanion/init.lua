@@ -277,13 +277,14 @@ return {
           agents = {
             ["full_stack_dev"] = {
               description = "Full Dev Developer",
-              system_prompt = [[You are now granted access to use `tavily`, `cmd_runner`, `editor`, `files` and `nvim_runner` tools. Use them wisely with caution.]],
+              system_prompt = [[You are now granted access to use `tavily`, `cmd_runner`, `editor`, `files`, `nvim_runner` and `memory` tools. Use them wisely with caution.]],
               tools = {
                 "tavily",
                 "cmd_runner",
                 "editor",
                 "files",
                 "nvim_runner",
+                "memory",
               },
             },
             tools = {
@@ -309,6 +310,14 @@ return {
                 opts = {
                   user_approval = true,
                   hide_output = false,
+                },
+              },
+              ["memory"] = {
+                callback = tools_prefix .. "memory.lua",
+                description = "Memory Tool",
+                opts = {
+                  user_approval = false,
+                  hide_output = true,
                 },
               },
               opts = {
@@ -411,6 +420,7 @@ Available tools(short descriptions):
 - `cmd_runner`: run shell commands.
 - `nvim_runner`: run neovim commands or lua scripts.
 - `tavily`: query information or visit URLs from the Internet.
+- `memory`: store important information for future reference, or query information from memory.
 
 # Tool usage policy
 1. Fetch context with given tools instead of historic messages since historic messages may be outdated.
