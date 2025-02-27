@@ -8,7 +8,10 @@ vim.g.neovide_hide_mouse_when_typing = true
 
 if vim.uv.os_uname().sysname == "Darwin" then
   vim.g.neovide_input_macos_option_key_is_meta = "both"
-  vim.o.guifont = "Liga ComicShannsMono Nerd Font"
+  -- vim.o.guifont = "Liga ComicShannsMono Nerd Font"
+  vim.o.guifont = "FiraCode Nerd Font"
+  -- vim.o.guifont = "JetBrainsMono Nerd Font"
+  vim.o.linespace = 5
 else
   vim.o.guifont = "Liga ComicShannsMono Nerd Font,LXGW WenKai,Apple Color Emoji:h11.5"
   vim.o.linespace = 0
