@@ -123,6 +123,7 @@ Execute safe, validated shell commands on the user's system when explicitly requ
 
 ## Reminder
 - Minimize explanations and focus on returning precise XML blocks with CDATA-wrapped commands.
+- Each command runs in its own subprocess/subshell, meaning directory changes (`cd`) and environment variable changes will not persist between commands
 - Follow this structure each time to ensure consistency and reliability.]],
       xml2lua.toXml({ tools = { schema[1] } }), -- Regular
       xml2lua.toXml({ tools = { schema[2] } }), -- Sequential

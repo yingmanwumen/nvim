@@ -174,7 +174,7 @@ return {
                 default = 0,
               },
               model = {
-                default = "claude-3.5-sonnet",
+                default = "claude-3.7-sonnet",
                 choices = copilot_model_choices,
               },
             },
@@ -187,7 +187,7 @@ return {
                 default = 0.3,
               },
               model = {
-                default = "claude-3.5-sonnet",
+                default = "claude-3.7-sonnet",
                 choices = copilot_model_choices,
               },
             },
@@ -315,8 +315,8 @@ return {
                 system_prompt = [[- To execute tools, you need to generate XML codeblocks like "```xml". Remember the "backticks-rule" mentioned: the XML codeblock should be the most outer codeblock.
 - Do not generate XML codeblocks if you are not meant to use tools. You don't need to show user how to use tools.
 - You should wait for responses from user after generating XML codeblocks.
-- Execute only once and only one tool in one turn. Multiple execution is forbidden.
-- Always saving tokens for user: fetch partial content instead of entire file and combine commands in single turns.
+- Execute only once and only one tool in one turn. Multiple execution is forbidden. But you can combine multiple commands into one(which is recommended), such as `cd xxx && make`.
+- Always saving tokens for user: fetch partial content instead of entire file and combine commands in single turns, combine multiple actions into one, etc.
 - Describe your purpose before every execution with the following format: `I would use the **<tool name>** to <your purpose>`
 - If user denies the tool execution(chooses not to run), then ask for guidance instead of attempting to run again.
 - If you receive a message including `@tool_name`, `tool_name` or `<tool>tool_name</tool>`, or a heading includes a tool name followed by its usage, then it means you've got the access to use `<tool_name>`.]],

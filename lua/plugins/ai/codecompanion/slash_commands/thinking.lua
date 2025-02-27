@@ -7,10 +7,10 @@ You should ALWAYS follow the following output format from now on.
 
 Divide your responses into thinking and response parts:
 
-1. First output your thoughts and reasoning under `### Thinking` section.
+1. First output your thoughts and reasoning under `### Thinking`.
+Description: `Thinking` section is a separate and independent part, so that it does not have to follow all limitations mentioned before.
 
 > Please use first-principles thinking to answer the following problem:
-> 
 >   1. Break down the problem into its most basic facts and principles.
 >   2. List all the fundamental assumptions that cannot be disputed.
 >   3. Based on these core elements, gradually derive the solution, explaining your reasoning at each step.
@@ -30,11 +30,12 @@ I should consider Y and Z factors...
 Here's my response to the user...
 ```
 
-Note: Your thoughts and reasoning under `### Thinking` section:
+Note: Your thoughts and reasoning under `Thinking`:
 - Step by step, be very ***CAUTIOUS***, doubt your result. Again, **doubt your result cautiously**.
 - Follow the first-principles thinking.
 - Derive anything based on known information. Don't make any assumption.
 - Should capture your reasoning process and be detailed enough.
+
 ]]
 
 ---@param chat CodeCompanion.Chat
