@@ -333,9 +333,15 @@ return {
     ---Rejection message back to the LLM
     rejected = function(self, action)
       local action_type = action._attr.type
-      local display_cmd = action.command
+      local display_cmd = string.format("\n```cmd%s\n%s\n```", action_type, action.command)
       if action_type == "lua_exec" then
-        display_cmd = "Lua: " .. action.code:sub(1, 40) .. (#action.code > 40 and "..." or "")
+        display_cmd = string.format(
+          [[
+~~~~~lua
+%s
+~~~~~]],
+          action.code:sub(1, 40) .. (#action.code > 40 and "\n-- ..." or "")
+        )
       end
 
       to_chat("I chose not to execute", self, {
@@ -349,9 +355,15 @@ return {
     ---@param err string Error message
     error = function(self, action, err)
       local action_type = action._attr.type
-      local display_cmd = action.command
+      local display_cmd = string.format("\n```cmd%s\n%s\n```", action_type, action.command)
       if action_type == "lua_exec" then
-        display_cmd = "Lua: " .. action.code:sub(1, 40) .. (#action.code > 40 and "..." or "")
+        display_cmd = string.format(
+          [[
+~~~~~lua
+%s
+~~~~~]],
+          action.code:sub(1, 40) .. (#action.code > 40 and "\n-- ..." or "")
+        )
       end
 
       to_chat("Error executing", self, {
@@ -365,9 +377,15 @@ return {
     ---@param output table The output with result
     success = function(self, action, output)
       local action_type = action._attr.type
-      local display_cmd = action.command
+      local display_cmd = string.format("\n```cmd%s\n%s\n```", action_type, action.command)
       if action_type == "lua_exec" then
-        display_cmd = "Lua: " .. action.code:sub(1, 40) .. (#action.code > 40 and "..." or "")
+        display_cmd = string.format(
+          [[
+~~~~~lua
+%s
+~~~~~]],
+          action.code:sub(1, 40) .. (#action.code > 40 and "\n-- ..." or "")
+        )
       end
 
       to_chat("Result of executing", self, {

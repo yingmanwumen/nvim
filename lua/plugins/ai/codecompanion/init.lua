@@ -257,6 +257,23 @@ return {
             ["graphviz"] = require("plugins.ai.codecompanion.slash_commands.graphviz"),
           },
           variables = {},
+          keymaps = {
+            clear = {
+              modes = {
+                n = "<C-l>",
+              },
+            },
+            next_chat = {
+              modes = {
+                n = ")",
+              },
+            },
+            previous_chat = {
+              modes = {
+                n = "(",
+              },
+            },
+          },
           agents = {
             ["full_stack_dev"] = {
               description = "Full Dev Developer",
