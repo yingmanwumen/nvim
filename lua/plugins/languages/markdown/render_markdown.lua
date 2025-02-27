@@ -9,7 +9,14 @@ return {
 
     render_modes = true,
 
-    quote = { repeat_linebreak = true },
+    code = {
+      render_modes = true,
+      border = "thick",
+    },
+    quote = {
+      repeat_linebreak = true,
+      icon = "┃",
+    },
     win_options = {
       showbreak = { default = "", rendered = "  " },
       breakindent = { default = false, rendered = true },

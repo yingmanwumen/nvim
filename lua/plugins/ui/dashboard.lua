@@ -6,7 +6,7 @@ local this = {
     require("dashboard").setup({
       theme = "hyper",
       disable_move = true,
-      shortcut_type = "letter",
+      shortcut_type = "number",
       config = {
         week_header = { enable = true },
         project = { enable = true },

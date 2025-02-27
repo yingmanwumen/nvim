@@ -8,8 +8,17 @@ return {
   },
   config = function()
     require("toggleterm").setup({
-      size = 25,
+      size = function(term)
+        if term.direction == "horizontal" then
+          return vim.o.lines * 0.4
+        elseif term.direction == "vertical" then
+          return vim.o.columns * 0.4
+        end
+      end,
       shade_terminals = false,
+      float_opts = {
+        border = "curved",
+      },
     })
   end,
 }
