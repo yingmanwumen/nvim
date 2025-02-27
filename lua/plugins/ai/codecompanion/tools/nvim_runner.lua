@@ -329,8 +329,9 @@ return {
       local action_type = action._attr.type
       local display_cmd = ""
       if action_type == "lua_exec" then
+        action.code = string.gsub(action.code, "^%s*(.-)%s*$", "%1")
         display_cmd =
-          string.format("\n~~~~~lua\n%s\n~~~~~\n", action.code:sub(1, 40) .. (#action.code > 40 and "\n-- ..." or ""))
+          string.format("\n~~~~~lua\n%s\n~~~~~\n", action.code:sub(1, 120) .. (#action.code > 120 and "\n-- ..." or ""))
       elseif action_type == "vim_cmd" then
         display_cmd = string.format("\n```vim\n%s\n```\n", string.gsub(action.command, "^%s*(.-)%s*$", "%1"))
       end
@@ -348,8 +349,9 @@ return {
       local action_type = action._attr.type
       local display_cmd = ""
       if action_type == "lua_exec" then
+        action.code = string.gsub(action.code, "^%s*(.-)%s*$", "%1")
         display_cmd =
-          string.format("\n~~~~~lua\n%s\n~~~~~\n", action.code:sub(1, 40) .. (#action.code > 40 and "\n-- ..." or ""))
+          string.format("\n~~~~~lua\n%s\n~~~~~\n", action.code:sub(1, 120) .. (#action.code > 120 and "\n-- ..." or ""))
       elseif action_type == "vim_cmd" then
         display_cmd = string.format("\n```vim\n%s\n```\n", string.gsub(action.command, "^%s*(.-)%s*$", "%1"))
       end
@@ -367,8 +369,9 @@ return {
       local action_type = action._attr.type
       local display_cmd = ""
       if action_type == "lua_exec" then
+        action.code = string.gsub(action.code, "^%s*(.-)%s*$", "%1")
         display_cmd =
-          string.format("\n~~~~~lua\n%s\n~~~~~\n", action.code:sub(1, 40) .. (#action.code > 40 and "\n-- ..." or ""))
+          string.format("\n~~~~~lua\n%s\n~~~~~\n", action.code:sub(1, 120) .. (#action.code > 120 and "\n-- ..." or ""))
       elseif action_type == "vim_cmd" then
         display_cmd = string.format("\n```vim\n%s\n```\n", string.gsub(action.command, "^%s*(.-)%s*$", "%1"))
       end
