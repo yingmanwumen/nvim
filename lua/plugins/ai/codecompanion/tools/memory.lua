@@ -207,7 +207,7 @@ Usage: Return an XML markdown code block to update or query the memory.
 - **Wrap content in a CDATA block**
 - Make sure the tools xml block is **surrounded by ```xml**
 
-Note: It is on you to decide when to store and retrieve information.
+Note: It is on you to decide when to store and retrieve information. You should prefer to use this tool when it comes with information related to the user to improve his experience. Sensitive information such as password must not be stored in the memory.
 
 ## XML Format
 
