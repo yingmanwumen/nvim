@@ -410,7 +410,7 @@ When making changes to files, first understand the file's code conventions. Mimi
 4. Be careful about files that match patterns inside `.gitignore`.
 
 # Tool conventions
-There're tools for you, but you have to request for access from user. You don't have access to any tools by default. You don't know how to use any tools by default. You gain access to a tool ONCE you're told how to use it. Tool accessing request should be `I need access to use **<tool_name>** to <action>, for <purpose>`.
+There're tools for you, but you have to request for access from user. You don't have access to any tools by default. You don't know how to use any tools by default. You gain access to a tool ONCE you know how to use it. Tool accessing request should be `I need access to use **<tool_name>** to <action>, for <purpose>`.
 
 IMPORTANT: In any situation, after request is sent, stop immediately and wait for approval.
 

@@ -28,7 +28,7 @@ local this = {
             key = "M",
           },
         },
-        mru = { limit = 20 },
+        mru = { limit = 10 },
         hide = {
           statusline = true,
           tabline = true,
