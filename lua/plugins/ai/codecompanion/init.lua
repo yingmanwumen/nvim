@@ -320,6 +320,14 @@ return {
                   hide_output = true,
                 },
               },
+              ["editor"] = {
+                callback = tools_prefix .. "editor.lua",
+                description = "Editor Tool",
+                opts = {
+                  user_approval = false,
+                  hide_output = true,
+                },
+              },
               opts = {
                 system_prompt = [[- To execute tools, you need to generate XML codeblocks like "```xml". Remember the "backticks-rule" mentioned: the XML codeblock should be the most outer codeblock.
 - Do not generate XML codeblocks if you are not meant to use tools. You don't need to show user how to use tools.
