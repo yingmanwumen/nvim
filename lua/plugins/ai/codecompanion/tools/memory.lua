@@ -207,6 +207,8 @@ Usage: Return an XML markdown code block to update or query the memory.
 - **Wrap content in a CDATA block**
 - Make sure the tools xml block is **surrounded by ```xml**
 
+Note: It is on you to decide when to store and retrieve information.
+
 ## XML Format
 
 a) **Update memory**:
@@ -226,8 +228,8 @@ c) **Save buffer**:
 ```xml
 %s
 ```
-      # History Context
-      %s
+# History Context
+%s
       ]],
       xml2lua.toXml({ tools = { schema[1] } }),
       xml2lua.toXml({ tools = { schema[2] } }),
