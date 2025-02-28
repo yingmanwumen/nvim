@@ -184,12 +184,12 @@ return {
   },
   system_prompt = function(schema)
     -- Load current memory content for context
-    -- local memory_content = ""
-    -- local file = io.open(MEMORY_FILE, "r")
-    -- if file then
-    --   memory_content = file:read("*all")
-    --   file:close()
-    -- end
+    local memory_content = ""
+    local file = io.open(MEMORY_FILE, "r")
+    if file then
+      memory_content = file:read("*all")
+      file:close()
+    end
 
     return string.format(
       [[# Memory Tool(`memory`) -- Usage Guidelines
@@ -226,14 +226,13 @@ c) **Save buffer**:
 ```xml
 %s
 ```
-]],
-      -- # History Context
-      -- %s
-      -- ]],
+      # History Context
+      %s
+      ]],
       xml2lua.toXml({ tools = { schema[1] } }),
       xml2lua.toXml({ tools = { schema[2] } }),
-      xml2lua.toXml({ tools = { schema[3] } })
-      -- memory_content
+      xml2lua.toXml({ tools = { schema[3] } }),
+      memory_content
     )
   end,
   handlers = {
