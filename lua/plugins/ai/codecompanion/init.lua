@@ -277,14 +277,13 @@ return {
           agents = {
             ["full_stack_dev"] = {
               description = "Full Dev Developer",
-              system_prompt = [[You are now granted access to use `tavily`, `cmd_runner`, `editor`, `files`, `nvim_runner` and `memory` tools. Use them wisely with caution.]],
+              system_prompt = [[You are now granted access to use `tavily`, `cmd_runner`, `editor`, `files` and `nvim_runner` tools. Use them wisely with caution.]],
               tools = {
                 "tavily",
                 "cmd_runner",
                 "editor",
                 "files",
                 "nvim_runner",
-                "memory",
               },
             },
             tools = {
@@ -336,12 +335,20 @@ return {
                   hide_output = true,
                 },
               },
+              ["files"] = {
+                callback = tools_prefix .. "files.lua",
+                description = "File Tool",
+                opts = {
+                  user_approval = false,
+                  hide_output = true,
+                },
+              },
               opts = {
                 system_prompt = [[- To execute tools, you need to generate XML codeblocks like "```xml". Remember the "backticks-rule" mentioned: the XML codeblock should be the most outer codeblock.
 - You should wait for responses from user after generating XML codeblocks.
 - Execute only once and only one tool in one turn. Multiple execution is forbidden. But you can combine multiple commands into one (which is recommended), such as `cd xxx && make`.
 - Always saving tokens for user: fetch partial content instead of entire file and combine commands in single turns, combine multiple actions into one, etc.
-- Describe your purpose before every execution with the following format: `I would use the **<tool name>** to <your purpose>`
+- Describe your purpose before every tool invocation with: `I would use the **<tool name>** to <your purpose>`
 - In any situation, if user denies the tool execution(chooses not to run), then ask for guidance instead of attempting another action.
 ]],
                 auto_submit_success = true,
@@ -430,12 +437,12 @@ Until you're told how to invoke specific tool explicitly, you don't have access 
 IMPORTANT: In any situation, after an access or invocation request is sent, stop immediately and wait for approval or feedback.
 
 Available tools(short descriptions):
-- `files`: access file system.
+- `files`: read or edit files.
 - `editor`: access editor's buffer.
 - `cmd_runner`: run shell commands.
 - `nvim_runner`: run neovim commands or lua scripts.
 - `tavily`: query information or visit URLs from the Internet.
-- `memory`: store important information for future reference, or query information from memory.
+- `memory`: store important information for future reference.
 
 # Tool usage policy
 1. Fetch context with given tools instead of historic messages since historic messages may be outdated.

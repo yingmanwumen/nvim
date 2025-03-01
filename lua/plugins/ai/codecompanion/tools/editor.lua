@@ -271,7 +271,7 @@ When to Use: Use this tool solely for buffer edit operations. Other file tasks s
 
 Execution Format:
 - Always return an XML markdown code block.
-- Always include the buffer number that the user has shared with you, in the `<buffer></buffer>` tag. If the user has not supplied this, prompt them for it.
+- Always include the buffer number that the user has shared with you, in the `<buffer></buffer>` tag. If the user has not supplied this, ask for it.
 - Each code operation must:
   - Be wrapped in a CDATA section to preserve special characters (CDATA sections ensure that characters like '<' and '&' are not interpreted as XML markup).
   - Follow the XML schema exactly.
