@@ -330,13 +330,12 @@ return {
               },
               opts = {
                 system_prompt = [[- To execute tools, you need to generate XML codeblocks like "```xml". Remember the "backticks-rule" mentioned: the XML codeblock should be the most outer codeblock.
-- Do not generate XML codeblocks if you are not meant to use tools. You don't need to show user how to use tools.
 - You should wait for responses from user after generating XML codeblocks.
-- Execute only once and only one tool in one turn. Multiple execution is forbidden. But you can combine multiple commands into one(which is recommended), such as `cd xxx && make`.
+- Execute only once and only one tool in one turn. Multiple execution is forbidden. But you can combine multiple commands into one (which is recommended), such as `cd xxx && make`.
 - Always saving tokens for user: fetch partial content instead of entire file and combine commands in single turns, combine multiple actions into one, etc.
 - Describe your purpose before every execution with the following format: `I would use the **<tool name>** to <your purpose>`
-- If user denies the tool execution(chooses not to run), then ask for guidance instead of attempting to run again.
-- If you receive a message including `@tool_name`, `tool_name` or `<tool>tool_name</tool>`, or a heading includes a tool name followed by its usage, then it means you've got the access to use `<tool_name>`.]],
+- In any situation, if user denies the tool execution(chooses not to run), then ask for guidance instead of attempting another action.
+]],
                 auto_submit_success = true,
                 auto_submit_errors = true,
               },
@@ -418,9 +417,9 @@ When making changes to files, first understand the file's code conventions. Mimi
 4. Be careful about files that match patterns inside `.gitignore`.
 
 # Tool conventions
-There're tools for you, but you have to request for access from user. You don't have access to any tools by default. You don't know how to use any tools by default. You gain access to a tool ONCE you know how to use it. Tool accessing request should be `I need access to use **<tool_name>** to <action>, for <purpose>`.
+Until you're told how to invoke specific tool explicitly, you don't have access to it. That means you gain access to a tool ONCE you're told how to invoke it. If you need a tool but you don't have access, request for access with following format: `I need access to use **<tool_name>** to <action>, for <purpose>`.
 
-IMPORTANT: In any situation, after request is sent, stop immediately and wait for approval.
+IMPORTANT: In any situation, after an access or invocation request is sent, stop immediately and wait for approval or feedback.
 
 Available tools(short descriptions):
 - `files`: access file system.
@@ -433,6 +432,7 @@ Available tools(short descriptions):
 # Tool usage policy
 1. Fetch context with given tools instead of historic messages since historic messages may be outdated.
 2. If you intend to call multiple tools and there are no dependencies between the calls, make all of the independent calls in the same function_calls block.
+3. Avoid asking access for another tool if current one can work as well. For example, if you need to read specific range of a file and in the moment you have access to `cmd_runner` instead of `file`, then you can read the file with commandline tool `sed` instead of asking for `file` access.
 
 # Environment Awareness
 - Platform: %s,
