@@ -40,7 +40,7 @@ return {
       },
     },
     copilot = {
-      model = "claude-3.7-sonnet-thought",
+      model = "claude-3.7-sonnet",
       temperature = 0.3,
     },
     gemini = {
@@ -50,6 +50,7 @@ return {
       sidebar_header = {
         enabled = true,
       },
+      width = 45,
     },
   },
 }
