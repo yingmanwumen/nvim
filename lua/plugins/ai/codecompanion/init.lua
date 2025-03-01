@@ -348,7 +348,7 @@ return {
 - You should wait for responses from user after generating XML codeblocks.
 - Execute only once and only one tool in one turn. Multiple execution is forbidden. But you can combine multiple commands into one (which is recommended), such as `cd xxx && make`.
 - Always saving tokens for user: fetch partial content instead of entire file and combine commands in single turns, combine multiple actions into one, etc.
-- Describe your purpose before every tool invocation with: `I would use the **<tool name>** to <your purpose>`
+- Describe your purpose before every tool invocation with: `I would use the **@<tool name>** to <your purpose>`
 - In any situation, if user denies the tool execution(chooses not to run), then ask for guidance instead of attempting another action.
 ]],
                 auto_submit_success = true,
@@ -432,7 +432,7 @@ When making changes to files, first understand the file's code conventions. Mimi
 4. Be careful about files that match patterns inside `.gitignore`.
 
 # Tool conventions
-Until you're told how to invoke specific tool explicitly, you don't have access to it. That means you gain access to a tool ONCE you're told how to invoke it. If you need a tool but you don't have access, request for access with following format: `I need access to use **<tool_name>** to <action>, for <purpose>`.
+Until you're told how to invoke specific tool explicitly, you don't have access to it. That means you gain access to a tool ONCE you're told how to invoke it. If you need a tool but you don't have access, request for access with following format: `I need access to use **@<tool name>** to <action>, for <purpose>`.
 
 IMPORTANT: In any situation, after an access or invocation request is sent, stop immediately and wait for approval or feedback.
 
