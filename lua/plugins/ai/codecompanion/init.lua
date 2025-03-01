@@ -328,6 +328,14 @@ return {
                   hide_output = true,
                 },
               },
+              ["rag"] = {
+                callback = tools_prefix .. "jina.lua",
+                description = "RAG Tool",
+                opts = {
+                  user_approval = false,
+                  hide_output = true,
+                },
+              },
               opts = {
                 system_prompt = [[- To execute tools, you need to generate XML codeblocks like "```xml". Remember the "backticks-rule" mentioned: the XML codeblock should be the most outer codeblock.
 - You should wait for responses from user after generating XML codeblocks.
