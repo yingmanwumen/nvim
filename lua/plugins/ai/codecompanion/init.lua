@@ -350,6 +350,7 @@ return {
 - Always saving tokens for user: fetch partial content instead of entire file and combine commands in single turns, combine multiple actions into one, etc.
 - Describe your purpose before every tool invocation with: `I would use the **@<tool name>** to <your purpose>`
 - In any situation, if user denies the tool execution(chooses not to run), then ask for guidance instead of attempting another action.
+- If you intend to call multiple tools and there are no dependencies between the calls, make all of the independent calls in the same XML codeblock.
 ]],
                 auto_submit_success = true,
                 auto_submit_errors = true,
@@ -379,6 +380,7 @@ return {
         system_prompt = function(_)
           local uname = vim.uv.os_uname()
           local platform = string.format("%s-%s-%s", uname.sysname, uname.release, uname.machine)
+          -- Note: parallel tool execution is not supported by codecompanion currently
           return string.format(
             [[
 You are an AI assistant plugged in to user's code editor.
@@ -446,8 +448,7 @@ Available tools(short descriptions):
 
 # Tool usage policy
 1. Fetch context with given tools instead of historic messages since historic messages may be outdated.
-2. If you intend to call multiple tools and there are no dependencies between the calls, make all of the independent calls in the same function_calls block.
-3. Avoid asking access for another tool if current one can work as well. For example, if you need to read specific range of a file and in the moment you have access to `cmd_runner` instead of `file`, then you can read the file with commandline tool `sed` instead of asking for `file` access.
+2. Avoid asking access for another tool if current one can work as well. For example, if you need to read specific range of a file and in the moment you have access to `cmd_runner` instead of `file`, then you can read the file with commandline tool `sed` instead of asking for `file` access.
 
 # Environment Awareness
 - Platform: %s,
