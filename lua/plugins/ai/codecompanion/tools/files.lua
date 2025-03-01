@@ -193,7 +193,7 @@ c) Edit:
 
 - This will ensure a file is edited at the specified path
 - Ensure that you are terse with which text to search for and replace
-- Be specific about what text to search for and what to replace it with
+- Be precise about what text to search for and what to replace it with since you may wrongly edit other parts of the file
 - If the text is not found, the file will not be edited
 
 d) **Multiple Actions**: Combine actions in one response if needed:
