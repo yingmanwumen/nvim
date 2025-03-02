@@ -64,11 +64,12 @@ local function to_chat(msg, tool, opts)
 
   local content
   if opts.output == "" then
-    content = string.format("%s:\n%s\n", msg, opts.cmd)
+    content = string.format("%s(with no output):\n%s\n", msg, opts.cmd)
   else
     content = string.format(
       [[%s:
 %s
+Output:
 ```plaintext
 %s
 ```
