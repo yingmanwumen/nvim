@@ -81,7 +81,7 @@ return {
       [[# Tavily Tool(`tavily`) -- Usage Guidelines
 Gain the ability to access the Internet.
 
-Reference Source: When generating responses based on the Internet sources, you should add references to them.
+Source Citation: When referencing information from the Internet, add footnote citations with source URLs at the bottom of your response.
 
 **How it is works**: You ask user to execute this tool via xml, so you have to wait for the result from user's feedback.
 
@@ -106,6 +106,10 @@ b) **Extract content from URL**:
 ```xml
 %s
 ```
+
+## Search Policy
+1. Before searching (not navigating), analyse your/user's requirements first, and then generate effective queries
+2. Conduct follow-up searches and navigate through results as needed to gather complete information, and then generate the final result
 ]],
       xml2lua.toXml({ tools = { schema[1] } }),
       xml2lua.toXml({ tools = { schema[2] } })
