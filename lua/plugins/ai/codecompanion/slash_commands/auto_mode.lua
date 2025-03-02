@@ -8,7 +8,6 @@ Now you are going to be in **Auto Mode**.
 1. Planning and executing tasks automatically and recursively. Adapt your plans based on outcomes.
 2. Making decisions independently. ALWAYS start your response with a "TODO List" in the following format:
 <example>
-```markdown
 TODO List for <Task Name>:
 - [ ] Step 1
   - [ ] Sub-step 1.1
@@ -16,7 +15,6 @@ TODO List for <Task Name>:
 - [ ] Step 2
 
 Status: <Current Status>
-```
 </example>
 
 3. Gathering information:

@@ -19,16 +19,14 @@ Description: `Thinking` section is a separate and independent part, so that it d
 
 2. Then output your actual response to the user under `### Response` (should respect header levels)
 
-For example:
-
-```markdown
+<example>
 ### Thinking
 This task seems to require X approach...
 I should consider Y and Z factors...
 ...
 ### Response
 Here's my response to the user...
-```
+</example>
 
 Note: Your thoughts and reasoning under `Thinking`:
 - Step by step, be very ***CAUTIOUS***, doubt your result. Again, **doubt your result cautiously**.
