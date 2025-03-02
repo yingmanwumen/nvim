@@ -71,7 +71,7 @@ local function edit(action)
     return util.notify(fmt("No data found in %s", action.path))
   end
 
-  local changed, substitutions_count = content:gsub(vim.pesc(action.search), action.replace)
+  local changed, substitutions_count = content:gsub(vim.pesc(action.search), action.replace:gsub("%%", "%%%%"))
   if substitutions_count == 0 then
     return util.notify(fmt("Could not find the search string in %s", action.path))
   end
@@ -256,7 +256,10 @@ d) **Multiple Actions**: Combine actions in one response if needed:
     success = function(self, action, output)
       local type = action._attr.type
       local path = action.path
-      util.notify(fmt("The files tool executed successfully for the `%s` file", vim.fn.fnamemodify(path, ":t")))
+      self.chat:add_buf_message({
+        role = config.constants.USER_ROLE,
+        content = fmt("I've shared the output from the %s action for file `%s` with you.\n", string.upper(type), path),
+      })
 
       if file then
         self.chat:add_message({

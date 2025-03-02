@@ -20,6 +20,19 @@ local function add_delta(bufnr, line, delta)
   table.insert(deltas, { bufnr = bufnr, line = line, delta = delta })
 end
 
+---Scroll the window to center the specified line
+---@param bufnr number The buffer number
+---@param line? number The line to scroll to (default: 1)
+local function scroll_to_line(bufnr, line)
+  line = line or 1
+  local winnr = ui.buf_get_win(bufnr)
+  if winnr then
+    api.nvim_set_current_win(winnr)
+    api.nvim_win_set_cursor(winnr, { line, 0 })
+    api.nvim_command("normal! zz")
+  end
+end
+
 ---Calculate if there is any intersection between the lines
 ---@param bufnr number
 ---@param line number
@@ -158,14 +171,18 @@ return {
           add(bufnr, action)
         end
 
-        --TODO: Scroll to buffer and the new lines
+        if action.line then
+          scroll_to_line(bufnr, tonumber(action.line))
+        elseif action.start_line then
+          scroll_to_line(bufnr, tonumber(action.start_line))
+        end
 
         -- Automatically save the buffer
-        if vim.g.codecompanion_auto_tool_mode then
-          api.nvim_buf_call(bufnr, function()
-            vim.cmd("silent write")
-          end)
-        end
+        -- if vim.g.codecompanion_auto_tool_mode then
+        api.nvim_buf_call(bufnr, function()
+          vim.cmd("silent write")
+        end)
+        -- end
 
         return { status = "success", msg = nil }
       end
@@ -334,6 +351,37 @@ d) **Multiple Actions** (If several actions (add, update, delete) need to be per
     on_exit = function(self)
       deltas = {}
       diff_started = false
+    end,
+  },
+  output = {
+    success = function(self, action, output)
+      vim.notify("The editor tool executed successfully")
+      self.chat:add_buf_message({
+        role = config.constants.USER_ROLE,
+        content = string.format("The action %s of editor tool executed successfully", string.upper(action._attr.type)),
+      })
+    end,
+
+    error = function(self, action, err)
+      return self.chat:add_buf_message({
+        role = config.constants.USER_ROLE,
+        content = string.format(
+          [[There was an error running the %s action:
+
+```txt
+s
+```]],
+          string.upper(action._attr.type),
+          err
+        ),
+      })
+    end,
+
+    rejected = function(self, action)
+      return self.chat:add_buf_message({
+        role = config.constants.USER_ROLE,
+        content = string.format("I rejected the %s action.\n\n", string.upper(action._attr.type)),
+      })
     end,
   },
 }
