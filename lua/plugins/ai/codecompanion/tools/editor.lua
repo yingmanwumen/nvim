@@ -180,7 +180,8 @@ return {
         -- Automatically save the buffer
         -- if vim.g.codecompanion_auto_tool_mode then
         api.nvim_buf_call(bufnr, function()
-          vim.cmd("silent write")
+          vim.cmd("write")
+          vim.cmd("write") -- Second write to ensure the buffer is saved
         end)
         -- end
 
