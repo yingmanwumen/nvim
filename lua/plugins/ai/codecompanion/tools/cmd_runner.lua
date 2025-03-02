@@ -241,14 +241,22 @@ Execute safe, validated shell commands on the user's system when explicitly requ
     ---@param cmd table|string The command that was executed
     ---@param stderr table|string
     error = function(self, cmd, stderr)
-      to_chat("Stderr from command", self, { cmd = cmd.cmd or cmd, output = stderr })
+      local msg = "Stderr from command"
+      if stderr == "" then
+        msg = "Command completed but with no output(stderr)"
+      end
+      to_chat(msg, self, { cmd = cmd.cmd or cmd, output = stderr })
     end,
 
     ---@param self CodeCompanion.Tools The tools object
     ---@param cmd table|string The command that was executed
     ---@param stdout table|string
     success = function(self, cmd, stdout)
-      to_chat("Stdout from command", self, { cmd = cmd.cmd or cmd, output = stdout })
+      local msg = "Stdout from command"
+      if stdout == "" then
+        msg = "Command completed but with no output(stdout)"
+      end
+      to_chat(msg, self, { cmd = cmd.cmd or cmd, output = stdout })
     end,
   },
 }
