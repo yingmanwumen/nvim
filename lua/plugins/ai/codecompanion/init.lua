@@ -448,7 +448,7 @@ Available tools(short descriptions):
 
 # Tool usage policy
 1. Fetch context with given tools instead of historic messages since historic messages may be outdated.
-2. Avoid asking access for another tool if current one can work as well. For example, if you need to read specific range of a file and in the moment you have access to `cmd_runner` instead of `file`, then you can read the file with commandline tool `sed` instead of asking for `file` access.
+2. Make the most of the tools at your disposal; don't request new tools until existing ones prove insufficient. For example, when you have access to `cmd_runner` and you want to read file, you can leverage `sed` command instead of asking for `file` access.
 
 # Environment Awareness
 - Platform: %s,
