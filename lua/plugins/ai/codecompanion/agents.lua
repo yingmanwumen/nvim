@@ -13,6 +13,13 @@ return {
     },
   },
   tools = {
+    ["mcp"] = {
+      callback = require("mcphub.extensions.codecompanion"),
+      description = "Call tools and resources from the MCP Servers",
+      opts = {
+        user_approval = true,
+      },
+    },
     ["tavily"] = {
       callback = tools_prefix .. "tavily.lua",
       description = "Online Search Tool",
