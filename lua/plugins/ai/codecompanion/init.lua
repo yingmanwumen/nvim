@@ -110,6 +110,19 @@ return {
   config = function()
     require("codecompanion").setup({
       adapters = {
+        gemini = function()
+          return require("codecompanion.adapters").extend("gemini", {
+            schema = {
+              model = {
+                choices = {
+                  ["gemini-2.0-flash-thinking-exp"] = { opts = { can_reason = true } },
+                  "gemini-2.0-flash",
+                  "gemini-2.0-pro-exp",
+                },
+              },
+            },
+          })
+        end,
         local_ollama = function()
           return require("codecompanion.adapters").extend("ollama", {
             env = {
