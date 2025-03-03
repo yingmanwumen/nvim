@@ -27,7 +27,7 @@ local function generate_commit_message()
 
   local content = [[@cmd_runner
 - Task:
-  1. Before proceeding, review the changes. If there're no mistakes/bugs, go ahead, or you should stop and state potential issues. You should fully understand every piece of code in diffs. You may need to gather context proactively to understand the diffs.
+  1. Before proceeding, review the changes. If there're no mistakes/bugs, go ahead, or you should stop and state potential issues. You should fully understand every piece of code in diffs. You may gather context proactively to understand the diffs.
   2. Write commit message for the diffs with `commitizen convention`. Format as a gitcommit code block. Keep the commit message concise and precise.
   3. After generating commit message, stage diffs and then commit them with `git commit -F- <<EOF`.
 

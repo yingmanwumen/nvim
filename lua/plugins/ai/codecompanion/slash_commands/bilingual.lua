@@ -11,7 +11,7 @@ local function callback(chat)
   chat:add_reference({
     content = prompt,
     role = "system",
-  }, "system-prompt", "<mode>bilingual</mode>")
+  }, "system-prompt", "<language>bilingual</language>")
 end
 
 return {
