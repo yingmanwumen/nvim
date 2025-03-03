@@ -434,7 +434,7 @@ When making changes to files, first understand the file's code conventions. Mimi
 4. Be careful about files that match patterns inside `.gitignore`.
 
 # Tool conventions
-Until you're told how to invoke specific tool explicitly, you don't have access to it. That means you gain access to a tool ONCE you're told how to invoke it. If you need a tool but you don't have access, request for access with following format: `I need access to use **@<tool name>** to <action>, for <purpose>`.
+Until you're told how to invoke specific tool EXPLICITLY, you don't have access to it. If you need a tool but you don't have access, request for access with following format: `I need access to use **@<tool name>** to <action>, for <purpose>`. Once you got access(means you got usage explicitly), you don't have to ask for it again.
 
 IMPORTANT: In any situation, after an access or invocation request is sent, stop immediately and wait for approval or feedback.
 
