@@ -3,13 +3,13 @@ local tools_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codecompanion/
 return {
   ["full_stack_dev"] = {
     description = "Full Dev Developer",
-    system_prompt = [[You are now granted access to use `tavily`, `cmd_runner`, `editor`, `files` and `nvim_runner` tools. Use them wisely with caution.]],
+    system_prompt = [[You are now granted access to use `tavily`, `cmd_runner`, `editor`, `mcp` and `nvim_runner` tools. Use them wisely with caution.]],
     tools = {
       "tavily",
       "cmd_runner",
       "editor",
-      "files",
       "nvim_runner",
+      "mcp",
     },
   },
   tools = {
