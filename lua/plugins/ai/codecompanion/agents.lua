@@ -17,7 +17,7 @@ return {
       callback = require("mcphub.extensions.codecompanion"),
       description = "Call tools and resources from the MCP Servers",
       opts = {
-        user_approval = true,
+        user_approval = false,
       },
     },
     ["tavily"] = {
