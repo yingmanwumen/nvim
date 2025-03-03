@@ -68,39 +68,61 @@ return {
     },
   },
   system_prompt = function(schema)
-    return string.format(
-      [[# Retrieval Augmented Generated (RAG) Tool (`rag`)
+    return string.format([[# Retrieval Augmented Generated (RAG) Tool (`rag`)
 Gain the ability to access the Internet.
 
 Reference Source: When generating responses based on the Internet sources, you should add references to them.
 
 **How it is works**: You ask user to execute this tool via xml, so you have to wait for the result from user's feedback.
 
-Usage: Return an XML markdown code block to search the Internet or extract content from a specific URL.
+Usage: Return an XML markdown code block to search the Internet or extract content from a specific URL. Use it when you need access to latest information. Use it wisely.
 
-## Key Points
-- Use it when you need access to latest information. Use it wisely.
-- Ensure XML is **valid and follows the schema**
-- **Wrap queries and URLs in a CDATA block**
-- Make sure the tools xml block is **surrounded by ```xml**
+## Description
+- tool name: `rag`
+- sequential execution: no
+- action type: `search`
+  - element `query`
+    - the search query.
+    - CDATA: yes
+- action type: `navigate`
+  - element `url`
+    - the target URL.
+    - CDATA: yes
+]])
 
-## XML Format
-
-a) **Search the internet**:
-
-```xml
-%s
-```
-
-b) **Navigate to a URL**:
-
-```xml
-%s
-```
-]],
-      xml2lua.toXml({ tools = { schema[1] } }),
-      xml2lua.toXml({ tools = { schema[2] } })
-    )
+    --     return string.format(
+    --       [[# Retrieval Augmented Generated (RAG) Tool (`rag`)
+    -- Gain the ability to access the Internet.
+    --
+    -- Reference Source: When generating responses based on the Internet sources, you should add references to them.
+    --
+    -- **How it is works**: You ask user to execute this tool via xml, so you have to wait for the result from user's feedback.
+    --
+    -- Usage: Return an XML markdown code block to search the Internet or extract content from a specific URL.
+    --
+    -- ## Key Points
+    -- - Use it when you need access to latest information. Use it wisely.
+    -- - Ensure XML is **valid and follows the schema**
+    -- - **Wrap queries and URLs in a CDATA block**
+    -- - Make sure the tools xml block is **surrounded by ```xml**
+    --
+    -- ## XML Format
+    --
+    -- a) **Search the internet**:
+    --
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- b) **Navigate to a URL**:
+    --
+    -- ```xml
+    -- %s
+    -- ```
+    -- ]],
+    --       xml2lua.toXml({ tools = { schema[1] } }),
+    --       xml2lua.toXml({ tools = { schema[2] } })
+    --     )
   end,
   output = {
     error = function(self, cmd, stderr)

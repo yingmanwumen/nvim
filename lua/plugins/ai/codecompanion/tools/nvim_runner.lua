@@ -213,46 +213,79 @@ Execute Neovim commands and Lua code directly within your Neovim instance.
 
 **How it is works**: You ask user to execute this tool via xml, so you have to wait for the result from user's feedback.
 
-## Execution Format
-- Always return an XML markdown code block.
-- Each operation should follow the XML schema exactly.
-- If several operations need to run sequentially, combine them in one XML block.
+If several operations need to run sequentially, combine them in one XML block.
 
-## XML Schema
-The XML must be valid. Each operation follows one of these structures:
-
-a) Execute Vim command:
-
-```xml
-%s
-```
-
-b) Execute Lua code:
-
-```xml
-%s
-```
-
-c) Execute multiple operations sequentially:
-
-```xml
-%s
-```
+## Description
+- tool name: `nvim_runner`
+- sequential execution: yes
+- action type: `vim_cmd`
+  - element `command`
+    - Vim command to execute.
+    - CDATA: yes
+- action type: `lua_exec`
+  - element `code`
+    - Lua code to execute.
+    - CDATA: yes
 
 ## Key Considerations
-- **Safety First:** All operations will require user approval before execution.
 - **Neovim Version**: %s
 - **User Oversight:** The user retains full control with an approval mechanism before execution.
+
+IMPORTANT: You should never assume you're in the target buffer. If you need to fetch buffer number, don't use `vim.api.nvim_get_current_buf()`.
 
 ## Reminder
 - Be precise in your commands
 - Chain multiple operations together
-- Avoid unnecessarily complex operations]],
-      xml2lua.toXml({ tools = { schema[1] } }), -- Vim命令
-      xml2lua.toXml({ tools = { schema[2] } }), -- Lua执行
-      xml2lua.toXml({ tools = { schema[3] } }),
+- Avoid unnecessarily complex operations
+    ]],
       vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
     )
+    --     return string.format(
+    --       [[# Neovim Runner Tool (`nvim_runner`) – Usage Guidelines
+    -- Execute Neovim commands and Lua code directly within your Neovim instance.
+    --
+    -- **How it is works**: You ask user to execute this tool via xml, so you have to wait for the result from user's feedback.
+    --
+    -- ## Execution Format
+    -- - Always return an XML markdown code block.
+    -- - Each operation should follow the XML schema exactly.
+    -- - If several operations need to run sequentially, combine them in one XML block.
+    --
+    -- ## XML Schema
+    -- The XML must be valid. Each operation follows one of these structures:
+    --
+    -- a) Execute Vim command:
+    --
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- b) Execute Lua code:
+    --
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- c) Execute multiple operations sequentially:
+    --
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- ## Key Considerations
+    -- - **Safety First:** All operations will require user approval before execution.
+    -- - **Neovim Version**: %s
+    -- - **User Oversight:** The user retains full control with an approval mechanism before execution.
+    --
+    -- ## Reminder
+    -- - Be precise in your commands
+    -- - Chain multiple operations together
+    -- - Avoid unnecessarily complex operations]],
+    --       xml2lua.toXml({ tools = { schema[1] } }), -- Vim命令
+    --       xml2lua.toXml({ tools = { schema[2] } }), -- Lua执行
+    --       xml2lua.toXml({ tools = { schema[3] } }),
+    --       vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
+    --     )
   end,
   handlers = {
     ---@param action table

@@ -280,73 +280,120 @@ return {
     },
   },
   system_prompt = function(schema)
-    return string.format(
-      [[# Editor Tool (`editor`) - Enhanced Guidelines
-
+    return string.format([[# Editor Tool (`editor`) - Usage Guidelines
 Purpose: Modify the content of a Neovim buffer by adding, updating, or deleting code when explicitly requested.
 
 When to Use: Use this tool solely for buffer edit operations. Other file tasks should be handled by the designated tools.
 
-Execution Format:
-- Always return an XML markdown code block.
-- Always include the buffer number that the user has shared with you, in the `<buffer></buffer>` tag. If the user has not supplied this, ask for it.
-- Each code operation must:
-  - Be wrapped in a CDATA section to preserve special characters (CDATA sections ensure that characters like '<' and '&' are not interpreted as XML markup).
-  - Follow the XML schema exactly.
-- If several actions (add, update, delete) need to be performed sequentially, combine them in one XML block, within the <tool></tool> tags and with separate <action></action> entries.
-
-## XML Schema:
-Each tool invocation should adhere to this structure:
-
-a) **Add Action:**
-```xml
-%s
-```
-
-If you'd like to replace the entire buffer's contents, pass in `<replace>true</replace>` in the action:
-```xml
-%s
-```
-
-b) **Update Action:**
-```xml
-%s
-```
-- Be sure to include both the start and end lines for the range to be updated.
-
-c) **Delete Action:**
-```xml
-%s
-```
-
-If you'd like to delete the entire buffer's contents, pass in `<all>true</all>` in the action:
-```xml
-%s
-```
-
-d) **Multiple Actions** (If several actions (add, update, delete) need to be performed sequentially):
-```xml
-%s
-```
+## Description
+- tool name: `editor`
+- sequential execution: yes
+- action type: `add`
+  - when adding codes
+    - element `buffer`
+      - the buffer number that the user has shared with you. If this is not given, ask for it.
+    - element `line`
+      - the line number where the code should be added.
+    - element `code`
+      - the code to be added.
+      - CDATA: yes
+  - when replacing the entire buffer
+    - element `buffer`
+    - element `replace`: always be true
+      - CDATA: no
+    - element `code`
+- action type: `update`
+  - element `buffer`
+  - element `start_line`
+  - element `end_line`
+  - element `code`
+      - CDATA: yes
+- action type: `delete`
+  - when deleting a range
+    - element `buffer`
+    - element `start_line`
+    - element `end_line`
+  - when deleting the entire buffer
+    - element `buffer`
+    - element `all`: always be true
 
 ## Key Considerations
 - **Safety and Accuracy:** Validate all code updates carefully.
-- **CDATA Usage:** Code is wrapped in CDATA blocks to protect special characters and prevent them from being misinterpreted by XML.
 - **Tag Order:** Use a consistent order by always listing <start_line> before <end_line> for update and delete actions.
 - **Line Numbers:** Note that line numbers are 1-indexed, so the first line is line 1, not line 0.
 - **Update Rule:** The update action first deletes the range defined in <start_line> to <end_line> (inclusive) and then adds the new code starting from <start_line>.
-- **Contextual Assumptions:** If no context is provided, assume that you should update the buffer with the code from your last response.
-
-## Reminder
+- **Contextual Assumptions:** If no context is provided, always fetch the latest buffer content before making any changes.
 - Minimize extra explanations and focus on returning correct XML blocks with properly wrapped CDATA sections.
-- Always use the structure above for consistency.]],
-      xml2lua.toXml({ tools = { schema[1] } }), -- Add
-      xml2lua.toXml({ tools = { schema[2] } }), -- Add with replace
-      xml2lua.toXml({ tools = { schema[3] } }), -- Update
-      xml2lua.toXml({ tools = { schema[4] } }), -- Delete
-      xml2lua.toXml({ tools = { schema[5] } }), -- Delete all
-      xml2lua.toXml({ tools = { schema[6] } }) -- Multiple
-    )
+
+IMPORTANT: Buffer number must be valid. Either fetch it from user or via other tools.
+]])
+    --     return string.format(
+    --       [[# Editor Tool (`editor`) - Enhanced Guidelines
+    --
+    -- Purpose: Modify the content of a Neovim buffer by adding, updating, or deleting code when explicitly requested.
+    --
+    -- When to Use: Use this tool solely for buffer edit operations. Other file tasks should be handled by the designated tools.
+    --
+    -- Execution Format:
+    -- - Always return an XML markdown code block.
+    -- - Always include the buffer number that the user has shared with you, in the `<buffer></buffer>` tag. If the user has not supplied this, ask for it.
+    -- - Each code operation must:
+    --   - Be wrapped in a CDATA section to preserve special characters (CDATA sections ensure that characters like '<' and '&' are not interpreted as XML markup).
+    --   - Follow the XML schema exactly.
+    -- - If several actions (add, update, delete) need to be performed sequentially, combine them in one XML block, within the <tool></tool> tags and with separate <action></action> entries.
+    --
+    -- ## XML Schema:
+    -- Each tool invocation should adhere to this structure:
+    --
+    -- a) **Add Action:**
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- If you'd like to replace the entire buffer's contents, pass in `<replace>true</replace>` in the action:
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- b) **Update Action:**
+    -- ```xml
+    -- %s
+    -- ```
+    -- - Be sure to include both the start and end lines for the range to be updated.
+    --
+    -- c) **Delete Action:**
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- If you'd like to delete the entire buffer's contents, pass in `<all>true</all>` in the action:
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- d) **Multiple Actions** (If several actions (add, update, delete) need to be performed sequentially):
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- ## Key Considerations
+    -- - **Safety and Accuracy:** Validate all code updates carefully.
+    -- - **CDATA Usage:** Code is wrapped in CDATA blocks to protect special characters and prevent them from being misinterpreted by XML.
+    -- - **Tag Order:** Use a consistent order by always listing <start_line> before <end_line> for update and delete actions.
+    -- - **Line Numbers:** Note that line numbers are 1-indexed, so the first line is line 1, not line 0.
+    -- - **Update Rule:** The update action first deletes the range defined in <start_line> to <end_line> (inclusive) and then adds the new code starting from <start_line>.
+    -- - **Contextual Assumptions:** If no context is provided, assume that you should update the buffer with the code from your last response.
+    --
+    -- ## Reminder
+    -- - Minimize extra explanations and focus on returning correct XML blocks with properly wrapped CDATA sections.
+    -- - Always use the structure above for consistency.]],
+    --       xml2lua.toXml({ tools = { schema[1] } }), -- Add
+    --       xml2lua.toXml({ tools = { schema[2] } }), -- Add with replace
+    --       xml2lua.toXml({ tools = { schema[3] } }), -- Update
+    --       xml2lua.toXml({ tools = { schema[4] } }), -- Delete
+    --       xml2lua.toXml({ tools = { schema[5] } }), -- Delete all
+    --       xml2lua.toXml({ tools = { schema[6] } }) -- Multiple
+    --     )
   end,
   handlers = {
     on_exit = function(self)

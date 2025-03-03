@@ -190,7 +190,6 @@ return {
       memory_content = file:read("*all")
       file:close()
     end
-
     return string.format(
       [[# Memory Tool(`memory`) -- Usage Guidelines
 This tool allows you to store and retrieve information for future reference.
@@ -203,39 +202,82 @@ Usage: Return an XML markdown code block to update or query the memory.
 - Use it to store important information that may be useful in future conversations
 - Use it to retrieve previously stored information
 - Use it to save the current buffer to a dated file
-- Ensure XML is **valid and follows the schema**
-- **Wrap content in a CDATA block**
-- Make sure the tools xml block is **surrounded by ```xml**
 
 Note: It is on you to decide when to store and retrieve information. You should prefer to use this tool when it comes with information related to the user to improve his experience. Sensitive information such as password must not be stored in the memory.
 
-## XML Format
+## Description
+- tool name: `memory`
+- sequential execution: no
+- action type: `update`
+  - element `title`
+    - title of the entry.
+    - CDATA: yes
+  - element `tags`
+    - tags for better organization.
+    - CDATA: yes
+  - element `content`
+    - the content to save.
+    - CDATA: yes
+- action type: `query`
+  - element `query`
+    - search term. If empty, returns all content.
+    - CDATA: yes
+- action type `save_buffer`: to save the current buffer
+  - element `summary`
+    - summary of the buffer content.
+    - CDATA: yes
 
-a) **Update memory**:
-
-```xml
-%s
-```
-
-b) **Query memory**:
-
-```xml
-%s
-```
-
-c) **Save buffer**:
-
-```xml
-%s
-```
 # History Context
 %s
-      ]],
-      xml2lua.toXml({ tools = { schema[1] } }),
-      xml2lua.toXml({ tools = { schema[2] } }),
-      xml2lua.toXml({ tools = { schema[3] } }),
+    ]],
       memory_content
     )
+
+    --     return string.format(
+    --       [[# Memory Tool(`memory`) -- Usage Guidelines
+    -- This tool allows you to store and retrieve information for future reference.
+    --
+    -- **How it works**: You ask user to execute this tool via xml, so you have to wait for the result from user's feedback.
+    --
+    -- Usage: Return an XML markdown code block to update or query the memory.
+    --
+    -- ## Key Points
+    -- - Use it to store important information that may be useful in future conversations
+    -- - Use it to retrieve previously stored information
+    -- - Use it to save the current buffer to a dated file
+    -- - Ensure XML is **valid and follows the schema**
+    -- - **Wrap content in a CDATA block**
+    -- - Make sure the tools xml block is **surrounded by ```xml**
+    --
+    -- Note: It is on you to decide when to store and retrieve information. You should prefer to use this tool when it comes with information related to the user to improve his experience. Sensitive information such as password must not be stored in the memory.
+    --
+    -- ## XML Format
+    --
+    -- a) **Update memory**:
+    --
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- b) **Query memory**:
+    --
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- c) **Save buffer**:
+    --
+    -- ```xml
+    -- %s
+    -- ```
+    -- # History Context
+    -- %s
+    --       ]],
+    --       xml2lua.toXml({ tools = { schema[1] } }),
+    --       xml2lua.toXml({ tools = { schema[2] } }),
+    --       xml2lua.toXml({ tools = { schema[3] } }),
+    --       memory_content
+    --     )
   end,
   handlers = {
     ---Approve the command to be run

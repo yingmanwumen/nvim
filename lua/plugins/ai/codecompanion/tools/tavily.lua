@@ -77,43 +77,68 @@ return {
     },
   },
   system_prompt = function(schema)
-    return string.format(
-      [[# Tavily Tool(`tavily`) -- Usage Guidelines
+    return string.format([[# Tavily Tool(`tavily`) -- Usage Guidelines
 Gain the ability to access the Internet.
 
 Source Citation: When referencing information from the Internet, add footnote citations with source URLs at the bottom of your response.
 
 **How it is works**: You ask user to execute this tool via xml, so you have to wait for the result from user's feedback.
 
-Usage: Return an XML markdown code block to search the Internet or extract content from a specific URL.
+Usage: Return an XML markdown code block to search the Internet or extract content from a specific URL. Use it when you need access to latest information. Use it wisely.
 
-## Key Points
-- Use it when you need access to latest information. Use it wisely.
-- Ensure XML is **valid and follows the schema**
-- **Wrap queries and URLs in a CDATA block**
-- Make sure the tools xml block is **surrounded by ```xml**
-
-## XML Format
-
-a) **Search the internet**:
-
-```xml
-%s
-```
-
-b) **Extract content from URL**:
-
-```xml
-%s
-```
+## Description
+- tool name: `tavily`
+- sequential execution: no
+- action type: `search`
+  - element `query`
+    - the search query.
+    - CDATA: yes
+- action type: `navigate`
+  - element `url`
+    - target URL to extract content from.
+    - CDATA: yes
 
 ## Search Policy
 1. Before searching (not navigating), analyse your/user's requirements first, and then generate effective queries
 2. Conduct follow-up searches and navigate through results as needed to gather complete information, and then generate the final result
-]],
-      xml2lua.toXml({ tools = { schema[1] } }),
-      xml2lua.toXml({ tools = { schema[2] } })
-    )
+    ]])
+    --     return string.format(
+    --       [[# Tavily Tool(`tavily`) -- Usage Guidelines
+    -- Gain the ability to access the Internet.
+    --
+    -- Source Citation: When referencing information from the Internet, add footnote citations with source URLs at the bottom of your response.
+    --
+    -- **How it is works**: You ask user to execute this tool via xml, so you have to wait for the result from user's feedback.
+    --
+    -- Usage: Return an XML markdown code block to search the Internet or extract content from a specific URL.
+    --
+    -- ## Key Points
+    -- - Use it when you need access to latest information. Use it wisely.
+    -- - Ensure XML is **valid and follows the schema**
+    -- - **Wrap queries and URLs in a CDATA block**
+    -- - Make sure the tools xml block is **surrounded by ```xml**
+    --
+    -- ## XML Format
+    --
+    -- a) **Search the internet**:
+    --
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- b) **Extract content from URL**:
+    --
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- ## Search Policy
+    -- 1. Before searching (not navigating), analyse your/user's requirements first, and then generate effective queries
+    -- 2. Conduct follow-up searches and navigate through results as needed to gather complete information, and then generate the final result
+    -- ]],
+    --       xml2lua.toXml({ tools = { schema[1] } }),
+    --       xml2lua.toXml({ tools = { schema[2] } })
+    --     )
   end,
   handlers = {
     ---Approve the command to be run

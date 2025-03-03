@@ -151,27 +151,15 @@ return {
   system_prompt = function(schema)
     return string.format(
       [[# Command Runner Tool (`cmd_runner`) – Usage Guidelines
-Execute safe, validated shell commands on the user's system when explicitly requested.
+Execute shell commands on the user's system.
 
-## Execution Format:
-- Always return an XML markdown code block.
-- Each shell command execution should:
-  - Be wrapped in a CDATA section to protect special characters.
-  - Follow the XML schema exactly.
-- If several commands need to run sequentially, combine them in one XML block with separate <action> entries.
-
-## XML Schema:
-- The XML must be valid. Each tool invocation should adhere to this structure:
-
-```xml
-%s
-```
-
-- Combine multiple shell commands in one response if needed and they will be executed sequentially:
-
-```xml
-%s
-```
+## Description
+- tool name: `cmd_runner`
+- action type: none
+  - element `command`
+    - shell command to execute
+    - CDATA: yes
+- sequential execution: yes
 
 ## Key Considerations
 - **Safety First:** Ensure every command is safe and validated.
@@ -182,12 +170,48 @@ Execute safe, validated shell commands on the user's system when explicitly requ
 
 ## Reminder
 - Minimize explanations and focus on returning precise XML blocks with CDATA-wrapped commands.
-- Each command runs in its own subprocess/subshell, meaning directory changes (`cd`) and environment variable changes will not persist between commands
-- Follow this structure each time to ensure consistency and reliability.]],
-      xml2lua.toXml({ tools = { schema[1] } }), -- Regular
-      xml2lua.toXml({ tools = { schema[2] } }), -- Sequential
+- Each command runs in its own subprocess/subshell, meaning directory changes (`cd`) and environment variable changes will not persist between commands]],
       vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
     )
+    --     return string.format(
+    --       [[# Command Runner Tool (`cmd_runner`) – Usage Guidelines
+    -- Execute safe, validated shell commands on the user's system when explicitly requested.
+    --
+    -- ## Execution Format:
+    -- - Always return an XML markdown code block.
+    -- - Each shell command execution should:
+    --   - Be wrapped in a CDATA section to protect special characters.
+    --   - Follow the XML schema exactly.
+    -- - If several commands need to run sequentially, combine them in one XML block with separate <action> entries.
+    --
+    -- ## XML Schema:
+    -- - The XML must be valid. Each tool invocation should adhere to this structure:
+    --
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- - Combine multiple shell commands in one response if needed and they will be executed sequentially:
+    --
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- ## Key Considerations
+    -- - **Safety First:** Ensure every command is safe and validated.
+    -- - **User Environment Awareness:**
+    --   - **Neovim Version**: %s
+    -- - **User Oversight:** The user retains full control with an approval mechanism before execution.
+    -- - **Extensibility:** If environment details aren't available (e.g., language version details), output the command first along with a request for more information.
+    --
+    -- ## Reminder
+    -- - Minimize explanations and focus on returning precise XML blocks with CDATA-wrapped commands.
+    -- - Each command runs in its own subprocess/subshell, meaning directory changes (`cd`) and environment variable changes will not persist between commands
+    -- - Follow this structure each time to ensure consistency and reliability.]],
+    --       xml2lua.toXml({ tools = { schema[1] } }), -- Regular
+    --       xml2lua.toXml({ tools = { schema[2] } }), -- Sequential
+    --       vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
+    --     )
   end,
   handlers = {
     ---@param self CodeCompanion.Tools The tool object

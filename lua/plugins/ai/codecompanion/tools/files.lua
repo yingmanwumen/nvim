@@ -154,63 +154,95 @@ return {
     },
   },
   system_prompt = function(schema)
-    return fmt(
-      [[# Files Tool (`files`)
+    return string.format([[# Files Tool (`files`)
 Read/Edit files.
 
 Usage: Return an XML markdown code block for read or edit operations.
 
 **Key Points**:
-  - Ensure XML is **valid and follows the schema**
-  - **Include indentation** in the file's content
-  - **Don't escape** special characters
-  - **Wrap contents in a CDATA block**, the contents could contain characters reserved by XML
-  - The user's current working directory in Neovim is `%s`. They may refer to this in their message to you
-  - Make sure the tools xml block is **surrounded by ```xml**
-  - Do not hallucinate. If you can't read a file's contents, say so
-
-## XML Schema
-a) Read:
-
-```xml
-%s
-```
-- This will output the contents of a file at the specified path.
-
-b) Read Lines (inclusively):
-
-```xml
-%s
-```
-- This will read specific line numbers (between the start and end lines, inclusively) in the file at the specified path
-- This can be useful if you have been given the symbolic outline of a file and need to see more of the file's content
-
-c) Edit:
-
-```xml
-%s
-```
-
-- This will ensure a file is edited at the specified path
-- Ensure that you are terse with which text to search for and replace
-- Be precise about what text to search for and what to replace it with since you may wrongly edit other parts of the file
-- If the text is not found, the file will not be edited
-
-d) **Multiple Actions**: Combine actions in one response if needed:
-
-```xml
-%s
-```
-
-## Remember
+- **Include indentation** in the file's content
+- **Don't escape** special characters
+- Make sure the tools xml block is **surrounded by ```xml**
+- Do not hallucinate. If you can't read a file's contents, say so
 - If the user types `~` in their response, do not replace or expand it.
-- Wait for the user to share the outputs with you before responding.]],
-      vim.fn.getcwd(),
-      xml2lua.toXml({ tools = { schema[1] } }), -- Create
-      xml2lua.toXml({ tools = { schema[2] } }), -- Read
-      xml2lua.toXml({ tools = { schema[3] } }), -- Extract
-      xml2lua.toXml({ tools = { schema[4] } })
-    )
+- Wait for the user to share the outputs with you before responding.
+
+## Description
+- tool name: `files`
+- sequential execution: yes
+- action type `read`: Read the contents of a file
+  - element `path`
+    - CDATA: no
+- action type `read_lines`: Read a range of lines from a file
+  - element `path`
+  - element `start_line`
+    - CDATA: no
+  - element `end_line`
+    - CDATA: no
+- action type `edit`: Edit the contents of a file
+  - element `path`
+  - element `search`: pattern to search for
+    - CDATA: yes
+  - element `replace`: pattern to replace
+    - CDATA: yes
+    ]])
+    --     return fmt(
+    --       [[# Files Tool (`files`)
+    -- Read/Edit files.
+    --
+    -- Usage: Return an XML markdown code block for read or edit operations.
+    --
+    -- **Key Points**:
+    --   - Ensure XML is **valid and follows the schema**
+    --   - **Include indentation** in the file's content
+    --   - **Don't escape** special characters
+    --   - **Wrap contents in a CDATA block**, the contents could contain characters reserved by XML
+    --   - The user's current working directory in Neovim is `%s`. They may refer to this in their message to you
+    --   - Make sure the tools xml block is **surrounded by ```xml**
+    --   - Do not hallucinate. If you can't read a file's contents, say so
+    --
+    -- ## XML Schema
+    -- a) Read:
+    --
+    -- ```xml
+    -- %s
+    -- ```
+    -- - This will output the contents of a file at the specified path.
+    --
+    -- b) Read Lines (inclusively):
+    --
+    -- ```xml
+    -- %s
+    -- ```
+    -- - This will read specific line numbers (between the start and end lines, inclusively) in the file at the specified path
+    -- - This can be useful if you have been given the symbolic outline of a file and need to see more of the file's content
+    --
+    -- c) Edit:
+    --
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- - This will ensure a file is edited at the specified path
+    -- - Ensure that you are terse with which text to search for and replace
+    -- - Be precise about what text to search for and what to replace it with since you may wrongly edit other parts of the file
+    -- - If the text is not found, the file will not be edited
+    --
+    -- d) **Multiple Actions**: Combine actions in one response if needed:
+    --
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- ## Remember
+    -- - If the user types `~` in their response, do not replace or expand it.
+    -- - Wait for the user to share the outputs with you before responding.]],
+    --       vim.fn.getcwd(),
+    --       xml2lua.toXml({ tools = { schema[1] } }), -- Create
+    --       xml2lua.toXml({ tools = { schema[2] } }), -- Read
+    --       xml2lua.toXml({ tools = { schema[3] } }), -- Extract
+    --       xml2lua.toXml({ tools = { schema[4] } })
+    --     )
   end,
   handlers = {
     ---Approve the command to be run
