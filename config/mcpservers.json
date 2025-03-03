@@ -6,7 +6,7 @@
     },
     "filesystem": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/home/ymwm/"]
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/"]
     }
   }
 }
