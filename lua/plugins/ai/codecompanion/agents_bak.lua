@@ -1,3 +1,4 @@
+-- waiting to be removed...
 local tools_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codecompanion/tools/"
 
 return {
