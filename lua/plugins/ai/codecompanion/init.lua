@@ -18,7 +18,7 @@ return {
     "CodeCompanionCmd",
     "CodeCompanionActions",
   },
-  version = "v12.15.0",
+  -- version = "v12.15.0",
   event = "VeryLazy",
   keys = {
     {
@@ -258,7 +258,7 @@ return {
           slash_commands = require("plugins.ai.codecompanion.slash_commands"),
           variables = {},
           keymaps = require("plugins.ai.codecompanion.keymaps"),
-          agents = require("plugins.ai.codecompanion.agents"),
+          tools = require("plugins.ai.codecompanion.tools"),
         },
         inline = { adapter = adapter },
         agent = { adapter = adapter },

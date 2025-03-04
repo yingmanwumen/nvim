@@ -8,6 +8,7 @@ local config = require("codecompanion.config")
 
 local keymaps = require("codecompanion.utils.keymaps")
 local ui = require("codecompanion.utils.ui")
+local xml2lua = require("codecompanion.utils.xml.xml2lua")
 
 local api = vim.api
 
@@ -26,7 +27,9 @@ local function scroll_to_line(bufnr, line)
   line = line or 1
   local winnr = ui.buf_get_win(bufnr)
   if winnr then
+    api.nvim_set_current_win(winnr)
     api.nvim_win_set_cursor(winnr, { line, 0 })
+    api.nvim_command("normal! zz")
   end
 end
 
@@ -101,14 +104,14 @@ local function add(bufnr, action)
   add_delta(bufnr, start_line, tonumber(#lines))
 end
 
----@class CodeCompanion.Agent.Tool
+---@class CodeCompanion.Tool
 return {
   name = "editor",
   cmds = {
     ---Ensure the final function returns the status and the output
-    ---@param self CodeCompanion.Agent.Tool The Tools object
+    ---@param self CodeCompanion.Tools The Tools object
     ---@param actions table The action object
-    ---@param input? any The output from the previous function call
+    ---@param input any The output from the previous function call
     ---@return { status: string, msg: string }
     function(self, actions, input)
       ---Run the action
@@ -177,8 +180,8 @@ return {
         -- Automatically save the buffer
         -- if vim.g.codecompanion_auto_tool_mode then
         api.nvim_buf_call(bufnr, function()
-          vim.cmd("silent write")
-          vim.cmd("silent write")
+          vim.cmd("write")
+          vim.cmd("write") -- Second write to ensure the buffer is saved
         end)
         -- end
 
@@ -324,6 +327,73 @@ When to Use: Use this tool solely for buffer edit operations. Other file tasks s
 
 IMPORTANT: Buffer number must be valid. Either fetch it from user or via other tools.
 ]])
+    --     return string.format(
+    --       [[# Editor Tool (`editor`) - Enhanced Guidelines
+    --
+    -- Purpose: Modify the content of a Neovim buffer by adding, updating, or deleting code when explicitly requested.
+    --
+    -- When to Use: Use this tool solely for buffer edit operations. Other file tasks should be handled by the designated tools.
+    --
+    -- Execution Format:
+    -- - Always return an XML markdown code block.
+    -- - Always include the buffer number that the user has shared with you, in the `<buffer></buffer>` tag. If the user has not supplied this, ask for it.
+    -- - Each code operation must:
+    --   - Be wrapped in a CDATA section to preserve special characters (CDATA sections ensure that characters like '<' and '&' are not interpreted as XML markup).
+    --   - Follow the XML schema exactly.
+    -- - If several actions (add, update, delete) need to be performed sequentially, combine them in one XML block, within the <tool></tool> tags and with separate <action></action> entries.
+    --
+    -- ## XML Schema:
+    -- Each tool invocation should adhere to this structure:
+    --
+    -- a) **Add Action:**
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- If you'd like to replace the entire buffer's contents, pass in `<replace>true</replace>` in the action:
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- b) **Update Action:**
+    -- ```xml
+    -- %s
+    -- ```
+    -- - Be sure to include both the start and end lines for the range to be updated.
+    --
+    -- c) **Delete Action:**
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- If you'd like to delete the entire buffer's contents, pass in `<all>true</all>` in the action:
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- d) **Multiple Actions** (If several actions (add, update, delete) need to be performed sequentially):
+    -- ```xml
+    -- %s
+    -- ```
+    --
+    -- ## Key Considerations
+    -- - **Safety and Accuracy:** Validate all code updates carefully.
+    -- - **CDATA Usage:** Code is wrapped in CDATA blocks to protect special characters and prevent them from being misinterpreted by XML.
+    -- - **Tag Order:** Use a consistent order by always listing <start_line> before <end_line> for update and delete actions.
+    -- - **Line Numbers:** Note that line numbers are 1-indexed, so the first line is line 1, not line 0.
+    -- - **Update Rule:** The update action first deletes the range defined in <start_line> to <end_line> (inclusive) and then adds the new code starting from <start_line>.
+    -- - **Contextual Assumptions:** If no context is provided, assume that you should update the buffer with the code from your last response.
+    --
+    -- ## Reminder
+    -- - Minimize extra explanations and focus on returning correct XML blocks with properly wrapped CDATA sections.
+    -- - Always use the structure above for consistency.]],
+    --       xml2lua.toXml({ tools = { schema[1] } }), -- Add
+    --       xml2lua.toXml({ tools = { schema[2] } }), -- Add with replace
+    --       xml2lua.toXml({ tools = { schema[3] } }), -- Update
+    --       xml2lua.toXml({ tools = { schema[4] } }), -- Delete
+    --       xml2lua.toXml({ tools = { schema[5] } }), -- Delete all
+    --       xml2lua.toXml({ tools = { schema[6] } }) -- Multiple
+    --     )
   end,
   handlers = {
     on_exit = function(self)
@@ -331,5 +401,35 @@ IMPORTANT: Buffer number must be valid. Either fetch it from user or via other t
       diff_started = false
     end,
   },
-  -- TODO: output
+  output = {
+    success = function(self, action, output)
+      vim.notify("The editor tool executed successfully")
+      self.chat:add_buf_message({
+        role = config.constants.USER_ROLE,
+        content = string.format("The action %s of editor tool executed successfully", string.upper(action._attr.type)),
+      })
+    end,
+
+    error = function(self, action, err)
+      return self.chat:add_buf_message({
+        role = config.constants.USER_ROLE,
+        content = string.format(
+          [[There was an error running the %s action:
+
+```txt
+s
+```]],
+          string.upper(action._attr.type),
+          err
+        ),
+      })
+    end,
+
+    rejected = function(self, action)
+      return self.chat:add_buf_message({
+        role = config.constants.USER_ROLE,
+        content = string.format("I rejected the %s action.\n\n", string.upper(action._attr.type)),
+      })
+    end,
+  },
 }

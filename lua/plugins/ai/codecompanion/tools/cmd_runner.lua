@@ -6,50 +6,42 @@ commands in the same XML block. All commands must be approved by you.
 
 local config = require("codecompanion.config")
 
-local util = require("codecompanion.utils")
-local xml2lua = require("codecompanion.utils.xml.xml2lua")
-
----@class CmdRunner.ChatOpts
----@field cmd table|string The command that was executed
----@field output table|string The output of the command
----@field message? string An optional message
-
 ---Outputs a message to the chat buffer that initiated the tool
 ---@param msg string The message to output
----@param tool CodeCompanion.Tools The tools object
----@param opts CmdRunner.ChatOpts
+---@param tool CodeCompanion.Agent The tools object
+---@param opts {cmd: table, output: table|string, message?: string}
 local function to_chat(msg, tool, opts)
-  if type(opts.cmd) == "table" then
-    opts.cmd = table.concat(opts.cmd, " ")
+  -- TODO: beautify
+  local cmd
+  if opts and type(opts.cmd) == "table" then
+    cmd = table.concat(opts.cmd, " ")
+  else
+    cmd = opts.cmd
   end
-  if type(opts.output) == "table" then
-    opts.output = table.concat(opts.output, "\n")
+  if opts and type(opts.output) == "table" then
+    opts.output = vim.iter(opts.output):flatten():join("\n")
   end
 
   local content
   if opts.output == "" then
     content = string.format(
-      [[
-%s:
-~~~bash
-%s
-~~~
+      [[%s the command `%s`.
+
 ]],
       msg,
-      opts.cmd
+      cmd
     )
   else
     content = string.format(
-      [[
-%s:
-~~~terminal
-$ %s
+      [[%s the command `%s`:
 
+```txt
 %s
-~~~
+```
+
 ]],
       msg,
-      opts.cmd,
+      cmd,
       opts.output
     )
   end
@@ -60,66 +52,7 @@ $ %s
   })
 end
 
--- Helper function to determine high-risk shell commands
----@param cmd table|string
----@return boolean
-local function is_high_risk(cmd)
-  local cmd_str = type(cmd) == "table" and table.concat(cmd.cmd or cmd, " ") or tostring(cmd)
-
-  -- Check for dangerous system commands
-  if cmd_str:match("rm%s+%-") or cmd_str:match("rm%s+.*%-rf") then
-    -- File removal with switches
-    return true
-  end
-
-  -- Check for system modification commands
-  if
-    cmd_str:match("^sudo%s") -- sudo command
-    or cmd_str:match("apt%s") -- apt package manager
-    or cmd_str:match("yum%s") -- yum package manager
-    or cmd_str:match("pacman%s") -- pacman package manager
-    or cmd_str:match("dnf%s")
-  then -- dnf package manager
-    return true
-  end
-
-  -- Check for file permission or ownership changes
-  if cmd_str:match("chmod%s") or cmd_str:match("chown%s") then
-    return true
-  end
-
-  -- Check for process termination
-  if cmd_str:match("kill%s") or cmd_str:match("killall%s") then
-    return true
-  end
-
-  -- Check for potentially dangerous curl/wget usage
-  if
-    (cmd_str:match("curl%s") or cmd_str:match("wget%s"))
-    and (cmd_str:match("%-d%s") or cmd_str:match("--data%s") or cmd_str:match("POST"))
-  then
-    return true
-  end
-
-  -- Check for pipes to dangerous commands
-  if
-    cmd_str:match("|%s*rm%s")
-    or cmd_str:match("|%s*chmod%s")
-    or cmd_str:match("|%s*sudo%s")
-    or cmd_str:match("|%s*xargs%s+rm")
-  then
-    return true
-  end
-
-  -- Check for redirects that might overwrite important files
-  if cmd_str:match(">%s*/etc/") or cmd_str:match(">%s*/usr/") then
-    return true
-  end
-
-  return false
-end
-
----@class CodeCompanion.Tool
+---@class CodeCompanion.Agent.Tool
 return {
   name = "cmd_runner",
   cmds = {
@@ -135,15 +68,22 @@ return {
       },
     },
     {
+      tool = { name = "cmd_runner" },
+      action = {
+        {
+          command = "<![CDATA[gem install rspec]]>",
+        },
+        {
+          command = "<![CDATA[gem install rubocop]]>",
+        },
+      },
+    },
+    {
       tool = {
         _attr = { name = "cmd_runner" },
         action = {
-          {
-            command = "<![CDATA[gem install rspec]]>",
-          },
-          {
-            command = "<![CDATA[gem install rubocop]]>",
-          },
+          flag = "testing",
+          command = "<![CDATA[make test]]>",
         },
       },
     },
@@ -173,50 +113,11 @@ Execute shell commands on the user's system.
 - Each command runs in its own subprocess/subshell, meaning directory changes (`cd`) and environment variable changes will not persist between commands]],
       vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
     )
-    --     return string.format(
-    --       [[# Command Runner Tool (`cmd_runner`) – Usage Guidelines
-    -- Execute safe, validated shell commands on the user's system when explicitly requested.
-    --
-    -- ## Execution Format:
-    -- - Always return an XML markdown code block.
-    -- - Each shell command execution should:
-    --   - Be wrapped in a CDATA section to protect special characters.
-    --   - Follow the XML schema exactly.
-    -- - If several commands need to run sequentially, combine them in one XML block with separate <action> entries.
-    --
-    -- ## XML Schema:
-    -- - The XML must be valid. Each tool invocation should adhere to this structure:
-    --
-    -- ```xml
-    -- %s
-    -- ```
-    --
-    -- - Combine multiple shell commands in one response if needed and they will be executed sequentially:
-    --
-    -- ```xml
-    -- %s
-    -- ```
-    --
-    -- ## Key Considerations
-    -- - **Safety First:** Ensure every command is safe and validated.
-    -- - **User Environment Awareness:**
-    --   - **Neovim Version**: %s
-    -- - **User Oversight:** The user retains full control with an approval mechanism before execution.
-    -- - **Extensibility:** If environment details aren't available (e.g., language version details), output the command first along with a request for more information.
-    --
-    -- ## Reminder
-    -- - Minimize explanations and focus on returning precise XML blocks with CDATA-wrapped commands.
-    -- - Each command runs in its own subprocess/subshell, meaning directory changes (`cd`) and environment variable changes will not persist between commands
-    -- - Follow this structure each time to ensure consistency and reliability.]],
-    --       xml2lua.toXml({ tools = { schema[1] } }), -- Regular
-    --       xml2lua.toXml({ tools = { schema[2] } }), -- Sequential
-    --       vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
-    --     )
   end,
   handlers = {
-    ---@param self CodeCompanion.Tools The tool object
-    setup = function(self)
-      local tool = self.tool --[[@type CodeCompanion.Tool]]
+    ---@param agent CodeCompanion.Agent The tool object
+    setup = function(agent)
+      local tool = agent.tool --[[@type CodeCompanion.Agent.Tool]]
       local action = tool.request.action
       local actions = vim.isarray(action) and action or { action }
 
@@ -228,59 +129,50 @@ Execute shell commands on the user's system.
         table.insert(tool.cmds, entry)
       end
     end,
-
-    ---Approve the command to be run
-    ---@param self CodeCompanion.Tools The tool object
-    ---@param cmd table
-    ---@return boolean
-    approved = function(self, cmd)
-      if vim.g.codecompanion_auto_tool_mode then
-        return true
-      end
-
-      local cmd_concat = table.concat(cmd.cmd or cmd, " ")
-
-      -- Check for high-risk operations and add warning if needed
-      local msg = "Run command: `" .. cmd_concat .. "`?"
-      if is_high_risk(cmd) then
-        msg = "⚠️ HIGH RISK OPERATION! " .. msg
-      end
-
-      local ok, choice = pcall(vim.fn.confirm, msg, "No\nYes")
-      if not ok or choice ~= 2 then
-        return false
-      end
-
-      return true
-    end,
   },
 
   output = {
+    ---The message which is shared with the user when asking for their approval
+    ---@param agent CodeCompanion.Agent
+    ---@param self CodeCompanion.Agent.Tool
+    ---@return string
+    prompt = function(agent, self)
+      local cmds = self.cmds
+      if vim.tbl_count(cmds) == 1 then
+        return string.format("Run the command `%s`?", table.concat(cmds[1].cmd, " "))
+      end
+
+      local individual_cmds = vim.tbl_map(function(c)
+        return table.concat(c.cmd, " ")
+      end, cmds)
+      return string.format("Run the following commands?\n\n%s", table.concat(individual_cmds, "\n"))
+    end,
+
     ---Rejection message back to the LLM
-    rejected = function(self, cmd)
-      to_chat("I chose not to run", self, { cmd = cmd.cmd or cmd, output = "" })
+    ---@param agent CodeCompanion.Agent
+    ---@param cmd table
+    ---@return nil
+    rejected = function(agent, cmd)
+      to_chat("I chose not to run", agent, { cmd = cmd.cmd or cmd, output = "" })
     end,
 
-    ---@param self CodeCompanion.Tools The tools object
-    ---@param cmd table|string The command that was executed
-    ---@param stderr table|string
-    error = function(self, cmd, stderr)
-      local msg = "Stderr from command"
-      if stderr == "" then
-        msg = "Command completed but with no output(stderr)"
+    ---@param agent CodeCompanion.Agent
+    ---@param cmd table
+    ---@param stderr table
+    ---@param stdout? table
+    error = function(agent, cmd, stderr, stdout)
+      to_chat("There was an error from", agent, { cmd = cmd.cmd or cmd, output = stderr })
+
+      if stdout and not vim.tbl_isempty(stdout) then
+        to_chat("There was also some output from", agent, { cmd = cmd.cmd or cmd, output = stdout })
       end
-      to_chat(msg, self, { cmd = cmd.cmd or cmd, output = stderr })
     end,
 
-    ---@param self CodeCompanion.Tools The tools object
-    ---@param cmd table|string The command that was executed
-    ---@param stdout table|string
-    success = function(self, cmd, stdout)
-      local msg = "Stdout from command"
-      if stdout == "" then
-        msg = "Command completed but with no output(stdout)"
-      end
-      to_chat(msg, self, { cmd = cmd.cmd or cmd, output = stdout })
+    ---@param agent CodeCompanion.Agent
+    ---@param cmd table The command that was executed
+    ---@param stdout table
+    success = function(agent, cmd, stdout)
+      to_chat("The output from", agent, { cmd = cmd.cmd or cmd, output = stdout })
     end,
   },
 }

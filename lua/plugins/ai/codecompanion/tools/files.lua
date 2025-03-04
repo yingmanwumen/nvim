@@ -6,11 +6,22 @@ in the same XML block. All actions must be approved by you.
 
 local Path = require("plenary.path")
 local config = require("codecompanion.config")
+
 local util = require("codecompanion.utils")
 local xml2lua = require("codecompanion.utils.xml.xml2lua")
 
 local fmt = string.format
 local file = nil
+
+---Create a file and it's surrounding folders
+---@param action table The action object
+---@return nil
+local function create(action)
+  local p = Path:new(action.path)
+  p.filename = p:expand()
+  p:touch({ parents = true })
+  p:write(action.contents or "", "w")
+end
 
 ---Read the contents of af ile
 ---@param action table The action object
@@ -79,10 +90,64 @@ local function edit(action)
   p:write(changed, "w")
 end
 
+---Delete a file
+---@param action table The action object
+---@return nil
+local function delete(action)
+  local p = Path:new(action.path)
+  p.filename = p:expand()
+  p:rm()
+end
+
+---Rename a file
+---@param action table The action object
+---@return nil
+local function rename(action)
+  local p = Path:new(action.path)
+  p.filename = p:expand()
+
+  local new_p = Path:new(action.new_path)
+  new_p.filename = new_p:expand()
+
+  p:rename({ new_name = new_p.filename })
+end
+
+---Copy a file
+---@param action table The action object
+---@return nil
+local function copy(action)
+  local p = Path:new(action.path)
+  p.filename = p:expand()
+
+  local new_p = Path:new(action.new_path)
+  new_p.filename = new_p:expand()
+
+  p:copy({ destination = new_p.filename, parents = true })
+end
+
+---Move a file
+---@param action table The action object
+---@return nil
+local function move(action)
+  local p = Path:new(action.path)
+  p.filename = p:expand()
+
+  local new_p = Path:new(action.new_path)
+  new_p.filename = new_p:expand()
+
+  p:copy({ destination = new_p.filename, parents = true })
+  p:rm()
+end
+
 local actions = {
+  create = create,
   read = read,
   read_lines = read_lines,
   edit = edit,
+  delete = delete,
+  rename = rename,
+  copy = copy,
+  move = move,
 }
 
 ---@class CodeCompanion.Tool
@@ -91,7 +156,7 @@ return {
   actions = actions,
   cmds = {
     ---Execute the file commands
-    ---@param self CodeCompanion.Tools The Tools object
+    ---@param self CodeCompanion.Agent.Tool The Tools object
     ---@param action table The action object
     ---@param input any The output from the previous function call
     ---@return { status: string, msg: string }
@@ -104,6 +169,16 @@ return {
     end,
   },
   schema = {
+    {
+      tool = {
+        _attr = { name = "files" },
+        action = {
+          _attr = { type = "create" },
+          path = "/Users/Oli/Code/new_app/hello_world.py",
+          contents = "<![CDATA[    print('Hello World')]]>",
+        },
+      },
+    },
     {
       tool = {
         _attr = { name = "files" },
@@ -139,16 +214,53 @@ return {
       tool = {
         _attr = { name = "files" },
         action = {
-          {
-            _attr = { type = "read" },
-            path = "/Users/Oli/Code/new_app/hello_world.py",
-          },
-          {
-            _attr = { type = "edit" },
-            path = "/Users/Oli/Code/new_app/hello_world.py",
-            search = "<![CDATA[    print('Hello World')]]>",
-            replace = "<![CDATA[    print('Hello CodeCompanion')]]>",
-          },
+          _attr = { type = "delete" },
+          path = "/Users/Oli/Code/new_app/hello_world.py",
+        },
+      },
+    },
+    {
+      tool = {
+        _attr = { name = "files" },
+        action = {
+          _attr = { type = "rename" },
+          path = "/Users/Oli/Code/new_app/hello_world.py",
+          new_path = "/Users/Oli/Code/new_app/new_hello_world.py",
+        },
+      },
+    },
+    {
+      tool = {
+        _attr = { name = "files" },
+        action = {
+          _attr = { type = "copy" },
+          path = "/Users/Oli/Code/new_app/hello_world.py",
+          new_path = "/Users/Oli/Code/old_app/hello_world.py",
+        },
+      },
+    },
+    {
+      tool = {
+        _attr = { name = "files" },
+        action = {
+          _attr = { type = "move" },
+          path = "/Users/Oli/Code/new_app/hello_world.py",
+          new_path = "/Users/Oli/Code/new_app/new_folder/hello_world.py",
+        },
+      },
+    },
+    {
+      tool = { name = "files" },
+      action = {
+        {
+          _attr = { type = "create" },
+          path = "/Users/Oli/Code/new_app/hello_world.py",
+          contents = "<![CDATA[    print('Hello World')]]>",
+        },
+        {
+          _attr = { type = "edit" },
+          path = "/Users/Oli/Code/new_app/hello_world.py",
+          contents = "<![CDATA[    print('Hello CodeCompanion')]]>",
         },
       },
     },
@@ -156,8 +268,6 @@ return {
   system_prompt = function(schema)
     return string.format([[# Files Tool (`files`)
 Read/Edit files.
-
-Usage: Return an XML markdown code block for read or edit operations.
 
 **Key Points**:
 - **Include indentation** in the file's content
@@ -185,116 +295,75 @@ Usage: Return an XML markdown code block for read or edit operations.
     - CDATA: yes
   - element `replace`: pattern to replace
     - CDATA: yes
+- action type `create`: Create a file
+  - element `path`
+  - element `contents`: contents of the file
+    - CDATA: yes
+- action type `delete`: Delete a file
+  - element `path`
+- action type `rename`: Rename a file
+  - element `path`
+  - element `new_path`
+- action type `copy`: Copy a file
+  - element `path`
+  - element `new_path`
+- action type `move`: Move a file
+  - element `path`
+  - element `new_path`
     ]])
-    --     return fmt(
-    --       [[# Files Tool (`files`)
-    -- Read/Edit files.
-    --
-    -- Usage: Return an XML markdown code block for read or edit operations.
-    --
-    -- **Key Points**:
-    --   - Ensure XML is **valid and follows the schema**
-    --   - **Include indentation** in the file's content
-    --   - **Don't escape** special characters
-    --   - **Wrap contents in a CDATA block**, the contents could contain characters reserved by XML
-    --   - The user's current working directory in Neovim is `%s`. They may refer to this in their message to you
-    --   - Make sure the tools xml block is **surrounded by ```xml**
-    --   - Do not hallucinate. If you can't read a file's contents, say so
-    --
-    -- ## XML Schema
-    -- a) Read:
-    --
-    -- ```xml
-    -- %s
-    -- ```
-    -- - This will output the contents of a file at the specified path.
-    --
-    -- b) Read Lines (inclusively):
-    --
-    -- ```xml
-    -- %s
-    -- ```
-    -- - This will read specific line numbers (between the start and end lines, inclusively) in the file at the specified path
-    -- - This can be useful if you have been given the symbolic outline of a file and need to see more of the file's content
-    --
-    -- c) Edit:
-    --
-    -- ```xml
-    -- %s
-    -- ```
-    --
-    -- - This will ensure a file is edited at the specified path
-    -- - Ensure that you are terse with which text to search for and replace
-    -- - Be precise about what text to search for and what to replace it with since you may wrongly edit other parts of the file
-    -- - If the text is not found, the file will not be edited
-    --
-    -- d) **Multiple Actions**: Combine actions in one response if needed:
-    --
-    -- ```xml
-    -- %s
-    -- ```
-    --
-    -- ## Remember
-    -- - If the user types `~` in their response, do not replace or expand it.
-    -- - Wait for the user to share the outputs with you before responding.]],
-    --       vim.fn.getcwd(),
-    --       xml2lua.toXml({ tools = { schema[1] } }), -- Create
-    --       xml2lua.toXml({ tools = { schema[2] } }), -- Read
-    --       xml2lua.toXml({ tools = { schema[3] } }), -- Extract
-    --       xml2lua.toXml({ tools = { schema[4] } })
-    --     )
   end,
   handlers = {
-    ---Approve the command to be run
-    ---@param self CodeCompanion.Tools The tool object
-    ---@param action table
-    ---@return boolean
-    approved = function(self, action)
-      if vim.g.codecompanion_auto_tool_mode then
-        return true
-      end
-
-      local prompts = {
-        base = function(a)
-          return fmt("%s the file at `%s`?", string.upper(a._attr.type), vim.fn.fnamemodify(a.path, ":."))
-        end,
-        move = function(a)
-          return fmt(
-            "%s file from `%s` to `%s`?",
-            string.upper(a._attr.type),
-            vim.fn.fnamemodify(a.path, ":."),
-            vim.fn.fnamemodify(a.new_path, ":.")
-          )
-        end,
-      }
-
-      local prompt = prompts.base(action)
-      if action.new_path then
-        prompt = prompts.move(action)
-      end
-
-      local ok, choice = pcall(vim.fn.confirm, prompt, "No\nYes")
-      if not ok or choice ~= 2 then
-        return false
-      end
-
-      return true
-    end,
-    on_exit = function(self)
+    ---@param agent CodeCompanion.Agent The tool object
+    ---@return nil
+    on_exit = function(agent)
       file = nil
     end,
   },
   output = {
-    success = function(self, action, output)
+    ---The message which is shared with the user when asking for their approval
+    ---@param agent CodeCompanion.Agent
+    ---@param self CodeCompanion.Agent.Tool
+    ---@return string
+    prompt = function(agent, self)
+      local prompts = {}
+
+      local responses = {
+        create = "Create a file at %s?",
+        read = "Read %s?",
+        read_lines = "Read specific lines in %s?",
+        edit = "Edit %s?",
+        delete = "Delete %s?",
+        copy = "Copy %s?",
+        rename = "Rename %s to %s?",
+        move = "Move %s to %s?",
+      }
+
+      for _, action in ipairs(self.request.action) do
+        local path = vim.fn.fnamemodify(action.path, ":.")
+        local new_path = vim.fn.fnamemodify(action.new_path, ":.")
+        local type = string.lower(action._attr.type)
+
+        if type == "rename" or type == "move" then
+          table.insert(prompts, fmt(responses[type], path, new_path))
+        else
+          table.insert(prompts, fmt(responses[type], path))
+        end
+      end
+
+      return table.concat(prompts, "\n")
+    end,
+
+    ---@param agent CodeCompanion.Agent The tool object
+    ---@param action table
+    ---@param output table
+    ---@return nil
+    success = function(agent, action, output)
       local type = action._attr.type
       local path = action.path
-      self.chat:add_buf_message({
-        role = config.constants.USER_ROLE,
-        content = fmt("I've shared the output from the %s action for file `%s` with you.\n", string.upper(type), path),
-      })
+      util.notify(fmt("The files tool executed successfully for the `%s` file", vim.fn.fnamemodify(path, ":t")))
 
       if file then
-        self.chat:add_message({
+        agent.chat:add_message({
           role = config.constants.USER_ROLE,
           content = fmt(
             [[The output from the %s action for file `%s` is:
@@ -311,8 +380,12 @@ Usage: Return an XML markdown code block for read or edit operations.
       end
     end,
 
-    error = function(self, action, err)
-      return self.chat:add_buf_message({
+    ---@param agent CodeCompanion.Agent The tool object
+    ---@param action table
+    ---@param err string
+    ---@return nil
+    error = function(agent, action, err)
+      return agent.chat:add_buf_message({
         role = config.constants.USER_ROLE,
         content = fmt(
           [[There was an error running the %s action:
@@ -326,8 +399,12 @@ Usage: Return an XML markdown code block for read or edit operations.
       })
     end,
 
-    rejected = function(self, action)
-      return self.chat:add_buf_message({
+    ---The action to take if the user rejects the command
+    ---@param agent CodeCompanion.Agent The tool object
+    ---@param action table
+    ---@return nil
+    rejected = function(agent, action)
+      return agent.chat:add_buf_message({
         role = config.constants.USER_ROLE,
         content = fmt("I rejected the %s action.\n\n", string.upper(action._attr.type)),
       })
