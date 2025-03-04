@@ -18,6 +18,7 @@ return {
     "CodeCompanionCmd",
     "CodeCompanionActions",
   },
+  version = "v12.15.0",
   event = "VeryLazy",
   keys = {
     {
