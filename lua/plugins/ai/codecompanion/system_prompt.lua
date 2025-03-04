@@ -65,7 +65,7 @@ Available tools(short descriptions):
 - `cmd_runner`: run shell commands.
 - `nvim_runner`: run neovim commands or lua scripts.
 - `tavily`: query information or visit URLs from the Internet.
-- `memory`: store important information for future reference.
+- `mcp`: MCP servers.
 
 # Tool usage policy
 1. Fetch context with given tools instead of historic messages since historic messages may be outdated.

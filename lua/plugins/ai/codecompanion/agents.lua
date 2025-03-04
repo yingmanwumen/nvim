@@ -44,14 +44,6 @@ return {
         hide_output = false,
       },
     },
-    ["memory"] = {
-      callback = tools_prefix .. "memory.lua",
-      description = "Memory Tool",
-      opts = {
-        user_approval = false,
-        hide_output = true,
-      },
-    },
     ["editor"] = {
       callback = tools_prefix .. "editor.lua",
       description = "Editor Tool",

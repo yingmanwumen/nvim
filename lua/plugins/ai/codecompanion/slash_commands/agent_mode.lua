@@ -21,7 +21,7 @@ Status: <Current Status>
    - If lacking information, try to gather it yourself with tools first
    - If unable to gather information with tools, ask for help with a TODO list of what's needed
    - Do not make assumptions about what the user wants. Ask for clarification if you cannot determine the user's intent
-4. Providing continuous progress updates and feedback:
+4. Providing continuous progress updates:
    - Update TODO list status as tasks progress
    - Mark completed items with [x]
    - Add new tasks as they become apparent
