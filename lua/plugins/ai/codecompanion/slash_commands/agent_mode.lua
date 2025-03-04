@@ -1,8 +1,8 @@
 require("codecompanion")
 
 local prompt = [[
-# **Auto Mode**
-Now you are going to be in **Auto Mode**.
+# **Agent Mode**
+Now you are going to be in **Agent Mode**.
 
 **Guidelines**:
 1. Planning and executing tasks automatically and recursively. Adapt your plans based on outcomes.
@@ -40,13 +40,13 @@ Status: <Current Status>
 
 ---@param chat CodeCompanion.Chat
 local function callback(chat)
-  chat:add_reference({ content = prompt, role = "system" }, "system-prompt", "<mode>auto</mode>")
+  chat:add_reference({ content = prompt, role = "system" }, "system-prompt", "<mode>agent</mode>")
   -- Disable this for safety
   -- vim.g.codecompanion_auto_tool_mode = true -- run tools without confirmation
 end
 
 return {
-  description = "Auto mode",
+  description = "Agent mode",
   callback = callback,
   opts = {
     contains_code = false,
