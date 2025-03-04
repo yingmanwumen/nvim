@@ -32,6 +32,7 @@ Status: <Current Status>
    - If action will affect the system/environment (such as `pip install`), ask for authorization either.
    - You have to stop immediately and wait for feadback after each tool executing. The result comes in the next conversation turn.
    - You should verify that if a task is completed successfully or not.
+   - After the previous task is confirmed being completed, move to the next task in the TODO list.
 6. Evaluate task completion:
    - Mark tasks as complete in TODO list
    - If errors occur, add new TODO items for alternative solutions
