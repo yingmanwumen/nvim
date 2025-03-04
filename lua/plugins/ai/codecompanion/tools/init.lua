@@ -9,7 +9,7 @@ return {
   groups = {
     ["full_stack_dev"] = {
       description = "Full Dev Developer",
-      system_prompt = [[You are now granted access to use `cmd_runner`, `editor`, `mcp` and `files` tools. Use them wisely with caution.]],
+      system_prompt = [[]],
       tools = {
         -- "tavily",
         "cmd_runner",
