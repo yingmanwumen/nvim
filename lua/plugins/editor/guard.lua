@@ -65,6 +65,13 @@ local function setup()
     fname = true,
   })
 
+  ft("clojure"):fmt({
+    cmd = "cljfmt",
+    args = { "fix" },
+    stdin = false,
+    fname = true,
+  })
+
   vim.g.guard_config = {
     fmt_on_save = true,
     lsp_as_default_formatter = false,
