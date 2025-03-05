@@ -6,10 +6,8 @@ return {
       description = "Full Dev Developer",
       system_prompt = [[]],
       tools = {
-        "tavily",
         "cmd_runner",
         "editor",
-        "files",
         "nvim_runner",
         "mcp",
       },
