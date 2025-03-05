@@ -94,6 +94,8 @@ return {
       [[# Command Runner Tool (`cmd_runner`) – Usage Guidelines
 Execute shell commands on the user's system.
 
+Hint: Sometimes there're `stderr` output although the command is executed successfully.
+
 ## Description
 - tool name: `cmd_runner`
 - action type: none
