@@ -10,6 +10,8 @@ return {
         "editor",
         "nvim_runner",
         "mcp",
+        "files",
+        "tavily",
       },
     },
   },
