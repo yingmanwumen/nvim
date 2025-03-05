@@ -146,6 +146,7 @@ return {
                   "gemini-2.0-flash",
                   "gemini-2.0-pro-exp",
                 },
+                default = "gemini-2.0-flash-thinking-exp",
               },
             },
           })
