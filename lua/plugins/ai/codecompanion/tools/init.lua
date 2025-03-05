@@ -65,10 +65,11 @@ return {
     system_prompt = string.format(
       [[# Tool General Guidelines
 - To execute tools, you need to generate XML codeblocks like "```xml". Remember the "backticks-rule" mentioned: the XML codeblock should be the most outer codeblock.
-- You should wait for responses from user after generating XML codeblocks.
-- Execute only once and only one tool in one turn. Multiple execution is forbidden. But you can combine multiple commands into one (which is recommended), such as `cd xxx && make`.
-- Always saving tokens for user: fetch partial content instead of entire file and combine commands in single turns, combine multiple actions into one, etc.
-- In any situation, if user denies the tool execution(chooses not to run), then ask for guidance instead of attempting another action.
+- Execute only once and only one tool in one turn. Multiple execution is forbidden. But you can combine multiple commands into one (which is recommended), such as `cd xxx && make`, or you can run actions sequentially, which is described below.
+- Before invoking tools, describe your purpose with: `I'm using **@<tool name>** to <action>", for <purpose>.`
+
+IMPORTANT: You should stop immediately as soon as generating XML codeblocks to execute tools.
+IMPORTANT: In any situation, if user denies the tool execution(chooses not to run), you should ask for guidance instead of attempting another action.
 
 # Tool Schema Guidelines
 All tools share the same base XML structure:
