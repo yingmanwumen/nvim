@@ -1,20 +1,16 @@
 local tools_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codecompanion/tools/"
 
--- TODO:
--- - [ ] migrate tavily, jina
--- - [ ] add feedback for editor
-
 return {
   groups = {
     ["full_stack_dev"] = {
       description = "Full Dev Developer",
       system_prompt = [[]],
       tools = {
-        -- "tavily",
+        "tavily",
         "cmd_runner",
         "editor",
         "files",
-        -- "nvim_runner",
+        "nvim_runner",
         "mcp",
       },
     },
@@ -53,6 +49,14 @@ return {
   ["files"] = {
     callback = tools_prefix .. "files.lua",
     description = "File Tool",
+    opts = {
+      requires_approval = true,
+      hide_output = true,
+    },
+  },
+  ["tavily"] = {
+    callback = tools_prefix .. "tavily.lua",
+    description = "Online Search Tool",
     opts = {
       requires_approval = true,
       hide_output = true,
