@@ -27,6 +27,7 @@ local function scroll_to_line(bufnr, line)
   local winnr = ui.buf_get_win(bufnr)
   if winnr then
     api.nvim_win_set_cursor(winnr, { line, 0 })
+    vim.api.nvim_set_current_win(winnr)
   end
 end
 
@@ -174,14 +175,6 @@ return {
           scroll_to_line(bufnr, tonumber(action.start_line))
         end
 
-        -- Automatically save the buffer
-        -- if vim.g.codecompanion_auto_tool_mode then
-        api.nvim_buf_call(bufnr, function()
-          vim.cmd("silent write")
-          vim.cmd("silent write")
-        end)
-        -- end
-
         return { status = "success", msg = nil }
       end
 
@@ -286,19 +279,13 @@ When to Use: Use this tool solely for buffer edit operations. Other file tasks s
 - tool name: `editor`
 - sequential execution: yes
 - action type: `add`
-  - when adding codes
-    - element `buffer`
-      - the buffer number that the user has shared with you. If this is not given, ask for it.
-    - element `line`
-      - the line number where the code should be added.
-    - element `code`
-      - the code to be added.
-      - CDATA: yes
-  - when replacing the entire buffer
-    - element `buffer`
-    - element `replace`: always be true
-      - CDATA: no
-    - element `code`
+  - element `buffer`
+    - the buffer number that the user has shared with you. If this is not given, ask for it.
+  - element `line`
+    - the line number where the code should be added.
+  - element `code`
+    - the code to be added.
+    - CDATA: yes
 - action type: `update`
   - element `buffer`
   - element `start_line`

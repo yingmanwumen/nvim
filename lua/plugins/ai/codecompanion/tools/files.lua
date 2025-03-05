@@ -401,12 +401,11 @@ Read/Edit files.
 
     ---The action to take if the user rejects the command
     ---@param agent CodeCompanion.Agent The tool object
-    ---@param action table
     ---@return nil
-    rejected = function(agent, action)
+    rejected = function(agent)
       return agent.chat:add_buf_message({
         role = config.constants.USER_ROLE,
-        content = fmt("I rejected the %s action.\n\n", string.upper(action._attr.type)),
+        content = fmt("I rejected to run tool `files`.\n"),
       })
     end,
   },

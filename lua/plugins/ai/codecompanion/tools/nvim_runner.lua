@@ -121,7 +121,11 @@ local function execute_lua_code(action)
   ---@diagnostic disable-next-line: duplicate-set-field
   _G.print = function(...)
     local args = { ... }
-    local str = table.concat(args, "\t")
+    local str_args = {}
+    for i, v in ipairs(args) do
+      str_args[i] = tostring(v)
+    end
+    local str = table.concat(str_args, "\t")
     table.insert(output, str)
     old_print(...) -- Keep original output functionality
   end
@@ -338,21 +342,13 @@ IMPORTANT: You should never assume you're in the target buffer. If you need to f
       end
       return res
     end,
-    ---Rejection message back to the LLM
-    rejected = function(self, action)
-      local action_type = action._attr.type
-      local display_cmd = ""
-      if action_type == "lua_exec" then
-        action.code = string.gsub(action.code, "^%s*(.-)%s*$", "%1")
-        display_cmd =
-          string.format("~~~~~lua\n%s\n~~~~~", action.code:sub(1, 120) .. (#action.code > 120 and "\n-- ..." or ""))
-      elseif action_type == "vim_cmd" then
-        display_cmd = string.format("```vim\n%s\n```", string.gsub(action.command, "^%s*(.-)%s*$", "%1"))
-      end
 
-      to_chat("I chose not to execute", self, {
-        cmd = display_cmd,
-        output = "",
+    ---Rejection message back to the LLM
+    ---@param agent CodeCompanion.Agent The tools object
+    rejected = function(agent)
+      agent.chat:add_buf_message({
+        content = "I reject to execute tool `nvim_runner`",
+        role = config.constants.USER_ROLE,
       })
     end,
 

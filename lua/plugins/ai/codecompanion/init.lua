@@ -106,8 +106,33 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     "ravitemer/mcphub.nvim",
+    "j-hui/fidget.nvim",
+    "echasnovski/mini.diff",
   },
+  init = function()
+    require("plugins.ai.codecompanion.fidget-spinner"):init()
+  end,
   config = function()
+    -- Set up function to sync mini.diff highlights with current colorscheme
+    local function sync_diff_highlights()
+      local diffadd = vim.api.nvim_get_hl(0, { name = "DiffAdd" })
+      local diffdelete = vim.api.nvim_get_hl(0, { name = "DiffDelete" })
+      local diffchange = vim.api.nvim_get_hl(0, { name = "DiffChange" })
+
+      vim.api.nvim_set_hl(0, "MiniDiffOverAdd", { bg = diffadd.bg })
+      vim.api.nvim_set_hl(0, "MiniDiffOverDelete", { bg = diffdelete.bg })
+      vim.api.nvim_set_hl(0, "MiniDiffOverChange", { bg = diffchange.bg })
+    end
+
+    -- Initial highlight setup
+    sync_diff_highlights()
+
+    -- Update highlights when colorscheme changes
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      callback = sync_diff_highlights,
+      group = vim.api.nvim_create_augroup("CodeCompanionDiffHighlights", {}),
+    })
+
     require("codecompanion").setup({
       adapters = {
         gemini = function()
@@ -169,7 +194,9 @@ return {
                   ["deepseek/deepseek-r1:free"] = { opts = { can_reason = true } }, -- context: 164K
                   ["google/gemini-2.0-flash-exp:free"] = { opts = { can_reason = true } }, -- context: 1.05M
                   ["google/gemini-2.0-pro-exp-02-05:free"] = { opts = { can_reason = true } }, -- context: 2M
-                  ["google/gemini-2.0-flash-thinking-exp-1219:free"] = { opts = { can_reason = true } }, -- context: 40K
+                  ["google/gemini-2.0-flash-thinking-exp-1219:free"] = {
+                    opts = { can_reason = true },
+                  }, -- context: 40K
                   -- Notice: the following models are not for free! Use them with caution.
                   ["anthropic/claude-3.7-sonnet"] = { opts = { can_reason = true } }, -- context: 200K
                 },
@@ -275,7 +302,10 @@ return {
           },
         },
         diff = {
-          enabled = false,
+          enabled = true,
+          close_chat_at = 1,
+          provider = "mini_diff",
+          opts = { "internal", "filler", "closeoff", "algorithm:patience", "followwrap", "linematch:120" },
         },
       },
       opts = {
