@@ -174,8 +174,14 @@ Execute shell commands on the user's system.
     ---@param stdout table
     success = function(agent, cmd, stdout)
       to_chat("The stdout", agent, { cmd = cmd.cmd or cmd, output = stdout })
-      if agent.stderr and agent.stderr ~= "" then
-        to_chat("Also some stderr from", agent, { cmd = cmd.cmd or cmd, output = agent.stderr })
+      if agent.stderr then
+        local stderr = agent.stderr
+        if type(agent.stderr) == "table" then
+          stderr = vim.iter(agent.stderr):flatten():join("\n")
+        end
+        if stderr ~= "" then
+          to_chat("Also some stderr from", agent, { cmd = cmd.cmd or cmd, output = stderr })
+        end
       end
     end,
   },
