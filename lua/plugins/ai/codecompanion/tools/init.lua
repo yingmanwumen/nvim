@@ -60,7 +60,6 @@ return {
 - Execute only once and only one tool in one turn. Multiple execution is forbidden. But you can combine multiple commands into one (which is recommended), such as `cd xxx && make`.
 - Always saving tokens for user: fetch partial content instead of entire file and combine commands in single turns, combine multiple actions into one, etc.
 - In any situation, if user denies the tool execution(chooses not to run), then ask for guidance instead of attempting another action.
-- If you intend to call multiple tools and there are no dependencies between the calls, make all of the independent calls in the same XML codeblock.
 
 # Tool Schema Guidelines
 All tools share the same base XML structure:
@@ -122,8 +121,7 @@ Some tools support sequential execution to execute multiple action in one XML co
 </example>
 
 
-IMPORTANT: Always return an XML markdown code block.
-IMPORTANT: Each operation should follow the XML schema exactly. XML must be valid.
+IMPORTANT: Always return an XML markdown code block. Each operation should follow the XML schema exactly. XML must be valid.
 IMPORTANT: Only tools with explicit sequential execution support are allowed to call multiple actions in one XML codeblock.
 ]],
       "content1",
