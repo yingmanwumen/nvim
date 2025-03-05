@@ -22,6 +22,7 @@ return {
     behaviour = {
       support_paste_from_clipboard = true,
     },
+    hints = { enabled = false },
     mappings = {
       sidebar = {
         switch_windows = "<C-Tab>",
@@ -51,6 +52,9 @@ return {
         enabled = true,
       },
       width = 45,
+    },
+    custom_tools = {
+      -- TODO
     },
   },
 }
