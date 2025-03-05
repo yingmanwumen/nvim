@@ -326,10 +326,55 @@ IMPORTANT: Buffer number must be valid. Either fetch it from user or via other t
 ]])
   end,
   handlers = {
-    on_exit = function(self)
+    on_exit = function(agent)
       deltas = {}
       diff_started = false
     end,
   },
-  -- TODO: output
+  output = {
+    ---@param agent CodeCompanion.Agent
+    ---@param cmd table
+    rejected = function(agent, cmd)
+      return agent.chat:add_buf_message({
+        role = config.constants.USER_ROLE,
+        content = string.format("I rejected the action in `editor`.\n"),
+      })
+    end,
+
+    ---@param agent CodeCompanion.Agent
+    ---@param cmd table The command that was executed
+    ---@param stdout table
+    success = function(agent, cmd, stdout)
+      vim.notify("The editor tool executed successfully")
+      agent.chat:add_buf_message({
+        role = config.constants.USER_ROLE,
+        content = string.format("`editor` tool executed successfully"),
+      })
+    end,
+
+    ---@param agent CodeCompanion.Agent
+    ---@param cmd table
+    ---@param stderr table
+    ---@param stdout? table
+    error = function(agent, cmd, stderr, stdout)
+      if type(stderr) == "table" then
+        stderr = vim
+          .iter(stderr)
+          :map(function(v)
+            return v
+          end)
+          :join("\n")
+      end
+      return agent.chat:add_buf_message({
+        role = config.constants.USER_ROLE,
+        content = string.format(
+          [[There was an error running `editor`:
+```txt
+%s
+```]],
+          stderr
+        ),
+      })
+    end,
+  },
 }
