@@ -115,13 +115,15 @@ return {
   config = function()
     -- Set up function to sync mini.diff highlights with current colorscheme
     local function sync_diff_highlights()
-      local diffadd = vim.api.nvim_get_hl(0, { name = "DiffAdd" })
-      local diffdelete = vim.api.nvim_get_hl(0, { name = "DiffDelete" })
-      local diffchange = vim.api.nvim_get_hl(0, { name = "DiffChange" })
-
-      vim.api.nvim_set_hl(0, "MiniDiffOverAdd", { bg = diffadd.bg })
-      vim.api.nvim_set_hl(0, "MiniDiffOverDelete", { bg = diffdelete.bg })
-      vim.api.nvim_set_hl(0, "MiniDiffOverChange", { bg = diffchange.bg })
+      -- Link the MiniDiff's custom highlights to the default diff highlights
+      -- Set highlight color for added lines to match the default DiffAdd highlight
+      vim.api.nvim_set_hl(0, "MiniDiffOverAdd", { link = "DiffAdd" })
+      -- Set highlight color for deleted lines to match the default DiffDelete highlight
+      vim.api.nvim_set_hl(0, "MiniDiffOverDelete", { link = "DiffDelete" })
+      -- Set highlight color for changed lines to match the default DiffChange highlight
+      vim.api.nvim_set_hl(0, "MiniDiffOverChange", { link = "DiffChange" })
+      -- Set highlight color for context lines to match the default DiffText highlight
+      vim.api.nvim_set_hl(0, "MiniDiffOverContext", { link = "DiffText" })
     end
 
     -- Initial highlight setup
