@@ -57,10 +57,11 @@ IMPORTANT: In any situation, after an access or invocation request is sent, stop
 
 Available tools(short descriptions):
 - `files`: read or edit files.
-- `editor`: access editor's buffer(strongly not recommended in agent mode).
+- `editor`: access editor's buffer.
 - `cmd_runner`: run shell commands.
 - `nvim_runner`: run neovim commands or lua scripts.
 - `mcp`: MCP servers.
+- `tavily`: access internet information. (Note: Use this tool only when necessary. Use it wisely.)
 
 # Tool usage policy
 1. Fetch context with given tools instead of historic messages since historic messages may be outdated.
