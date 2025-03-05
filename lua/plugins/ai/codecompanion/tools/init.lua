@@ -1,9 +1,8 @@
 local tools_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codecompanion/tools/"
 
 -- TODO:
--- 1. migrate nvim_runner, tavily, jina
--- 2. beautify cmd_runner
--- 3. add feedback for editor
+-- - [ ] migrate nvim_runner, tavily, jina
+-- - [ ] add feedback for editor
 
 return {
   groups = {

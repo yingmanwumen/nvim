@@ -11,7 +11,6 @@ local config = require("codecompanion.config")
 ---@param tool CodeCompanion.Agent The tools object
 ---@param opts {cmd: table, output: table|string, message?: string}
 local function to_chat(msg, tool, opts)
-  -- TODO: beautify
   local cmd
   if opts and type(opts.cmd) == "table" then
     cmd = table.concat(opts.cmd, " ")
@@ -25,17 +24,19 @@ local function to_chat(msg, tool, opts)
   local content
   if opts.output == "" then
     content = string.format(
-      [[%s the command `%s`.
-
+      [[%s:
+```bash
+%s
+```
 ]],
       msg,
       cmd
     )
   else
     content = string.format(
-      [[%s the command `%s`:
-
-```txt
+      [[%s:
+```terminal
+$ %s
 %s
 ```
 
@@ -161,10 +162,10 @@ Execute shell commands on the user's system.
     ---@param stderr table
     ---@param stdout? table
     error = function(agent, cmd, stderr, stdout)
-      to_chat("There was an error from", agent, { cmd = cmd.cmd or cmd, output = stderr })
+      to_chat("The stderr", agent, { cmd = cmd.cmd or cmd, output = stderr })
 
       if stdout and not vim.tbl_isempty(stdout) then
-        to_chat("There was also some output from", agent, { cmd = cmd.cmd or cmd, output = stdout })
+        to_chat("Also some stdout from", agent, { cmd = cmd.cmd or cmd, output = stdout })
       end
     end,
 
@@ -172,7 +173,7 @@ Execute shell commands on the user's system.
     ---@param cmd table The command that was executed
     ---@param stdout table
     success = function(agent, cmd, stdout)
-      to_chat("The output from", agent, { cmd = cmd.cmd or cmd, output = stdout })
+      to_chat("The stdout", agent, { cmd = cmd.cmd or cmd, output = stdout })
     end,
   },
 }
