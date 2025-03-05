@@ -24,7 +24,7 @@ local function to_chat(msg, tool, opts)
   local content
   if opts.output == "" then
     content = string.format(
-      [[%s:
+      [[%s(no output):
 ```bash
 %s
 ```
@@ -174,6 +174,9 @@ Execute shell commands on the user's system.
     ---@param stdout table
     success = function(agent, cmd, stdout)
       to_chat("The stdout", agent, { cmd = cmd.cmd or cmd, output = stdout })
+      if agent.stderr and agent.stderr ~= "" then
+        to_chat("Also some stderr from", agent, { cmd = cmd.cmd or cmd, output = agent.stderr })
+      end
     end,
   },
 }
