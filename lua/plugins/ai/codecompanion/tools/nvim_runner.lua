@@ -8,6 +8,7 @@ local config = require("codecompanion.config")
 
 local xml2lua = require("codecompanion.utils.xml.xml2lua")
 
+-- TODO
 -- Helper function to determine high-risk operations
 ---@param action table
 ---@return boolean
@@ -48,23 +49,30 @@ local function is_high_risk(action)
   return false
 end
 
----@class NvimRunner.ChatOpts
----@field cmd table|string The command that was executed
----@field output table|string The output of the command
-
 ---Outputs a message to the chat buffer that initiated the tool
 ---@param msg string The message to output
----@param tool CodeCompanion.Tools The tools object
----@param opts NvimRunner.ChatOpts
+---@param tool CodeCompanion.Agent The tools object
+---@param opts {cmd: table|string, output: table|string, message?: string}
 local function to_chat(msg, tool, opts)
-  if type(opts.output) == "table" then
+  local cmd
+  if opts and type(opts.cmd) == "table" then
     ---@diagnostic disable-next-line: param-type-mismatch
-    opts.output = table.concat(opts.output, "\n")
+    cmd = table.concat(opts.cmd, " ")
+  else
+    cmd = opts.cmd
+  end
+  if opts and type(opts.output) == "table" then
+    opts.output = vim
+      .iter(opts.output)
+      :map(function(v)
+        return v.msg
+      end)
+      :join("\n")
   end
 
   local content
   if opts.output == "" then
-    content = string.format("%s(with no output):\n%s\n", msg, opts.cmd)
+    content = string.format("%s(with no output):\n%s\n\n", msg, cmd)
   else
     content = string.format(
       [[%s:
@@ -73,9 +81,10 @@ Output:
 ```plaintext
 %s
 ```
+
 ]],
       msg,
-      opts.cmd,
+      cmd,
       opts.output
     )
   end
@@ -109,6 +118,7 @@ local function execute_lua_code(action)
   local output = {}
 
   -- Redirect print output
+  ---@diagnostic disable-next-line: duplicate-set-field
   _G.print = function(...)
     local args = { ... }
     local str = table.concat(args, "\t")
@@ -287,20 +297,20 @@ IMPORTANT: You should never assume you're in the target buffer. If you need to f
     --       vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
     --     )
   end,
-  handlers = {
-    ---@param action table
-    ---@return boolean
-    approved = function(_, action)
-      if vim.g.codecompanion_auto_tool_mode then
-        return true
+  handlers = {},
+
+  output = {
+    ---@param agent CodeCompanion.Agent
+    ---@param self CodeCompanion.Agent.Tool
+    prompt = function(agent, self)
+      local action_list = self.request.action
+      if action_list._attr ~= nil then
+        action_list = { action_list }
       end
-
-      local action_type = action._attr.type
-
       -- Create prompts for different operation types
       local prompts = {
         vim_cmd = function(a)
-          return string.format("Execute Vim command: `%s`?", a.command)
+          return string.format("vim: `%s`", a.command)
         end,
 
         lua_exec = function(a)
@@ -309,32 +319,25 @@ IMPORTANT: You should never assume you're in the target buffer. If you need to f
           if #code > 60 then
             code = code:sub(1, 57) .. "..."
           end
-          return string.format("Execute Lua code: `%s`?", code)
+          return string.format("lua: `%s`", code)
         end,
       }
 
-      local prompt_fn = prompts[action_type]
-        or function(_)
-          return string.format("Execute %s operation?", string.upper(action_type))
+      local res = "Approve the following execution?:\n\n"
+      for _, action in ipairs(action_list) do
+        local prompt_fn = prompts[action._attr.type]
+          or function(_)
+            return string.format("Execute %s operation?", string.upper(action._attr.type))
+          end
+        local prompt = prompt_fn(action)
+        -- Add warning for high-risk operations
+        if is_high_risk(action) then
+          prompt = "⚠️ HIGH RISK OPERATION! " .. prompt
         end
-
-      local prompt = prompt_fn(action)
-
-      -- Add warning for high-risk operations
-      if is_high_risk(action) then
-        prompt = "⚠️ HIGH RISK OPERATION! " .. prompt
+        res = res .. prompt .. "\n"
       end
-
-      local ok, choice = pcall(vim.fn.confirm, prompt, "No\nYes")
-      if not ok or choice ~= 2 then
-        return false
-      end
-
-      return true
+      return res
     end,
-  },
-
-  output = {
     ---Rejection message back to the LLM
     rejected = function(self, action)
       local action_type = action._attr.type
@@ -342,9 +345,9 @@ IMPORTANT: You should never assume you're in the target buffer. If you need to f
       if action_type == "lua_exec" then
         action.code = string.gsub(action.code, "^%s*(.-)%s*$", "%1")
         display_cmd =
-          string.format("\n~~~~~lua\n%s\n~~~~~\n", action.code:sub(1, 120) .. (#action.code > 120 and "\n-- ..." or ""))
+          string.format("~~~~~lua\n%s\n~~~~~", action.code:sub(1, 120) .. (#action.code > 120 and "\n-- ..." or ""))
       elseif action_type == "vim_cmd" then
-        display_cmd = string.format("\n```vim\n%s\n```\n", string.gsub(action.command, "^%s*(.-)%s*$", "%1"))
+        display_cmd = string.format("```vim\n%s\n```", string.gsub(action.command, "^%s*(.-)%s*$", "%1"))
       end
 
       to_chat("I chose not to execute", self, {
@@ -353,41 +356,41 @@ IMPORTANT: You should never assume you're in the target buffer. If you need to f
       })
     end,
 
-    ---@param self CodeCompanion.Tools The tools object
+    ---@param agent CodeCompanion.Agent The tools object
     ---@param action table The action object
     ---@param err string Error message
-    error = function(self, action, err)
+    error = function(agent, action, err)
       local action_type = action._attr.type
       local display_cmd = ""
       if action_type == "lua_exec" then
         action.code = string.gsub(action.code, "^%s*(.-)%s*$", "%1")
         display_cmd =
-          string.format("\n~~~~~lua\n%s\n~~~~~\n", action.code:sub(1, 120) .. (#action.code > 120 and "\n-- ..." or ""))
+          string.format("~~~~~lua\n%s\n~~~~~", action.code:sub(1, 120) .. (#action.code > 120 and "\n-- ..." or ""))
       elseif action_type == "vim_cmd" then
-        display_cmd = string.format("\n```vim\n%s\n```\n", string.gsub(action.command, "^%s*(.-)%s*$", "%1"))
+        display_cmd = string.format("```vim\n%s\n```", string.gsub(action.command, "^%s*(.-)%s*$", "%1"))
       end
 
-      to_chat("Error executing", self, {
+      to_chat("Error executing", agent, {
         cmd = display_cmd,
         output = err,
       })
     end,
 
-    ---@param self CodeCompanion.Tools The tools object
+    ---@param agent CodeCompanion.Agent The tools object
     ---@param action table The action object
     ---@param output table The output with result
-    success = function(self, action, output)
+    success = function(agent, action, output)
       local action_type = action._attr.type
       local display_cmd = ""
       if action_type == "lua_exec" then
         action.code = string.gsub(action.code, "^%s*(.-)%s*$", "%1")
         display_cmd =
-          string.format("\n~~~~~lua\n%s\n~~~~~\n", action.code:sub(1, 120) .. (#action.code > 120 and "\n-- ..." or ""))
+          string.format("~~~~~lua\n%s\n~~~~~", action.code:sub(1, 120) .. (#action.code > 120 and "\n-- ..." or ""))
       elseif action_type == "vim_cmd" then
-        display_cmd = string.format("\n```vim\n%s\n```\n", string.gsub(action.command, "^%s*(.-)%s*$", "%1"))
+        display_cmd = string.format("```vim\n%s\n```", string.gsub(action.command, "^%s*(.-)%s*$", "%1"))
       end
 
-      to_chat("Result of executing", self, {
+      to_chat("Result of executing", agent, {
         cmd = display_cmd,
         output = output,
       })

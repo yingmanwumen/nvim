@@ -1,7 +1,7 @@
 local tools_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codecompanion/tools/"
 
 -- TODO:
--- - [ ] migrate nvim_runner, tavily, jina
+-- - [ ] migrate tavily, jina
 -- - [ ] add feedback for editor
 
 return {
@@ -29,6 +29,14 @@ return {
   ["cmd_runner"] = {
     callback = tools_prefix .. "cmd_runner.lua",
     description = "Command Runner Tool",
+    opts = {
+      requires_approval = true,
+      hide_output = false,
+    },
+  },
+  ["nvim_runner"] = {
+    callback = tools_prefix .. "nvim_runner.lua",
+    description = "Neovim Runner Tool",
     opts = {
       requires_approval = true,
       hide_output = false,
