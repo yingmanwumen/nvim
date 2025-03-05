@@ -94,8 +94,6 @@ return {
       [[# Command Runner Tool (`cmd_runner`) – Usage Guidelines
 Execute shell commands on the user's system.
 
-Hint: Sometimes there're `stderr` output although the command is executed successfully.
-
 ## Description
 - tool name: `cmd_runner`
 - action type: none
@@ -164,7 +162,7 @@ Hint: Sometimes there're `stderr` output although the command is executed succes
     ---@param stderr table
     ---@param stdout? table
     error = function(agent, cmd, stderr, stdout)
-      to_chat("The stderr", agent, { cmd = cmd.cmd or cmd, output = stderr })
+      to_chat("Execution failed. The stderr", agent, { cmd = cmd.cmd or cmd, output = stderr })
 
       if stdout and not vim.tbl_isempty(stdout) then
         to_chat("Also some stdout from", agent, { cmd = cmd.cmd or cmd, output = stdout })
@@ -175,7 +173,7 @@ Hint: Sometimes there're `stderr` output although the command is executed succes
     ---@param cmd table The command that was executed
     ---@param stdout table
     success = function(agent, cmd, stdout)
-      to_chat("The stdout", agent, { cmd = cmd.cmd or cmd, output = stdout })
+      to_chat("Execution succeeded. The stdout", agent, { cmd = cmd.cmd or cmd, output = stdout })
       if agent.stderr then
         local stderr = agent.stderr
         if type(agent.stderr) == "table" then

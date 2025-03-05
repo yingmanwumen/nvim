@@ -149,14 +149,14 @@ Usage: Return an XML markdown code block to search the Internet or extract conte
     ---@param stderr table
     ---@param stdout? table
     error = function(agent, cmd, stderr, stdout)
-      to_chat("stderr from Search tool", agent, { output = stderr })
+      to_chat("Execution failed. stderr from Search tool", agent, { output = stderr })
       if stdout and not vim.tbl_isempty(stdout) then
         to_chat("Also some content from Search tool retrieved", agent, { cmd = cmd.cmd or cmd, output = stdout })
       end
     end,
 
     success = function(agent, _, stdout)
-      to_chat("Here is the content from Search tool retrieved", agent, { output = stdout })
+      to_chat("Execution succeeded. Here is the content from Search tool retrieved", agent, { output = stdout })
     end,
 
     rejected = function(self, _)

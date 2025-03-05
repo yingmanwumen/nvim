@@ -366,7 +366,7 @@ IMPORTANT: You should never assume you're in the target buffer. If you need to f
         display_cmd = string.format("```vim\n%s\n```", string.gsub(action.command, "^%s*(.-)%s*$", "%1"))
       end
 
-      to_chat("Error executing", agent, {
+      to_chat("Execution failed. Error executing", agent, {
         cmd = display_cmd,
         output = err,
       })
@@ -386,7 +386,7 @@ IMPORTANT: You should never assume you're in the target buffer. If you need to f
         display_cmd = string.format("```vim\n%s\n```", string.gsub(action.command, "^%s*(.-)%s*$", "%1"))
       end
 
-      to_chat("Result of executing", agent, {
+      to_chat("Execution succeeded. Result of executing", agent, {
         cmd = display_cmd,
         output = output,
       })
