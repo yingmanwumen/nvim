@@ -82,7 +82,7 @@ local function edit(action)
     return util.notify(fmt("No data found in %s", action.path))
   end
 
-  local changed, substitutions_count = content:gsub(vim.pesc(action.search), action.replace:gsub("%%", "%%%%"))
+  local changed, substitutions_count = content:gsub(vim.pesc(action.search), vim.pesc(action.replace))
   if substitutions_count == 0 then
     return util.notify(fmt("Could not find the search string in %s", action.path))
   end
