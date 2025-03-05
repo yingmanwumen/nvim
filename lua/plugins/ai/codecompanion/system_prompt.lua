@@ -52,6 +52,7 @@ IMPORTANT: Before you begin work, think about what the code you're editing is su
 
 # Tool conventions
 Until you're told how to invoke specific tool EXPLICITLY, you don't have access to it. If you need a tool but you don't have access, request for access with following format: `I need access to use **@<tool name>** to <action>, for <purpose>`. Once you got access(means you got usage explicitly), you don't have to ask for it again.
+You don't know how to invoke tools until you've granted access to them.
 
 IMPORTANT: In any situation, after an access or invocation request is sent, stop immediately and wait for approval or feedback.
 
