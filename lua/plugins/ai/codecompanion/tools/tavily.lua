@@ -109,7 +109,7 @@ return {
   },
   system_prompt = function(schema)
     return string.format([[# Tavily Tool(`tavily`) -- Usage Guidelines
-Gain the ability to access the Internet.
+Gain the ability to access the Internet. Only use it when you are absolutely sure you need it.
 
 Source Citation: When referencing information from the Internet, add footnote citations with source URLs at the bottom of your response.
 
