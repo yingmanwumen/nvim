@@ -1,0 +1,36 @@
+{
+  "mcpServers": {
+    "sequential-thinking": {
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "command": "npx"
+    },
+    "github": {
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "disabled_tools": [
+        "add_issue_comment",
+        "create_branch",
+        "create_issue",
+        "create_or_update_file",
+        "create_pull_request",
+        "create_repository",
+        "fork_repository",
+        "update_issue",
+        "push_files"
+      ],
+      "command": "npx"
+    },
+    "filesystem": {
+      "disabled": true,
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/"],
+      "command": "npx"
+    },
+    "fetch": { "command": "uvx", "args": ["mcp-server-fetch"] },
+    "memory": {
+      "disabled": true,
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "command": "npx",
+      "env": { "MEMORY_FILE_PATH": "~/.config/codecompanion/memory.json" }
+    }
+  }
+}
+

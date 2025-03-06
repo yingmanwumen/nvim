@@ -44,3 +44,5 @@ luac.out
 lazy-lock.json
 
 test.lua
+
+config/mcpservers.json
