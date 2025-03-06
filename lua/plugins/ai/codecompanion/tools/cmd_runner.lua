@@ -94,6 +94,11 @@ return {
       [[# Command Runner Tool (`cmd_runner`) – Usage Guidelines
 Execute shell commands on the user's system.
 
+Hint: Some commandline tools that might boost your productivity are
+- `rg` (ripgrep): for fast and gitignore-aware content searching
+- `fd`: for fast and gitignore-aware file searching
+- `sg` (ast-grep): for searching code using syntax trees
+
 ## Description
 - tool name: `cmd_runner`
 - action type: none

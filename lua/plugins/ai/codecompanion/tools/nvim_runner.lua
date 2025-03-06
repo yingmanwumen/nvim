@@ -62,12 +62,7 @@ local function to_chat(msg, tool, opts)
     cmd = opts.cmd
   end
   if opts and type(opts.output) == "table" then
-    opts.output = vim
-      .iter(opts.output)
-      :map(function(v)
-        return v.msg
-      end)
-      :join("\n")
+    opts.output = vim.iter(opts.output):flatten():join("\n")
   end
 
   local content
@@ -179,10 +174,10 @@ return {
 
       local ok, result = pcall(actions[action_type], action)
       if not ok then
-        return { status = "error", msg = result }
+        return { status = "error", msg = result, data = result }
       end
 
-      return { status = "success", msg = result }
+      return { status = "success", msg = result, data = result }
     end,
   },
   schema = {
@@ -228,6 +223,8 @@ Execute Neovim commands and Lua code directly within your Neovim instance.
 **How it is works**: You ask user to execute this tool via xml, so you have to wait for the result from user's feedback.
 
 If several operations need to run sequentially, combine them in one XML block.
+
+Hint: Since neovim's lsp api is available to you by accessing lua code, you can leverage it to boost your productivity.
 
 ## Description
 - tool name: `nvim_runner`

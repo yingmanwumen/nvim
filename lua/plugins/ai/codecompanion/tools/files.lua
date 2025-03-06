@@ -163,7 +163,7 @@ return {
     function(self, action, input)
       local ok, data = pcall(actions[action._attr.type], action)
       if not ok then
-        return { status = "error", msg = data }
+        return { status = "error", msg = data, data = data }
       end
       return { status = "success", msg = nil }
     end,
