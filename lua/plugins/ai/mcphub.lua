@@ -8,10 +8,17 @@ return {
     "MCPHub",
   },
   config = function()
+    local config_dir = "~/.config/nvim/config/"
+    local base_conf = vim.fn.expand(config_dir .. "base-mcpservers.json")
+    local conf = vim.fn.expand(config_dir .. "mcpservers.json")
+    -- if conf is not present, copy base_conf to conf
+    if vim.fn.filereadable(conf) == 0 then
+      vim.fn.writefile(vim.fn.readfile(base_conf), conf)
+    end
     require("mcphub").setup({
       -- Required options
       port = 3812, -- Port for MCP Hub server
-      config = vim.fn.expand("~/.config/nvim/config/mcpservers.json"), -- Absolute path to config file
+      config = conf, -- Absolute path to config file
 
       -- Optional options
       on_ready = function(hub)
