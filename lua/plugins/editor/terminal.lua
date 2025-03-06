@@ -3,8 +3,8 @@ return {
   cmd = "ToggleTerm",
   keys = {
     { "<C-`>", "<Cmd>ToggleTerm<CR>", mode = { "n", "i", "t" } },
-    { "<M-=>", "<Cmd>ToggleTerm<CR>", mode = { "n", "i" } },
-    { "<M-->", "<Cmd>ToggleTerm<CR>", mode = { "t" } },
+    { "<M-=>", "<Cmd>ToggleTerm direction=float<CR>", mode = { "n", "i" } },
+    { "<M-->", "<Cmd>ToggleTerm direction=float<CR>", mode = { "t" } },
   },
   config = function()
     require("toggleterm").setup({
