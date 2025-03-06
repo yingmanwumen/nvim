@@ -58,3 +58,40 @@ return {
     },
   },
 }
+-- Tool functions available:
+
+-- File Pattern Matching
+-- glob: Match files using glob patterns like "**/*.js"
+
+-- Python Code Execution
+-- python: Run python code (cannot read/modify files)
+
+-- Git Operations
+-- git_diff: Get git diff for commit message
+-- git_commit: Commit changes with message
+
+-- File System Operations
+-- list_files: List files in directory
+-- search_files: Search for files
+-- search_keyword: Search for keyword in files
+-- read_file_toplevel_symbols: Read top-level symbols
+-- read_file: Read file contents
+
+-- File/Directory Management
+-- create_file: Create new file
+-- rename_file: Rename file
+-- delete_file: Delete file
+-- create_dir: Create directory
+-- rename_dir: Rename directory
+-- delete_dir: Delete directory
+
+-- Shell Commands
+-- bash: Run bash command (no search/read operations)
+
+-- Web Operations
+-- web_search: Search the web
+-- fetch: Get markdown from URL
+
+-- Context Management
+-- add_file_to_context: Add file to context
+-- remove_file_from_context: Remove file from context

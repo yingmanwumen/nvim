@@ -1,5 +1,7 @@
 local tools_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codecompanion/tools/"
 
+-- TODO: read toplevel symbols of file
+
 return {
   groups = {
     ["full_stack_dev"] = {
