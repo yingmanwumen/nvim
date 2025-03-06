@@ -8,9 +8,9 @@ local config = require("codecompanion.config")
 
 ---Outputs a message to the chat buffer that initiated the tool
 ---@param msg string The message to output
----@param tool CodeCompanion.Agent The tools object
+---@param agent CodeCompanion.Agent The agent object
 ---@param opts {cmd: table, output: table|string, message?: string}
-local function to_chat(msg, tool, opts)
+local function to_chat(msg, agent, opts)
   local cmd
   if opts and type(opts.cmd) == "table" then
     cmd = table.concat(opts.cmd, " ")
@@ -47,7 +47,7 @@ $ %s
     )
   end
 
-  return tool.chat:add_buf_message({
+  return agent.chat:add_buf_message({
     role = config.constants.USER_ROLE,
     content = content,
   })
@@ -116,7 +116,7 @@ Execute shell commands on the user's system.
     )
   end,
   handlers = {
-    ---@param agent CodeCompanion.Agent The tool object
+    ---@param agent CodeCompanion.Agent The agent object
     setup = function(agent)
       local tool = agent.tool --[[@type CodeCompanion.Agent.Tool]]
       local action = tool.request.action

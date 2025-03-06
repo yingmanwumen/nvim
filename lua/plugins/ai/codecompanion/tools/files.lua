@@ -313,7 +313,7 @@ Read/Edit files.
     ]])
   end,
   handlers = {
-    ---@param agent CodeCompanion.Agent The tool object
+    ---@param agent CodeCompanion.Agent The agent object
     ---@return nil
     on_exit = function(agent)
       file = nil
@@ -353,7 +353,7 @@ Read/Edit files.
       return table.concat(prompts, "\n")
     end,
 
-    ---@param agent CodeCompanion.Agent The tool object
+    ---@param agent CodeCompanion.Agent The agent object
     ---@param action table
     ---@param output table
     ---@return nil
@@ -380,7 +380,7 @@ Read/Edit files.
       end
     end,
 
-    ---@param agent CodeCompanion.Agent The tool object
+    ---@param agent CodeCompanion.Agent The agent object
     ---@param action table
     ---@param err string
     ---@return nil
@@ -400,7 +400,7 @@ Read/Edit files.
     end,
 
     ---The action to take if the user rejects the command
-    ---@param agent CodeCompanion.Agent The tool object
+    ---@param agent CodeCompanion.Agent The agent object
     ---@return nil
     rejected = function(agent)
       return agent.chat:add_buf_message({
