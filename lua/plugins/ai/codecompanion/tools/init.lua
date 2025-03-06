@@ -73,7 +73,7 @@ return {
 - Before invoking tools, describe your purpose with: `I'm using **@<tool name>** to <action>", for <purpose>.`
 
 IMPORTANT: You should stop immediately as soon as generating XML codeblocks to execute tools.
-IMPORTANT: In any situation, if user denies the tool execution(chooses not to run), you should ask for guidance instead of attempting another action.
+IMPORTANT: In any situation, if user denies the tool execution(chooses not to run), you should ask for guidance instead of attempting another action. Do not try to execute over and over again.
 
 # Tool Schema Guidelines
 All tools share the same base XML structure:
