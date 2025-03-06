@@ -90,8 +90,7 @@ return {
     },
   },
   system_prompt = function(schema)
-    return string.format(
-      [[# Command Runner Tool (`cmd_runner`) – Usage Guidelines
+    return string.format([[# Command Runner Tool (`cmd_runner`) – Usage Guidelines
 Execute shell commands on the user's system.
 
 ## Description
@@ -104,16 +103,8 @@ Execute shell commands on the user's system.
 
 ## Key Considerations
 - **Safety First:** Ensure every command is safe and validated.
-- **User Environment Awareness:**
-  - **Neovim Version**: %s
-- **User Oversight:** The user retains full control with an approval mechanism before execution.
-- **Extensibility:** If environment details aren't available (e.g., language version details), output the command first along with a request for more information.
-
-## Reminder
-- Minimize explanations and focus on returning precise XML blocks with CDATA-wrapped commands.
-- Each command runs in its own subprocess/subshell, meaning directory changes (`cd`) and environment variable changes will not persist between commands]],
-      vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
-    )
+- Each command runs in its own subprocess/subshell, meaning directory changes (`cd`) and environment variable changes will not persist between commands
+]])
   end,
   handlers = {
     ---@param agent CodeCompanion.Agent The agent object

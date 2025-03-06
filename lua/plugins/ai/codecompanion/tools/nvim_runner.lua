@@ -220,11 +220,10 @@ return {
       [[# Neovim Runner Tool (`nvim_runner`) – Usage Guidelines
 Execute Neovim commands and Lua code directly within your Neovim instance.
 
-**How it is works**: You ask user to execute this tool via xml, so you have to wait for the result from user's feedback.
-
-If several operations need to run sequentially, combine them in one XML block.
+**Neovim Version**: %s
 
 Hint: Since neovim's lsp api is available to you by accessing lua code, you can leverage it to boost your productivity.
+IMPORTANT: You should never assume you're in the target buffer. If you need to fetch buffer number, don't use `vim.api.nvim_get_current_buf()`.
 
 ## Description
 - tool name: `nvim_runner`
@@ -237,17 +236,6 @@ Hint: Since neovim's lsp api is available to you by accessing lua code, you can 
   - element `code`
     - Lua code to execute.
     - CDATA: yes
-
-## Key Considerations
-- **Neovim Version**: %s
-- **User Oversight:** The user retains full control with an approval mechanism before execution.
-
-IMPORTANT: You should never assume you're in the target buffer. If you need to fetch buffer number, don't use `vim.api.nvim_get_current_buf()`.
-
-## Reminder
-- Be precise in your commands
-- Chain multiple operations together
-- Avoid unnecessarily complex operations
     ]],
       vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
     )

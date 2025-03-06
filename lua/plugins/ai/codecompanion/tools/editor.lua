@@ -280,9 +280,9 @@ When to Use: Use this tool solely for buffer edit operations. Other file tasks s
 - sequential execution: yes
 - action type: `add`
   - element `buffer`
-    - the buffer number that the user has shared with you. If this is not given, ask for it.
+    - the buffer number that the user has shared with you. If this is not given, try to fetch it by yourself first. If failed, ask for it.
   - element `line`
-    - the line number where the code should be added.
+    - the line number where the code should be added. All line number is 1-indexed.
   - element `code`
     - the code to be added.
     - CDATA: yes
@@ -307,7 +307,6 @@ When to Use: Use this tool solely for buffer edit operations. Other file tasks s
 - **Line Numbers:** Note that line numbers are 1-indexed, so the first line is line 1, not line 0.
 - **Update Rule:** The update action first deletes the range defined in <start_line> to <end_line> (inclusive) and then adds the new code starting from <start_line>.
 - **Contextual Assumptions:** If no context is provided, always fetch the latest buffer content before making any changes.
-- Minimize extra explanations and focus on returning correct XML blocks with properly wrapped CDATA sections.
 
 IMPORTANT: Buffer number must be valid. Either fetch it from user or via other tools.
 ]])

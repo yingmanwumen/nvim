@@ -109,13 +109,9 @@ return {
   },
   system_prompt = function(schema)
     return string.format([[# Tavily Tool(`tavily`) -- Usage Guidelines
-Gain the ability to access the Internet. Only use it when you are absolutely sure you need it.
+Gain the ability to access the Internet. Use it when you need access to latest information.
 
 Source Citation: When referencing information from the Internet, add footnote citations with source URLs at the bottom of your response.
-
-**How it is works**: You ask user to execute this tool via xml, so you have to wait for the result from user's feedback.
-
-Usage: Return an XML markdown code block to search the Internet or extract content from a specific URL. Use it when you need access to latest information. Use it wisely.
 
 ## Description
 - tool name: `tavily`

@@ -272,10 +272,9 @@ Read/Edit files.
 **Key Points**:
 - **Include indentation** in the file's content
 - **Don't escape** special characters
-- Make sure the tools xml block is **surrounded by ```xml**
 - Do not hallucinate. If you can't read a file's contents, say so
 - If the user types `~` in their response, do not replace or expand it.
-- Wait for the user to share the outputs with you before responding.
+- **Contextual Assumptions:** If no context is provided, always fetch the latest buffer content before making any changes.
 
 ## Description
 - tool name: `files`
