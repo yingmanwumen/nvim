@@ -1,10 +1,12 @@
 {
   "mcpServers": {
     "sequential-thinking": {
+      "disabled": true,
       "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
       "command": "npx"
     },
     "github": {
+      "disabled": true,
       "args": ["-y", "@modelcontextprotocol/server-github"],
       "disabled_tools": [
         "add_issue_comment",
@@ -17,7 +19,10 @@
         "update_issue",
         "push_files"
       ],
-      "command": "npx"
+      "command": "npx",
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "<PERSONAL_ACCESS_TOKEN>"
+      }
     },
     "filesystem": {
       "disabled": true,
@@ -30,6 +35,21 @@
       "args": ["-y", "@modelcontextprotocol/server-memory"],
       "command": "npx",
       "env": { "MEMORY_FILE_PATH": "~/.config/codecompanion/memory.json" }
+    },
+    "tavily": {
+      "command": "uvx",
+      "args": ["mcp-tavily"],
+      "env": { "TAVILY_API_KEY": "<API_KEY>" }
+    },
+    "mcp-scholarly": {
+      "disabled": true,
+      "command": "uvx",
+      "args": ["mcp-scholarly"]
+    },
+    "playwright": {
+      "disabled": true,
+      "command": "npx",
+      "args": ["-y", "@executeautomation/playwright-mcp-server"]
     }
   }
 }

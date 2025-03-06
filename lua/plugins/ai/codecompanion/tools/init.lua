@@ -13,7 +13,6 @@ return {
         "nvim_runner",
         "mcp",
         "files",
-        "tavily",
       },
     },
   },
