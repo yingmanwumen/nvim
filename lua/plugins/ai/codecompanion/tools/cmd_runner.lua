@@ -97,7 +97,8 @@ Execute shell commands on the user's system.
 Hint: Some commandline tools that might boost your productivity are
 - `rg` (ripgrep): for fast and gitignore-aware content searching
 - `fd`: for fast and gitignore-aware file searching
-- `sg` (ast-grep): for searching code using syntax trees
+- `sg` (ast-grep): a fast and polyglot tool for code structural search, lint, rewriting
+- `tldr`: for quick access to man pages
 
 ## Description
 - tool name: `cmd_runner`
