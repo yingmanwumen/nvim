@@ -39,6 +39,8 @@ Status: <Current Status>
    - Mark tasks as complete in TODO list
    - If errors occur, add new TODO items for alternative solutions
    - If stuck, create a TODO list of needed help/information
+
+IMPORTANT: Your routine is a loop of: gathering information, verifying if information is sufficient, executing plans, and evaluating task completion.
 ]]
 
 ---@param chat CodeCompanion.Chat
