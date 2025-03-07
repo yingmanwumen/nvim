@@ -104,6 +104,8 @@ Execute shell commands on the user's system.
 ## Key Considerations
 - **Safety First:** Ensure every command is safe and validated.
 - Each command runs in its own subprocess/subshell, meaning directory changes (`cd`) and environment variable changes will not persist between commands
+
+HINT: Prefer `rg` and `fd` instead of `grep` and `find` for they can ignore hidden files and directories. Always attach paths after `rg` and `fd` commands, like `rg xxx .` and `fd -p .`.
 ]])
   end,
   handlers = {
