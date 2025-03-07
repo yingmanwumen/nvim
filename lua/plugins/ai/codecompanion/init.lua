@@ -148,6 +148,9 @@ return {
                 },
                 default = "gemini-2.0-flash-thinking-exp",
               },
+              temperature = {
+                default = 0.5,
+              },
             },
           })
         end,
