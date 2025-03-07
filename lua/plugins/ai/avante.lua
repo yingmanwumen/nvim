@@ -1,3 +1,4 @@
+-- TODO: custom prompt
 return {
   "yetone/avante.nvim",
   event = "VeryLazy",
@@ -54,7 +55,9 @@ return {
       width = 45,
     },
     custom_tools = {
-      -- TODO
+      -- TODO:
+      -- 1. direct file editor
+      -- 2. nvim runner
     },
   },
 }

@@ -9,7 +9,6 @@ return {
       system_prompt = [[]],
       tools = {
         "cmd_runner",
-        "editor",
         "nvim_runner",
         "mcp",
         "files",
