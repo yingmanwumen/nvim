@@ -6,8 +6,6 @@ All operations must be approved by you before execution.
 
 local config = require("codecompanion.config")
 
-local xml2lua = require("codecompanion.utils.xml.xml2lua")
-
 -- TODO
 -- Helper function to determine high-risk operations
 ---@param action table
