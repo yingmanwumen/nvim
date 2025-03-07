@@ -275,7 +275,7 @@ Read/Edit files.
 - Do not hallucinate. If you can't read a file's contents, say so
 - If the user types `~` in their response, do not replace or expand it.
 
-IMPORTANT: If no context is provided, always fetch the latest buffer content before making any changes. This is important especially when doing search/replace operations, for the content might be changed/formatted. Operations like running `cargo fmt` or something else might also change the content of the file.
+IMPORTANT: If no context is provided, you should always fetch the latest buffer content before making any changes. This is important especially when doing search/replace operations, for the content might be changed/formatted. Operations like running `cargo fmt` or something else might also change the content of the file.
 
 ## Description
 - tool name: `files`

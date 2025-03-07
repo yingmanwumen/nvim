@@ -111,7 +111,7 @@ return {
     return string.format([[# Tavily Tool(`tavily`) -- Usage Guidelines
 Gain the ability to access the Internet. Use it when you need access to latest information.
 
-Source Citation: When referencing information from the Internet, add footnote citations with source URLs at the bottom of your response.
+Source Citation: When referencing information from the Internet, you should add footnote citations with source URLs at the bottom of your response.
 
 ## Description
 - tool name: `tavily`
@@ -126,8 +126,8 @@ Source Citation: When referencing information from the Internet, add footnote ci
     - CDATA: yes
 
 ## Search Policy
-1. Before searching (not navigating), analyse your/user's requirements first, and then generate effective queries
-2. Conduct follow-up searches and navigate through results as needed to gather complete information, and then generate the final result
+1. Before searching (not navigating), you should analyse your/user's requirements first, and then generate effective queries
+2. You should conduct follow-up searches and navigate through results as needed to gather complete information, and then generate the final result
     ]])
   end,
   handlers = {},
