@@ -66,12 +66,11 @@ return {
   opts = {
     system_prompt = string.format(
       [[# Tool General Guidelines
-- To execute tools, you need to generate XML codeblocks like "```xml". Remember the "backticks-rule" mentioned: the XML codeblock should be the most outer codeblock.
-- Execute only once and only one tool in one turn. Multiple execution is forbidden. But you can combine multiple commands into one (which is recommended), such as `cd xxx && make`, or you can run actions sequentially, which is described below.
+- To execute tools, you need to generate XML codeblocks like "```xml". Remember the "backticks-rule" mentioned: the XML codeblock should be the most outer codeblock. You should only generate exactly one xml codeblock in one turn. And stop immediately aftering xml codeblock is generated.
 - Before invoking tools, describe your purpose with: `I'm using **@<tool name>** to <action>", for <purpose>.`
 - **User Oversight:** The user retains full control with an approval mechanism before execution.
 
-IMPORTANT: You should stop immediately as soon as generating XML codeblocks to execute tools.
+IMPORTANT: Execute only once and only one tool in one turn. Multiple execution is forbidden. But you can combine multiple commands into one (which is recommended), such as `cd xxx && make`, or you can run actions sequentially, which is described below.
 IMPORTANT: Wait for the user to share the outputs with you before responding.
 IMPORTANT: In any situation, if user denies to execute a tool (that means they choose not to run the tool), you should ask for guidance instead of attempting another action. Do not try to execute over and over again.
 
