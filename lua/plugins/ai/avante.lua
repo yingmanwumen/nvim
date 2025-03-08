@@ -17,50 +17,53 @@ return {
     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
     "zbirenbaum/copilot.lua", -- for providers='copilot'
     "MeanderingProgrammer/render-markdown.nvim",
+    "ravitemer/mcphub.nvim",
   },
-  opts = {
-    provider = "copilot",
-    behaviour = {
-      support_paste_from_clipboard = true,
-    },
-    hints = { enabled = false },
-    mappings = {
-      sidebar = {
-        switch_windows = "<C-Tab>",
-        reverse_switch_windows = "<C-S-Tab>",
+  config = function()
+    require("avante").setup({
+
+      provider = "copilot",
+      behaviour = {
+        support_paste_from_clipboard = true,
       },
-    },
-    vendors = {
-      deepseek = {
-        __inherited_from = "openai",
-        endpoint = "https://api.deepseek.com/v1",
-        -- model = "deepseek-chat",
-        model = "deepseek-reasoner",
+      hints = { enabled = false },
+      mappings = {
+        sidebar = {
+          switch_windows = "<C-Tab>",
+          reverse_switch_windows = "<C-S-Tab>",
+        },
+      },
+      vendors = {
+        deepseek = {
+          __inherited_from = "openai",
+          endpoint = "https://api.deepseek.com/v1",
+          -- model = "deepseek-chat",
+          model = "deepseek-reasoner",
+          temperature = 0.3,
+          -- optional
+          api_key_name = "DEEPSEEK_API_KEY",
+        },
+      },
+      copilot = {
+        model = "claude-3.5-sonnet",
         temperature = 0.3,
-        -- optional
-        api_key_name = "DEEPSEEK_API_KEY",
       },
-    },
-    copilot = {
-      model = "claude-3.5-sonnet",
-      temperature = 0.3,
-    },
-    gemini = {
-      temperature = 0.3,
-    },
-    windows = {
-      sidebar_header = {
-        enabled = true,
+      gemini = {
+        temperature = 0.3,
       },
-      width = 45,
-    },
-    custom_tools = {
-      -- TODO:
-      -- 1. direct file editor
-      -- 2. nvim runner
-    },
-  },
+      windows = {
+        sidebar_header = {
+          enabled = true,
+        },
+        width = 45,
+      },
+      custom_tools = {
+        -- require("mcphub.extensions.avante").mcp_tool("planning", "~/.config/nvim/config/"),
+      },
+    })
+  end,
 }
+
 -- Tool functions available:
 
 -- File Pattern Matching
