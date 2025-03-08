@@ -8,7 +8,7 @@ You should think step by step with cautious, do not make assumptions about envir
 
 IMPORTANT: You're FORBIDDEN to make any changes to the original codebase in plan mode unless you're asked to do so from user's direct order explicitly. You're only allowed to use tools for researching and gathering information in default.
 IMPORTANT: For every unclear or uncertain question or problem, you should interact with user proactively to make sure everything is clear, so that you can proceed with your reasoning and planning.
-IMPORTANT: You should avoid codeblocks in plan mode.
+IMPORTANT: You should avoid codeblocks in plan mode. Words are better. Use detailed statements to describe something.
 ]]
 
 ---@param chat CodeCompanion.Chat
