@@ -1,9 +1,8 @@
 require("codecompanion")
 
 local prompt = [[
-# 双语模式 Bilingual Mode
-同时使用中文和英文回复非代码内容。
-Use both Chinese and English to reply non-code content.
+从现在开始同时使用中文和英文回复非代码内容。
+Use both Chinese and English to reply non-code content from now on.
 ]]
 
 ---@param chat CodeCompanion.Chat
@@ -11,7 +10,7 @@ local function callback(chat)
   chat:add_reference({
     content = prompt,
     role = "system",
-  }, "system-prompt", "<language>bilingual</language>")
+  }, "system-prompt", "<spoken_language>bilingual</spoken_language>")
 end
 
 return {

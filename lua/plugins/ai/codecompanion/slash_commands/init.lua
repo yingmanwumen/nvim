@@ -1,9 +1,8 @@
 return {
   ["git_commit"] = require("plugins.ai.codecompanion.slash_commands.git_commit"),
-  ["git_diff"] = require("plugins.ai.codecompanion.slash_commands.git_diff"),
-  ["git_files"] = require("plugins.ai.codecompanion.slash_commands.git_files"),
   ["thinking"] = require("plugins.ai.codecompanion.slash_commands.thinking"),
   ["agent_mode"] = require("plugins.ai.codecompanion.slash_commands.agent_mode"),
+  ["plan_mode"] = require("plugins.ai.codecompanion.slash_commands.plan_mode"),
   ["bilingual"] = require("plugins.ai.codecompanion.slash_commands.bilingual"),
   ["emoji"] = require("plugins.ai.codecompanion.slash_commands.emoji"),
   ["chinese"] = require("plugins.ai.codecompanion.slash_commands.chinese"),

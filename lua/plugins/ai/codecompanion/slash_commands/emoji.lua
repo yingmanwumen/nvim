@@ -1,7 +1,6 @@
 require("codecompanion")
 
 local prompt = [[
-# Emoji
 Add more emoji in your response.
 ]]
 
@@ -10,7 +9,7 @@ local function callback(chat)
   chat:add_reference({
     content = prompt,
     role = "system",
-  }, "system-prompt", "<mode>emoji</mode>")
+  }, "system-prompt", "<misc>emoji</misc>")
 end
 
 return {
