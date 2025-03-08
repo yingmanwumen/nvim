@@ -9,7 +9,7 @@ local function callback(chat)
   chat:add_reference({
     content = prompt,
     role = "system",
-  }, "system-prompt", "<spoken_language>chinese</spoken_language>")
+  }, "system-prompt", "<spokenLanguage>chinese</spokenLanguage>")
 end
 
 return {

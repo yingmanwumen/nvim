@@ -41,7 +41,7 @@ local function callback(chat)
   chat:add_reference({
     content = prompt,
     role = "system",
-  }, "system-prompt", "<system-prompt>thinking</system-prompt>")
+  }, "system-prompt", "<systemPrompt>thinking</systemPrompt>")
 end
 
 return {

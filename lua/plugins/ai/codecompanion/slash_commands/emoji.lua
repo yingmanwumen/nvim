@@ -9,7 +9,7 @@ local function callback(chat)
   chat:add_reference({
     content = prompt,
     role = "system",
-  }, "system-prompt", "<misc>emoji</misc>")
+  }, "system-prompt", "<systemPrompt>emoji</systemPrompt>")
 end
 
 return {

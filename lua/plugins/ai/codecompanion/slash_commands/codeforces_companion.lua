@@ -10,7 +10,7 @@ local function callback(chat)
   chat:add_reference({
     content = prompt,
     role = "system",
-  }, "system-prompt", "<mode>codeforces companion</mode>")
+  }, "system-prompt", "<role>codeforcesCompanion</role>")
 end
 
 return {
