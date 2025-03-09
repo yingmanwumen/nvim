@@ -30,6 +30,7 @@ local function read(action)
   local p = Path:new(action.path)
   p.filename = p:expand()
   file = {
+    path = p.filename,
     content = p:read(),
     filetype = vim.fn.fnamemodify(p.filename, ":e"),
   }
@@ -64,8 +65,10 @@ local function read_lines(action)
   end
 
   file = {
+    path = p.filename,
     content = table.concat(extracted, "\n"),
     filetype = vim.fn.fnamemodify(p.filename, ":e"),
+    range = start_line .. "-" .. end_line,
   }
   return file
 end
@@ -363,24 +366,37 @@ IMPORTANT: If no context is provided, you should always fetch the latest buffer 
       -- util.notify(fmt("The files tool executed successfully for the `%s` file", vim.fn.fnamemodify(path, ":t")))
 
       if file then
-        agent.chat:add_message({
-          role = config.constants.USER_ROLE,
+        local content = fmt(
+          [[The output from the %s action for file `%s` is:
+```%s
+%s
+```]],
+          string.upper(type),
+          file.path,
+          file.filetype,
+          file.content
+        )
+        if file.range then
           content = fmt(
-            [[The output from the %s action for file `%s` is:
-
+            [[The output from the %s action for file `%s`(line range: %s) is:
 ```%s
 %s
 ```]],
             string.upper(type),
-            path,
+            file.path,
+            file.range,
             file.filetype,
             file.content
-          ),
-        }, { visible = false })
+          )
+        end
+        agent.chat:add_reference({
+          role = config.constants.USER_ROLE,
+          content = content,
+        }, "tool", "<file>" .. file.path .. "</file>")
       end
       agent.chat:add_buf_message({
         role = config.constants.USER_ROLE,
-        content = fmt("The files tool executed successfully for the `%s` file", vim.fn.fnamemodify(path, ":t")),
+        content = fmt("The files tool executed successfully for the file `%s`", path),
       })
     end,
 
