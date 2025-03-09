@@ -155,8 +155,11 @@ Source Citation: When referencing information from the Internet, you should add 
       to_chat("Execution succeeded. Here is the content from Search tool retrieved", agent, { output = stdout })
     end,
 
-    rejected = function(self, _)
-      self.chat:add_buf_message({
+    rejected = function(agent, _)
+      if not vim.g.codecompanion_auto_tool_mode then
+        agent.status = "rejected"
+      end
+      agent.chat:add_buf_message({
         role = config.constants.USER_ROLE,
         content = string.format("I reject to to action of search/navigate\n"),
       })

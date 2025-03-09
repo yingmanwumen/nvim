@@ -423,6 +423,9 @@ IMPORTANT: If no context is provided, you should always fetch the latest buffer 
     ---@param agent CodeCompanion.Agent The agent object
     ---@return nil
     rejected = function(agent)
+      if not vim.g.codecompanion_auto_tool_mode then
+        agent.status = "rejected"
+      end
       return agent.chat:add_buf_message({
         role = config.constants.USER_ROLE,
         content = fmt("I rejected to run tool `files`.\n"),

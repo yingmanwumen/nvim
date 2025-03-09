@@ -284,6 +284,9 @@ You should try to minimize the output of each command to fetch needed parts only
     ---Rejection message back to the LLM
     ---@param agent CodeCompanion.Agent The tools object
     rejected = function(agent)
+      if not vim.g.codecompanion_auto_tool_mode then
+        agent.status = "rejected"
+      end
       agent.chat:add_buf_message({
         content = "I reject to execute tool `nvim_runner`",
         role = config.constants.USER_ROLE,

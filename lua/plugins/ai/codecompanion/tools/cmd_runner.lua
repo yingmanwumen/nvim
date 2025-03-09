@@ -148,6 +148,9 @@ HINT: You should prefer `rg` and `fd` instead of `grep` and `find` for they can 
     ---@param cmd table
     ---@return nil
     rejected = function(agent, cmd)
+      if not vim.g.codecompanion_auto_tool_mode then
+        agent.status = "rejected"
+      end
       to_chat("I chose not to run", agent, { cmd = cmd.cmd or cmd, output = "" })
     end,
 

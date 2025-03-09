@@ -321,6 +321,9 @@ IMPORTANT: Buffer number must be valid. You should either fetch it from user or 
     ---@param agent CodeCompanion.Agent
     ---@param cmd table
     rejected = function(agent, cmd)
+      if not vim.g.codecompanion_auto_tool_mode then
+        agent.status = "rejected"
+      end
       return agent.chat:add_buf_message({
         role = config.constants.USER_ROLE,
         content = string.format("I rejected the action in `editor`.\n"),
