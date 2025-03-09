@@ -25,7 +25,7 @@ local function generate_commit_message()
     handle_untracked:close()
   end
 
-  local content = [[@cmd_runner @files
+  local content = [[Tools allowed to use: @cmd_runner @files
 - Task:
   1. Before proceeding, review the changes. If there're potential issues or typos, stop and state them. You should fully understand every piece of code in diffs. You can gather context to understand the diffs.
   2. Write commit message for the diffs with `commitizen convention`. Format as a gitcommit code block. Keep the commit message concise and precise.
@@ -33,7 +33,7 @@ local function generate_commit_message()
 
 IMPORTANT: You should ensure that each commit is a complete unit. If there should be multiple commits for these diffs(e.g. diffs did more than one thing), please split them into multiple commits.
 
-### Git Diff
+Full diffs are as follows:
 
 ]]
   if #staged > 0 then
