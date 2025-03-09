@@ -360,7 +360,7 @@ IMPORTANT: If no context is provided, you should always fetch the latest buffer 
     success = function(agent, action, output)
       local type = action._attr.type
       local path = action.path
-      util.notify(fmt("The files tool executed successfully for the `%s` file", vim.fn.fnamemodify(path, ":t")))
+      -- util.notify(fmt("The files tool executed successfully for the `%s` file", vim.fn.fnamemodify(path, ":t")))
 
       if file then
         agent.chat:add_message({
@@ -378,6 +378,10 @@ IMPORTANT: If no context is provided, you should always fetch the latest buffer 
           ),
         }, { visible = false })
       end
+      agent.chat:add_buf_message({
+        role = config.constants.USER_ROLE,
+        content = fmt("The files tool executed successfully for the `%s` file", vim.fn.fnamemodify(path, ":t")),
+      })
     end,
 
     ---@param agent CodeCompanion.Agent The agent object
@@ -394,7 +398,7 @@ IMPORTANT: If no context is provided, you should always fetch the latest buffer 
 %s
 ```]],
           string.upper(action._attr.type),
-          err
+          type(err) == "string" and err or vim.inspect(err)
         ),
       })
     end,
