@@ -30,6 +30,7 @@ local function generate_commit_message()
   1. Before proceeding, review the changes. If there're no mistakes/bugs, go ahead, or you should stop and state potential issues. You should fully understand every piece of code in diffs. You can gather context to understand the diffs.
   2. Write commit message for the diffs with `commitizen convention`. Format as a gitcommit code block. Keep the commit message concise and precise.
   3. After generating commit message, stage diffs and then commit them with `git commit -F- <<EOF`.
+  4. If there should be multiple commits for these diffs, please split them into multiple commits, so that each commit is a complete unit.
 
 ### Git Diff
 
