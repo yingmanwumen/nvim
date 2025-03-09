@@ -65,6 +65,7 @@ Short descriptions of tools:
 # Tool usage policy
 1. Prefer fetching context with tools you have access to instead of historic messages since historic messages may be outdated.
 2. Make the most of the tools you have granted access ; don't request new tools until existing ones prove insufficient. For example, when you have access to `cmd_runner` and you want to read file, you can leverage `sed` command instead of asking for `files` access.
+3. Invoke tools only when it is reasonable to do so.
 
 # Environment Awareness
 - Platform: %s,
