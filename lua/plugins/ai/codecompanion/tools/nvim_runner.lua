@@ -222,6 +222,8 @@ Execute Neovim commands and Lua code directly within your Neovim instance.
 
 IMPORTANT: You should NEVER assume you're in the target buffer. If you need to fetch buffer number, NEVER use `vim.api.nvim_get_current_buf()`.
 
+You should try to minimize the output of each command to fetch needed parts only. Don't waste tokens.
+
 ## Description
 - tool name: `nvim_runner`
 - sequential execution: yes
