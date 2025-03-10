@@ -42,6 +42,8 @@ Process this text:
 
 Show results in <Core> and <Framework> tags.
 
+Also you should follow first-principles thinking.
+
 Now start.]]
 
 ---@param chat CodeCompanion.Chat
@@ -57,6 +59,6 @@ return {
   description = "Summarize text",
   callback = callback,
   opts = {
-    contains_code = true,
+    contains_code = false,
   },
 }
