@@ -1,4 +1,3 @@
-local config = require("codecompanion.config")
 local util = require("codecompanion.utils")
 
 ---@param chat CodeCompanion.Chat
@@ -118,7 +117,7 @@ local function show_picker(chat)
           vim.list_extend(lines, entry.previews)
 
           vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)
-          vim.api.nvim_buf_set_option(self.state.bufnr, "filetype", "markdown")
+          vim.api.nvim_set_option_value("filetype", "markdown", { buf = self.state.bufnr })
         end,
       }),
       attach_mappings = function(prompt_bufnr)
