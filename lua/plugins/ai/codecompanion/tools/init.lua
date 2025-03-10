@@ -66,7 +66,7 @@ return {
   opts = {
     system_prompt = string.format(
       [[# Tool General Guidelines
-To execute tools, you need to generate XML codeblocks like "```xml". Remember the "backticks-rule" mentioned: the XML codeblock should be the most outer codeblock. You should only generate exactly one xml codeblock in one turn. And stop immediately after xml codeblock is generated.
+To execute tools, you need to generate XML codeblocks like "```xml". You should only generate exactly one xml codeblock in one turn. And stop immediately after xml codeblock is generated.
 You should always try to save tokens for user while ensuring quality by minimizing the output of the tool. For example, fetching range of content is better than fetching the whole file when you need only a part of it.
 Before invoking tools, you should describe your purpose with: `I'm using **@<tool name>** to <action>", for <purpose>.`
 
