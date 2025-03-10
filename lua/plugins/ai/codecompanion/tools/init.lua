@@ -42,7 +42,7 @@ return {
     callback = tools_prefix .. "editor.lua",
     description = "Editor Tool",
     opts = {
-      requires_approval = true,
+      requires_approval = false,
       hide_output = true,
     },
   },
@@ -50,7 +50,7 @@ return {
     callback = tools_prefix .. "files.lua",
     description = "File Tool",
     opts = {
-      requires_approval = true,
+      requires_approval = false,
       hide_output = true,
     },
   },
