@@ -339,7 +339,7 @@ IMPORTANT: Buffer number must be valid. You should either fetch it from user or 
         role = config.constants.USER_ROLE,
         content = string.format("`editor` tool executed successfully"),
       })
-      local bufname = vim.api.nvim_buf_get_name(cmd.buffer)
+      local bufname = vim.api.nvim_buf_get_name(tonumber(cmd.buffer, 10))
       agent.chat:add_reference({
         role = config.constants.USER_ROLE,
         content = string.format(
@@ -347,7 +347,7 @@ IMPORTANT: Buffer number must be valid. You should either fetch it from user or 
           cmd.buffer,
           bufname,
           -- get the content of the buffer
-          table.concat(vim.api.nvim_buf_get_lines(cmd.buffer, 0, -1, false), "\n")
+          table.concat(vim.api.nvim_buf_get_lines(tonumber(cmd.buffer, 10), 0, -1, false), "\n")
         ),
       }, "tool", "<editor>" .. bufname .. "</editor>")
       return agent
