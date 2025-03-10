@@ -23,9 +23,9 @@ function M:init()
     pattern = "CodeCompanionRequestFinished",
     group = group,
     callback = function(request)
-      local handle = M:pop_progress_handle(request.data.id)
+      local handle, duration = M:pop_progress_handle(request.data.id)
       if handle then
-        M:report_exit_status(handle, request)
+        M:report_exit_status(handle, request, duration)
         handle:finish()
       end
     end,
@@ -33,15 +33,26 @@ function M:init()
 end
 
 M.handles = {}
+M.start_times = {}
 
 function M:store_progress_handle(id, handle)
   M.handles[id] = handle
+  M.start_times[id] = vim.uv.hrtime()
 end
 
 function M:pop_progress_handle(id)
   local handle = M.handles[id]
+  local start_time = M.start_times[id]
   M.handles[id] = nil
-  return handle
+  M.start_times[id] = nil
+
+  local duration = nil
+  if start_time then
+    local elapsed_ns = vim.uv.hrtime() - start_time
+    duration = string.format("%.2fs", elapsed_ns / 1e9)
+  end
+
+  return handle, duration
 end
 
 function M:create_progress_handle(request)
@@ -63,14 +74,22 @@ function M:llm_role_title(adapter)
   return table.concat(parts, " ")
 end
 
-function M:report_exit_status(handle, request)
+function M:report_exit_status(handle, request, duration)
+  local message = ""
+
   if request.data.status == "success" then
-    handle.message = "Completed"
+    message = "Completed"
   elseif request.data.status == "error" then
-    handle.message = " Error"
+    message = " Error"
   else
-    handle.message = "󰜺 Cancelled"
+    message = "󰜺 Cancelled"
   end
+
+  if duration then
+    message = message .. " (" .. duration .. ")"
+  end
+
+  handle.message = message
 end
 
 return M
