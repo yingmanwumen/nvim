@@ -5,7 +5,7 @@ local util = require("codecompanion.utils")
 ---@param args string|nil Optional filename
 local function callback(chat, args)
   local messages = chat.messages
-  
+
   -- Create dumps directory if it doesn't exist
   local dump_dir = vim.fn.stdpath("data") .. "/codecompanion/dumps"
   vim.fn.mkdir(dump_dir, "p")
@@ -13,17 +13,20 @@ local function callback(chat, args)
   -- Generate filename with timestamp
   local timestamp = os.date("%Y-%m-%d_%H-%M-%S")
   local dump_file = string.format("%s/chat_%s.lua", dump_dir, timestamp)
-  
+
   -- Use provided filename if available
   if args and args ~= "" then
     dump_file = string.format("%s/%s.lua", dump_dir, args)
   end
 
   -- Generate lua table string
-  local content = string.format("return %s", vim.inspect({
-    messages = messages,
-    timestamp = os.date("%Y-%m-%d %H:%M:%S"),
-  }))
+  local content = string.format(
+    "return %s",
+    vim.inspect({
+      messages = messages,
+      timestamp = os.date("%Y-%m-%d %H:%M:%S"),
+    })
+  )
 
   -- Write to file
   local success, err = pcall(function()

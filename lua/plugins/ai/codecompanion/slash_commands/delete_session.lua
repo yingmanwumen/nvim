@@ -1,4 +1,3 @@
-
 local util = require("codecompanion.utils")
 
 ---@param file_path string
@@ -138,7 +137,6 @@ local function show_picker()
     :find()
 end
 
-
 ---@param args string|nil Optional filename
 local function callback(_, args)
   local dump_dir = vim.fn.stdpath("data") .. "/codecompanion/dumps"
@@ -146,10 +144,13 @@ local function callback(_, args)
   if args and args ~= "" then
     -- Direct file mode
     local file_path = string.format("%s/%s.lua", dump_dir, args)
-    
+
     -- Check if file exists
     if not vim.uv.fs_stat(file_path) then
-      util.notify(string.format("Session file not found: %s", vim.fn.fnamemodify(file_path, ":~")), vim.log.levels.ERROR)
+      util.notify(
+        string.format("Session file not found: %s", vim.fn.fnamemodify(file_path, ":~")),
+        vim.log.levels.ERROR
+      )
       return
     end
 
