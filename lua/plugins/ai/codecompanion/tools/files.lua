@@ -9,7 +9,6 @@ local add_reference = require("plugins.ai.codecompanion.utils.add_reference")
 local config = require("codecompanion.config")
 
 local util = require("codecompanion.utils")
-local xml2lua = require("codecompanion.utils.xml.xml2lua")
 
 local fmt = string.format
 local file = nil
@@ -83,12 +82,12 @@ local function edit(action)
 
   local content = p:read()
   if not content then
-    return util.notify(fmt("No data found in %s", action.path))
+    error("No data found in " .. action.path)
   end
 
   local changed, substitutions_count = content:gsub(vim.pesc(action.search), vim.pesc(action.replace))
   if substitutions_count == 0 then
-    return util.notify(fmt("Could not find the search string in %s", action.path))
+    error("Could not find the search string in " .. action.path)
   end
 
   p:write(changed, "w")
@@ -365,6 +364,8 @@ IMPORTANT: If no context is provided, you should always fetch the latest buffer 
       local type = action._attr.type
       local path = action.path
       -- util.notify(fmt("The files tool executed successfully for the `%s` file", vim.fn.fnamemodify(path, ":t")))
+      local p = Path:new(path)
+      p.filename = p:expand()
 
       if file then
         local content = fmt(
@@ -373,7 +374,7 @@ IMPORTANT: If no context is provided, you should always fetch the latest buffer 
 %s
 ```]],
           string.upper(type),
-          file.path,
+          p.filename,
           file.filetype,
           file.content
         )
@@ -384,7 +385,7 @@ IMPORTANT: If no context is provided, you should always fetch the latest buffer 
 %s
 ```]],
             string.upper(type),
-            file.path,
+            p.filename,
             file.range,
             file.filetype,
             file.content
@@ -394,10 +395,22 @@ IMPORTANT: If no context is provided, you should always fetch the latest buffer 
           role = config.constants.USER_ROLE,
           content = content,
         }, "tool", "<file>" .. file.path .. "</file>")
+      else
+        local content = fmt(
+          [[The latest content of the file `%s` is:
+%s]],
+          p.filename,
+          -- get the content of the file
+          p:read()
+        )
+        add_reference(agent.chat, {
+          role = config.constants.USER_ROLE,
+          content = content,
+        }, "tool", "<file>" .. p.filename .. "</file>")
       end
       agent.chat:add_buf_message({
         role = config.constants.USER_ROLE,
-        content = fmt("The files tool executed successfully for the file `%s`", path),
+        content = fmt("The files tool executed successfully for the file `%s`", p.filename),
       })
     end,
 
