@@ -234,7 +234,7 @@ return {
                 default = 0.3,
               },
               model = {
-                default = "claude-3.5-sonnet",
+                default = "claude-3.7-sonnet-thought",
                 choices = copilot_model_choices,
               },
             },
