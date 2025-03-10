@@ -140,7 +140,7 @@ return {
             local diff_args = {
               bufnr = bufnr,
               contents = api.nvim_buf_get_lines(bufnr, 0, -1, true),
-              filetype = api.nvim_buf_get_option(bufnr, "filetype"),
+              filetype = api.nvim_get_option_value("filetype", { buf = bufnr }),
               winnr = winnr,
             }
             ---@type CodeCompanion.Diff
@@ -339,6 +339,18 @@ IMPORTANT: Buffer number must be valid. You should either fetch it from user or 
         role = config.constants.USER_ROLE,
         content = string.format("`editor` tool executed successfully"),
       })
+      local bufname = vim.api.nvim_buf_get_name(cmd.buffer)
+      agent.chat:add_reference({
+        role = config.constants.USER_ROLE,
+        content = string.format(
+          "The latest content of buffer %s(%s) is:\n \n%s\n",
+          cmd.buffer,
+          bufname,
+          -- get the content of the buffer
+          table.concat(vim.api.nvim_buf_get_lines(cmd.buffer, 0, -1, false), "\n")
+        ),
+      }, "tool", "<editor>" .. bufname .. "</editor>")
+      return agent
     end,
 
     ---@param agent CodeCompanion.Agent
