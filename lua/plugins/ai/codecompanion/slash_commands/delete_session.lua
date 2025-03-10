@@ -1,35 +1,18 @@
-local config = require("codecompanion.config")
+
 local util = require("codecompanion.utils")
 
----@param chat CodeCompanion.Chat
----@param messages table[]
-local function restore_messages(chat, messages)
-  -- Clear current chat messages
-  chat.messages = {}
-
-  -- Restore messages exactly as they were dumped
-  chat.messages = vim.deepcopy(messages)
-  -- TODO: also restore markdown rendering
-  -- chat.bufnr
-end
-
 ---@param file_path string
----@return boolean, table|string
-local function load_session(file_path)
-  local success, result = pcall(function()
-    local chunk = assert(loadfile(file_path))
-    local data = chunk()
-    if not data or not data.messages then
-      error("Invalid session file format")
-    end
-    return data
+---@return boolean, string?
+local function delete_file(file_path)
+  local success, err = pcall(function()
+    os.remove(file_path)
   end)
-  return success, result
+  return success, err
 end
 
 ---Show file picker using telescope
----@param chat CodeCompanion.Chat
-local function show_picker(chat)
+
+local function show_picker()
   local has_telescope, _ = pcall(require, "telescope")
   if not has_telescope then
     util.notify("Telescope is required for file picker", vim.log.levels.ERROR)
@@ -59,7 +42,7 @@ local function show_picker(chat)
         preview_height = 0.6,
       },
     }, {
-      prompt_title = "Select session to restore",
+      prompt_title = "Select session to delete",
       finder = finders.new_table({
         results = files,
         entry_maker = function(file)
@@ -68,7 +51,10 @@ local function show_picker(chat)
           content = table.concat(content, " ")
 
           -- Load file for display
-          local success, result = load_session(file)
+          local success, result = pcall(function()
+            local chunk = assert(loadfile(file))
+            return chunk()
+          end)
           if not success then
             return nil
           end
@@ -77,7 +63,7 @@ local function show_picker(chat)
           -- Create display lines for preview
           local msg_previews = {}
 
-          -- Process messages for preview - show ALL messages including invisible ones
+          -- Process messages for preview
           for i, msg in ipairs(result.messages) do
             -- Create preview
             local preview = msg.content:sub(1, 100)
@@ -104,7 +90,7 @@ local function show_picker(chat)
       }),
       sorter = conf.generic_sorter({}),
       previewer = previewers.new_buffer_previewer({
-        title = "Session Preview",
+        title = "Session Info",
         define_preview = function(self, entry)
           local lines = {}
           -- Display file info
@@ -117,8 +103,10 @@ local function show_picker(chat)
           -- Use cached previews
           vim.list_extend(lines, entry.previews)
 
+          table.insert(lines, "")
+          table.insert(lines, "Press <Enter> to delete this session")
           vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)
-          vim.api.nvim_buf_set_option(self.state.bufnr, "filetype", "markdown")
+          vim.bo[self.state.bufnr].filetype = "markdown"
         end,
       }),
       attach_mappings = function(prompt_bufnr)
@@ -130,8 +118,19 @@ local function show_picker(chat)
             return
           end
 
-          restore_messages(chat, selection.messages)
-          util.notify(string.format("Session restored from: %s", vim.fn.fnamemodify(selection.value, ":~")))
+          -- Confirm deletion
+          local confirm = vim.fn.input(string.format("Delete session '%s'? [y/N] ", selection.filename))
+          if confirm:lower() ~= "y" then
+            util.notify("Session deletion cancelled")
+            return
+          end
+
+          local success, err = delete_file(selection.value)
+          if success then
+            util.notify(string.format("Session deleted: %s", vim.fn.fnamemodify(selection.value, ":~")))
+          else
+            util.notify(string.format("Failed to delete session: %s", err or "unknown error"), vim.log.levels.ERROR)
+          end
         end)
         return true
       end,
@@ -139,31 +138,42 @@ local function show_picker(chat)
     :find()
 end
 
----@param chat CodeCompanion.Chat
+
 ---@param args string|nil Optional filename
-local function callback(chat, args)
+local function callback(_, args)
   local dump_dir = vim.fn.stdpath("data") .. "/codecompanion/dumps"
 
   if args and args ~= "" then
     -- Direct file mode
     local file_path = string.format("%s/%s.lua", dump_dir, args)
-    local success, result = load_session(file_path)
-
-    if not success then
-      util.notify(string.format("Failed to restore session: %s", result), vim.log.levels.ERROR)
+    
+    -- Check if file exists
+    if not vim.uv.fs_stat(file_path) then
+      util.notify(string.format("Session file not found: %s", vim.fn.fnamemodify(file_path, ":~")), vim.log.levels.ERROR)
       return
     end
 
-    restore_messages(chat, result.messages)
-    util.notify(string.format("Session restored from: %s", vim.fn.fnamemodify(file_path, ":~")))
+    -- Confirm deletion
+    local confirm = vim.fn.input(string.format("Delete session '%s'? [y/N] ", args))
+    if confirm:lower() ~= "y" then
+      util.notify("Session deletion cancelled")
+      return
+    end
+
+    local success, err = delete_file(file_path)
+    if success then
+      util.notify(string.format("Session deleted: %s", vim.fn.fnamemodify(file_path, ":~")))
+    else
+      util.notify(string.format("Failed to delete session: %s", err or "unknown error"), vim.log.levels.ERROR)
+    end
   else
     -- Show file picker
-    show_picker(chat)
+    show_picker()
   end
 end
 
 return {
-  description = "Restore session from a dump file",
+  description = "Delete a saved session",
   callback = callback,
   opts = {
     contains_code = false,
