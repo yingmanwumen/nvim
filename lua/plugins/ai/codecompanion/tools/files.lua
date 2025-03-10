@@ -5,6 +5,7 @@ in the same XML block. All actions must be approved by you.
 --]]
 
 local Path = require("plenary.path")
+local add_reference = require("plugins.ai.codecompanion.utils.add_reference")
 local config = require("codecompanion.config")
 
 local util = require("codecompanion.utils")
@@ -389,7 +390,7 @@ IMPORTANT: If no context is provided, you should always fetch the latest buffer 
             file.content
           )
         end
-        agent.chat:add_reference({
+        add_reference(agent.chat, {
           role = config.constants.USER_ROLE,
           content = content,
         }, "tool", "<file>" .. file.path .. "</file>")

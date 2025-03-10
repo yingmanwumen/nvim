@@ -4,6 +4,7 @@ This tool is used to directly modify the contents of a buffer. It can handle
 multiple edits in the same XML block.
 --]]
 
+local add_reference = require("plugins.ai.codecompanion.utils.add_reference")
 local config = require("codecompanion.config")
 
 local keymaps = require("codecompanion.utils.keymaps")
@@ -340,7 +341,7 @@ IMPORTANT: Buffer number must be valid. You should either fetch it from user or 
         content = string.format("`editor` tool executed successfully"),
       })
       local bufname = vim.api.nvim_buf_get_name(tonumber(cmd.buffer, 10))
-      agent.chat:add_reference({
+      add_reference(agent.chat, {
         role = config.constants.USER_ROLE,
         content = string.format(
           "The latest content of buffer %s(%s) is:\n \n%s\n",
