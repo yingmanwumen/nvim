@@ -107,6 +107,7 @@ Execute shell commands on the user's system.
 - You should try to minimize the output of each command to fetch needed parts only. Don't waste tokens.
 
 HINT: You should prefer `rg` and `fd` instead of `grep` and `find` for they can ignore hidden files and directories. Always attach paths after `rg` and `fd` commands, like `rg xxx .` and `fd -p .`.
+IMPORTANT: You cannot interact with terminal or running processes, so all your commands should be non-interactive.
 ]])
   end,
   handlers = {
