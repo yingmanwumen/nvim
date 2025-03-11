@@ -1,16 +1,17 @@
+local restore_messages = require("plugins.ai.codecompanion.utils.restore_messages")
 local util = require("codecompanion.utils")
 
----@param chat CodeCompanion.Chat
----@param messages table[]
-local function restore_messages(chat, messages)
-  -- Clear current chat messages
-  chat.messages = {}
-
-  -- Restore messages exactly as they were dumped
-  chat.messages = vim.deepcopy(messages)
-  -- TODO: also restore markdown rendering
-  -- chat.bufnr
-end
+-- ---@param chat CodeCompanion.Chat
+-- ---@param messages table[]
+-- local function restore_messages(chat, messages)
+--   -- Clear current chat messages
+--   chat.messages = {}
+--
+--   -- Restore messages exactly as they were dumped
+--   chat.messages = vim.deepcopy(messages)
+--   -- TODO: also restore markdown rendering
+--   -- chat.bufnr
+-- end
 
 ---@param file_path string
 ---@return boolean, table|string
