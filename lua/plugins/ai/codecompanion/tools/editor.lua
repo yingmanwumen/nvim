@@ -344,7 +344,7 @@ IMPORTANT: Buffer number must be valid. You should either fetch it from user or 
       add_reference(agent.chat, {
         role = config.constants.USER_ROLE,
         content = string.format(
-          "The latest content of buffer %s(%s) is:\n \n%s\n",
+          "The latest content of buffer %s(%s) is inside `<buffer_content>` block:\n<buffer_content>\n%s\n</buffer_content>",
           cmd.buffer,
           bufname,
           -- get the content of the buffer
