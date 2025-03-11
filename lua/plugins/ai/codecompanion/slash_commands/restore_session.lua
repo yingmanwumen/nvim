@@ -79,7 +79,7 @@ local function show_picker(chat)
           -- Process messages for preview - show ALL messages including invisible ones
           for i, msg in ipairs(result.messages) do
             -- Create preview
-            local preview = msg.content:sub(1, 100)
+            local preview = msg.content:gsub("\n", " "):sub(1, 100)
             if #msg.content > 100 then
               preview = preview .. "..."
             end

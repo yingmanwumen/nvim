@@ -65,7 +65,7 @@ local function show_picker()
           -- Process messages for preview
           for i, msg in ipairs(result.messages) do
             -- Create preview
-            local preview = msg.content:sub(1, 100)
+            local preview = msg.content:gsub("\n", " "):sub(1, 100)
             if #msg.content > 100 then
               preview = preview .. "..."
             end
