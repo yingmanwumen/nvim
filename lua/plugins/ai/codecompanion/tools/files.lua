@@ -76,7 +76,7 @@ end
 ---Edit the contents of a file
 ---@param action table The action object
 ---@return nil
-local function edit(action)
+local function search_replace(action)
   local p = Path:new(action.path)
   p.filename = p:expand()
 
@@ -146,7 +146,7 @@ local actions = {
   create = create,
   read = read,
   read_lines = read_lines,
-  edit = edit,
+  search_replace = search_replace,
   delete = delete,
   rename = rename,
   copy = copy,
@@ -206,7 +206,7 @@ return {
       tool = {
         _attr = { name = "files" },
         action = {
-          _attr = { type = "edit" },
+          _attr = { type = "search_replace" },
           path = "/Users/Oli/Code/new_app/hello_world.py",
           search = "<![CDATA[    print('Hello World')]]>",
           replace = "<![CDATA[    print('Hello CodeCompanion')]]>",
@@ -261,7 +261,7 @@ return {
           contents = "<![CDATA[    print('Hello World')]]>",
         },
         {
-          _attr = { type = "edit" },
+          _attr = { type = "search_replace" },
           path = "/Users/Oli/Code/new_app/hello_world.py",
           contents = "<![CDATA[    print('Hello CodeCompanion')]]>",
         },
@@ -292,7 +292,7 @@ IMPORTANT: If no context is provided, you should always fetch the latest buffer 
     - CDATA: no
   - element `end_line`
     - CDATA: no
-- action type `edit`: Edit the contents of a file
+- action type `search_replace`: Edit the contents of a file
   - element `path`
   - element `search`: pattern to search for. Attention: be careful with white characters. This is not a regex search.
     - CDATA: yes
@@ -337,7 +337,7 @@ HINT: If search/replace doesn't work, you can also try to delete lines and add n
         create = "Create a file at %s?",
         read = "Read %s?",
         read_lines = "Read specific lines in %s?",
-        edit = "Edit %s?",
+        search_replace = "Search and replace %s?",
         delete = "Delete %s?",
         copy = "Copy %s?",
         rename = "Rename %s to %s?",
