@@ -294,7 +294,7 @@ IMPORTANT: If no context is provided, you should always fetch the latest buffer 
     - CDATA: no
 - action type `edit`: Edit the contents of a file
   - element `path`
-  - element `search`: pattern to search for
+  - element `search`: pattern to search for. Attention: be careful with white characters. This is not a regex search.
     - CDATA: yes
   - element `replace`: pattern to replace
     - CDATA: yes
@@ -313,6 +313,9 @@ IMPORTANT: If no context is provided, you should always fetch the latest buffer 
 - action type `move`: Move a file
   - element `path`
   - element `new_path`
+
+HINT: Sometimes you don't have to read the full contents of a file. Instead, specific lines of a file might be enough.
+HINT: If search/replace doesn't work, you can also try to delete lines and add new ones.
     ]])
   end,
   handlers = {
