@@ -1,6 +1,12 @@
 return function(_)
   local uname = vim.uv.os_uname()
-  local platform = string.format("%s-%s-%s", uname.sysname, uname.release, uname.machine)
+  local platform = string.format(
+    "sysname: %s, release: %s, machine: %s, version: %s",
+    uname.sysname,
+    uname.release,
+    uname.machine,
+    uname.version
+  )
   -- Note: parallel tool execution is not supported by codecompanion currently
   return string.format(
     [[
@@ -49,6 +55,7 @@ Short descriptions of tools:
 - `files`: read or edit files.
 - `cmd_runner`: run shell commands.
 - `nvim_runner`: run neovim commands or lua scripts. You can invoke neovim api by this tool.
+- `mcp`: contains a bunch of tools including tools for visiting the Internet.
 
 # Tool usage policy
 1. When doing file operations, prefer to use `files` tool in order to reduce context usage.
@@ -57,14 +64,12 @@ Short descriptions of tools:
 # Environment Awareness
 - Platform: %s,
 - Shell: %s,
-- Current date: %s, timezone: %s(%s),
-- Is inside a git repo: %s,
-- Current working directory: %s,
+- Current date: %s (%s),
+- Current working directory(git repo: %s): %s,
 ]],
     platform,
     vim.o.shell,
-    os.date("%Y-%m-%d"),
-    os.date("%Z"),
+    os.date("%c"),
     os.date("%z"),
     vim.fn.isdirectory(".git") == 1,
     vim.fn.getcwd()
