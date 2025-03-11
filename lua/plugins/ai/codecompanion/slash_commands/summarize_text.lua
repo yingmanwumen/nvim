@@ -7,12 +7,12 @@ local prompt = [[Analyze and process the input text using these steps:
 
 2. Core Extraction:
 * List 3-5 key concepts by importance
-* Summarize each concept (25 chars max)
+* Summarize each concept (25 words max)
 * Show concept relationships
 * Keep essential data only
 
 3. Framework Building:
-* Level 1: Main topic (6 chars max)
+* Level 1: Main topic (6 words max)
 * Level 2: 3-5 knowledge modules
 * Level 3: 2-4 points per module
 
@@ -30,15 +30,10 @@ Rules:
 * Max length: 15% of source
 
 Quality:
-* Summarize if >3000 words
+* Summarize
 * Use [Verify] for conflicts
 * Use [Note] for sensitive content
 * Check after each phase
-
-Process this text:
-<Input>
-{{TEXT}}
-</Input>
 
 Show results in <Core> and <Framework> tags.
 
