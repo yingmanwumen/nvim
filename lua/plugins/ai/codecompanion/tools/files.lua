@@ -411,7 +411,7 @@ HINT: If search/replace doesn't work, you can also try to delete lines and add n
       end
       agent.chat:add_buf_message({
         role = config.constants.USER_ROLE,
-        content = fmt("The files tool executed successfully for the file `%s`", p.filename),
+        content = fmt("The files tool executed successfully for the file `%s`\n", p.filename),
       })
     end,
 
@@ -427,7 +427,8 @@ HINT: If search/replace doesn't work, you can also try to delete lines and add n
 
 ```txt
 %s
-```]],
+```
+]],
           string.upper(action._attr.type),
           type(err) == "string" and err or vim.inspect(err)
         ),

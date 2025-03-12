@@ -288,7 +288,7 @@ You should try to minimize the output of each command to fetch needed parts only
         agent.status = "rejected"
       end
       agent.chat:add_buf_message({
-        content = "I reject to execute tool `nvim_runner`",
+        content = "I reject to execute tool `nvim_runner`\n",
         role = config.constants.USER_ROLE,
       })
     end,

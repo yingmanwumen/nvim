@@ -338,7 +338,7 @@ IMPORTANT: Buffer number must be valid. You should either fetch it from user or 
       vim.notify("The editor tool executed successfully")
       agent.chat:add_buf_message({
         role = config.constants.USER_ROLE,
-        content = string.format("`editor` tool executed successfully"),
+        content = string.format("`editor` tool executed successfully\n"),
       })
       local bufname = vim.api.nvim_buf_get_name(tonumber(cmd.buffer, 10))
       add_reference(agent.chat, {
@@ -373,7 +373,8 @@ IMPORTANT: Buffer number must be valid. You should either fetch it from user or 
           [[There was an error running `editor`:
 ```txt
 %s
-```]],
+```
+]],
           stderr
         ),
       })
