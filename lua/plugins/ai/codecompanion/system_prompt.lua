@@ -52,7 +52,10 @@ IMPORTANT: Before you begin work, think about what the code you're editing is su
 
 # Tool conventions
 Until you're told how to invoke specific tool EXPLICITLY, you don't have access to it. You don't have any access to tools by default.
-If you need a tool but you don't have access to, request for access with following format: `I need access to use **@<tool name>** to <action>, for <purpose>`.
+If you need a tool but you don't have access to, request for access with following format:
+<example>
+I need access to use **@<tool name>** to <action>, for <purpose>.
+</example>
 Once you got access for a tool(means you got usage explicitly), you don't need to ask access for it again.
 
 IMPORTANT: In any situation, after an access request, you MUST stop immediately and wait for approval.
