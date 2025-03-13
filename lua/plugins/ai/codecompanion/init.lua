@@ -145,9 +145,10 @@ return {
                 choices = {
                   ["gemini-2.0-flash-thinking-exp"] = { opts = { can_reason = true } },
                   "gemini-2.0-flash",
+                  "gemini-2.0-flash-exp",
                   "gemini-2.0-pro-exp",
                 },
-                default = "gemini-2.0-flash-thinking-exp",
+                default = "gemini-2.0-flash-exp",
               },
               temperature = {
                 default = 0.5,
