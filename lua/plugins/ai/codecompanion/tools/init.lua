@@ -1,7 +1,5 @@
 local tools_prefix = vim.fn.stdpath("config") .. "/lua/plugins/ai/codecompanion/tools/"
 
--- TODO: read toplevel symbols of file
-
 return {
   groups = {
     ["full_stack_dev"] = {
@@ -66,11 +64,9 @@ return {
   opts = {
     system_prompt = string.format(
       [[# Tool General Guidelines
-To execute tools, you need to generate XML codeblocks like "```xml". You should only generate exactly one xml codeblock in one turn. And stop immediately after xml codeblock is generated.
-You should always try to save tokens for user while ensuring quality by minimizing the output of the tool. For example, fetching range of content is better than fetching the whole file when you need only a part of it.
-Before invoking tools, you should describe your purpose with: `I'm using **@<tool name>** to <action>", for <purpose>.`
+To execute tools, you need to generate XML codeblocks like "```xml".
+You should always try to save tokens for user while ensuring quality by minimizing the output of the tool. You should use tools wisely, and smartly, avoid list or grep files under .gitignore patterns like `target`, `node_modules`, `dist` etc, based on the context.
 
-# Tool Schema Guidelines
 All tools share the same base XML structure:
 <example>
 ```xml
@@ -131,10 +127,6 @@ Some tools support sequential execution to execute multiple action in one XML co
 
 IMPORTANT: Always return a XML markdown code block to run tools. Each operation should follow the XML schema exactly. XML must be valid.
 IMPORTANT: Only tools with explicit sequential execution support are allowed to call multiple actions in one XML codeblock.
-IMPORTANT: You MUST wait for the user to share the outputs with you after executing a tool before responding.
-IMPORTANT: In any situation, if user denies to execute a tool (that means they choose not to run the tool), you should ask for guidance instead of attempting another action. Do not try to execute over and over again. The user retains full control with an approval mechanism before execution.
-
-**VERY IMPORTANT**: YOU MUST EXECUTE ONLY **ONCE** AND ONLY **ONE TOOL** IN **ONE TURN**. That means you should STOP IMMEDIATELY after generating a XML codeblock for tool invocation. Multiple execution is forbidden. This is NOT NEGOTIABLE. But you can combine multiple commands into one (which is recommended), such as `cd xxx && make`, or you can run actions sequentially(these actions must belong to the same tool), which is described below.
 ]],
       "content1",
       "<![CDATA[content2]]>",

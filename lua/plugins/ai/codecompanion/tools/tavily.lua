@@ -107,11 +107,14 @@ return {
       },
     },
   },
-  system_prompt = function(schema)
+  system_prompt = function(_)
     return string.format([[# Tavily Tool(`tavily`) -- Usage Guidelines
 Gain the ability to access the Internet. Use it when you need access to latest information.
 
-Source Citation: When referencing information from the Internet, you should add footnote citations with source URLs at the bottom of your response.
+Source Citation: You should attach source citations behind your statements which are based on the Internet information.
+When you using this tool, please follow these guidelines:
+1. Before searching (not navigating), you should analyse your/user's requirements first, and then generate effective queries
+2. You should conduct follow-up searches and navigate through results as needed to gather complete information, and then generate the final result
 
 ## Description
 - tool name: `tavily`
@@ -124,11 +127,7 @@ Source Citation: When referencing information from the Internet, you should add 
   - element `url`
     - target URL to extract content from.
     - CDATA: yes
-
-## Search Policy
-1. Before searching (not navigating), you should analyse your/user's requirements first, and then generate effective queries
-2. You should conduct follow-up searches and navigate through results as needed to gather complete information, and then generate the final result
-    ]])
+]])
   end,
   handlers = {},
   output = {

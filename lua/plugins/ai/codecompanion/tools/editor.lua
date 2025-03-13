@@ -288,6 +288,7 @@ When to Use: Use this tool solely for buffer edit operations. Other file tasks s
     - the code to be added.
     - CDATA: yes
 - action type: `update`
+  - description: The update action first deletes the range defined in <start_line> to <end_line> (inclusive) and then adds the new code starting from <start_line>
   - element `buffer`
   - element `start_line`
   - element `end_line`
@@ -302,12 +303,7 @@ When to Use: Use this tool solely for buffer edit operations. Other file tasks s
     - element `buffer`
     - element `all`: always be true
 
-## Key Considerations
-- **Safety and Accuracy:** You should validate all code updates carefully.
-- **Tag Order:** You should use a consistent order by always listing <start_line> before <end_line> for update and delete actions.
-- **Line Numbers:** Note that line numbers are 1-indexed, so the first line is line 1, not line 0.
-- **Update Rule:** The update action first deletes the range defined in <start_line> to <end_line> (inclusive) and then adds the new code starting from <start_line>.
-- **Contextual Assumptions:** If no context is provided, you should always fetch the latest buffer content before making any changes.
+
 
 IMPORTANT: Buffer number must be valid. You should either fetch it from user or via other tools.
 ]])

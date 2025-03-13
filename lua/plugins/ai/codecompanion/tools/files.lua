@@ -314,7 +314,6 @@ IMPORTANT: If no context is provided, you should always fetch the latest buffer 
   - element `path`
   - element `new_path`
 
-HINT: Sometimes you don't have to read the full contents of a file. Instead, specific lines of a file might be enough.
 HINT: If search/replace doesn't work, you can also try to delete lines and add new ones.
     ]])
   end,
