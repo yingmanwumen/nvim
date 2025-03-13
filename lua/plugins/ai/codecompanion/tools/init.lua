@@ -65,7 +65,8 @@ return {
     system_prompt = string.format(
       [[# Tool General Guidelines
 To execute tools, you need to generate XML codeblocks like "```xml".
-You should always try to save tokens for user while ensuring quality by minimizing the output of the tool. You should use tools wisely, and smartly, avoid list or grep files under .gitignore patterns like `target`, `node_modules`, `dist` etc, based on the context.
+You should always try to save tokens for user while ensuring quality by minimizing the output of the tool, or you can combine multiple commands into one (which is recommended), such as `cd xxx && make`, or you can run actions sequentially (these actions must belong to the same tool) if the tool supports sequential execution.
+You should use tools wisely, and smart, avoid deal with files under .gitignore patterns like `target`, `node_modules`, `dist` etc, based on the context.
 
 All tools share the same base XML structure:
 <example>
