@@ -293,6 +293,7 @@ IMPORTANT: If no context is provided, you should always fetch the latest buffer 
   - element `end_line`
     - CDATA: no
 - action type `search_replace`: Edit the contents of a file
+  - note: Sometimes you may prefer searching and replacing a line instead of a word, since replacing a word may affect other words that you don't want to change in the file.
   - element `path`
   - element `search`: pattern to search for. Attention: be careful with white characters. This is not a regex search.
     - CDATA: yes
