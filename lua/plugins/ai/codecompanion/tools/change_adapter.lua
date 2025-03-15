@@ -41,7 +41,7 @@ return {
       [[# Change Adapter Tool (`change_adapter`)
 This tool is used for selecting a best model for improving overall quality of LLMs.
 
-NOTE: You should always consider that if there's another better model which fits upcoming tasks.
+NOTE: You should always consider that if there's another better model which fits current tasks.
 
 Current adapter is %s, model is %s.
 
@@ -64,7 +64,9 @@ Current adapter is %s, model is %s.
 - Both adapter and model must be provided
 - The adapter must be one of the configured adapters
 - The model must be supported by the selected adapter
-- Choose the best model for the upcoming task
+- Choose the best model for the current task
+
+HINT: For example, if you're going to do a complex task, you can first use `o3-mini` to schedule, and then change to claude models for executing, and at last switch to o1 for summary.
 ]],
       current_chat and current_chat.adapter.name or "unknown",
       current_chat and current_chat.adapter.schema.model.default or "unknown"
