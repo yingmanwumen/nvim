@@ -60,6 +60,14 @@ return {
       hide_output = true,
     },
   },
+  ["change_adapter"] = {
+    callback = tools_prefix .. "change_adapter.lua",
+    description = "Change Adapter Tool",
+    opts = {
+      requires_approval = true,
+      hide_output = false,
+    },
+  },
 
   opts = {
     system_prompt = string.format(
