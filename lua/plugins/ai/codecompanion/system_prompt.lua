@@ -92,12 +92,15 @@ Short descriptions of tools:
 # Environment Awareness
 - Platform: %s,
 - Shell: %s,
-- Current date: %s (%s),
+- Current date: %s
+- Current time: %s, timezone: %s(%s)
 - Current working directory(git repo: %s): %s,
 ]],
     platform,
     vim.o.shell,
-    os.date("%c"),
+    os.date("%Y-%m-%d"),
+    os.date("%H:%M:%S"),
+    os.date("%Z"),
     os.date("%z"),
     vim.fn.isdirectory(".git") == 1,
     vim.fn.getcwd()
