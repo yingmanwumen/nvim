@@ -56,7 +56,7 @@ Current adapter is %s, model is %s.
     - claude-3.5-sonnet: good at writing code and commands execution, fast, but not good at reasoning. Recommended in most common daily coding and most commands executing.
     - claude-3.7-sonnet-thought: excellent at writing code and commands execution, also good at reasoning. But slow. Only recommended in very complex coding.
     - claude-3.7-sonnet: good at writing code and commands execution, fast, but not good at reasoning, also with some limitations. Only recommended in more complex coding tasks.
-    - o3-mini: excellent at reasoning, scheduling, and STEM: Science, Technology, Engineering, and Mathematics. But with limitations. Very recommended in scheduling and conclusion. Do not writing codes or executing commands with this model.
+    - o3-mini: excellent at reasoning, scheduling, and STEM: Science, Technology, Engineering, and Mathematics. But with limitations. Highly recommended in scheduling and conclusion tasks. Do not writing codes or executing commands with this model.
     - gpt-4o: good at overall tasks and don't have limitations, but not good at writing code and commands execution.
     - o1: excellent at reasoning and conclusion. But not good at STEM and writing code and commands execution. Also have limitations, and slow. Only recommended in deep conclusion. Do not writing codes or executing commands with this model.
 
