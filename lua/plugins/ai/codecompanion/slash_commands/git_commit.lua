@@ -25,7 +25,7 @@ local function generate_commit_message()
     handle_untracked:close()
   end
 
-  local content = [[Tools allowed to use: @cmd_runner @files @change_adapter
+  local content = [[Tools allowed to use: @cmd_runner @files
 - Task:
   1. Before proceeding, review the changes. If there're potential issues or typos, stop and state them. You should fully understand every piece of code in diffs.
   2. Write commit message for the diffs with `commitizen convention`. Format as a gitcommit code block. Keep the commit message concise and precise. "Concise" means keep the title under 50 characters and wrap message at 72 characters.
