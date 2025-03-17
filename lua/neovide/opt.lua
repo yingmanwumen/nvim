@@ -11,6 +11,7 @@ vim.g.neovide_text_contrast = 0.5
 if vim.uv.os_uname().sysname == "Darwin" then
   vim.g.neovide_input_macos_option_key_is_meta = "both"
   -- vim.o.guifont = "Liga ComicShannsMono Nerd Font"
+  -- vim.o.guifont = "Maple Mono NF CN"
   vim.o.guifont = "FiraCode Nerd Font"
   -- vim.o.guifont = "JetBrainsMono Nerd Font"
   vim.o.linespace = 5
