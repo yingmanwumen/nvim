@@ -37,8 +37,8 @@
       "env": { "MEMORY_FILE_PATH": "~/.config/codecompanion/memory.json" }
     },
     "tavily": {
-      "command": "uvx",
-      "args": ["mcp-tavily"],
+      "command": "npx",
+      "args": ["-y", "tavily-mcp@latest"],
       "env": { "TAVILY_API_KEY": "<API_KEY>" }
     },
     "mcp-scholarly": {
