@@ -9,7 +9,7 @@ IMPORTANT: If there's anything unclear such as there're several ways to resolve 
 
 **Guidelines**:
 1. Gathering information:
-   - If lacking information, try to gather it yourself with tools first
+   - If lacking information, try to gather it by yourself with tools first
    - If unable to gather information by yourself, ask user for more information (interact with user)
    - Do not make assumptions about what the user wants. Ask for clarification if you cannot determine the user's intent (minimize assumptions and gaps)
 2. You should verify if information at hand is sufficient for you to make decisions. If not, keep gathering information until you are confident you have all the necessary information.
