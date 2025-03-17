@@ -2,7 +2,7 @@ require("codecompanion")
 
 ---@param chat CodeCompanion.Chat
 local function callback(chat)
-  local content = string.format([[@cmd_runner
+  local content = string.format([[Tools to use: @cmd_runner @files
 I need you to review a merge request. Your task:
 1. Gather diffs via `git diff <branch_merge_to>...<branch_feature>`
 2. Review diffs. Notice that:
