@@ -371,16 +371,8 @@ HINT: If search/replace doesn't work, you can also try to delete lines and add n
       p.filename = p:expand()
 
       if file then
-        local content = fmt(
-          [[The lateset content of file `%s` is inside the `<file_content>` block:
-<file_content>
-%s
-</file_content>]],
-          p.filename,
-          file.content
-        )
         if file.range then
-          content = fmt(
+          local content = fmt(
             [[The latest content of file `%s`(line range: %s) is inside a `<file_range_content>` block:
 <file_content range="%s">
 %s
@@ -390,11 +382,24 @@ HINT: If search/replace doesn't work, you can also try to delete lines and add n
             file.range,
             file.content
           )
+          agent.chat:add_message({
+            role = config.constants.USER_ROLE,
+            content = content,
+          })
+        else
+          local content = fmt(
+            [[The lateset content of file `%s` is inside the `<file_content>` block:
+<file_content>
+%s
+</file_content>]],
+            p.filename,
+            file.content
+          )
+          add_reference(agent.chat, {
+            role = config.constants.USER_ROLE,
+            content = content,
+          }, "tool", "<file>" .. file.path .. "</file>")
         end
-        add_reference(agent.chat, {
-          role = config.constants.USER_ROLE,
-          content = content,
-        }, "tool", "<file>" .. file.path .. "</file>")
       else
         local content = fmt(
           [[The latest content of the file `%s` is inside `<file_content>` block:
