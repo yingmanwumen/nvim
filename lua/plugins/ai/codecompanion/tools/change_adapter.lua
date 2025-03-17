@@ -42,6 +42,7 @@ return {
 This tool is used for selecting a best model for improving overall quality of LLMs.
 
 NOTE: You should always consider that if there's another better model which fits current tasks.
+IMPORTANT: When you planing, use reasoning models; when you executing, use non-reasoning models.
 
 Current adapter is %s, model is %s.
 
@@ -59,6 +60,8 @@ Current adapter is %s, model is %s.
     - o3-mini: excellent at reasoning, scheduling, and STEM: Science, Technology, Engineering, and Mathematics. But with limitations. Highly recommended in scheduling and conclusion tasks. Do not writing codes or executing commands with this model.
     - gpt-4o: good at overall tasks and don't have limitations, but not good at writing code and commands execution.
     - o1: excellent at reasoning and conclusion. But not good at STEM and writing code and commands execution. Also have limitations, and slow. Only recommended in deep conclusion. Do not writing codes or executing commands with this model.
+  - deepseek
+    - deepseek-reasoner: good at reasoning. Very cheap. Recommended in scheduling, but do not writing codes or executing commands with this model.
 
 ## Key Considerations
 - Both adapter and model must be provided
