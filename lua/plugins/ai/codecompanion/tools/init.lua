@@ -74,11 +74,10 @@ return {
       [[# Tool General Guidelines
 To execute tools, you need to generate XML codeblocks like "```xml".
 You should always try to save tokens for user while ensuring quality by minimizing the output of the tool, or you can combine multiple commands into one (which is recommended), such as `cd xxx && make`, or you can run actions sequentially (these actions must belong to the same tool) if the tool supports sequential execution. Running actions of a tool sequentially is considered to be one step/one tool invocation.
-You should use tools wisely, and smart, avoid deal with files under .gitignore patterns like `target`, `node_modules`, `dist` etc, based on the context.
 
 All tools share the same base XML structure:
 <example>
-```xml
+~~~~xml
 <tools>
   <tool name="[tool_name]">
     <action type="[action_type]">
@@ -86,12 +85,14 @@ All tools share the same base XML structure:
     </action>
   </tool>
 </tools>
-```
+~~~~
 </example>
+
+IMPORTANT: You should use "~~~~" instead of backticks to wrap the XML codeblock, since inner backticks may break the codeblock.
 
 For example, if there is a tool called `example_tool` with an action called `example_action`, and the `example_action` has three elements: `<example_element_1>`, `<example_element_2>` and optional `<example_element_3>`, the XML structure would be:
 <example>
-```xml
+~~~~xml
 <tools>
   <tool name="example_tool">
     <action type="example_action">
@@ -100,14 +101,14 @@ For example, if there is a tool called `example_tool` with an action called `exa
     </action>
   </tool>
 </tools>
-```
+~~~~
 </example>
 
 IMPORTANT: Some elements would need to wrap content in CDATA sections to protect special characters, while others do not need to be. Typically all string contents should be wrapped in CDATA sections, and numbers are not.
 
 If the tool doesn't have an action type(usually when there's only one action in the tool), then it could be:
 <example>
-```xml
+~~~~xml
 <tools>
   <tool name="example_tool">
     <action type>
@@ -115,12 +116,12 @@ If the tool doesn't have an action type(usually when there's only one action in 
     </action>
   </tool>
 </tools>
-```
+~~~~
 </example>
 
 Some tools support sequential execution to execute multiple action in one XML codeblock:
 <example>
-```xml
+~~~~xml
 <tools>
   <tool name="[tool_name]">
     <action type="[action_type_1]">
@@ -131,7 +132,7 @@ Some tools support sequential execution to execute multiple action in one XML co
     </action>
   </tool>
 </tools>
-```
+~~~~
 </example>
 
 IMPORTANT: Always return a XML markdown code block to run tools. Each operation should follow the XML schema exactly. XML must be valid.
