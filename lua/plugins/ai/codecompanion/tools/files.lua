@@ -398,7 +398,7 @@ HINT: If search/replace doesn't work, you can also try to delete lines and add n
           add_reference(agent.chat, {
             role = config.constants.USER_ROLE,
             content = content,
-          }, "tool", "<file>" .. file.path .. "</file>")
+          }, "tool", "<file>" .. p.filename .. "</file>")
         end
       else
         local content = fmt(
