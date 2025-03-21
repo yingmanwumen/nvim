@@ -1,5 +1,6 @@
 return {
-  "zbirenbaum/copilot.lua",
+  -- "zbirenbaum/copilot.lua",
+  "yingmanwumen/copilot.lua",
   event = "InsertEnter",
   cmd = "Copilot",
   config = function()
