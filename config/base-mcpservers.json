@@ -25,21 +25,56 @@
       }
     },
     "filesystem": {
-      "disabled": true,
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/"],
-      "command": "npx"
-    },
-    "fetch": { "command": "uvx", "args": ["mcp-server-fetch"] },
-    "memory": {
-      "disabled": true,
-      "args": ["-y", "@modelcontextprotocol/server-memory"],
       "command": "npx",
-      "env": { "MEMORY_FILE_PATH": "~/.config/codecompanion/memory.json" }
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/"],
+      "disabled_tools": ["list_allowed_directories"],
+      "disabled": false
+    },
+    "desktop-commander": {
+      "disabled_tools": [
+        "block_command",
+        "unblock_command",
+        "create_directory",
+        "edit_block",
+        "list_allowed_directories",
+        "list_blocked_commands",
+        "list_directory",
+        "move_file",
+        "read_file",
+        "read_multiple_files",
+        "search_files",
+        "write_file",
+        "get_file_info",
+        "list_processes"
+      ],
+      "args": ["-y", "@wonderwhy-er/desktop-commander"],
+      "command": "npx",
+      "disabled": false
+    },
+    "fetch": {
+      "command": "uvx",
+      "args": ["mcp-server-fetch"],
+      "disabled": false
+    },
+    "memory": {
+      "command": "npx",
+      "custom_instructions": {
+        "text": "Follow these steps for each interaction:\n\n1. User Identification:\n   - You should assume that you are interacting with default_user\n   - If you have not identified default_user, proactively try to do so.\n\n2. Memory Retrieval:\n   - Always begin your chat by saying only \"Remembering...\" and retrieve all relevant information from your knowledge graph\n   - Always refer to your knowledge graph as your \"memory\"\n\n3. Memory\n   - While conversing with the user, be attentive to any new information that falls into these categories:\n     a) Basic Identity (age, gender, location, job title, education level, etc.)\n     b) Behaviors (interests, habits, etc.)\n     c) Preferences (communication style, preferred language, etc.)\n     d) Goals (goals, targets, aspirations, etc.)\n     e) Relationships (personal and professional relationships up to 3 degrees of separation)\n\n4. Memory Update:\n   - If any new information was gathered during the interaction, update your memory as follows:\n     a) Create entities for recurring organizations, people, and significant events\n     b) Connect them to the current entities using relations\n     b) Store facts about them as observations"
+      },
+      "env": {
+        "MEMORY_FILE_PATH": "~/.config/codecompanion/memory.json"
+      },
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "disabled": false
     },
     "tavily": {
+      "disabled_tools": ["tavily-extract"],
       "command": "npx",
       "args": ["-y", "tavily-mcp@latest"],
-      "env": { "TAVILY_API_KEY": "<API_KEY>" }
+      "env": {
+        "TAVILY_API_KEY": "<API_KEY>"
+      },
+      "disabled": false
     },
     "mcp-scholarly": {
       "disabled": true,
