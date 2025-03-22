@@ -106,7 +106,7 @@ Execute shell commands on the user's system.
 - Each command runs in its own subprocess/subshell, meaning directory changes (`cd`) and environment variable changes will not persist between commands
 
 HINT: You should prefer `rg` and `fd` instead of `grep` and `find` for they can ignore hidden files and directories. Always attach a target path after `rg` and `fd` commands, like `rg xxx .` and `fd -p .`.
-IMPORTANT: You cannot interact with terminal or running processes, so all your commands should be non-interactive, do not try commands like `npm run dev`.
+IMPORTANT: You cannot interact with terminal or running processes, so all your commands should be non-interactive, do not try commands like `npm run dev`, `npm run start`, or start a server, or something else. If you really need to do that, you should ask user for do so.
 ]])
   end,
   handlers = {
