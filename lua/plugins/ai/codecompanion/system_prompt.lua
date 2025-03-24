@@ -87,6 +87,8 @@ You should always try to save tokens for user while ensuring quality by minimizi
 
 This is only a general usage guideline, the tool specific usage/guideline/arguments will be detailed once you got the permission to use the tool.
 
+**FATAL IMPORTANT**: You should use "~~~~" instead of backticks to wrap the XML codeblock, since inner backticks may break the codeblock.
+
 All tools share the same base XML structure:
 <example>
 ~~~~xml
@@ -100,7 +102,7 @@ All tools share the same base XML structure:
 ~~~~
 </example>
 
-IMPORTANT: You should use "~~~~" instead of backticks to wrap the XML codeblock, since inner backticks may break the codeblock.
+ATTENTION AGAIN: use "~~~~" instead of backticks in tool invocation!!!!
 
 For example, if there is a tool called `example_tool` with an action called `example_action`, and the `example_action` has three elements: `<example_element_1>`, `<example_element_2>` and optional `<example_element_3>`, the XML structure would be:
 <example>
