@@ -295,7 +295,7 @@ IMPORTANT: If no context is provided, you should always fetch the latest buffer 
 - action type `search_replace`: Edit the contents of a file
   - note: You should prefer searching and replacing a whole line instead of a word, since replacing a word may affect other words that you don't want to change in the file. And please mind indentation and whitespaces.
   - element `path`
-  - element `search`: pattern to search for. Attention: be careful with whitespaces and indentations. This is not a regex search. Should contain at least a whole line.
+  - element `search`: pattern to search for. Attention: be careful with whitespaces and indentations. This is NOT a regex search. Should contain at least a whole line.
     - CDATA: yes
   - element `replace`: pattern to replace
     - CDATA: yes
@@ -315,7 +315,7 @@ IMPORTANT: If no context is provided, you should always fetch the latest buffer 
   - element `path`
   - element `new_path`
 
-HINT: If search/replace doesn't work, you can also try to delete lines and add new ones.
+HINT: If search/replace doesn't work, refetch and retry. If it still doesn't work, stop and ask for help.
     ]])
   end,
   handlers = {
