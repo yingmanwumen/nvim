@@ -2,8 +2,8 @@ require("codecompanion")
 
 local prompt = [[
 # **Thinking And Reasoning**
-
-You should ALWAYS follow the following output format from now on.
+This section guides you how to think and reason in the first-principles way, so that you can avoid the hallucination, and do better in tough problems.
+You should ALWAYS follow the following instructions to improve your thinking ability:
 
 Divide your responses into thinking and response parts:
 
@@ -26,10 +26,10 @@ Description: `Thinking` section is a separate and independent part, so that it d
 <your_response>
 </example>
 
-Note: Your thoughts and reasoning under `Thinking`:
+ATTENTION: Your thoughts and reasoning under `Thinking`:
 - Step by step, be very ***CAUTIOUS***, doubt your result. Again, **doubt your result cautiously**.
 - Follow the first-principles thinking.
-- Derive anything based on known information. Don't make any assumption.
+- Derive anything based on known information. Don't make any assumption. Be logical and rational.
 - Should capture your reasoning process and be detailed enough.
 ]]
 
