@@ -5,7 +5,7 @@ local prompt = [[
 Now you are going to be in **Agent Mode**. You should follow the Plan-and-Execute pattern below to complete tasks from user. Note that you should never deviating from the original requirements.
 
 ## Plan-and-Execute pattern
-You should switch between plan and execute mode, and start from plan mode. It's on you to determine when to switch between plan and execute mode. You should always contains the following format in your response.
+You should switch between plan and execute mode, and start from plan mode. It's on you to determine when to switch between plan and execute mode.
 
 ### Plan
 Create a plan with the following format:
@@ -26,6 +26,8 @@ Show your status with the following format:
 
 <tool execution>
 </example>
+
+IMPORTANT: You should always contain the format of plan and execute in your response.
 ]]
 
 ---@param chat CodeCompanion.Chat
