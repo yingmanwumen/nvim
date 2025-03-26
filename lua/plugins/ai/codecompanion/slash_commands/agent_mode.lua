@@ -19,8 +19,8 @@ Create a plan with the following format:
 ### Execute
 Execute the plan made before step by step with tools. Show your status with the following format:
 <example>
-> Current step: <current step>
-> Previous step: <previous step>
+> Current step: <the summary of current step>
+> Previous step: <the summary of previous step>
 > Thought: <what you observed and what you think>
 > Action: <next action to take>
 
