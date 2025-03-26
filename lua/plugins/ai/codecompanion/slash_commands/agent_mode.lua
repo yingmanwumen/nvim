@@ -17,7 +17,7 @@ Create a plan with the following format:
 ...
 </example>
 
-IMPORTANT: You should MINIMIZE steps and tools usage to reduce context usage.
+IMPORTANT: You should consider if you can MINIMIZE steps and tools usage to reduce context usage. For example, when committing changes, `stage` and `commit` can be done in a single step since they won't affect each other.
 
 ### Execute
 Execute the plan made before step by step with tools.
