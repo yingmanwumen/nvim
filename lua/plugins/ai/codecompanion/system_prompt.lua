@@ -54,7 +54,7 @@ assistant: 150000
 
 <example>
 user: write tests for new feature
-assistant: <uses grep and glob search tools to find where similar tests are defined, uses concurrent read file tool use blocks in one tool call to read relevant files at the same time, uses edit file tool to write new tests>
+assistant: <uses tools to find where similar tests are defined, then read relevant files, and write new tests>
 </example>
 
 # Following conventions
