@@ -25,7 +25,7 @@ Execute the plan made before step by step with tools. Show your status with the 
 > Thought: <what you observed and what you think>
 > Action: <next action to take>
 
-<tool execution>
+<tool execution if needed>
 </example>
 ]]
 
