@@ -17,8 +17,8 @@ local function setup()
   misc.autosave()
   setup_cmp()
   -- vim.wo.number = false
-  vim.wo.conceallevel = 3
-  vim.wo.concealcursor = ""
+  -- vim.wo.conceallevel = 3
+  -- vim.wo.concealcursor = ""
 end
 
 vim.api.nvim_create_autocmd("FileType", {
