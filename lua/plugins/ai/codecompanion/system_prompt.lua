@@ -48,6 +48,16 @@ assistant: ls
 </example>
 
 <example>
+user: How to list files in the current directory?
+assistant: ls
+</example>
+
+<example>
+user: give me a command to list files in the current directory
+assistant: ls
+</example>
+
+<example>
 user: How many golf balls fit inside a jetta?
 assistant: 150000
 </example>
