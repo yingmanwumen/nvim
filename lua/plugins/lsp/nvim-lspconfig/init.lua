@@ -17,12 +17,6 @@ local function setup()
   vim.lsp.inlay_hint.enable(true)
 end
 
-local icons = require("plugins.lsp.nvim-lspconfig.icons")
-for name, icon in pairs(icons) do
-  local hl = "DiagnosticSign" .. name
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
 return {
   "neovim/nvim-lspconfig",
   dependencies = {

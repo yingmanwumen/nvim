@@ -1,56 +1,80 @@
 local modules = require("misc").module_list()
 
-vim.diagnostic.config({
+local icons = require("plugins.lsp.nvim-lspconfig.icons")
 
+vim.diagnostic.config({
   -- virtual_text = {
   -- current_line = true,
   --   prefix = "",
   -- },
-
   virtual_lines = {
     current_line = true,
+    ---@param diagnostic vim.Diagnostic
+    ---@return string?
+    format = function(diagnostic)
+      local res = diagnostic.message
+      if diagnostic.source then
+        res = diagnostic.source .. ": " .. res
+      end
+      -- if diagnostic.code then
+      --   res = res .. "\nerror code: " .. diagnostic.code
+      -- end
+      return res
+    end,
   },
   underline = true,
-  update_in_insert = true,
+  update_in_insert = false,
   severity_sort = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = icons.error,
+      [vim.diagnostic.severity.WARN] = icons.warn,
+      [vim.diagnostic.severity.INFO] = icons.info,
+      [vim.diagnostic.severity.HINT] = icons.hint,
+    },
+  },
 })
 
 -- Override default LSP diagnostics handler to improve display of related information
 -- Store the original handler for later use
 local original = vim.lsp.handlers["textDocument/publishDiagnostics"]
 
--- Create a custom handler for diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
-  -- Process each diagnostic item
-  vim.tbl_map(function(item)
-    -- Check if the diagnostic has related information
-    if item.relatedInformation and #item.relatedInformation > 0 then
-      -- Process each related information item
-      vim.tbl_map(function(k)
-        -- If location information is present
-        if k.location then
-          -- Get the filename from the URI
-          local tail = vim.fn.fnamemodify(vim.uri_to_fname(k.location.uri), ":t")
+-- Disable related information currently
+---@diagnostic disable-next-line: unused-local
+local function set_related_information_for_diagnostics()
+  -- Create a custom handler for diagnostics
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
+    -- Process each diagnostic item
+    vim.tbl_map(function(item)
+      -- Check if the diagnostic has related information
+      if item.relatedInformation and #item.relatedInformation > 0 then
+        -- Process each related information item
+        vim.tbl_map(function(k)
+          -- If location information is present
+          if k.location then
+            -- Get the filename from the URI
+            local tail = vim.fn.fnamemodify(vim.uri_to_fname(k.location.uri), ":t")
 
-          -- Format the message to include filename, line and column numbers
-          -- Note: Adding 1 to line/column because LSP uses 0-based indexing
-          k.message = tail
-            .. "("
-            .. (k.location.range.start.line + 1)
-            .. ", "
-            .. (k.location.range.start.character + 1)
-            .. "): "
-            .. k.message
-        end
+            -- Format the message to include filename, line and column numbers
+            -- Note: Adding 1 to line/column because LSP uses 0-based indexing
+            k.message = tail
+              .. "("
+              .. (k.location.range.start.line + 1)
+              .. ", "
+              .. (k.location.range.start.character + 1)
+              .. "): "
+              .. k.message
+          end
 
-        -- Append the related information to the main diagnostic message
-        item.message = item.message .. "\n" .. k.message
-      end, item.relatedInformation)
-    end
-  end, result.diagnostics)
+          -- Append the related information to the main diagnostic message
+          item.message = item.message .. "\n" .. k.message
+        end, item.relatedInformation)
+      end
+    end, result.diagnostics)
 
-  -- Call the original handler with our modified results
-  original(_, result, ctx, config)
+    -- Call the original handler with our modified results
+    original(_, result, ctx, config)
+  end
 end
 
 -- Toggle inlay hints for the current buffer
