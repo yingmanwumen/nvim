@@ -1,9 +1,18 @@
 local modules = require("misc").module_list()
 
 vim.diagnostic.config({
-  virtual_text = {
-    prefix = "",
+
+  -- virtual_text = {
+  -- current_line = true,
+  --   prefix = "",
+  -- },
+
+  virtual_lines = {
+    current_line = true,
   },
+  underline = true,
+  update_in_insert = true,
+  severity_sort = true,
 })
 
 -- Override default LSP diagnostics handler to improve display of related information
