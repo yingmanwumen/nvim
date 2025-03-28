@@ -27,10 +27,10 @@ vim.diagnostic.config({
   severity_sort = true,
   signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = icons.error,
-      [vim.diagnostic.severity.WARN] = icons.warn,
-      [vim.diagnostic.severity.INFO] = icons.info,
-      [vim.diagnostic.severity.HINT] = icons.hint,
+      [vim.diagnostic.severity.ERROR] = icons.Error,
+      [vim.diagnostic.severity.WARN] = icons.Warn,
+      [vim.diagnostic.severity.INFO] = icons.Info,
+      [vim.diagnostic.severity.HINT] = icons.Hint,
     },
   },
 })
@@ -40,7 +40,7 @@ vim.diagnostic.config({
 local original = vim.lsp.handlers["textDocument/publishDiagnostics"]
 
 -- Disable related information currently
----@diagnostic disable-next-line: unused-local
+---@diagnostic disable-next-line: unused-function, unused-local
 local function set_related_information_for_diagnostics()
   -- Create a custom handler for diagnostics
   vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
