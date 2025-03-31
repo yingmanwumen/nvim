@@ -1,6 +1,6 @@
 local default_on_attach = require("plugins.lsp.nvim-lspconfig.on_attach")
 
-vim.g.rustfmt_autosave = 1
+-- vim.g.rustfmt_autosave = 1
 
 vim.g.rustaceanvim = {
   tools = {
@@ -10,7 +10,9 @@ vim.g.rustaceanvim = {
   },
   server = {
     on_attach = function(client, bufnr)
-      default_on_attach(client, nil, bufnr)
+      default_on_attach(client, {
+        format_on_save = true,
+      }, bufnr)
     end,
     settings = {
       ["rust-analyzer"] = {
