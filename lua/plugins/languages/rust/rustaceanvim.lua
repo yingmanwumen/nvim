@@ -1,5 +1,6 @@
 local default_on_attach = require("plugins.lsp.nvim-lspconfig.on_attach")
 
+-- we use `vim.lsp.buf.format` instead
 -- vim.g.rustfmt_autosave = 1
 
 vim.g.rustaceanvim = {
