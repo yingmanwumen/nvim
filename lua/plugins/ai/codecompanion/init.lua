@@ -310,7 +310,7 @@ return {
           },
         },
         diff = {
-          enabled = false,
+          enabled = true,
           close_chat_at = 1,
           provider = "mini_diff",
           opts = { "internal", "filler", "closeoff", "algorithm:patience", "followwrap", "linematch:120" },
