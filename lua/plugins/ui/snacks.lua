@@ -10,7 +10,7 @@ return {
     explorer = { enabled = false },
     indent = { enabled = false },
     notifier = { enabled = false },
-    picker = { enabled = false },
+    picker = { enabled = true },
     scope = { enabled = false },
     scroll = { enabled = false },
     statuscolumn = { enabled = false },
