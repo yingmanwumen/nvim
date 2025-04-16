@@ -29,7 +29,7 @@ local function generate_commit_message()
 - Task:
   1. Before proceeding, review the changes. If there're potential issues or typos, stop and state them. You should fully understand every piece of code in diffs, and analyze the purpose and context of each change.
   2. Write commit messages for the diffs with `commitizen convention`. Format as a gitcommit code block. Keep the commit messages concise and precise. "Concise" means keep the title under 50 characters and wrap message at 72 characters. Remember, you should ensure that each commit is atomic, means each commit only contains ONE logical change, and you should write multiple commits for multiple logical changes.
-  3. After generating commit messages, stage diffs and then commit them with `git commit -F- <<EOF`.
+  3. After generating commit messages, stage diffs and then commit them with `git commit -F- <<EOF`. Multiple commit messages should be committed separately, and you should stage the corresponding diffs carefully.
 
 Full diffs are as follows:
 
