@@ -21,34 +21,13 @@
       ],
       "command": "npx",
       "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "<PERSONAL_ACCESS_TOKEN>"
+        "GITHUB_PERSONAL_ACCESS_TOKEN": null
       }
     },
     "filesystem": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-filesystem", "/"],
       "disabled_tools": ["list_allowed_directories"],
-      "disabled": false
-    },
-    "desktop-commander": {
-      "disabled_tools": [
-        "block_command",
-        "unblock_command",
-        "create_directory",
-        "edit_block",
-        "list_allowed_directories",
-        "list_blocked_commands",
-        "list_directory",
-        "move_file",
-        "read_file",
-        "read_multiple_files",
-        "search_files",
-        "write_file",
-        "get_file_info",
-        "list_processes"
-      ],
-      "args": ["-y", "@wonderwhy-er/desktop-commander"],
-      "command": "npx",
       "disabled": false
     },
     "fetch": {
@@ -72,7 +51,7 @@
       "command": "npx",
       "args": ["-y", "tavily-mcp@latest"],
       "env": {
-        "TAVILY_API_KEY": "<API_KEY>"
+        "TAVILY_API_KEY": null
       },
       "disabled": false
     },
@@ -80,11 +59,6 @@
       "disabled": true,
       "command": "uvx",
       "args": ["mcp-scholarly"]
-    },
-    "playwright": {
-      "disabled": true,
-      "command": "npx",
-      "args": ["-y", "@executeautomation/playwright-mcp-server"]
     }
   }
 }
