@@ -1,20 +1,7 @@
-local default_on_attach = require("plugins.lsp.nvim-lspconfig.on_attach")
-
--- we use `vim.lsp.buf.format` instead
--- vim.g.rustfmt_autosave = 1
-
-vim.g.rustaceanvim = {
-  tools = {
-    hover_actions = {
-      replace_builtin_hover = false,
-    },
-  },
-  server = {
-    on_attach = function(client, bufnr)
-      default_on_attach(client, {
-        format_on_save = true,
-      }, bufnr)
-    end,
+return {
+  lsp = "rust_analyzer",
+  format_on_save = true,
+  opts = {
     settings = {
       ["rust-analyzer"] = {
         check = {
@@ -35,10 +22,4 @@ vim.g.rustaceanvim = {
       },
     },
   },
-}
-
-return {
-  "mrcjkb/rustaceanvim",
-  ft = "rust",
-  version = "^5", -- Recommended
 }

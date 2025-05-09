@@ -1,6 +1,5 @@
 local function setup()
   local languages = require("plugins.lsp.nvim-lspconfig.lsp-list")
-  local lspconfig = require("lspconfig")
   local configs = require("lspconfig.configs")
 
   for _, language in pairs(languages) do
@@ -10,7 +9,7 @@ local function setup()
       }
     end
     if language.opts ~= nil then
-      lspconfig[language.lsp].setup(language.opts)
+      vim.lsp.config(language.lsp, language.opts)
     end
   end
 
