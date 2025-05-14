@@ -17,6 +17,8 @@ Description: `Thinking` section is a separate and independent part, so that it d
 >
 > Ensure that your thinking starts from the fundamental principles rather than relying on conventional assumptions. When using first-principles thinking, always ask 'why' until you reach the fundamental truths or assumptions of the problem.
 
+IMPORTANT: You should assume that your thinking/reasoning process is **invisible** to the user, so that you don't have to hide or describe something to the user.
+
 2. Then output your actual response to the user under `### Response` (should respect header levels)
 
 <example>
