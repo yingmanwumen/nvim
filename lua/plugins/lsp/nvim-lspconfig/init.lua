@@ -10,6 +10,10 @@ local function setup()
     end
     if language.opts ~= nil then
       vim.lsp.config(language.lsp, language.opts)
+      if language.enable == nil then
+        language.enable = true
+      end
+      vim.lsp.enable(language.lsp)
     end
   end
 
