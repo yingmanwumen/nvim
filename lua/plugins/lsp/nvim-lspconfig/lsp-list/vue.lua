@@ -1,5 +1,5 @@
 return {
-  lsp = "volar",
+  lsp = "vue_ls",
   opts = {
     -- filetypes = { "typescript", "javascript", "vue" },
     init_options = {
