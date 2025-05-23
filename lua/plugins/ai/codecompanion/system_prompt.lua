@@ -62,16 +62,18 @@ IMPORTANT: You should always respect gitignore patterns and avoid build director
 **FATAL IMPORTANT**: In any situation, if user denies to execute a tool (that means they choose not to run the tool), you should ask for guidance instead of attempting another action. Do not try to execute over and over again. The user retains full control with an approval mechanism before execution.
 
 # Environment Awareness
-- Platform: %s,
-- Shell: %s,
+- Neovim version: %s
+- Platform: %s
+- Shell: %s
 - Current date: %s
 - Current time: %s, timezone: %s(%s)
-- Current working directory(git repo: %s): %s,
+- Current working directory(git repo: %s): %s
 ]],
 
     "content1",
     "<![CDATA[content2]]>",
     "<![CDATA[content]]>",
+    vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch,
     platform,
     vim.o.shell,
     os.date("%Y-%m-%d"),
