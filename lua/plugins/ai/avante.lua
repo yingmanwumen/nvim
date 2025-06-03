@@ -34,23 +34,32 @@ return {
           reverse_switch_windows = "<C-S-Tab>",
         },
       },
-      vendors = {
-        deepseek = {
-          __inherited_from = "openai",
-          endpoint = "https://api.deepseek.com/v1",
-          -- model = "deepseek-chat",
-          model = "deepseek-reasoner",
-          temperature = 0.3,
-          -- optional
-          api_key_name = "DEEPSEEK_API_KEY",
+      providers = {
+
+        vendors = {
+          deepseek = {
+            __inherited_from = "openai",
+            endpoint = "https://api.deepseek.com/v1",
+            -- model = "deepseek-chat",
+            model = "deepseek-reasoner",
+            extra_request_body = {
+              temperature = 0.3,
+            },
+            -- optional
+            api_key_name = "DEEPSEEK_API_KEY",
+          },
         },
-      },
-      copilot = {
-        model = "claude-3.5-sonnet",
-        temperature = 0.3,
-      },
-      gemini = {
-        temperature = 0.3,
+        copilot = {
+          model = "claude-3.5-sonnet",
+          extra_request_body = {
+            temperature = 0.3,
+          },
+        },
+        gemini = {
+          extra_request_body = {
+            temperature = 0.3,
+          },
+        },
       },
       windows = {
         sidebar_header = {
