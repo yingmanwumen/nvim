@@ -1,13 +1,69 @@
 {
-  "mcpServers": {
-    "sequential-thinking": {
+  "nativeMCPServers": {
+    "mcphub": {
+      "disabled_tools": [
+        
+      ],
+      "disabled_resources": [
+        "mcphub://docs",
+        "mcphub://native_server_guide",
+        "mcphub://changelog"
+      ],
       "disabled": true,
-      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
-      "command": "npx"
+      "disabled_prompts": [
+        "create_native_server"
+      ]
+    },
+    "neovim": {
+      "disabled_tools": [
+        "delete_item",
+        "execute_command",
+        "find_files",
+        "list_directory",
+        "move_item",
+        "read_file",
+        "replace_in_file",
+        "write_file"
+      ],
+      "disabled": false,
+      "disabled_prompts": [
+        "parrot"
+      ]
+    }
+  },
+  "mcpServers": {
+    "filesystem": {
+      "disabled_tools": [
+        "list_allowed_directories"
+      ],
+      "disabled": true,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/"
+      ]
+    },
+    "tavily": {
+      "env": {
+        "TAVILY_API_KEY": null
+      },
+      "disabled": false,
+      "command": "npx",
+      "disabled_tools": [
+        "tavily-extract"
+      ],
+      "args": [
+        "-y",
+        "tavily-mcp@latest"
+      ]
     },
     "github": {
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": null
+      },
       "disabled": true,
-      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "command": "npx",
       "disabled_tools": [
         "add_issue_comment",
         "create_branch",
@@ -19,47 +75,46 @@
         "update_issue",
         "push_files"
       ],
-      "command": "npx",
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": null
-      }
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ]
     },
-    "filesystem": {
+    "mcp-scholarly": {
+      "disabled": true,
+      "command": "uvx",
+      "args": [
+        "mcp-scholarly"
+      ]
+    },
+    "sequential-thinking": {
+      "disabled": true,
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/"],
-      "disabled_tools": ["list_allowed_directories"],
-      "disabled": false
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
     },
     "fetch": {
+      "disabled": false,
       "command": "uvx",
-      "args": ["mcp-server-fetch"],
-      "disabled": false
+      "args": [
+        "mcp-server-fetch"
+      ]
     },
     "memory": {
-      "command": "npx",
       "custom_instructions": {
         "text": "Follow these steps for each interaction:\n\n1. User Identification:\n   - You should assume that you are interacting with default_user\n   - If you have not identified default_user, proactively try to do so.\n\n2. Memory Retrieval:\n   - Always begin your chat by saying only \"Remembering...\" and retrieve all relevant information from your knowledge graph\n   - Always refer to your knowledge graph as your \"memory\"\n\n3. Memory\n   - While conversing with the user, be attentive to any new information that falls into these categories:\n     a) Basic Identity (age, gender, location, job title, education level, etc.)\n     b) Behaviors (interests, habits, etc.)\n     c) Preferences (communication style, preferred language, etc.)\n     d) Goals (goals, targets, aspirations, etc.)\n     e) Relationships (personal and professional relationships up to 3 degrees of separation)\n\n4. Memory Update:\n   - If any new information was gathered during the interaction, update your memory as follows:\n     a) Create entities for recurring organizations, people, and significant events\n     b) Connect them to the current entities using relations\n     b) Store facts about them as observations"
       },
       "env": {
         "MEMORY_FILE_PATH": "~/.config/codecompanion/memory.json"
       },
-      "args": ["-y", "@modelcontextprotocol/server-memory"],
-      "disabled": false
-    },
-    "tavily": {
-      "disabled_tools": ["tavily-extract"],
       "command": "npx",
-      "args": ["-y", "tavily-mcp@latest"],
-      "env": {
-        "TAVILY_API_KEY": null
-      },
-      "disabled": false
-    },
-    "mcp-scholarly": {
       "disabled": true,
-      "command": "uvx",
-      "args": ["mcp-scholarly"]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ]
     }
   }
 }
-
