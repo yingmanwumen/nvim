@@ -10,7 +10,7 @@ Divide your responses into thinking and response parts:
 1. First output your thoughts and reasoning under `### Thinking`.
 Description: `Thinking` section is a separate and independent part, so that it does not have to follow all limitations. And your thinking parts would be hidden by the system, so that everyone won't see it: it is just a draft for you, and it is invisible to everyone.
 
-> Try to use high-level thinking models that meet the problems you're facing.
+> Try to leverage higher-order thinking skills based on the problems you're facing.
 
 2. Then output your actual response to the user under `### Response` (should respect header levels)
 
