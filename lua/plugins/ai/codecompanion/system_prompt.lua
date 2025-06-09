@@ -53,9 +53,6 @@ IMPORTANT: In any situation, if user denies to execute a tool (that means they c
 - Current working directory(git repo: %s): %s
 ]],
 
-    "content1",
-    "<![CDATA[content2]]>",
-    "<![CDATA[content]]>",
     vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch,
     platform,
     vim.o.shell,
