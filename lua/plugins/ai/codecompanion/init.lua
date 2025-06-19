@@ -1,4 +1,4 @@
-local adapter = "copilot_0_3"
+local adapter = "gpt_4_1"
 
 return {
   "olimorris/codecompanion.nvim",
@@ -215,19 +215,7 @@ return {
             },
           })
         end,
-        copilot_0 = function()
-          return require("codecompanion.adapters").extend("copilot", {
-            schema = {
-              temperature = {
-                default = 0,
-              },
-              model = {
-                default = "claude-3.5-sonnet",
-              },
-            },
-          })
-        end,
-        copilot_0_3 = function()
+        claude_3_5 = function()
           return require("codecompanion.adapters").extend("copilot", {
             schema = {
               temperature = {
@@ -239,35 +227,11 @@ return {
             },
           })
         end,
-        copilot_0_5 = function()
+        gpt_4_1 = function()
           return require("codecompanion.adapters").extend("copilot", {
             schema = {
               temperature = {
-                default = 0.5,
-              },
-              model = {
-                default = "o3-mini",
-              },
-            },
-          })
-        end,
-        copilot_0_7 = function()
-          return require("codecompanion.adapters").extend("copilot", {
-            schema = {
-              temperature = {
-                default = 0.7,
-              },
-              model = {
-                default = "gpt-4.1",
-              },
-            },
-          })
-        end,
-        copilot_1_0 = function()
-          return require("codecompanion.adapters").extend("copilot", {
-            schema = {
-              temperature = {
-                default = 1.0,
+                default = 0.3,
               },
               model = {
                 default = "gpt-4.1",
