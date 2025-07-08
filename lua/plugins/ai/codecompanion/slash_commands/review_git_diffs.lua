@@ -9,7 +9,7 @@ local function callback(chat)
    - Correctness, performance and readability are the most important factors
    - Also review the design, architecture and implementation
    - Try your best to dig out potential bugs
-Tools you can use: @cmd_runner, @files
+Tools you can use: @{cmd_runner}, @{files}
 ]])
 
   chat:add_buf_message({

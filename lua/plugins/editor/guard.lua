@@ -87,8 +87,8 @@ return {
   dependencies = {
     "nvimdev/guard-collection",
     -- Most binaries of mine are managed by Mason
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason.nvim",
+    "mason-org/mason-lspconfig.nvim",
   },
   config = setup,
 }
