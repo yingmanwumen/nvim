@@ -1,4 +1,4 @@
-local adapter = "gpt_4_1"
+local adapter = "claude_4"
 
 return {
   "olimorris/codecompanion.nvim",
@@ -223,6 +223,18 @@ return {
               },
               model = {
                 default = "claude-3.5-sonnet",
+              },
+            },
+          })
+        end,
+        claude_4 = function()
+          return require("codecompanion.adapters").extend("copilot", {
+            schema = {
+              temperature = {
+                default = 0.3,
+              },
+              model = {
+                default = "claude-sonnet-4",
               },
             },
           })
