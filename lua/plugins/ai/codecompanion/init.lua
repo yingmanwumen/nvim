@@ -1,4 +1,4 @@
-local adapter = "claude_4"
+local adapter = "gemini_2_0_flash_001"
 
 return {
   "olimorris/codecompanion.nvim",
@@ -142,12 +142,12 @@ return {
           return require("codecompanion.adapters").extend("gemini", {
             schema = {
               model = {
-                choices = {
-                  "gemini-2.0-flash-thinking-exp",
-                  "gemini-2.0-flash",
-                  "gemini-2.0-flash-exp",
-                  "gemini-2.0-pro-exp",
-                },
+                -- choices = {
+                --   "gemini-2.0-flash-thinking-exp",
+                --   "gemini-2.0-flash",
+                --   "gemini-2.0-flash-exp",
+                --   "gemini-2.0-pro-exp",
+                -- },
                 default = "gemini-2.0-flash-exp",
               },
               temperature = {
@@ -235,6 +235,18 @@ return {
               },
               model = {
                 default = "claude-sonnet-4",
+              },
+            },
+          })
+        end,
+        gemini_2_0_flash_001 = function()
+          return require("codecompanion.adapters").extend("copilot", {
+            schema = {
+              temperature = {
+                default = 0.3,
+              },
+              model = {
+                default = "gemini-2.0-flash-001",
               },
             },
           })
