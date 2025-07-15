@@ -1,4 +1,4 @@
-local adapter = "gemini_2_0_flash_001"
+local adapter = "gemini"
 
 return {
   "olimorris/codecompanion.nvim",
@@ -142,13 +142,7 @@ return {
           return require("codecompanion.adapters").extend("gemini", {
             schema = {
               model = {
-                -- choices = {
-                --   "gemini-2.0-flash-thinking-exp",
-                --   "gemini-2.0-flash",
-                --   "gemini-2.0-flash-exp",
-                --   "gemini-2.0-pro-exp",
-                -- },
-                default = "gemini-2.0-flash-exp",
+                default = "gemini-2.5-pro",
               },
               temperature = {
                 default = 0.5,
