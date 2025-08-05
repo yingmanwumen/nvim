@@ -3,10 +3,11 @@ vim.g.neovide_input_ime = true
 vim.g.neovide_refresh_rate = 120
 vim.g.neovide_no_idle = true
 -- vim.g.neovide_cursor_vfx_mode = "railgun"
-vim.g.neovide_cursor_vfx_mode = "sonicboom"
+-- vim.g.neovide_cursor_vfx_mode = "sonicboom"
 vim.g.neovide_hide_mouse_when_typing = true
 vim.g.neovide_text_gamma = 2.2
 vim.g.neovide_text_contrast = 0.5
+vim.g.neovide_floating_shadow = false
 
 if vim.uv.os_uname().sysname == "Darwin" then
   vim.g.neovide_input_macos_option_key_is_meta = "both"
