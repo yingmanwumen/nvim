@@ -13,7 +13,7 @@ IMPORTANT: You should avoid codeblocks in plan mode. Words are better. Use detai
 
 ---@param chat CodeCompanion.Chat
 local function callback(chat)
-  chat:add_reference({ content = prompt, role = "system" }, "system-prompt", "<mode>plan</mode>")
+  chat:add_context({ content = prompt, role = "system" }, "system-prompt", "<mode>plan</mode>")
   -- Disable this for safety
   -- vim.g.codecompanion_auto_tool_mode = true -- run tools without confirmation
 end

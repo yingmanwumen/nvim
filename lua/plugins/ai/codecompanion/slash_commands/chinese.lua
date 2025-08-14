@@ -6,7 +6,7 @@ local prompt = [[
 
 ---@param chat CodeCompanion.Chat
 local function callback(chat)
-  chat:add_reference({
+  chat:add_context({
     content = prompt,
     role = "system",
   }, "system-prompt", "<spokenLanguage>chinese</spokenLanguage>")

@@ -211,7 +211,7 @@ User provides request -> The Dual Path Primer analyzes, creates Persona, perform
 
 ---@param chat CodeCompanion.Chat
 local function callback(chat)
-  chat:add_reference({
+  chat:add_context({
     content = prompt,
     role = "system",
   }, "system-prompt", "<systemPrompt>meta-prompt</systemPrompt>")

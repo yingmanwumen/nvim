@@ -10,7 +10,7 @@ You should reply in English first, then append Chinese reply under it. Please do
 
 ---@param chat CodeCompanion.Chat
 local function callback(chat)
-  chat:add_reference({
+  chat:add_context({
     content = prompt,
     role = "system",
   }, "system-prompt", "<spokenLanguage>bilingual</spokenLanguage>")

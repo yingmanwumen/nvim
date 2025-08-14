@@ -32,7 +32,7 @@ Execute the plan made before step by step with tools. Show your status with the 
 
 ---@param chat CodeCompanion.Chat
 local function callback(chat)
-  chat:add_reference({ content = prompt, role = "system" }, "system-prompt", "<mode>agent</mode>")
+  chat:add_context({ content = prompt, role = "system" }, "system-prompt", "<mode>agent</mode>")
   -- Disable this for safety
   -- vim.g.codecompanion_auto_tool_mode = true -- run tools without confirmation
 end

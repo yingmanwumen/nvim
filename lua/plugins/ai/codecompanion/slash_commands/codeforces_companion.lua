@@ -7,7 +7,7 @@ You are my advanced algorithm coach for Codeforces. I want step-by-step guidance
 
 ---@param chat CodeCompanion.Chat
 local function callback(chat)
-  chat:add_reference({
+  chat:add_context({
     content = prompt,
     role = "system",
   }, "system-prompt", "<role>codeforcesCompanion</role>")
