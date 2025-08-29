@@ -138,125 +138,130 @@ return {
         },
       },
       adapters = {
-        gemini = function()
-          return require("codecompanion.adapters").extend("gemini", {
-            schema = {
-              model = {
-                default = "gemini-2.5-flash",
-              },
-              temperature = {
-                default = 0.5,
-              },
-            },
-          })
-        end,
-        local_ollama = function()
-          return require("codecompanion.adapters").extend("ollama", {
-            env = {
-              url = "http://localhost:11434",
-            },
-            schema = {
-              model = {
-                default = "deepseek-r1:1.5b",
-              },
-            },
-          })
-        end,
-        deepseek = function()
-          return require("codecompanion.adapters").extend("deepseek", {
-            env = {
-              api_key = os.getenv("DEEPSEEK_API_KEY"),
-            },
-            schema = {
-              model = {
-                default = "deepseek-chat",
-                -- default = "deepseek-reasoner",
-              },
-              temperature = {
-                default = 0.6, -- official recommendation
-              },
-            },
-          })
-        end,
-        openrouter = function()
-          return require("codecompanion.adapters").extend("openai_compatible", {
-            name = "openrouter",
-            formatted_name = "OpenRouter",
-            url = "https://openrouter.ai/api/v1/chat/completions",
-            env = {
-              api_key = os.getenv("OPENROUTER_API_KEY"),
-            },
-            schema = {
-              temperature = {
-                default = 0.6,
-              },
-              model = {
-                default = "deepseek/deepseek-r1:free",
-                choices = {
-                  ["deepseek/deepseek-r1:free"] = { opts = { can_reason = true } }, -- context: 164K
-                  ["google/gemini-2.0-flash-exp:free"] = { opts = { can_reason = true } }, -- context: 1.05M
-                  ["google/gemini-2.0-pro-exp-02-05:free"] = { opts = { can_reason = true } }, -- context: 2M
-                  ["google/gemini-2.0-flash-thinking-exp-1219:free"] = {
-                    opts = { can_reason = true },
-                  }, -- context: 40K
-                  -- Notice: the following models are not for free! Use them with caution.
-                  ["anthropic/claude-3.7-sonnet"] = { opts = { can_reason = true } }, -- context: 200K
+        http = {
+          gemini = function()
+            return require("codecompanion.adapters").extend("gemini", {
+              schema = {
+                model = {
+                  default = "gemini-2.5-flash",
+                },
+                temperature = {
+                  default = 0.5,
                 },
               },
-              num_ctx = {
-                default = 200000,
+            })
+          end,
+          local_ollama = function()
+            return require("codecompanion.adapters").extend("ollama", {
+              env = {
+                url = "http://localhost:11434",
               },
-            },
-          })
-        end,
-        claude_3_5 = function()
-          return require("codecompanion.adapters").extend("copilot", {
-            schema = {
-              temperature = {
-                default = 0.3,
+              schema = {
+                model = {
+                  default = "deepseek-r1:1.5b",
+                },
               },
-              model = {
-                default = "claude-3.5-sonnet",
+            })
+          end,
+          deepseek = function()
+            return require("codecompanion.adapters").extend("deepseek", {
+              env = {
+                api_key = os.getenv("DEEPSEEK_API_KEY"),
               },
-            },
-          })
-        end,
-        claude_4 = function()
-          return require("codecompanion.adapters").extend("copilot", {
-            schema = {
-              temperature = {
-                default = 0.3,
+              schema = {
+                model = {
+                  default = "deepseek-chat",
+                  -- default = "deepseek-reasoner",
+                },
+                temperature = {
+                  default = 0.6, -- official recommendation
+                },
               },
-              model = {
-                default = "claude-sonnet-4",
+            })
+          end,
+          openrouter = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              name = "openrouter",
+              formatted_name = "OpenRouter",
+              url = "https://openrouter.ai/api/v1/chat/completions",
+              env = {
+                api_key = os.getenv("OPENROUTER_API_KEY"),
               },
-            },
-          })
-        end,
-        gemini_2_0_flash_001 = function()
-          return require("codecompanion.adapters").extend("copilot", {
-            schema = {
-              temperature = {
-                default = 0.3,
+              schema = {
+                temperature = {
+                  default = 0.6,
+                },
+                model = {
+                  default = "deepseek/deepseek-r1:free",
+                  choices = {
+                    ["deepseek/deepseek-r1:free"] = { opts = { can_reason = true } }, -- context: 164K
+                    ["google/gemini-2.0-flash-exp:free"] = { opts = { can_reason = true } }, -- context: 1.05M
+                    ["google/gemini-2.0-pro-exp-02-05:free"] = { opts = { can_reason = true } }, -- context: 2M
+                    ["google/gemini-2.0-flash-thinking-exp-1219:free"] = {
+                      opts = { can_reason = true },
+                    }, -- context: 40K
+                    -- Notice: the following models are not for free! Use them with caution.
+                    ["anthropic/claude-3.7-sonnet"] = { opts = { can_reason = true } }, -- context: 200K
+                  },
+                },
+                num_ctx = {
+                  default = 200000,
+                },
               },
-              model = {
-                default = "gemini-2.0-flash-001",
+            })
+          end,
+          claude_3_5 = function()
+            return require("codecompanion.adapters").extend("copilot", {
+              schema = {
+                temperature = {
+                  default = 0.3,
+                },
+                model = {
+                  default = "claude-3.5-sonnet",
+                },
               },
-            },
-          })
-        end,
-        gpt_4_1 = function()
-          return require("codecompanion.adapters").extend("copilot", {
-            schema = {
-              temperature = {
-                default = 0.3,
+            })
+          end,
+          claude_4 = function()
+            return require("codecompanion.adapters").extend("copilot", {
+              schema = {
+                temperature = {
+                  default = 0.3,
+                },
+                model = {
+                  default = "claude-sonnet-4",
+                },
               },
-              model = {
-                default = "gpt-4.1",
+            })
+          end,
+          gemini_2_0_flash_001 = function()
+            return require("codecompanion.adapters").extend("copilot", {
+              schema = {
+                temperature = {
+                  default = 0.3,
+                },
+                model = {
+                  default = "gemini-2.0-flash-001",
+                },
               },
-            },
-          })
-        end,
+            })
+          end,
+          gpt_4_1 = function()
+            return require("codecompanion.adapters").extend("copilot", {
+              schema = {
+                temperature = {
+                  default = 0.3,
+                },
+                model = {
+                  default = "gpt-4.1",
+                },
+              },
+            })
+          end,
+          opts = {
+            system_prompt = require("plugins.ai.codecompanion.system_prompt"),
+          },
+        },
       },
       strategies = {
         chat = {
@@ -292,9 +297,6 @@ return {
           provider = "mini_diff",
           opts = { "internal", "filler", "closeoff", "algorithm:patience", "followwrap", "linematch:120" },
         },
-      },
-      opts = {
-        system_prompt = require("plugins.ai.codecompanion.system_prompt"),
       },
     })
 
