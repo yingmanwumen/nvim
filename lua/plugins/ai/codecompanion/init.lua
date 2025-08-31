@@ -258,10 +258,10 @@ return {
               },
             })
           end,
-          opts = {
-            system_prompt = require("plugins.ai.codecompanion.system_prompt"),
-          },
         },
+      },
+      opts = {
+        system_prompt = require("plugins.ai.codecompanion.system_prompt"),
       },
       strategies = {
         chat = {
