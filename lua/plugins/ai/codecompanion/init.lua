@@ -1,4 +1,4 @@
-local adapter = "gemini"
+local adapter = "gemini_2_5_flash"
 
 return {
   "olimorris/codecompanion.nvim",
@@ -139,8 +139,8 @@ return {
       },
       adapters = {
         http = {
-          gemini = function()
-            return require("codecompanion.adapters").extend("gemini", {
+          gemini_2_5_flash = function()
+            return require("codecompanion.adapters.http").extend("gemini", {
               schema = {
                 model = {
                   default = "gemini-2.5-flash",
@@ -151,8 +151,20 @@ return {
               },
             })
           end,
+          gemini_2_5_pro = function()
+            return require("codecompanion.adapters.http").extend("gemini", {
+              schema = {
+                model = {
+                  default = "gemini-2.5-pro",
+                },
+                temperature = {
+                  default = 0.5,
+                },
+              },
+            })
+          end,
           local_ollama = function()
-            return require("codecompanion.adapters").extend("ollama", {
+            return require("codecompanion.adapters.http").extend("ollama", {
               env = {
                 url = "http://localhost:11434",
               },
@@ -164,7 +176,7 @@ return {
             })
           end,
           deepseek = function()
-            return require("codecompanion.adapters").extend("deepseek", {
+            return require("codecompanion.adapters.http").extend("deepseek", {
               env = {
                 api_key = os.getenv("DEEPSEEK_API_KEY"),
               },
@@ -180,7 +192,7 @@ return {
             })
           end,
           openrouter = function()
-            return require("codecompanion.adapters").extend("openai_compatible", {
+            return require("codecompanion.adapters.http").extend("openai_compatible", {
               name = "openrouter",
               formatted_name = "OpenRouter",
               url = "https://openrouter.ai/api/v1/chat/completions",
@@ -211,7 +223,7 @@ return {
             })
           end,
           claude_3_5 = function()
-            return require("codecompanion.adapters").extend("copilot", {
+            return require("codecompanion.adapters.http").extend("copilot", {
               schema = {
                 temperature = {
                   default = 0.3,
@@ -223,7 +235,7 @@ return {
             })
           end,
           claude_4 = function()
-            return require("codecompanion.adapters").extend("copilot", {
+            return require("codecompanion.adapters.http").extend("copilot", {
               schema = {
                 temperature = {
                   default = 0.3,
@@ -234,20 +246,8 @@ return {
               },
             })
           end,
-          gemini_2_0_flash_001 = function()
-            return require("codecompanion.adapters").extend("copilot", {
-              schema = {
-                temperature = {
-                  default = 0.3,
-                },
-                model = {
-                  default = "gemini-2.0-flash-001",
-                },
-              },
-            })
-          end,
           gpt_4_1 = function()
-            return require("codecompanion.adapters").extend("copilot", {
+            return require("codecompanion.adapters.http").extend("copilot", {
               schema = {
                 temperature = {
                   default = 0.3,
