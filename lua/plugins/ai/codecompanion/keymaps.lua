@@ -14,4 +14,10 @@ return {
       n = "(",
     },
   },
+  yolo_mode = {
+    modes = { n = "gta" },
+    index = 18,
+    callback = "keymaps.yolo_mode",
+    description = "YOLO mode toggle",
+  },
 }
