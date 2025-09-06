@@ -26,7 +26,7 @@ The following rules are in order of priority, and you must strictly follow them 
 - Platform: %s
 - Shell: %s
 - Current date: %s
-- Current time: %s, timezone: %s(%s)
+- Current timezone: timezone: %s(%s)
 - Current working directory(git repo: %s): %s
 
 ATTENTION:
@@ -73,7 +73,6 @@ ATTENTION: You should output Reasoning section before taking any action or using
     platform,
     vim.o.shell,
     os.date("%Y-%m-%d"),
-    os.date("%H:%M:%S"),
     os.date("%Z"),
     os.date("%z"),
     vim.fn.isdirectory(".git") == 1,
