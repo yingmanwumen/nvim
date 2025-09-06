@@ -1,4 +1,4 @@
-local adapter = "gemini_2_5_flash"
+local adapter = "claude_4"
 
 return {
   "olimorris/codecompanion.nvim",
@@ -186,7 +186,7 @@ return {
                   -- default = "deepseek-reasoner",
                 },
                 temperature = {
-                  default = 0.6, -- official recommendation
+                  default = 0.5,
                 },
               },
             })
@@ -201,7 +201,7 @@ return {
               },
               schema = {
                 temperature = {
-                  default = 0.6,
+                  default = 0.5,
                 },
                 model = {
                   default = "deepseek/deepseek-r1:free",
@@ -226,7 +226,7 @@ return {
             return require("codecompanion.adapters.http").extend("copilot", {
               schema = {
                 temperature = {
-                  default = 0.3,
+                  default = 0.5,
                 },
                 model = {
                   default = "claude-3.5-sonnet",
@@ -238,7 +238,7 @@ return {
             return require("codecompanion.adapters.http").extend("copilot", {
               schema = {
                 temperature = {
-                  default = 0.3,
+                  default = 0.5,
                 },
                 model = {
                   default = "claude-sonnet-4",
@@ -250,7 +250,7 @@ return {
             return require("codecompanion.adapters.http").extend("copilot", {
               schema = {
                 temperature = {
-                  default = 0.3,
+                  default = 0.5,
                 },
                 model = {
                   default = "gpt-4.1",
