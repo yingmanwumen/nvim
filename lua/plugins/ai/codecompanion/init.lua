@@ -182,8 +182,8 @@ return {
               },
               schema = {
                 model = {
-                  default = "deepseek-chat",
-                  -- default = "deepseek-reasoner",
+                  -- default = "deepseek-chat",
+                  default = "deepseek-reasoner",
                 },
                 temperature = {
                   default = 0.5,
