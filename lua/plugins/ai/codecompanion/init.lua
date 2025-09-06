@@ -1,4 +1,4 @@
-local adapter = "claude_4"
+local adapter = "gemini_2_5_flash"
 
 return {
   "olimorris/codecompanion.nvim",
