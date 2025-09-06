@@ -1,7 +1,4 @@
 return {
-  ["delete_session"] = require("plugins.ai.codecompanion.slash_commands.delete_session"),
-  ["dump_session"] = require("plugins.ai.codecompanion.slash_commands.dump_session"),
-  ["restore_session"] = require("plugins.ai.codecompanion.slash_commands.restore_session"),
   ["git_commit"] = require("plugins.ai.codecompanion.slash_commands.git_commit"),
   ["thinking"] = require("plugins.ai.codecompanion.slash_commands.thinking"),
   ["agent_mode"] = require("plugins.ai.codecompanion.slash_commands.agent_mode"),
