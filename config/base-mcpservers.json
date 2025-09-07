@@ -1,120 +1,53 @@
 {
-  "nativeMCPServers": {
-    "mcphub": {
-      "disabled_tools": [
-        
-      ],
-      "disabled_resources": [
-        "mcphub://docs",
-        "mcphub://native_server_guide",
-        "mcphub://changelog"
-      ],
-      "disabled": true,
-      "disabled_prompts": [
-        "create_native_server"
-      ]
-    },
-    "neovim": {
-      "disabled_tools": [
-        "delete_item",
-        "execute_command",
-        "find_files",
-        "list_directory",
-        "move_item",
-        "read_file",
-        "replace_in_file",
-        "write_file"
-      ],
-      "disabled": false,
-      "disabled_prompts": [
-        "parrot"
-      ]
-    }
-  },
   "mcpServers": {
-    "filesystem": {
-      "disabled_tools": [
-        "list_allowed_directories"
-      ],
-      "disabled": true,
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-filesystem",
-        "/"
-      ]
-    },
-    "tavily": {
-      "env": {
-        "TAVILY_API_KEY": null
-      },
-      "disabled": false,
-      "command": "npx",
-      "disabled_tools": [
-        "tavily-extract"
-      ],
-      "args": [
-        "-y",
-        "tavily-mcp@latest"
-      ]
-    },
-    "github": {
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": null
-      },
-      "disabled": true,
-      "command": "npx",
-      "disabled_tools": [
-        "add_issue_comment",
-        "create_branch",
-        "create_issue",
-        "create_or_update_file",
-        "create_pull_request",
-        "create_repository",
-        "fork_repository",
-        "update_issue",
-        "push_files"
-      ],
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-github"
-      ]
-    },
-    "mcp-scholarly": {
-      "disabled": true,
-      "command": "uvx",
-      "args": [
-        "mcp-scholarly"
-      ]
-    },
-    "sequential-thinking": {
-      "disabled": true,
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
-      ]
-    },
     "fetch": {
-      "disabled": false,
+      "args": ["mcp-server-fetch"],
       "command": "uvx",
-      "args": [
-        "mcp-server-fetch"
-      ]
+      "disabled": false
     },
     "memory": {
-      "custom_instructions": {
-        "text": "Follow these steps for each interaction:\n\n1. User Identification:\n   - You should assume that you are interacting with default_user\n   - If you have not identified default_user, proactively try to do so.\n\n2. Memory Retrieval:\n   - Always begin your chat by saying only \"Remembering...\" and retrieve all relevant information from your knowledge graph\n   - Always refer to your knowledge graph as your \"memory\"\n\n3. Memory\n   - While conversing with the user, be attentive to any new information that falls into these categories:\n     a) Basic Identity (age, gender, location, job title, education level, etc.)\n     b) Behaviors (interests, habits, etc.)\n     c) Preferences (communication style, preferred language, etc.)\n     d) Goals (goals, targets, aspirations, etc.)\n     e) Relationships (personal and professional relationships up to 3 degrees of separation)\n\n4. Memory Update:\n   - If any new information was gathered during the interaction, update your memory as follows:\n     a) Create entities for recurring organizations, people, and significant events\n     b) Connect them to the current entities using relations\n     b) Store facts about them as observations"
-      },
-      "env": {
-        "MEMORY_FILE_PATH": "~/.config/codecompanion/memory.json"
-      },
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "autoApprove": [
+        "create_entities",
+        "create_relations",
+        "add_observations",
+        "delete_entities",
+        "delete_observations",
+        "delete_relations",
+        "read_graph",
+        "search_nodes",
+        "open_nodes"
+      ],
       "command": "npx",
+      "custom_instructions": {
+        "disabled": false,
+        "text": "Follow these steps for each interaction:\n\n1. User Identification:\n   - You should assume that you are interacting with default_user\n   - If you have not identified default_user, proactively try to do so.\n\n2. Memory Retrieval:\n   - Always begin your chat by saying only \"Remembering...\" and retrieve all relevant information from your knowledge graph\n   - Always refer to your knowledge graph as your \"memory\"\n\n3. Memory\n   - While conversing with the user, be attentive to any new information that falls into these categories:\n     a) Basic Identity (age, gender, location, job title, education level, etc.)\n     b) Behaviors (interests, habits, etc.)\n     c) Preferences (communication style, preferred language, etc.)\n     d) Goals (goals, targets, aspirations, etc.)\n     e) Relationships (personal and professional relationships up to 3 degrees of separation)\n\n4. Memory Update:\n   - If any new information was gathered during the interaction, update your memory as follows:\n     a) Create entities for recurring organizations, people, and significant events\n     b) Connect them to the current entities using relations\n     c) Store facts about them as observations"
+      },
+      "disabled": false,
+      "env": {
+        "MEMORY_FILE_PATH": "${HOME}/.config/codecompanion/memory.json"
+      }
+    }
+  },
+  "nativeMCPServers": {
+    "mcphub": {
       "disabled": true,
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-memory"
+      "disabled_prompts": [],
+      "disabled_resources": ["mcphub://docs", "mcphub://changelog"],
+      "disabled_tools": ["get_current_servers", "toggle_mcp_server"]
+    },
+    "neovim": {
+      "autoApprove": ["read_file", "read_multiple_files"],
+      "disabled": false,
+      "disabled_prompts": ["parrot"],
+      "disabled_tools": [
+        "move_item",
+        "delete_items",
+        "find_files",
+        "list_directory",
+        "execute_command"
       ]
     }
   }
 }
+
