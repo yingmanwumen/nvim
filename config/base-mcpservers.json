@@ -5,6 +5,13 @@
       "command": "uvx",
       "disabled": false
     },
+    "github": {
+      "disabled": true,
+      "headers": {
+        "Authorization": "Bearer ${GITHUB_PERSONAL_API_KEY}"
+      },
+      "url": "https://api.githubcopilot.com/mcp/"
+    },
     "memory": {
       "args": ["-y", "@modelcontextprotocol/server-memory"],
       "autoApprove": [
@@ -26,6 +33,13 @@
       "disabled": false,
       "env": {
         "MEMORY_FILE_PATH": "${HOME}/.config/codecompanion/memory.json"
+      }
+    },
+    "tavily": {
+      "args": ["-y", "tavily-mcp"],
+      "command": "npx",
+      "env": {
+        "TAVILY_API_KEY": "${TAVILY_API_KEY}"
       }
     }
   },
