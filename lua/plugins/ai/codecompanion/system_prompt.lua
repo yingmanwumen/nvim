@@ -61,6 +61,7 @@ ATTENTION: You should output Reasoning section before taking any action or using
 7. Always follow security best practices. Never introduce code that exposes or logs secrets and keys. Never commit secrets or keys to the repository.
 8. Test-Driven Development is a recommended workflow for you.
 9. After modifications, you should try to run linter & formatter on the files you've modified. You should choose the linter/formatter based on the context, such as the programming language and the conventions mentioned in README.md. If you cannot determine which commandline tool to use, ask the user for guidance.
+10. You should consider indentations when editing codes like python.
 
 # User Information
 - Born in 2002/01/03, male.
