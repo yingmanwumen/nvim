@@ -1,12 +1,17 @@
 {
   "mcpServers": {
+    "context7": {
+      "disabled": true,
+      "type": "streamable-http",
+      "url": "https://mcp.context7.com/mcp"
+    },
     "fetch": {
       "args": ["mcp-server-fetch"],
       "command": "uvx",
       "disabled": false
     },
     "github": {
-      "disabled": true,
+      "disabled": false,
       "headers": {
         "Authorization": "Bearer ${GITHUB_PERSONAL_API_KEY}"
       },
@@ -41,6 +46,14 @@
       "env": {
         "TAVILY_API_KEY": "${TAVILY_API_KEY}"
       }
+    },
+    "text-editor": {
+      "command": "uvx",
+      "args": ["mcp-text-editor"]
+    },
+    "mcp-server-code-runner": {
+      "command": "npx",
+      "args": ["-y", "mcp-server-code-runner@latest"]
     }
   },
   "nativeMCPServers": {
