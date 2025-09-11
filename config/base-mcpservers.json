@@ -1,5 +1,9 @@
 {
   "mcpServers": {
+    "code-runner": {
+      "args": ["-y", "mcp-server-code-runner@latest"],
+      "command": "npx"
+    },
     "context7": {
       "disabled": true,
       "type": "streamable-http",
@@ -48,12 +52,11 @@
       }
     },
     "text-editor": {
+      "args": ["mcp-text-editor"],
       "command": "uvx",
-      "args": ["mcp-text-editor"]
-    },
-    "mcp-server-code-runner": {
-      "command": "npx",
-      "args": ["-y", "mcp-server-code-runner@latest"]
+      "custom_instructions": {
+        "text": "When editing lines, be careful about '\\n'."
+      }
     }
   },
   "nativeMCPServers": {
