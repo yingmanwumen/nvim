@@ -147,7 +147,7 @@ return {
             -- Save all chats by default (disable to save only manually using 'sc')
             auto_save = true,
             -- Number of days after which chats are automatically deleted (0 to disable)
-            expiration_days = 30,
+            expiration_days = 3,
             -- Picker interface (auto resolved to a valid picker)
             picker = "telescope", --- ("telescope", "snacks", "fzf-lua", or "default")
             ---Optional filter function to control which chats are shown when browsing
