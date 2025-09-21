@@ -18,9 +18,7 @@ if vim.uv.os_uname().sysname == "Darwin" then
   vim.o.linespace = 5
 else
   -- vim.o.guifont = "Liga ComicShannsMono Nerd Font,LXGW WenKai,Apple Color Emoji:h11.5"
-  -- vim.o.linespace = 0
   vim.o.guifont = "FiraCode Nerd Font,LXGW WenKai,Apple Color Emoji:h11.5"
-  -- vim.o.linespace = 5
-  -- vim.g.neovide_scale_factor = 1.1
-  -- vim.o.guifont = "JetBrainsMono Nerd Font,LXGW WenKai,Apple Color Emoji"
+  vim.o.linespace = 5
+  -- vim.o.guifont = "JetBrains Nerd Font,LXGW WenKai,Apple Color Emoji"
 end
