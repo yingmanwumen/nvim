@@ -72,6 +72,13 @@ local function setup()
     fname = true,
   })
 
+  ft("toml"):fmt({
+    cmd = "taplo",
+    args = { "fmt" },
+    stdin = false,
+    fname = true,
+  })
+
   vim.g.guard_config = {
     fmt_on_save = true,
     lsp_as_default_formatter = false,
