@@ -332,6 +332,13 @@ return {
                 },
                 model = {
                   default = "gemini-2.5-flash",
+                  choices = {
+                    ["gemini-2.5-flash"] = {
+                      opts = {
+                        can_reason = false,
+                      },
+                    },
+                  },
                 },
                 num_ctx = {
                   default = 1000000,
