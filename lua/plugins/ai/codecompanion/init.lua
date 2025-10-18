@@ -318,6 +318,27 @@ return {
               },
             })
           end,
+          insnap_gemini_2_5_flash = function()
+            return require("codecompanion.adapters.http").extend("openai_compatible", {
+              name = "insnap_gemini_2_5_flash",
+              formatted_name = "Gemini 2.5 Flash",
+              url = "https://147ai.com/v1/chat/completions",
+              env = {
+                api_key = os.getenv("INSNAP_API_KEY"),
+              },
+              schema = {
+                temperature = {
+                  default = 0.3,
+                },
+                model = {
+                  default = "gemini-2.5-flash",
+                },
+                num_ctx = {
+                  default = 1000000,
+                },
+              },
+            })
+          end,
           openrouter = function()
             return require("codecompanion.adapters.http").extend("openai_compatible", {
               name = "openrouter",
