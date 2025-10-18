@@ -25,10 +25,10 @@ local function generate_commit_message()
     handle_untracked:close()
   end
 
-  local content = [[Tools allowed to use: @{cmd_runner} @{files}
+  local content = [[Tools allowed to use: @{mcp}
 - Task:
-  1. Before proceeding, **review** the changes. If you find potential issues or typos, state them, and wait for instructions. You should fully understand every piece of code in diffs, and analyze the purpose and context of each change.
-  2. Write commit message for the diffs with **commitizen convention**. Format as a gitcommit code block. Keep the commit message concise and precise. "Concise" means keep the title under 50 characters and wrap message at 72 characters.
+  1. Before proceeding, **review** the changes to try your best to dig out potential bugs. If you find potential issues or typos, state them, and wait for instructions. You should fully understand every piece of code in diffs, and analyze the purpose and context of each change.
+  2. Write commit message for the diffs with **commitizen convention**. Format as a gitcommit code block. Keep the commit message concise and precise. "Concise" means keep the title within 50 characters and wrap message within 72 characters.
   3. After generating commit message, stage diffs and then commit them. If there'are multiple lines to commit, commit them with `git commit -F- <<EOF`.
   4. Evaluate that if the changes should be commit as a single commit or multiple commits. Make sure that a single commit contains related changes only, and the commit message accurately describes the changes.
 
