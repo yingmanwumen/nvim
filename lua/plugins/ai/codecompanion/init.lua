@@ -1,5 +1,10 @@
 -- local adapter = "gemini_2_5_flash"
-local adapter = "insnap_gemini_2_5_flash"
+local adapter
+if vim.uv.os_uname().sysname == "Darwin" then
+  adapter = "insnap_gemini_2_5_flash"
+else
+  adapter = "gemini_2_5_flash"
+end
 
 return {
   "olimorris/codecompanion.nvim",
