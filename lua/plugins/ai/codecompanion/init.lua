@@ -1,4 +1,5 @@
-local adapter = "gemini_2_5_flash"
+-- local adapter = "gemini_2_5_flash"
+local adapter = "insnap_gemini_2_5_flash"
 
 return {
   "olimorris/codecompanion.nvim",
