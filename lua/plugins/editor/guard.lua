@@ -46,7 +46,7 @@ local function setup()
 
   ft("ocaml"):fmt({
     cmd = "ocamlformat",
-    args = { "-i", "--enable-outside-detected-project", "--break-cases=all " },
+    args = { "-i", "--enable-outside-detected-project", "--break-cases=all" },
     stdin = false,
     fname = true,
   })
