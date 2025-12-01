@@ -32,6 +32,8 @@ local function generate_commit_message()
   3. After generating commit message, stage diffs and then commit them. If there'are multiple lines to commit, commit them with `git commit -F- <<EOF`.
   4. Evaluate that if the changes should be commit as a single commit or multiple commits. Make sure that a single commit contains related changes only, and the commit message accurately describes the changes.
 
+NOTE: when using backticks, make sure to escape the backticks in the commit message.
+
 Full diffs are as follows:
 
 ]]
