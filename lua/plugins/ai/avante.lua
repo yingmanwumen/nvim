@@ -23,7 +23,7 @@ return {
   config = function()
     require("avante").setup({
 
-      provider = "copilot",
+      provider = "gemini",
       behaviour = {
         support_paste_from_clipboard = true,
       },
@@ -35,7 +35,6 @@ return {
         },
       },
       providers = {
-
         vendors = {
           deepseek = {
             __inherited_from = "openai",

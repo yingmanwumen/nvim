@@ -134,6 +134,22 @@ return {
     })
 
     require("codecompanion").setup({
+      -- rules = {
+      memory = {
+        claude = {
+          parser = "claude",
+          description = "Rule files for claude",
+          files = {
+            "~/.claude/CLAUDE.md",
+            "CLAUDE.md",
+          },
+        },
+        opts = {
+          chat = {
+            enabled = true,
+          },
+        },
+      },
       extensions = {
         mcphub = {
           callback = "mcphub.extensions.codecompanion",
@@ -504,13 +520,6 @@ return {
         if not current_chat then
           return
         end
-        -- local config = require("codecompanion.config")
-        -- local add_reference = require("plugins.ai.codecompanion.utils.add_reference")
-        --
-        -- add_reference(current_chat, {
-        --   role = config.constants.USER_ROLE,
-        --   content = string.format("# Environment\n- Current Time: %s\n", os.date("%c")),
-        -- }, "system_prompt", "environment")
         current_chat.messages = compact_reference(current_chat.messages)
       end,
     })

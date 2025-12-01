@@ -25,10 +25,12 @@ If you are providing code changes, use the insert_edit_into_file tool (if availa
     description = "Insert code into an existing file",
     opts = {
       requires_approval = { -- Require approval before the tool is executed?
+        -- requires_approval_before = { -- Require approval before the tool is executed?
         buffer = true, -- For editing buffers in Neovim
         file = true, -- For editing files in the current working directory
       },
       user_confirmation = true, -- Require confirmation from the user before accepting the edit?
+      -- require_confirmation_after = true, -- Require confirmation from the user before accepting the edit?
     },
   },
 }
