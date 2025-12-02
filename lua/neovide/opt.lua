@@ -7,18 +7,19 @@ vim.g.neovide_no_idle = true
 vim.g.neovide_hide_mouse_when_typing = true
 vim.g.neovide_text_gamma = 2.2
 vim.g.neovide_text_contrast = 0.5
-vim.g.neovide_floating_shadow = false
+vim.g.neovide_floating_shadow = true
+vim.g.neovide_floating_corner_radius = 0.8
+vim.o.linespace = 5
+vim.g.neovide_opacity = 0.95
+vim.g.neovide_theme = "bg_color"
 
 if vim.uv.os_uname().sysname == "Darwin" then
   vim.g.neovide_input_macos_option_key_is_meta = "both"
   -- vim.o.guifont = "Liga ComicShannsMono Nerd Font"
-  -- vim.o.guifont = "Maple Mono NF CN"
   vim.o.guifont = "FiraCode Nerd Font"
   -- vim.o.guifont = "JetBrainsMono Nerd Font"
-  vim.o.linespace = 5
 else
   -- vim.o.guifont = "Liga ComicShannsMono Nerd Font,LXGW WenKai,Apple Color Emoji:h11.5"
   vim.o.guifont = "FiraCode Nerd Font,LXGW WenKai,Apple Color Emoji:h11"
-  vim.o.linespace = 5
   -- vim.o.guifont = "JetBrains Nerd Font,LXGW WenKai,Apple Color Emoji"
 end
