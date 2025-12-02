@@ -26,20 +26,14 @@ local function generate_commit_message()
   end
 
   local content = [[Tools allowed to use: @{mcp}
-- Task:
-  1. Before proceeding, **review** the changes to try your best to dig out potential bugs. If you find potential issues or typos, state them, and wait for instructions. You should fully understand every piece of code in diffs, and analyze the purpose and context of each change.
-  2. Write commit message for the diffs with **commitizen convention**. Format as a gitcommit code block. Keep the commit message concise and precise. "Concise" means keep the title within 50 characters and wrap message within 72 characters.
-  3. After generating commit message, stage diffs and then commit them. If there'are multiple lines to commit, commit them with `git commit -F- <<EOF`.
-  4. Evaluate that if the changes should be commit as a single commit or multiple commits. Make sure that a single commit contains related changes only, and the commit message accurately describes the changes.
+1. Diffs are provided as snippets below.
+2. You should make sure that you actually understand the context and the purpose of the code in the diffs.
+3. Try you best to dig out potential bugs and typos. Do not try to fix them, instead stating them and waiting for instructions. Correctness, performance and readability are the most important factors.
+4. Evaluate that if the changes should be commit as a single commit or multiple commits. Make sure that a single commit contains related changes only, and the commit message accurately describes the changes.
+5. Write commit messages for each commit with **commitizen convention**. Format as a gitcommit code block. Keep the commit message concise and precise. "Concise" means keep the title within 50 characters and wrap message within 72 characters.
+6. After generating commit messages, stage diffs and then commit them. If there'are multiple lines to commit, commit them with `git commit -F- <<EOF`. Make sure that you properly escape the backticks in the commit message.
 
-NOTE: when using backticks, make sure to escape the backticks in the commit message. For example,
-```bash
-git commit -F- <<EOF
-... \`something\` ...
-```
-
-Full diffs are as follows:
-
+Full diffs:
 ]]
   if #staged > 0 then
     content = content

@@ -3,7 +3,7 @@ require("codecompanion")
 ---@param chat CodeCompanion.Chat
 local function callback(chat)
   local content = string.format([[I need you to review code modifications. Your task:
-1. If diffs are not provided, gather diffs with cmd_runner including: staged, unstaged, untracked.
+1. If diffs are not provided, gather diffs including: staged, unstaged, untracked.
 2. Review diffs. Notice that:
    - You should fully understand every piece of code in diffs. You may gather context proactively to understand the diffs.
    - Correctness, performance and readability are the most important factors
