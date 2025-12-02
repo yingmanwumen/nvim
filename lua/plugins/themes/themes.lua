@@ -38,4 +38,11 @@ return {
   { "Mofiqul/vscode.nvim" },
 
   { "EdenEast/nightfox.nvim" },
+
+  {
+    "Mofiqul/dracula.nvim",
+    opts = {
+      italic_comment = true,
+    },
+  },
 }
