@@ -14,6 +14,7 @@ vim.g.neovide_opacity = 0.95
 vim.g.neovide_theme = "bg_color"
 
 if vim.uv.os_uname().sysname == "Darwin" then
+  vim.g.neovide_window_blurred = true
   vim.g.neovide_input_macos_option_key_is_meta = "both"
   -- vim.o.guifont = "Liga ComicShannsMono Nerd Font"
   vim.o.guifont = "FiraCode Nerd Font"
