@@ -24,3 +24,11 @@ else
   vim.o.guifont = "FiraCode Nerd Font,LXGW WenKai,Apple Color Emoji:h11"
   -- vim.o.guifont = "JetBrains Nerd Font,LXGW WenKai,Apple Color Emoji"
 end
+
+vim.api.nvim_create_autocmd({ "WinClosed", "WinResized", "BufWinEnter" }, {
+  callback = function()
+    if vim.g.neovide then
+      vim.cmd("redraw")
+    end
+  end,
+})
