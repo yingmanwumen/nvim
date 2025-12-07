@@ -50,9 +50,17 @@ return {
           },
           opts = { skip = true },
         },
+        -- Skip warnings of bunnyhop.nvim
         {
           filter = {
             find = "Wasn't able to open",
+          },
+          opts = { skip = true },
+        },
+        -- Skip warnings of bunnyhop.nvim
+        {
+          filter = {
+            find = "Encountered a bad state in nvim's native undolist for buffer",
           },
           opts = { skip = true },
         },
