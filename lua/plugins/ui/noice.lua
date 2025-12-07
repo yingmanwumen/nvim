@@ -52,7 +52,7 @@ return {
         },
         {
           filter = {
-            find = "NvimTree",
+            find = "Wasn't able to open",
           },
           opts = { skip = true },
         },
