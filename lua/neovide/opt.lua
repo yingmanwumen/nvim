@@ -13,6 +13,9 @@ vim.o.linespace = 5
 vim.g.neovide_theme = "bg_color"
 vim.g.neovide_opacity = 0.8
 
+vim.g.neovide_cursor_animation_length = 0.2
+vim.g.neovide_scroll_animation_length = 0.3
+
 if vim.uv.os_uname().sysname == "Darwin" then
   vim.g.neovide_window_blurred = true
   vim.g.neovide_input_macos_option_key_is_meta = "both"

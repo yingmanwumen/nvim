@@ -5,6 +5,7 @@ return {
   },
   keys = {
     { "<C-/>", "<Plug>(comment_toggle_linewise_current)", mode = { "n" } },
+    { "<C-/>", "<C-o><Plug>(comment_toggle_linewise_current)<Esc>A", mode = { "i" } },
     { "<C-/>", "<Plug>(comment_toggle_linewise_visual)", mode = { "x" } },
   },
   config = function()
