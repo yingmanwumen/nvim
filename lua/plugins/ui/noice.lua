@@ -50,6 +50,12 @@ return {
           },
           opts = { skip = true },
         },
+        {
+          filter = {
+            find = "NvimTree",
+          },
+          opts = { skip = true },
+        },
       },
     })
   end,
