@@ -19,7 +19,8 @@ return {
     -- Model to use for chosen provider.
     -- To know what models are available for chosen adapter,
     -- run `:lua require("bunnyhop.adapters.{adapter}").get_models()`
-    model = "gpt-4o",
+    -- model = "gpt-4o",
+    model = "gpt-4.1",
     -- Copilot doesn't use the API key.
     --Hugging Face does and its stored in an environment variable.
     -- Example where `HF_API_KEY` is the name of the environment variable:
