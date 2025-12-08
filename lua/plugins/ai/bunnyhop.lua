@@ -1,5 +1,6 @@
 return {
   "PLAZMAMA/bunnyhop.nvim",
+  enabled = false,
   event = "VeryLazy",
   dependencies = {
     "zbirenbaum/copilot.lua",
