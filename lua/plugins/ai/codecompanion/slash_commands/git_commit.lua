@@ -6,7 +6,7 @@ Fetch code changes first.
 1. You should make sure that you actually understand the context and the purpose of the code in the diffs.
 2. Try you best to dig out potential bugs and typos. Do not try to fix them, instead stating them and waiting for instructions. Correctness, performance and readability are the most important factors.
 3. Write commit messages with **commitizen convention**. Format as a gitcommit code block. Keep the commit message **concise and precise**.
-4. After generating commit messages, stage diffs and then commit them. If there'are multiple lines to commit, commit them with `git commit -F- <<EOF`.
+4. After generating commit messages, stage diffs and then commit them.
 
 ATTENTION: Make sure that you properly escape the **backticks** in the commit message when committing.
 ]]
