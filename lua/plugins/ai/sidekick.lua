@@ -10,25 +10,7 @@ return {
       icon = " ",
     },
     nes = {
-      ---@type boolean|fun(buf:integer):boolean?
-      enabled = function(buf)
-        return vim.g.sidekick_nes ~= false and vim.b.sidekick_nes ~= false
-      end,
       debounce = 100,
-      trigger = {
-        -- events that trigger sidekick next edit suggestions
-        events = { "ModeChanged i:n", "TextChanged", "User SidekickNesDone" },
-      },
-      clear = {
-        -- events that clear the current next edit suggestion
-        events = { "TextChangedI", "InsertEnter" },
-        esc = true, -- clear next edit suggestions when pressing <Esc>
-      },
-      ---@class sidekick.diff.Opts
-      ---@field inline? "words"|"chars"|false Enable inline diffs
-      diff = {
-        inline = "words",
-      },
     },
     cli = {
       watch = true, -- notify Neovim of file changes done by AI CLI tools
