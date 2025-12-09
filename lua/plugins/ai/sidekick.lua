@@ -133,7 +133,22 @@ return {
           -- HACK: https://github.com/sst/opencode/issues/445
           env = { OPENCODE_THEME = "system" },
         },
-        qwen = { cmd = { "qwen" } },
+        qwen = {
+          cmd = { "qwen" },
+          env = {
+            OPENAI_API_KEY = vim.fn.getenv("GEMINI_API_KEY"),
+            OPENAI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/",
+            OPENAI_MODEL = "gemini-2.5-flash",
+          },
+        },
+        qwen_insnap = {
+          cmd = { "qwen" },
+          env = {
+            OPENAI_API_KEY = vim.fn.getenv("INSNAP_API_KEY"),
+            OPENAI_BASE_URL = "https://147ai.com/v1/",
+            OPENAI_MODEL = "gemini-2.5-flash",
+          },
+        },
       },
       --- Add custom context. See `lua/sidekick/context/init.lua`
       ---@type table<string, sidekick.context.Fn>
