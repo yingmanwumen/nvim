@@ -31,7 +31,13 @@ else
   -- vim.o.guifont = "JetBrains Nerd Font,LXGW WenKai,Apple Color Emoji"
 end
 
-vim.api.nvim_create_autocmd({ "WinClosed", "WinResized", "BufWinEnter" }, {
+-- Redraw the screen when the window is resized or a buffer is entered
+vim.api.nvim_create_autocmd({
+  "WinClosed",
+  "WinResized",
+  "BufWinEnter",
+  "VimResized",
+}, {
   callback = function()
     if vim.g.neovide then
       vim.cmd("redraw")
