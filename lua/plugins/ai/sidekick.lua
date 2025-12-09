@@ -191,10 +191,11 @@ return {
           return -- jumped or applied
         end
 
+        -- This api is only available in neovim >= 0.12
         -- if you are using Neovim's native inline completions
-        if vim.lsp.inline_completion.get() then
-          return
-        end
+        -- if vim.lsp.inline_completion.get() then
+        --   return
+        -- end
 
         -- any other things (like snippets) you want to do on <tab> go here.
 
