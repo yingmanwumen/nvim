@@ -17,8 +17,7 @@ return {
         -- * `ModeChanged i:n` is triggered when entering normal mode from insert mode
         -- * `TextChanged` is triggered when the text is changed
         -- * `User SidekickNesDone` is triggered when the user has finished their edit
-        -- * `CursorHold` is triggered when the cursor is held in place
-        events = { "ModeChanged i:n", "TextChanged", "User SidekickNesDone", "CursorHold" },
+        events = { "ModeChanged i:n", "TextChanged", "User SidekickNesDone" },
       },
       clear = {
         -- events that clear the current next edit suggestion
