@@ -14,10 +14,13 @@ vim.g.neovide_theme = "bg_color"
 vim.g.neovide_opacity = 0.8
 
 vim.g.neovide_cursor_animation_length = 0.2
+vim.g.neovide_cursor_short_animation_length = 0.04
 vim.g.neovide_scroll_animation_length = 0.3
+vim.g.neovide_position_animation_length = 0.3
+
+vim.g.neovide_window_blurred = true
 
 if vim.uv.os_uname().sysname == "Darwin" then
-  vim.g.neovide_window_blurred = true
   vim.g.neovide_input_macos_option_key_is_meta = "both"
   -- vim.o.guifont = "Liga ComicShannsMono Nerd Font"
   vim.o.guifont = "FiraCode Nerd Font"
@@ -35,3 +38,25 @@ vim.api.nvim_create_autocmd({ "WinClosed", "WinResized", "BufWinEnter" }, {
     end
   end,
 })
+
+----------------------------------------------------------------------------------
+--- The following is a shell script to set neovide as the default nvim editor  ---
+----------------------------------------------------------------------------------
+-- NEOVIDE_PATH="$HOME/Applications/neovide.AppImage"
+-- if [ -f $NEOVIDE_PATH ]; then
+-- 	alias neovide=$NEOVIDE_PATH
+-- 	if [ -z $WAYLAND_DISPLAY ]; then
+-- 		alias nvim='neovide --fork --'
+-- 	else
+-- 		# WAYLAND_DISPLAY is set
+-- 		_nvim() {
+-- 			_WAYLAND_DISPLAY=$WAYLAND_DISPLAY
+-- 			unset WAYLAND_DISPLAY
+-- 			$NEOVIDE_PATH --fork -- "$@"
+-- 			export WAYLAND_DISPLAY=$_WAYLAND_DISPLAY
+-- 			unset _WAYLAND_DISPLAY
+-- 		}
+-- 		alias nvim=_nvim
+-- 	fi
+-- 	export EDITOR="$NEOVIDE_PATH"
+-- fi
