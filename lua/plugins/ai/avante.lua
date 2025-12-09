@@ -1,5 +1,6 @@
 -- TODO: custom prompt
 return {
+  enabled = false,
   "yetone/avante.nvim",
   event = "VeryLazy",
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
