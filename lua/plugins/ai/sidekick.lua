@@ -11,6 +11,23 @@ return {
     },
     nes = {
       debounce = 100,
+      trigger = {
+        -- events that trigger sidekick next edit suggestions
+        -- currently won't be triggered in insert mode
+        -- * `ModeChanged i:n` is triggered when entering normal mode from insert mode
+        -- * `TextChanged` is triggered when the text is changed
+        -- * `User SidekickNesDone` is triggered when the user has finished their edit
+        -- * `CursorHold` is triggered when the cursor is held in place
+        events = { "ModeChanged i:n", "TextChanged", "User SidekickNesDone", "CursorHold" },
+      },
+      clear = {
+        -- events that clear the current next edit suggestion
+        -- * `TextChangedI` is triggered when the text is changed in insert mode
+        -- * `InsertEnter` is triggered when entering insert mode
+        -- * `CursorMovedI` is triggered when the cursor is moved in insert mode
+        events = { "TextChangedI", "InsertEnter", "CursorMovedI" },
+        esc = true, -- clear next edit suggestions when pressing <Esc>
+      },
     },
     cli = {
       watch = true, -- notify Neovim of file changes done by AI CLI tools
@@ -94,7 +111,7 @@ return {
         amazon_q = { cmd = { "q" } },
         claude = { cmd = { "claude" } },
         codex = { cmd = { "codex", "--enable", "web_search_request" } },
-        copilot = { cmd = { "copilot", "--banner" } },
+        copilot = { cmd = { "copilot", "--banner", "--model", "gpt-4.1" } },
         crush = {
           cmd = { "crush" },
           -- crush uses <a-p> for its own functionality, so we override the default
@@ -197,12 +214,16 @@ return {
         --   return
         -- end
 
-        -- any other things (like snippets) you want to do on <tab> go here.
+        -- Call codeium#Accept() if Codeium is enabled
+        -- if vim.g.codeium_server_started then
+        --   return vim.fn["codeium#Accept"]()
+        -- end
 
         -- fall back to normal tab
         return "<tab>"
       end,
-      mode = { "i", "n" },
+      -- mode = { "i", "n" },
+      mode = { "n" },
       expr = true,
       desc = "Goto/Apply Next Edit Suggestion",
     },
