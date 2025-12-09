@@ -58,20 +58,26 @@ return {
         keys = {
           -- buffers = { "<c-b>", "buffers", mode = "nt", desc = "open buffer picker" },
           -- files = { "<c-f>", "files", mode = "nt", desc = "open file picker" },
-          hide_n = { "q", "hide", mode = "n", desc = "hide the terminal window" },
-          -- hide_ctrl_q = { "<c-q>", "hide", mode = "n", desc = "hide the terminal window" },
           -- hide_ctrl_dot = { "<c-.>", "hide", mode = "nt", desc = "hide the terminal window" },
+          -- hide_ctrl_q = { "<c-q>", "hide", mode = "n", desc = "hide the terminal window" },
           -- hide_ctrl_z = { "<c-z>", "hide", mode = "nt", desc = "hide the terminal window" },
-          -- prompt = { "<c-p>", "prompt", mode = "t", desc = "insert prompt or context" },
-          stopinsert = { "<Esc>", "stopinsert", mode = "t", desc = "enter normal mode" },
-          -- Navigate windows in terminal mode. Only active when:
-          -- * layout is not "float"
-          -- * there is another window in the direction
-          -- With the default layout of "right", only `<c-h>` will be mapped
-          -- nav_left = { "<c-h>", "nav_left", expr = true, desc = "navigate to the left window" },
           -- nav_down = { "<c-j>", "nav_down", expr = true, desc = "navigate to the below window" },
-          -- nav_up = { "<c-k>", "nav_up", expr = true, desc = "navigate to the above window" },
+          -- nav_left = { "<c-h>", "nav_left", expr = true, desc = "navigate to the left window" },
           -- nav_right = { "<c-l>", "nav_right", expr = true, desc = "navigate to the right window" },
+          -- nav_up = { "<c-k>", "nav_up", expr = true, desc = "navigate to the above window" },
+          -- prompt = { "<c-p>", "prompt", mode = "t", desc = "insert prompt or context" },
+          buffers = { "<c-s-b>", "buffers", mode = "nt", desc = "open buffer picker" },
+          files = { "<c-s-f>", "files", mode = "nt", desc = "open file picker" },
+          hide_ctrl_dot = { "<c-s-.>", "hide", mode = "nt", desc = "hide the terminal window" },
+          hide_ctrl_q = { "<c-s-q>", "hide", mode = "n", desc = "hide the terminal window" },
+          hide_ctrl_z = { "<c-s-z>", "hide", mode = "nt", desc = "hide the terminal window" },
+          nav_down = { "<c-s-j>", "nav_down", expr = true, desc = "navigate to the below window" },
+          nav_left = { "<c-s-h>", "nav_left", expr = true, desc = "navigate to the left window" },
+          nav_right = { "<c-s-l>", "nav_right", expr = true, desc = "navigate to the right window" },
+          nav_up = { "<c-s-k>", "nav_up", expr = true, desc = "navigate to the above window" },
+          prompt = { "<c-s-p>", "prompt", mode = "t", desc = "insert prompt or context" },
+          hide_n = { "q", "hide", mode = "n", desc = "hide the terminal window" },
+          stopinsert = { "<Esc>", "stopinsert", mode = "t", desc = "enter normal mode" },
         },
         ---@type fun(dir:"h"|"j"|"k"|"l")?
         --- Function that handles navigation between windows.
@@ -93,56 +99,70 @@ return {
           size = 0.5, -- size of the split (0-1 for percentage)
         },
       },
-    },
-    ---@type table<string, sidekick.cli.Config|{}>
-    tools = {
-      aider = { cmd = { "aider", "--model", "gemini-2.5-flash" } },
-      amazon_q = { cmd = { "q" } },
-      claude = { cmd = { "claude" } },
-      codex = { cmd = { "codex", "--enable", "web_search_request" } },
-      copilot = { cmd = { "copilot", "--banner" } },
-      crush = {
-        cmd = { "crush" },
-        -- crush uses <a-p> for its own functionality, so we override the default
-        keys = { prompt = { "<a-p>", "prompt" } },
+      ---@type table<string, sidekick.cli.Config|{}>
+      tools = {
+        aider = { cmd = { "aider", "--model", "gemini/gemini-2.5-flash" } },
+        aider_insnap = {
+          cmd = { "aider", "--model", "openai/gemini-2.5-flash" },
+          env = {
+            OPENAI_API_BASE = "https://147ai.com/v1/",
+            OPENAI_API_KEY = vim.fn.getenv("INSNAP_API_KEY"),
+          },
+        },
+        amazon_q = { cmd = { "q" } },
+        claude = { cmd = { "claude" } },
+        codex = { cmd = { "codex", "--enable", "web_search_request" } },
+        copilot = { cmd = { "copilot", "--banner" } },
+        crush = {
+          cmd = { "crush" },
+          -- crush uses <a-p> for its own functionality, so we override the default
+          keys = { prompt = { "<a-p>", "prompt" } },
+        },
+        cursor = { cmd = { "cursor-agent" } },
+        gemini = { cmd = { "gemini", "--model", "gemini-2.5-flash" } },
+        gemini_insnap = {
+          cmd = { "gemini", "--model", "gemini-2.5-flash" },
+          env = {
+            GOOGLE_GEMINI_BASE_URL = "https://147ai.com/v1/",
+            GEMINI_API_KEY = vim.fn.getenv("INSNAP_API_KEY"),
+          },
+        },
+        grok = { cmd = { "grok" } },
+        opencode = {
+          cmd = { "opencode" },
+          -- HACK: https://github.com/sst/opencode/issues/445
+          env = { OPENCODE_THEME = "system" },
+        },
+        qwen = { cmd = { "qwen" } },
       },
-      cursor = { cmd = { "cursor-agent" } },
-      gemini = { cmd = { "gemini", "--model", "gemini-2.5-flash" } },
-      grok = { cmd = { "grok" } },
-      opencode = {
-        cmd = { "opencode" },
-        -- HACK: https://github.com/sst/opencode/issues/445
-        env = { OPENCODE_THEME = "system" },
+      --- Add custom context. See `lua/sidekick/context/init.lua`
+      ---@type table<string, sidekick.context.Fn>
+      context = {},
+      ---@type table<string, sidekick.Prompt|string|fun(ctx:sidekick.context.ctx):(string?)>
+      prompts = {
+        changes = "Can you review my changes?",
+        diagnostics = "Can you help me fix the diagnostics in {file}?\n{diagnostics}",
+        diagnostics_all = "Can you help me fix these diagnostics?\n{diagnostics_all}",
+        document = "Add documentation to {function|line}",
+        explain = "Explain {this}",
+        fix = "Can you fix {this}?",
+        optimize = "How can {this} be optimized?",
+        review = "Can you review {file} for any issues or improvements?",
+        tests = "Can you write tests for {this}?",
+        -- simple context prompts
+        buffers = "{buffers}",
+        file = "{file}",
+        line = "{line}",
+        position = "{position}",
+        quickfix = "{quickfix}",
+        selection = "{selection}",
+        ["function"] = "{function}",
+        class = "{class}",
       },
-      qwen = { cmd = { "qwen" } },
+      -- preferred picker for selecting files
+      ---@alias sidekick.picker "snacks"|"telescope"|"fzf-lua"
+      picker = "snacks", ---@type sidekick.picker
     },
-    --- Add custom context. See `lua/sidekick/context/init.lua`
-    ---@type table<string, sidekick.context.Fn>
-    context = {},
-    ---@type table<string, sidekick.Prompt|string|fun(ctx:sidekick.context.ctx):(string?)>
-    prompts = {
-      changes = "Can you review my changes?",
-      diagnostics = "Can you help me fix the diagnostics in {file}?\n{diagnostics}",
-      diagnostics_all = "Can you help me fix these diagnostics?\n{diagnostics_all}",
-      document = "Add documentation to {function|line}",
-      explain = "Explain {this}",
-      fix = "Can you fix {this}?",
-      optimize = "How can {this} be optimized?",
-      review = "Can you review {file} for any issues or improvements?",
-      tests = "Can you write tests for {this}?",
-      -- simple context prompts
-      buffers = "{buffers}",
-      file = "{file}",
-      line = "{line}",
-      position = "{position}",
-      quickfix = "{quickfix}",
-      selection = "{selection}",
-      ["function"] = "{function}",
-      class = "{class}",
-    },
-    -- preferred picker for selecting files
-    ---@alias sidekick.picker "snacks"|"telescope"|"fzf-lua"
-    picker = "snacks", ---@type sidekick.picker
     copilot = {
       -- track copilot's status with `didChangeStatus`
       status = {
