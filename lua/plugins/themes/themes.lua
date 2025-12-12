@@ -4,7 +4,27 @@ return {
     opts = { style = "moon" },
   },
 
-  { "projekt0n/github-nvim-theme" },
+  {
+    "projekt0n/github-nvim-theme",
+    config = function()
+      require("github-theme").setup({
+        options = {
+          styles = { -- Style to be applied to different syntax groups
+            comments = "bold", -- Value is any valid attr-list value `:help attr-list`
+            conditionals = "italic",
+            constants = "NONE",
+            functions = "bold",
+            keywords = "italic",
+            numbers = "NONE",
+            operators = "NONE",
+            strings = "NONE",
+            types = "bold",
+            variables = "NONE",
+          },
+        },
+      })
+    end,
+  },
 
   { "pappasam/papercolor-theme-slim" },
 
@@ -37,12 +57,51 @@ return {
 
   { "Mofiqul/vscode.nvim" },
 
-  { "EdenEast/nightfox.nvim" },
+  {
+    "EdenEast/nightfox.nvim",
+    opts = {
+      options = {
+        styles = { -- Style to be applied to different syntax groups
+          comments = "bold", -- Value is any valid attr-list value `:help attr-list`
+          conditionals = "italic",
+          constants = "NONE",
+          functions = "bold",
+          keywords = "italic",
+          numbers = "NONE",
+          operators = "NONE",
+          strings = "NONE",
+          types = "bold",
+          variables = "NONE",
+        },
+      },
+    },
+  },
 
   {
     "Mofiqul/dracula.nvim",
     opts = {
       italic_comment = true,
+    },
+  },
+
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    opts = {
+      styles = {
+        comments = { "bold" },
+        conditionals = { "italic" },
+        loops = {},
+        functions = { "bold" },
+        keywords = { "italic" },
+        strings = {},
+        variables = {},
+        numbers = {},
+        booleans = {},
+        properties = { "italic" },
+        types = { "bold" },
+        operators = {},
+      },
     },
   },
 }

@@ -11,8 +11,7 @@ local function load_plugins(plugins)
 end
 
 -- load themes
-local themes = require("plugins.themes")
-load_plugins(themes.list())
+load_plugins(require("plugins.themes"))
 
 load_plugins(require("plugins.ai"))
 load_plugins(require("plugins.cmp"))

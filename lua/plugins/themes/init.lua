@@ -1,29 +1,11 @@
-local this = {}
 local themes = require("plugins.themes.themes")
 
--- this.default = "github_light"
--- this.default = "tokyonight"
-this.default = "NeoSolarized"
-this.themes = themes
-this.dark = false
+vim.api.nvim_set_hl(0, "@lsp.mod.mutable", { underline = true })
+vim.api.nvim_set_hl(0, "keyword", { italic = true })
+vim.api.nvim_set_hl(0, "@lsp.type.property", { italic = true })
+vim.api.nvim_set_hl(0, "@lsp.type.parameter", { italic = true })
+vim.api.nvim_set_hl(0, "@lsp.type.enumMember", { bold = true })
+vim.api.nvim_set_hl(0, "@lsp.type.comment", { bold = true })
+vim.api.nvim_set_hl(0, "@lsp.type.variable", { italic = false })
 
----@type fun(theme: string)
-function this.set(theme)
-  this.default = theme
-end
-
-function this.activate(theme)
-  theme = theme or this.default
-  if this.dark == true then
-    vim.opt.background = "dark"
-  else
-    vim.opt.background = "light"
-  end
-  vim.cmd("colorscheme " .. theme)
-end
-
-function this.list()
-  return this.themes
-end
-
-return this
+return themes
