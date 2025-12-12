@@ -433,6 +433,11 @@ return {
                 model = {
                   default = "gpt-4.1",
                 },
+                choices = {
+                  ["gpt-4.1"] = {
+                    opts = {},
+                  },
+                },
               },
             })
           end,
