@@ -440,9 +440,6 @@ return {
           end,
         },
       },
-      opts = {
-        system_prompt = require("plugins.ai.codecompanion.system_prompt"),
-      },
       interactions = {
         chat = {
           adapter = adapter,
@@ -456,6 +453,9 @@ return {
           variables = {},
           keymaps = require("plugins.ai.codecompanion.keymaps"),
           tools = require("plugins.ai.codecompanion.tools"),
+          opts = {
+            system_prompt = require("plugins.ai.codecompanion.system_prompt"),
+          },
         },
         inline = { adapter = adapter },
         agent = { adapter = adapter },
