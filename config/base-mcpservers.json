@@ -1,11 +1,7 @@
 {
   "mcpServers": {
-    "code-runner": {
-      "args": ["-y", "mcp-server-code-runner@latest"],
-      "command": "npx"
-    },
     "context7": {
-      "disabled": true,
+      "disabled": false,
       "type": "streamable-http",
       "url": "https://mcp.context7.com/mcp"
     },
@@ -15,48 +11,20 @@
       "disabled": false
     },
     "github": {
-      "disabled": false,
+      "disabled": true,
       "headers": {
         "Authorization": "Bearer ${GITHUB_PERSONAL_API_KEY}"
       },
       "url": "https://api.githubcopilot.com/mcp/"
     },
-    "memory": {
-      "args": ["-y", "@modelcontextprotocol/server-memory"],
-      "autoApprove": [
-        "create_entities",
-        "create_relations",
-        "add_observations",
-        "delete_entities",
-        "delete_observations",
-        "delete_relations",
-        "read_graph",
-        "search_nodes",
-        "open_nodes"
-      ],
-      "command": "npx",
-      "custom_instructions": {
-        "disabled": false,
-        "text": "Follow these steps for each interaction:\n\n1. User Identification:\n   - You should assume that you are interacting with default_user\n   - If you have not identified default_user, proactively try to do so.\n\n2. Memory Retrieval:\n   - Always begin your chat by saying only \"Remembering...\" and retrieve all relevant information from your knowledge graph\n   - Always refer to your knowledge graph as your \"memory\"\n\n3. Memory\n   - While conversing with the user, be attentive to any new information that falls into these categories:\n     a) Basic Identity (age, gender, location, job title, education level, etc.)\n     b) Behaviors (interests, habits, etc.)\n     c) Preferences (communication style, preferred language, etc.)\n     d) Goals (goals, targets, aspirations, etc.)\n     e) Relationships (personal and professional relationships up to 3 degrees of separation)\n\n4. Memory Update:\n   - If any new information was gathered during the interaction, update your memory as follows:\n     a) Create entities for recurring organizations, people, and significant events\n     b) Connect them to the current entities using relations\n     c) Store facts about them as observations"
-      },
-      "disabled": false,
-      "env": {
-        "MEMORY_FILE_PATH": "${HOME}/.config/codecompanion/memory.json"
-      }
-    },
-    "tavily": {
-      "args": ["-y", "tavily-mcp"],
-      "command": "npx",
-      "env": {
-        "TAVILY_API_KEY": "${TAVILY_API_KEY}"
-      }
-    },
     "text-editor": {
       "args": ["mcp-text-editor"],
+      "autoApprove": ["get_text_file_contents", "edit_text_file_contents"],
       "command": "uvx",
       "custom_instructions": {
         "text": "When editing lines, be careful about '\\n'."
-      }
+      },
+      "disabled": true
     }
   },
   "nativeMCPServers": {
@@ -67,15 +35,17 @@
       "disabled_tools": ["get_current_servers", "toggle_mcp_server"]
     },
     "neovim": {
-      "autoApprove": ["read_file", "read_multiple_files"],
+      "autoApprove": [],
+      "custom_instructions": {
+        "text": "When invoking tools, put the specific tool arguments into `tool_inputs`, such as `{..., tool_inputs: {...}}`"
+      },
       "disabled": false,
       "disabled_prompts": ["parrot"],
       "disabled_tools": [
         "move_item",
         "delete_items",
         "find_files",
-        "list_directory",
-        "execute_command"
+        "list_directory"
       ]
     }
   }
