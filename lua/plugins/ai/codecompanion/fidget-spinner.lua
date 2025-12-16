@@ -15,7 +15,7 @@ function M:init()
     pattern = "CodeCompanionRequestStarted",
     group = group,
     callback = function(request)
-      if not request.data.strategy then
+      if not request.data.interaction then
         return
       end
       local handle = M:create_progress_handle(request) -- Create progress handle for the request
@@ -64,10 +64,10 @@ function M:pop_progress_handle(id)
   return handle, duration
 end
 
--- Creates a progress handle with a dynamic title based on the request strategy and adapter.
+-- Creates a progress handle with a dynamic title based on the request interaction and adapter.
 function M:create_progress_handle(request)
   return progress.handle.create({
-    title = " Requesting assistance (" .. request.data.strategy .. ")", -- Title includes strategy
+    title = " Requesting assistance (" .. request.data.interaction .. ")", -- Title includes interaction
     message = "In progress...",
     lsp_client = {
       name = M:llm_role_title(request.data.adapter), -- LSP client name based on adapter

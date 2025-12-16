@@ -135,8 +135,7 @@ return {
     })
 
     require("codecompanion").setup({
-      -- rules = {
-      memory = {
+      rules = {
         claude = {
           parser = "claude",
           description = "Rule files for claude",
@@ -444,7 +443,7 @@ return {
       opts = {
         system_prompt = require("plugins.ai.codecompanion.system_prompt"),
       },
-      strategies = {
+      interactions = {
         chat = {
           adapter = adapter,
           roles = {
@@ -489,42 +488,6 @@ return {
       callback = function()
         vim.wo.number = false
         vim.wo.relativenumber = false
-      end,
-    })
-
-    local function compact_reference(messages)
-      local refs = {}
-      local result = {}
-
-      -- First loop to find last occurrence of each reference
-      for i, msg in ipairs(messages) do
-        if msg.opts and msg.opts.reference then
-          refs[msg.opts.reference] = i
-        end
-      end
-
-      -- Second loop to keep messages with unique references
-      for i, msg in ipairs(messages) do
-        local ref = msg.opts and msg.opts.reference
-        if not ref or refs[ref] == i then
-          table.insert(result, msg)
-        end
-      end
-
-      return result
-    end
-    vim.api.nvim_create_autocmd({ "User" }, {
-      pattern = "CodeCompanionRequestFinished",
-      group = group,
-      callback = function(request)
-        if request.data.strategy ~= "chat" then
-          return
-        end
-        local current_chat = codecompanion.last_chat()
-        if not current_chat then
-          return
-        end
-        current_chat.messages = compact_reference(current_chat.messages)
       end,
     })
   end,
