@@ -2,7 +2,7 @@ require("codecompanion")
 
 local function generate_commit_message()
   local content = [[Tools allowed to use: @{cmd_runner} @{files}
-Task: Fetch git status first, and then review both staged and unstaged code changes.
+Task: Fetch git status first, and then review all staged, unstaged, and untracked code changes.
 Do not read the entire potentially large diffs at once, such as `*.lock` files -- you can even skip them.
 
 1. You should make sure that you actually understand the context and the purpose of the code in the diffs.
