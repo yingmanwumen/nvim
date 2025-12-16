@@ -10,6 +10,11 @@ return {
       icon = " ",
     },
     nes = {
+      ---@class sidekick.diff.Opts
+      ---@field inline? "words"|"chars"|false Enable inline diffs
+      diff = {
+        inline = true,
+      },
       debounce = 100,
       trigger = {
         -- events that trigger sidekick next edit suggestions
