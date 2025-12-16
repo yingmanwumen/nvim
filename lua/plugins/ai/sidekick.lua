@@ -13,7 +13,7 @@ return {
       ---@class sidekick.diff.Opts
       ---@field inline? "words"|"chars"|false Enable inline diffs
       diff = {
-        inline = true,
+        inline = false,
       },
       debounce = 100,
       trigger = {
