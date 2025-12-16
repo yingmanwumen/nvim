@@ -10,6 +10,7 @@ Do not read the entire potentially large diffs at once, such as `*.lock` files -
 3. Write commit messages with **commitizen convention**. Format as a gitcommit code block. Keep the commit message **concise and precise**.
 > **IMPORTANT: When using backticks (`` ` ``) within the commit message, you MUST escape them to avoid premature termination of the code block. For example, use `` \` `` instead of `` ` ``.**
 4. After generating commit messages, stage all diffs and then commit them.
+5. When multiple commits are needed, stage corresponding diffs separately and create separate commit messages for each commit.
 ]]
 
   return content
