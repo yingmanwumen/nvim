@@ -15,6 +15,9 @@ Any code block examples must be wrapped in four backticks with the programming l
 ````
 The languageId must be the correct identifier for the programming language, e.g. python, javascript, lua, etc.
 If you are providing code changes, use the insert_edit_into_file tool (if available to you) to make the changes directly instead of printing out a code block with the changes.
+
+## Additional Conventions
+- When using `insert_edit_into_file`, you must always use the corresponding file instead of buffer if the file exists.
 ]]),
     auto_submit_success = true,
     auto_submit_errors = true,
@@ -23,12 +26,9 @@ If you are providing code changes, use the insert_edit_into_file tool (if availa
     description = "Insert code into an existing file",
     opts = {
       requires_approval = { -- Require approval before the tool is executed?
-        -- requires_approval_before = { -- Require approval before the tool is executed?
-        buffer = true, -- For editing buffers in Neovim
-        file = true, -- For editing files in the current working directory
+        requires_approval_before = true,
       },
-      user_confirmation = true, -- Require confirmation from the user before accepting the edit?
-      -- require_confirmation_after = true, -- Require confirmation from the user before accepting the edit?
+      require_confirmation_after = true,
     },
   },
 }
