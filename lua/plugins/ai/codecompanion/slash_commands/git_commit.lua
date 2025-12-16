@@ -1,7 +1,7 @@
 require("codecompanion")
 
 local function generate_commit_message()
-  local content = [[Tools allowed to use: @{mcp}
+  local content = [[Tools allowed to use: @{cmd_runner} @{files}
 Task: Fetch git status first, and then review both staged and unstaged code changes.
 Do not read the entire potentially large diffs at once, such as `*.lock` files -- you can even skip them.
 
