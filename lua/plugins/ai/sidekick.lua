@@ -15,21 +15,21 @@ return {
       diff = {
         inline = false,
       },
-      debounce = 100,
+      debounce = 500,
       trigger = {
         -- events that trigger sidekick next edit suggestions
         -- currently won't be triggered in insert mode
         -- * `ModeChanged i:n` is triggered when entering normal mode from insert mode
         -- * `TextChanged` is triggered when the text is changed
         -- * `User SidekickNesDone` is triggered when the user has finished their edit
-        events = { "ModeChanged i:n", "TextChanged", "TextChangedI", "User SidekickNesDone" },
+        events = { "ModeChanged i:n", "TextChanged", "User SidekickNesDone" },
       },
       clear = {
         -- events that clear the current next edit suggestion
         -- * `TextChangedI` is triggered when the text is changed in insert mode
         -- * `InsertEnter` is triggered when entering insert mode
         -- * `CursorMovedI` is triggered when the cursor is moved in insert mode
-        events = { "InsertEnter" },
+        events = { "InsertEnter", "CursorMovedI", "TextChangedI" },
         esc = true, -- clear next edit suggestions when pressing <Esc>
       },
     },
@@ -220,15 +220,15 @@ return {
         -- end
 
         -- Call codeium#Accept() if Codeium is enabled
-        if vim.g.codeium_server_started then
-          return vim.fn["codeium#Accept"]()
-        end
+        -- if vim.g.codeium_server_started then
+        --   return vim.fn["codeium#Accept"]()
+        -- end
 
         -- fall back to normal tab
         return "<tab>"
       end,
-      mode = { "i", "n" },
-      -- mode = { "n" },
+      -- mode = { "i", "n" },
+      mode = { "n" },
       expr = true,
       desc = "Goto/Apply Next Edit Suggestion",
     },

@@ -13,19 +13,18 @@ return {
       mode = "i",
       desc = "Clear Codeium completion",
     },
-    -- This is commented out to avoid conflict with other completion plugins
-    -- {
-    --   "<tab>",
-    --   function()
-    --     return vim.fn["codeium#Accept"]()
-    --   end,
-    --   mode = "i",
-    --   nowait = true,
-    --   expr = true,
-    --   silent = true,
-    --   script = true,
-    --   desc = "Accept Codeium completion",
-    -- },
+    {
+      "<tab>",
+      function()
+        return vim.fn["codeium#Accept"]()
+      end,
+      mode = "i",
+      nowait = true,
+      expr = true,
+      silent = true,
+      script = true,
+      desc = "Accept Codeium completion",
+    },
     {
       "<M-]>",
       function()
