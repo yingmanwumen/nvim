@@ -1,5 +1,5 @@
 -- local adapter = "gemini_2_5_flash"
-local adapter = "gpt_4_1" -- This is free :)
+local adapter = "gpt4o" -- This is free :)
 -- if vim.uv.os_uname().sysname == "Darwin" then
 --   -- adapter = "insnap_gemini_2_5_flash"
 --   adapter = "gemini_2_5_flash"
@@ -419,6 +419,21 @@ return {
                 },
                 model = {
                   default = "claude-sonnet-4",
+                },
+              },
+            })
+          end,
+          gpt4o = function()
+            return require("codecompanion.adapters.http").extend("copilot", {
+              schema = {
+                temperature = {
+                  default = 0.5,
+                },
+                model = {
+                  default = "gpt-4o",
+                  choices = {
+                    ["gpt-4o"] = {},
+                  },
                 },
               },
             })
