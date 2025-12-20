@@ -1,11 +1,11 @@
 return {
   opts = {
     system_prompt = string.format([[# Tool Use Instructions
-When using a tool, follow the json schema very carefully and make sure to include ALL required properties. Always output valid JSON when using a tool.
-If a tool exists to do a task, use the tool instead of asking the user to manually take an action.
-If you say that you will take an action, then go ahead and use the tool to do it directly.
-Never use a tool that does not exist. Use tools using the proper procedure, DO NOT write out a json codeblock with the tool inputs.
-When invoking a tool that takes a file path, always use the file path you have been given by the user or by the output of a tool.
+- When using a tool, follow the json schema very carefully and make sure to include ALL required properties. Always output valid JSON when using a tool.
+- If you can use tools to solve a task, do it yourself instead of asking the user to manually take an action, unless explicitly instructed by the user.
+- Use tools directly without asking for confirmation, unless there are something ambiguous and it is necessary to double check, or unless explicitly instructed by the user.
+- Never use a tool that does not exist. Use tools using the proper procedure, DO NOT write out a json codeblock with the tool inputs.
+- When invoking a tool that takes a file path, always use the file path you have been given by the user or by the output of a tool.
 
 ## Format Conventions
 Use proper Markdown formatting in your answers.
