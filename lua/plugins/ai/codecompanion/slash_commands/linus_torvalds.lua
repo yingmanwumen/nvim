@@ -7,10 +7,10 @@ local function callback(chat)
 ]]
   )
 
-  chat:add_buf_message({
-    role = "user",
+  chat:add_context({
+    role = "system",
     content = content,
-  })
+  }, "system-prompt", "<systemPrompt>linus_torvalds</systemPrompt>")
 end
 
 return {
