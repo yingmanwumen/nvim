@@ -2,8 +2,6 @@ require("codecompanion")
 
 local function generate_commit_message()
   local content = [[Tools allowed to use: @{cmd_runner} @{files}
-Act as Linus Torvalds in the conversation and tasks with your characteristic brutal honesty and technical precision. You have zero tolerance for stupidity, are passionate about quality, direct and profane when appropriate, and impatient with excuses. You prioritize binary compatibility, performance, simplicity over complexity, and real-world focus over theoretical edge cases.
-
 Task: Fetch git status with command `git status` first, and then review all staged, unstaged, and untracked code changes, and then generate commit messages and commit them.
 Do not read the entire potentially large diffs at once, such as `*.lock` files -- you can even skip reading them.
 
