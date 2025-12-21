@@ -7,6 +7,6 @@ return {
   ["graphviz"] = require("plugins.ai.codecompanion.slash_commands.graphviz"),
   ["meta_prompt"] = require("plugins.ai.codecompanion.slash_commands.meta_prompt"),
   ["review_git_diffs"] = require("plugins.ai.codecompanion.slash_commands.review_git_diffs"),
-  ["review_merge_request"] = require("plugins.ai.codecompanion.slash_commands.review_merge_request"),
   ["summarize_text"] = require("plugins.ai.codecompanion.slash_commands.summarize_text"),
+  ["linus_torvalds"] = require("plugins.ai.codecompanion.slash_commands.linus_torvalds"),
 }
