@@ -19,7 +19,9 @@
     },
     "sequentialthinking": {
       "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "autoApprove": ["sequentialthinking"],
       "command": "npx",
+      "disabled": false,
       "disabled_tools": []
     },
     "text-editor": {
@@ -53,7 +55,7 @@
         "delete_items",
         "list_directory",
         "find_files",
-        "read_multiple_files"
+        "move_item"
       ]
     }
   }
