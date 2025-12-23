@@ -17,6 +17,11 @@
       },
       "url": "https://api.githubcopilot.com/mcp/"
     },
+    "sequentialthinking": {
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "command": "npx",
+      "disabled_tools": []
+    },
     "text-editor": {
       "args": ["mcp-text-editor"],
       "autoApprove": ["get_text_file_contents", "edit_text_file_contents"],
@@ -35,25 +40,20 @@
       "disabled_tools": ["get_current_servers", "toggle_mcp_server"]
     },
     "neovim": {
-      "autoApprove": ["execute_command", "read_file", "read_multiple_files"],
+      "autoApprove": ["read_file", "read_multiple_files", "execute_command"],
       "custom_instructions": {
-        "disabled": true,
+        "disabled": false,
         "text": "When invoking tools, put the specific tool arguments into `tool_inputs`, such as `{..., tool_inputs: {...}}`"
       },
       "disabled": false,
       "disabled_prompts": ["parrot"],
       "disabled_resources": [],
       "disabled_tools": [
-        "move_item",
+        "execute_lua",
         "delete_items",
-        "find_files",
         "list_directory",
-        "edit_file",
-        "execute_command",
-        "read_file",
-        "read_multiple_files",
-        "write_file",
-        "execute_lua"
+        "find_files",
+        "read_multiple_files"
       ]
     }
   }
