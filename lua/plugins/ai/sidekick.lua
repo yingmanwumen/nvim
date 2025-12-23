@@ -110,7 +110,9 @@ return {
           cmd = { "aider", "--model", "openai/gemini-2.5-flash" },
           env = {
             OPENAI_API_BASE = "https://147ai.com/v1/",
+            AIDER_OPENAI_API_BASE = "https://147ai.com/v1/",
             OPENAI_API_KEY = vim.fn.getenv("INSNAP_API_KEY"),
+            AIDER_OPENAI_API_KEY = vim.fn.getenv("INSNAP_API_KEY"),
           },
         },
         amazon_q = { cmd = { "q" } },
