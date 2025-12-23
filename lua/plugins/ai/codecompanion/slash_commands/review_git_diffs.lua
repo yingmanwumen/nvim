@@ -10,7 +10,7 @@ Your tasks:
    - Correctness, performance and readability are the most important factors
    - Also review the design, architecture and implementation
    - Try your best to dig out potential bugs
-Tools you can use: @{cmd} @{files}
+Tools you can use: @{mcp}
 ]])
 
   chat:add_buf_message({
