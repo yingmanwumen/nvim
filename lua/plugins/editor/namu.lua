@@ -3,9 +3,25 @@ return {
   keys = {
     {
       "<leader>ss",
-      function()
-        require("namu.namu_symbols").show()
-      end,
+      "<Cmd>Namu symbols<CR>",
+      desc = "Jump to LSP symbol",
+      silent = true,
+    },
+    {
+      "<leader>sw",
+      "<Cmd>Namu workspace<CR>",
+      desc = "Jump to LSP symbol",
+      silent = true,
+    },
+    {
+      "<leader>i",
+      "<Cmd>Namu call in<CR>",
+      desc = "Jump to LSP symbol",
+      silent = true,
+    },
+    {
+      "<leader>o",
+      "<Cmd>Namu call in<CR>",
       desc = "Jump to LSP symbol",
       silent = true,
     },
