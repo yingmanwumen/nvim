@@ -17,8 +17,6 @@ local function keymap(bufnr)
   bind("gd", vim.lsp.buf.definition, "Goto Definition")
   bind("gr", "<Cmd>Telescope lsp_references<CR>", "Goto References")
   bind("gi", "<Cmd>Telescope lsp_implementations<CR>", "Goto Implementation")
-  bind("<leader>i", "<Cmd>Telescope lsp_incoming_calls<CR>", "Goto Incoming Calls")
-  bind("<leader>o", "<Cmd>Telescope lsp_outgoing_calls<CR>", "Goto Outgoing Calls")
 end
 
 local function format_on_save(bufnr)
