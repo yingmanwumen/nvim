@@ -10,6 +10,7 @@ return {
       icon = " ",
     },
     nes = {
+      -- Using copilot-lsp currently
       enabled = false,
       ---@class sidekick.diff.Opts
       ---@field inline? "words"|"chars"|false Enable inline diffs
