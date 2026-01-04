@@ -11,13 +11,13 @@ return {
     },
     nes = {
       -- Using copilot-lsp currently
-      enabled = false,
+      enabled = true,
       ---@class sidekick.diff.Opts
       ---@field inline? "words"|"chars"|false Enable inline diffs
       diff = {
         inline = false,
       },
-      debounce = 500,
+      debounce = 250,
       trigger = {
         -- events that trigger sidekick next edit suggestions
         -- currently won't be triggered in insert mode
@@ -209,33 +209,33 @@ return {
     },
   },
   keys = {
-    -- {
-    --   "<tab>",
-    --   function()
-    --     -- if there is a next edit, jump to it, otherwise apply it if any
-    --     if require("sidekick").nes_jump_or_apply() then
-    --       return -- jumped or applied
-    --     end
-    --
-    --     -- This api is only available in neovim >= 0.12
-    --     -- if you are using Neovim's native inline completions
-    --     -- if vim.lsp.inline_completion.get() then
-    --     --   return
-    --     -- end
-    --
-    --     -- Call codeium#Accept() if Codeium is enabled
-    --     -- if vim.g.codeium_server_started then
-    --     --   return vim.fn["codeium#Accept"]()
-    --     -- end
-    --
-    --     -- fall back to normal tab
-    --     return "<tab>"
-    --   end,
-    --   -- mode = { "i", "n" },
-    --   mode = { "n" },
-    --   expr = true,
-    --   desc = "Goto/Apply Next Edit Suggestion",
-    -- },
+    {
+      "<tab>",
+      function()
+        -- if there is a next edit, jump to it, otherwise apply it if any
+        if require("sidekick").nes_jump_or_apply() then
+          return -- jumped or applied
+        end
+
+        -- This api is only available in neovim >= 0.12
+        -- if you are using Neovim's native inline completions
+        -- if vim.lsp.inline_completion.get() then
+        --   return
+        -- end
+
+        -- Call codeium#Accept() if Codeium is enabled
+        -- if vim.g.codeium_server_started then
+        --   return vim.fn["codeium#Accept"]()
+        -- end
+
+        -- fall back to normal tab
+        return "<tab>"
+      end,
+      -- mode = { "i", "n" },
+      mode = { "n" },
+      expr = true,
+      desc = "Goto/Apply Next Edit Suggestion",
+    },
     {
       "<leader>aa",
       function()

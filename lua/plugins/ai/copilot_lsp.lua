@@ -4,6 +4,7 @@ return {
     vim.g.copilot_nes_debounce = 300
     vim.lsp.enable("copilot_ls")
   end,
+  enable = false,
   opt = {
     nes = {
       move_count_threshold = 2,

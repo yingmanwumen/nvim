@@ -3,14 +3,14 @@ return {
   event = "InsertEnter",
   cmd = "Copilot",
   dependencies = {
-    "copilotlsp-nvim/copilot-lsp",
+    -- "copilotlsp-nvim/copilot-lsp",
   },
   config = function()
     require("copilot").setup({
       suggestion = { enabled = false },
       panel = { enabled = false },
       nes = {
-        enabled = true,
+        enabled = false,
         keymap = {
           accept_and_goto = "<tab>",
           accept = false,
