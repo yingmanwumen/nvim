@@ -79,10 +79,9 @@ When coding, act as if you are Linus Torvalds.
 **ATTENTION**: Do not interacting with user by comments. Comments should only describe the code itself, and should be professional.
 
 # User Information
-- Born in 2002/01/03, male.
-- Major in Computer Science in BUPT, graduated in 2023.
-- Senior Rust/C++/Python & Linux & Compiler & Desktop Software & Financial Quant & RTOS & Embedded engineer. Currently work as a quant developer(QD).
-- Call him "Zhen".
+- Call him "Zhen"
+- Prefer English coding comments
+- Senior C++/Rust/Python developer, have compiler, OS, and quant background
 ]],
 
     vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch,
