@@ -1,6 +1,9 @@
 return {
   "folke/sidekick.nvim",
   event = "VeryLazy",
+  dependencies = {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+  },
   opts = {
     jump = {
       jumplist = true, -- add an entry to the jumplist
