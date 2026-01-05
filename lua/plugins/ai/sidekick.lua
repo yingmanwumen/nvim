@@ -26,13 +26,14 @@ return {
         -- * `InsertLeave` is triggered when leaving insert mode
         -- * `User SidekickNesDone` is triggered when the user has finished their edit
         -- * `BufWritePost` is triggered when the file is saved
+        -- * `CursorHold` is triggered when the cursor is held
         events = {
           "ModeChanged i:n",
           "TextChanged",
           "InsertLeave",
           "User SidekickNesDone",
           "BufWritePost",
-          "CursorMoved",
+          "CursorHold",
         },
       },
       clear = {

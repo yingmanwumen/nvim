@@ -11,6 +11,7 @@ return {
       panel = { enabled = false },
       nes = {
         enabled = false,
+        auto_trigger = true,
         keymap = {
           accept_and_goto = "<tab>",
           accept = false,

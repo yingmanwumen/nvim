@@ -1,10 +1,11 @@
 return {
   "copilotlsp-nvim/copilot-lsp",
   init = function()
-    vim.g.copilot_nes_debounce = 300
+    vim.g.copilot_nes_debounce = 250
     vim.lsp.enable("copilot_ls")
   end,
-  opt = {
+  enabled = false,
+  opts = {
     nes = {
       move_count_threshold = 2,
       distance_threshold = 40,
