@@ -24,7 +24,7 @@ vim.o.tabstop = 2
 vim.o.termguicolors = true
 vim.o.undofile = true
 vim.o.undodir = vim.fn.stdpath("cache") .. "/undo"
-vim.o.updatetime = 500
+vim.o.updatetime = 300
 vim.o.timeoutlen = 500
 
 vim.g.loaded_netrw = 1
