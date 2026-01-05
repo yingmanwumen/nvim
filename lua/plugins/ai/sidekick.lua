@@ -24,14 +24,27 @@ return {
         -- * `ModeChanged i:n` is triggered when entering normal mode from insert mode
         -- * `TextChanged` is triggered when the text is changed
         -- * `User SidekickNesDone` is triggered when the user has finished their edit
-        events = { "ModeChanged i:n", "TextChanged", "User SidekickNesDone" },
+        -- * `BufWritePost` is triggered when the file is saved
+        events = {
+          "ModeChanged i:n",
+          "TextChanged",
+          "User SidekickNesDone",
+          "BufWritePost",
+          "CursorMoved",
+        },
       },
       clear = {
         -- events that clear the current next edit suggestion
         -- * `TextChangedI` is triggered when the text is changed in insert mode
         -- * `InsertEnter` is triggered when entering insert mode
         -- * `CursorMovedI` is triggered when the cursor is moved in insert mode
-        events = { "InsertEnter", "CursorMovedI", "TextChangedI" },
+        -- * `BufWritePre` is triggered when the file is saved
+        events = {
+          "InsertEnter",
+          "CursorMovedI",
+          "TextChangedI",
+          "BufWritePre",
+        },
         esc = true, -- clear next edit suggestions when pressing <Esc>
       },
     },
