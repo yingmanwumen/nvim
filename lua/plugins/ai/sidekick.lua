@@ -23,11 +23,13 @@ return {
         -- currently won't be triggered in insert mode
         -- * `ModeChanged i:n` is triggered when entering normal mode from insert mode
         -- * `TextChanged` is triggered when the text is changed
+        -- * `InsertLeave` is triggered when leaving insert mode
         -- * `User SidekickNesDone` is triggered when the user has finished their edit
         -- * `BufWritePost` is triggered when the file is saved
         events = {
           "ModeChanged i:n",
           "TextChanged",
+          "InsertLeave",
           "User SidekickNesDone",
           "BufWritePost",
           "CursorMoved",
