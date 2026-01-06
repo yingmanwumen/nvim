@@ -12,3 +12,7 @@ end
 bind("<C-.>", function()
   vim.lsp.buf.code_action()
 end, "Code action")
+
+bind("<leader>.", function()
+  vim.lsp.buf.code_action()
+end, "Code action")
