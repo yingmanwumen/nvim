@@ -12,7 +12,7 @@ local function setup()
   ft("go"):fmt("gofmt")
 
   -- ft("python"):fmt("black"):lint("flake8")
-  ft("python"):fmt("black")
+  ft("python"):fmt("ruff")
 
   -- ft("python"):fmt("black"):lint({
   --   cmd = "pylint",
