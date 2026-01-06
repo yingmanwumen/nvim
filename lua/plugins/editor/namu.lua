@@ -16,13 +16,13 @@ return {
     {
       "<leader>i",
       "<Cmd>Namu call in<CR>",
-      desc = "Jump to LSP symbol",
+      desc = "Incoming calls",
       silent = true,
     },
     {
       "<leader>o",
-      "<Cmd>Namu call in<CR>",
-      desc = "Jump to LSP symbol",
+      "<Cmd>Namu call out<CR>",
+      desc = "Outgoing calls",
       silent = true,
     },
   },
