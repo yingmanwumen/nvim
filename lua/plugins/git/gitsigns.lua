@@ -32,6 +32,8 @@ return {
       },
       current_line_blame = true,
       on_attach = on_attach,
+      attach_to_untracked = true,
+      current_line_blame_formatter = "󰘬 <author>, <author_time:%R> - <summary>",
     })
   end,
 }
