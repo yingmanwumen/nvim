@@ -8,4 +8,5 @@ return {
   ["meta_prompt"] = require("plugins.ai.codecompanion.slash_commands.meta_prompt"),
   ["review_git_diffs"] = require("plugins.ai.codecompanion.slash_commands.review_git_diffs"),
   ["summarize_text"] = require("plugins.ai.codecompanion.slash_commands.summarize_text"),
+  ["plan_act"] = require("plugins.ai.codecompanion.slash_commands.plan_act"),
 }
