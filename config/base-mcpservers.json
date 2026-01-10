@@ -8,7 +8,7 @@
     "fetch": {
       "args": ["mcp-server-fetch"],
       "command": "uvx",
-      "disabled": false
+      "disabled": true
     },
     "github": {
       "disabled": true,
@@ -21,7 +21,7 @@
       "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
       "autoApprove": ["sequentialthinking"],
       "command": "npx",
-      "disabled": false,
+      "disabled": true,
       "disabled_tools": []
     },
     "text-editor": {
@@ -45,11 +45,16 @@
       "autoApprove": ["read_file", "read_multiple_files", "execute_command"],
       "custom_instructions": {
         "disabled": false,
-        "text": "When invoking tools, put the specific tool arguments into `tool_inputs`, such as `{..., tool_inputs: {...}}`"
+        "text": "When invoking tools, put the specific tool arguments into `tool_inputs`, such as `{..., tool_input: {...}}`"
       },
       "disabled": false,
       "disabled_prompts": ["parrot"],
-      "disabled_resources": [],
+      "disabled_resources": [
+        "neovim://buffer",
+        "neovim://workspace",
+        "neovim://diagnostics/buffer",
+        "neovim://diagnostics/workspace"
+      ],
       "disabled_tools": [
         "execute_lua",
         "delete_items",
