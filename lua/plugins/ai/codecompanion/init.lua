@@ -1,5 +1,5 @@
 -- local adapter = "gemini_2_5_flash"
-local adapter = "gpt_4_1" -- This is free :)
+local adapter = "insnap_gemini_2_5_flash" -- Never use openai models because they are retarded
 -- if vim.uv.os_uname().sysname == "Darwin" then
 --   -- adapter = "insnap_gemini_2_5_flash"
 --   adapter = "gemini_2_5_flash"
@@ -238,78 +238,6 @@ return {
                   default = 0.5,
                 },
               },
-              -- handlers = {
-              --   form_messages = function(self, messages)
-              --     local gemini = require("codecompanion.adapters.http.gemini")
-              --     local raw_messages = gemini.handlers.form_messages(self, messages)
-              --
-              --     -- Collect and merge system messages
-              --     local system_content = {}
-              --     local other_messages = {}
-              --
-              --     for _, msg in ipairs(raw_messages.messages) do
-              --       if msg.role == "system" then
-              --         table.insert(system_content, msg.content)
-              --       else
-              --         table.insert(other_messages, msg)
-              --       end
-              --     end
-              --
-              --     -- If we found system messages, merge them and prepend
-              --     if #system_content > 0 then
-              --       local merged_system_message = {
-              --         role = "system",
-              --         content = table.concat(system_content, "\n\n"),
-              --       }
-              --       table.insert(other_messages, 1, merged_system_message)
-              --     end
-              --
-              --     raw_messages.messages = other_messages
-              --     return raw_messages
-              --   end,
-              -- },
-            })
-          end,
-          gemini_2_5_pro = function()
-            return require("codecompanion.adapters.http").extend("gemini", {
-              schema = {
-                model = {
-                  default = "gemini-2.5-pro",
-                },
-                temperature = {
-                  default = 0.5,
-                },
-              },
-              handlers = {
-                form_messages = function(self, messages)
-                  local gemini = require("codecompanion.adapters.http.gemini")
-                  local raw_messages = gemini.handlers.form_messages(self, messages)
-
-                  -- Collect and merge system messages
-                  local system_content = {}
-                  local other_messages = {}
-
-                  for _, msg in ipairs(raw_messages.messages) do
-                    if msg.role == "system" then
-                      table.insert(system_content, msg.content)
-                    else
-                      table.insert(other_messages, msg)
-                    end
-                  end
-
-                  -- If we found system messages, merge them and prepend
-                  if #system_content > 0 then
-                    local merged_system_message = {
-                      role = "system",
-                      content = table.concat(system_content, "\n\n"),
-                    }
-                    table.insert(other_messages, 1, merged_system_message)
-                  end
-
-                  raw_messages.messages = other_messages
-                  return raw_messages
-                end,
-              },
             })
           end,
           local_ollama = function()
@@ -395,60 +323,6 @@ return {
                 },
                 num_ctx = {
                   default = 200000,
-                },
-              },
-            })
-          end,
-          claude_3_5 = function()
-            return require("codecompanion.adapters.http").extend("copilot", {
-              schema = {
-                temperature = {
-                  default = 0.5,
-                },
-                model = {
-                  default = "claude-3.5-sonnet",
-                },
-              },
-            })
-          end,
-          claude_4 = function()
-            return require("codecompanion.adapters.http").extend("copilot", {
-              schema = {
-                temperature = {
-                  default = 0.5,
-                },
-                model = {
-                  default = "claude-sonnet-4",
-                },
-              },
-            })
-          end,
-          gpt4o = function()
-            return require("codecompanion.adapters.http").extend("copilot", {
-              schema = {
-                temperature = {
-                  default = 0.5,
-                },
-                model = {
-                  default = "gpt-4o",
-                  choices = {
-                    ["gpt-4o"] = {},
-                  },
-                },
-              },
-            })
-          end,
-          gpt_4_1 = function()
-            return require("codecompanion.adapters.http").extend("copilot", {
-              schema = {
-                temperature = {
-                  default = 0.5,
-                },
-                model = {
-                  default = "gpt-4.1",
-                  choices = {
-                    ["gpt-4.1"] = {},
-                  },
                 },
               },
             })
