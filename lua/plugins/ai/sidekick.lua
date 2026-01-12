@@ -132,6 +132,15 @@ return {
             AIDER_OPENAI_API_KEY = vim.fn.getenv("INSNAP_API_KEY"),
           },
         },
+        aider_glm = {
+          cmd = { "aider", "--model", "openai/glm-4.7" },
+          env = {
+            OPENAI_API_BASE = "https://open.bigmodel.cn/api/coding/paas/v4/",
+            AIDER_OPENAI_API_BASE = "https://open.bigmodel.cn/api/coding/paas/v4/",
+            OPENAI_API_KEY = vim.fn.getenv("GLM_API_KEY"),
+            AIDER_OPENAI_API_KEY = vim.fn.getenv("GLM_API_KEY"),
+          },
+        },
         amazon_q = { cmd = { "q" } },
         claude = { cmd = { "claude" } },
         codex = { cmd = { "codex", "--enable", "web_search_request" } },
@@ -170,6 +179,21 @@ return {
             OPENAI_API_KEY = vim.fn.getenv("INSNAP_API_KEY"),
             OPENAI_BASE_URL = "https://147ai.com/v1/",
             OPENAI_MODEL = "gemini-2.5-flash",
+          },
+        },
+        qwen_glm = {
+          cmd = { "qwen" },
+          env = {
+            OPENAI_API_KEY = vim.fn.getenv("GLM_API_KEY"),
+            OPENAI_BASE_URL = "https://open.bigmodel.cn/api/coding/paas/v4/",
+            OPENAI_MODEL = "glm-4.7",
+          },
+        },
+        gemini_glm = {
+          cmd = { "gemini", "--model", "glm-4.7" },
+          env = {
+            GOOGLE_GEMINI_BASE_URL = "https://open.bigmodel.cn/api/coding/paas/v4/",
+            GEMINI_API_KEY = vim.fn.getenv("GLM_API_KEY"),
           },
         },
       },
