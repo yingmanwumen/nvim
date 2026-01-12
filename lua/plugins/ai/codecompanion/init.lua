@@ -309,16 +309,9 @@ return {
                   default = 0.5,
                 },
                 model = {
-                  default = "deepseek/deepseek-r1:free",
+                  default = "mistralai/devstral-2512:free",
                   choices = {
-                    ["deepseek/deepseek-r1:free"] = { opts = { can_reason = true } }, -- context: 164K
-                    ["google/gemini-2.0-flash-exp:free"] = { opts = { can_reason = true } }, -- context: 1.05M
-                    ["google/gemini-2.0-pro-exp-02-05:free"] = { opts = { can_reason = true } }, -- context: 2M
-                    ["google/gemini-2.0-flash-thinking-exp-1219:free"] = {
-                      opts = { can_reason = true },
-                    }, -- context: 40K
-                    -- Notice: the following models are not for free! Use them with caution.
-                    ["anthropic/claude-3.7-sonnet"] = { opts = { can_reason = true } }, -- context: 200K
+                    ["mistralai/devstral-2512:free"] = { opts = { can_reason = false } },
                   },
                 },
                 num_ctx = {
