@@ -45,7 +45,7 @@
       "autoApprove": ["read_file", "read_multiple_files", "execute_command"],
       "custom_instructions": {
         "disabled": false,
-        "text": "When invoking tools, put the specific tool arguments into `tool_inputs`, such as `{..., tool_input: {...}}`"
+        "text": "When invoking tools, put the specific tool arguments into `tool_inputs`, such as `{..., tool_input: {...}}`.\nWhen executing shell commands, be aware of backticks in the command since sometimes you may need to escape them."
       },
       "disabled": false,
       "disabled_prompts": ["parrot"],
