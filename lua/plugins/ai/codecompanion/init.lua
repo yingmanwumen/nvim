@@ -268,6 +268,34 @@ return {
               },
             })
           end,
+          glm = function()
+            return require("codecompanion.adapters.http").extend("openai_compatible", {
+              name = "GLM",
+              formatted_name = "Gemini 4.7 Flash",
+              url = "https://open.bigmodel.cn/api/coding/paas/v4/chat/completions",
+              env = {
+                api_key = os.getenv("GLM_API_KEY"),
+              },
+              schema = {
+                temperature = {
+                  default = 0.3,
+                },
+                model = {
+                  default = "glm-4.7",
+                  choices = {
+                    ["glm-4.7"] = {
+                      opts = {
+                        can_reason = true,
+                      },
+                    },
+                  },
+                },
+                num_ctx = {
+                  default = 1000000,
+                },
+              },
+            })
+          end,
           insnap_gemini_2_5_flash = function()
             return require("codecompanion.adapters.http").extend("openai_compatible", {
               name = "insnap_gemini_2_5_flash",
