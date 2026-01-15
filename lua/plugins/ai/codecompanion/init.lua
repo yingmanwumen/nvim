@@ -1,11 +1,5 @@
--- local adapter = "gemini_2_5_flash"
-local adapter = "insnap_gemini_2_5_flash" -- Never use openai models because they are retarded
--- if vim.uv.os_uname().sysname == "Darwin" then
---   -- adapter = "insnap_gemini_2_5_flash"
---   adapter = "gemini_2_5_flash"
--- else
---   adapter = "gemini_2_5_flash"
--- end
+-- I paid for it
+local adapter = "glm" -- Never use openai models because they are retarded
 
 return {
   "olimorris/codecompanion.nvim",
@@ -271,7 +265,7 @@ return {
           glm = function()
             return require("codecompanion.adapters.http").extend("openai_compatible", {
               name = "GLM",
-              formatted_name = "Gemini 4.7 Flash",
+              formatted_name = "GLM",
               url = "https://open.bigmodel.cn/api/coding/paas/v4/chat/completions",
               env = {
                 api_key = os.getenv("GLM_API_KEY"),
