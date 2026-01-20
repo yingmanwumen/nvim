@@ -11,7 +11,9 @@ vim.g.neovide_floating_shadow = true
 vim.g.neovide_floating_corner_radius = 0.8
 vim.o.linespace = 5
 vim.g.neovide_theme = "bg_color"
-vim.g.neovide_opacity = 0.8
+
+-- No transparency
+-- vim.g.neovide_opacity = 0.8
 
 vim.g.neovide_cursor_animation_length = 0.2
 vim.g.neovide_cursor_short_animation_length = 0.04
