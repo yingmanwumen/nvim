@@ -47,3 +47,4 @@ test.lua
 
 config/mcpservers.json
 .aider*
+.plugin-config/
