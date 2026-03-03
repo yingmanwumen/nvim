@@ -196,6 +196,23 @@ return {
             GEMINI_API_KEY = vim.fn.getenv("GLM_API_KEY"),
           },
         },
+        aider_minimax = {
+          cmd = { "aider", "--model", "openai/MiniMax-M2.5" },
+          env = {
+            OPENAI_API_BASE = "https://api.minimaxi.com/v1/",
+            AIDER_OPENAI_API_BASE = "https://api.minimaxi.com/v1/",
+            OPENAI_API_KEY = vim.fn.getenv("MINIMAX_API_KEY"),
+            AIDER_OPENAI_API_KEY = vim.fn.getenv("MINIMAX_API_KEY"),
+          },
+        },
+        qwen_minimax = {
+          cmd = { "qwen" },
+          env = {
+            OPENAI_API_KEY = vim.fn.getenv("MINIMAX_API_KEY"),
+            OPENAI_BASE_URL = "https://api.minimaxi.com/anthropic/v1/",
+            OPENAI_MODEL = "MiniMax-M2.5",
+          },
+        },
       },
       --- Add custom context. See `lua/sidekick/context/init.lua`
       ---@type table<string, sidekick.context.Fn>

@@ -1,5 +1,5 @@
 -- I paid for it
-local adapter = "glm" -- Never use openai models because they are retarded
+local adapter = "minimax" -- Never use openai models because they are retarded
 
 return {
   "olimorris/codecompanion.nvim",
@@ -308,6 +308,34 @@ return {
                     ["gemini-2.5-flash"] = {
                       opts = {
                         can_reason = false,
+                      },
+                    },
+                  },
+                },
+                num_ctx = {
+                  default = 1000000,
+                },
+              },
+            })
+          end,
+          minimax = function()
+            return require("codecompanion.adapters.http").extend("openai_compatible", {
+              name = "minimax",
+              formatted_name = "MiniMax",
+              url = "https://api.minimaxi.com/v1/chat/completions",
+              env = {
+                api_key = os.getenv("MINIMAX_API_KEY"),
+              },
+              schema = {
+                temperature = {
+                  default = 0.3,
+                },
+                model = {
+                  default = "MiniMax-M2.5",
+                  choices = {
+                    ["MiniMax-M2.5"] = {
+                      opts = {
+                        can_reason = true,
                       },
                     },
                   },
