@@ -1,6 +1,7 @@
 return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    enabled = false,
     dependencies = {
       { "zbirenbaum/copilot.lua" }, -- or
       -- { "yingmanwumen/copilot.lua" }, -- or
