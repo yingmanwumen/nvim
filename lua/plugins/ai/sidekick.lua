@@ -123,15 +123,6 @@ return {
       ---@type table<string, sidekick.cli.Config|{}>
       tools = {
         aider = { cmd = { "aider", "--model", "gemini/gemini-2.5-flash" } },
-        aider_insnap = {
-          cmd = { "aider", "--model", "openai/gemini-2.5-flash" },
-          env = {
-            OPENAI_API_BASE = "https://147ai.com/v1/",
-            AIDER_OPENAI_API_BASE = "https://147ai.com/v1/",
-            OPENAI_API_KEY = vim.fn.getenv("INSNAP_API_KEY"),
-            AIDER_OPENAI_API_KEY = vim.fn.getenv("INSNAP_API_KEY"),
-          },
-        },
         aider_glm = {
           cmd = { "aider", "--model", "openai/glm-4.7" },
           env = {
@@ -152,13 +143,6 @@ return {
         },
         cursor = { cmd = { "cursor-agent" } },
         gemini = { cmd = { "gemini", "--model", "gemini-2.5-flash" } },
-        gemini_insnap = {
-          cmd = { "gemini", "--model", "gemini-2.5-flash" },
-          env = {
-            GOOGLE_GEMINI_BASE_URL = "https://147ai.com/v1/",
-            GEMINI_API_KEY = vim.fn.getenv("INSNAP_API_KEY"),
-          },
-        },
         grok = { cmd = { "grok" } },
         opencode = {
           cmd = { "opencode" },
@@ -170,14 +154,6 @@ return {
           env = {
             OPENAI_API_KEY = vim.fn.getenv("GEMINI_API_KEY"),
             OPENAI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/",
-            OPENAI_MODEL = "gemini-2.5-flash",
-          },
-        },
-        qwen_insnap = {
-          cmd = { "qwen" },
-          env = {
-            OPENAI_API_KEY = vim.fn.getenv("INSNAP_API_KEY"),
-            OPENAI_BASE_URL = "https://147ai.com/v1/",
             OPENAI_MODEL = "gemini-2.5-flash",
           },
         },
