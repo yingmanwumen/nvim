@@ -173,7 +173,7 @@ return {
           },
         },
         aider_minimax = {
-          cmd = { "aider", "--model", "openai/MiniMax-M2.5" },
+          cmd = { "aider", "--model", "openai/MiniMax-M2.7" },
           env = {
             OPENAI_API_BASE = "https://api.minimaxi.com/v1/",
             AIDER_OPENAI_API_BASE = "https://api.minimaxi.com/v1/",
@@ -186,7 +186,7 @@ return {
           env = {
             OPENAI_API_KEY = vim.fn.getenv("MINIMAX_API_KEY"),
             OPENAI_BASE_URL = "https://api.minimaxi.com/anthropic/v1/",
-            OPENAI_MODEL = "MiniMax-M2.5",
+            OPENAI_MODEL = "MiniMax-M2.7",
           },
         },
       },

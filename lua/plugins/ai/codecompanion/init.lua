@@ -133,10 +133,6 @@ return {
         claude = {
           parser = "claude",
           description = "Rule files for claude",
-          files = {
-            "~/.claude/CLAUDE.md",
-            "CLAUDE.md",
-          },
         },
         opts = {
           chat = {
@@ -303,9 +299,9 @@ return {
                   default = 0.3,
                 },
                 model = {
-                  default = "MiniMax-M2.5",
+                  default = "MiniMax-M2.7",
                   choices = {
-                    ["MiniMax-M2.5"] = {
+                    ["MiniMax-M2.7"] = {
                       opts = {
                         can_reason = true,
                       },
