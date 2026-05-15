@@ -130,13 +130,13 @@ return {
 
     require("codecompanion").setup({
       rules = {
-        claude = {
-          parser = "claude",
-          description = "Rule files for claude",
-        },
+        -- claude = {
+        --   parser = "claude",
+        --   description = "Rule files for claude",
+        -- },
         opts = {
           chat = {
-            enabled = true,
+            enabled = false,
           },
         },
       },
