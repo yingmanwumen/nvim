@@ -122,14 +122,14 @@ return {
       },
       ---@type table<string, sidekick.cli.Config|{}>
       tools = {
-        aider = { cmd = { "aider", "--model", "gemini/gemini-2.5-flash" } },
-        aider_glm = {
-          cmd = { "aider", "--model", "openai/glm-4.7" },
+        -- aider = { cmd = { "aider", "--model", "gemini/gemini-2.5-flash" } },
+        aider = {
+          cmd = { "aider", "--model", "openai/deepseek-v4-flash" },
           env = {
-            OPENAI_API_BASE = "https://open.bigmodel.cn/api/coding/paas/v4/",
-            AIDER_OPENAI_API_BASE = "https://open.bigmodel.cn/api/coding/paas/v4/",
-            OPENAI_API_KEY = vim.fn.getenv("GLM_API_KEY"),
-            AIDER_OPENAI_API_KEY = vim.fn.getenv("GLM_API_KEY"),
+            OPENAI_API_BASE = "https://opencode.ai/zen/go/v1/",
+            AIDER_OPENAI_API_BASE = "https://opencode.ai/zen/go/v1/",
+            OPENAI_API_KEY = vim.fn.getenv("OPENCODE_API_KEY"),
+            AIDER_OPENAI_API_KEY = vim.fn.getenv("OPENCODE_API_KEY"),
           },
         },
         amazon_q = { cmd = { "q" } },
@@ -152,41 +152,9 @@ return {
         qwen = {
           cmd = { "qwen" },
           env = {
-            OPENAI_API_KEY = vim.fn.getenv("GEMINI_API_KEY"),
-            OPENAI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/",
-            OPENAI_MODEL = "gemini-2.5-flash",
-          },
-        },
-        qwen_glm = {
-          cmd = { "qwen" },
-          env = {
-            OPENAI_API_KEY = vim.fn.getenv("GLM_API_KEY"),
-            OPENAI_BASE_URL = "https://open.bigmodel.cn/api/coding/paas/v4/",
-            OPENAI_MODEL = "glm-4.7",
-          },
-        },
-        gemini_glm = {
-          cmd = { "gemini", "--model", "glm-4.7" },
-          env = {
-            GOOGLE_GEMINI_BASE_URL = "https://open.bigmodel.cn/api/coding/paas/v4/",
-            GEMINI_API_KEY = vim.fn.getenv("GLM_API_KEY"),
-          },
-        },
-        aider_minimax = {
-          cmd = { "aider", "--model", "openai/MiniMax-M2.7" },
-          env = {
-            OPENAI_API_BASE = "https://api.minimaxi.com/v1/",
-            AIDER_OPENAI_API_BASE = "https://api.minimaxi.com/v1/",
-            OPENAI_API_KEY = vim.fn.getenv("MINIMAX_API_KEY"),
-            AIDER_OPENAI_API_KEY = vim.fn.getenv("MINIMAX_API_KEY"),
-          },
-        },
-        qwen_minimax = {
-          cmd = { "qwen" },
-          env = {
-            OPENAI_API_KEY = vim.fn.getenv("MINIMAX_API_KEY"),
-            OPENAI_BASE_URL = "https://api.minimaxi.com/anthropic/v1/",
-            OPENAI_MODEL = "MiniMax-M2.7",
+            OPENAI_API_KEY = vim.fn.getenv("OPENCODE_API_KEY"),
+            OPENAI_BASE_URL = "https://opencode.ai/zen/go/v1/",
+            OPENAI_MODEL = "deepseek-v4-flash",
           },
         },
       },

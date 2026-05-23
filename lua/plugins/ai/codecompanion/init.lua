@@ -1,5 +1,5 @@
 -- I paid for it
-local adapter = "minimax" -- Never use openai models because they are retarded
+local adapter = "opencode" -- Never use openai models because they are retarded
 
 return {
   "olimorris/codecompanion.nvim",
@@ -218,30 +218,6 @@ return {
       },
       adapters = {
         http = {
-          gemini_2_5_flash = function()
-            return require("codecompanion.adapters.http").extend("gemini", {
-              schema = {
-                model = {
-                  default = "gemini-2.5-flash",
-                },
-                temperature = {
-                  default = 0.5,
-                },
-              },
-            })
-          end,
-          local_ollama = function()
-            return require("codecompanion.adapters.http").extend("ollama", {
-              env = {
-                url = "http://localhost:11434",
-              },
-              schema = {
-                model = {
-                  default = "deepseek-r1:1.5b",
-                },
-              },
-            })
-          end,
           deepseek = function()
             return require("codecompanion.adapters.http").extend("deepseek", {
               env = {
@@ -258,22 +234,27 @@ return {
               },
             })
           end,
-          glm = function()
+          opencode = function()
             return require("codecompanion.adapters.http").extend("openai_compatible", {
-              name = "GLM",
-              formatted_name = "GLM",
-              url = "https://open.bigmodel.cn/api/coding/paas/v4/chat/completions",
+              name = "opencode",
+              formatted_name = "opencode",
+              url = "https://opencode.ai/zen/go/v1/chat/completions",
               env = {
-                api_key = os.getenv("GLM_API_KEY"),
+                api_key = os.getenv("OPENCODE_API_KEY"),
               },
               schema = {
                 temperature = {
                   default = 0.3,
                 },
                 model = {
-                  default = "glm-4.7",
+                  default = "deepseek-v4-flash",
                   choices = {
-                    ["glm-4.7"] = {
+                    ["deepseek-v4-pro"] = {
+                      opts = {
+                        can_reason = true,
+                      },
+                    },
+                    ["deepseek-v4-flash"] = {
                       opts = {
                         can_reason = true,
                       },
@@ -343,12 +324,6 @@ return {
       interactions = {
         chat = {
           adapter = adapter,
-          roles = {
-            ---@type string|fun(adapter: CodeCompanion.Adapter): string
-            llm = function(llm)
-              return llm.formatted_name .. "(" .. llm.schema.model.default .. ")"
-            end,
-          },
           slash_commands = require("plugins.ai.codecompanion.slash_commands"),
           variables = {},
           keymaps = require("plugins.ai.codecompanion.keymaps"),
