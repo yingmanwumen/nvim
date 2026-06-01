@@ -3,7 +3,6 @@ return {
   opts = {
     file_types = {
       "Avante",
-      "codecompanion",
       "markdown",
     },
 
@@ -29,7 +28,6 @@ return {
   },
   ft = {
     "Avante",
-    "codecompanion",
     "markdown",
   },
   config = function(_, opts)
