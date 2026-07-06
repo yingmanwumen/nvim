@@ -76,7 +76,7 @@ local function apply_system_theme()
     end
   else
     if vim.o.background == "dark" then
-      vim.cmd("colorscheme nightfox")
+      vim.cmd("colorscheme tokyonight")
     else
       vim.cmd("colorscheme github_light")
     end

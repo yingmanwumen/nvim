@@ -35,7 +35,7 @@ local function codelens(client, bufnr)
       group = vim.api.nvim_create_augroup("CodeLens", { clear = false }),
       buffer = bufnr,
       callback = function()
-        vim.lsp.codelens.refresh({ bufnr = bufnr })
+        vim.lsp.codelens.enable(true, { bufnr = bufnr })
       end,
     })
   end
