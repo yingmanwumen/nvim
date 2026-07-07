@@ -4,6 +4,7 @@ return {
     "InsertEnter",
     "BufReadPost",
   },
+  enabled = false,
   keys = {
     {
       "<M-c>",

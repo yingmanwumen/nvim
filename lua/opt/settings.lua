@@ -29,3 +29,6 @@ vim.o.timeoutlen = 500
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+-- To prevent plenary from complaining
+vim.env.XDG_RUNTIME_DIR = "/tmp"
