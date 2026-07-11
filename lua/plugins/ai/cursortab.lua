@@ -63,9 +63,9 @@ return {
       -- },
 
       provider = {
-        type = "mercuryapi", -- Provider: "inline", "fim", "sweep", "zeta-2", "zeta", "copilot", "windsurf", or "mercuryapi"
+        type = "windsurf", -- Provider: "inline", "fim", "sweep", "zeta-2", "zeta", "copilot", "windsurf", or "mercuryapi"
         -- url = "https://api.deepseek.com/beta", -- URL of the provider server
-        api_key_env = "INCEPTION_KEY", -- Env var name for API key (e.g., "OPENAI_API_KEY")
+        -- api_key_env = "INCEPTION_KEY", -- Env var name for API key (e.g., "OPENAI_API_KEY")
         -- model = "deepseek-v4-pro", -- Model name
         -- temperature = 0.3, -- Sampling temperature
         -- context_size = 0, -- Max input context in tokens (0 = use max_tokens; inline/fim default: 1024)
@@ -73,7 +73,7 @@ return {
         -- top_k = 50, -- Top-k sampling
         -- completion_timeout = 5000, -- Timeout in ms for completion requests
         -- max_diff_history_tokens = 512, -- Max tokens for diff history (0 = no limit)
-         -- completion_path = "/v1/completions", -- API endpoint path
+        -- completion_path = "/v1/completions", -- API endpoint path
         -- fim_tokens is optional. Omit (the default) to use OpenAI prompt+suffix
         -- format (e.g. DeepSeek). Set it to opt into tokenized FIM:
         --   fim_tokens = {
