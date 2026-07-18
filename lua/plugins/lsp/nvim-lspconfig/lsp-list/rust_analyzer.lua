@@ -1,5 +1,6 @@
 return {
   lsp = "rust_analyzer",
+  auto_install = false,
   format_on_save = true,
   opts = {
     settings = {
