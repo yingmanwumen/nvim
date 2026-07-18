@@ -19,6 +19,5 @@ return {
       },
     })
 
-    require("plugins.lsp.lspsaga.keymap")
   end,
 }

@@ -13,11 +13,16 @@ local function setup()
       if language.enable == nil then
         language.enable = true
       end
-      vim.lsp.enable(language.lsp)
+      if language.enable ~= false then
+        vim.lsp.enable(language.lsp)
+      end
     end
   end
 
   vim.lsp.inlay_hint.enable(true)
+  vim.lsp.semantic_tokens.enable(true)
+  vim.lsp.inline_completion.enable(true)
+  vim.lsp.document_color.enable(true)
 end
 
 return {

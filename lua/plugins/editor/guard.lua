@@ -4,8 +4,8 @@ local function setup()
 
   ft("bash,csh,ksh,sh,zsh"):fmt("shfmt")
 
-  ft("cpp"):fmt("clang-format"):extra("--style={BasedOnStyle: google, IndentWidth: 2}")
-  ft("c"):fmt("clang-format"):extra("--style={BasedOnStyle: google, IndentWidth: 4}")
+  ft("cpp"):fmt("clang-format"):extra("--style={BasedOnStyle: google, IndentWidth: 2, InsertBraces: true}")
+  ft("c"):fmt("clang-format"):extra("--style={BasedOnStyle: google, IndentWidth: 4, InsertBraces: true}")
 
   ft("lua"):fmt("stylua")
 
@@ -75,6 +75,13 @@ local function setup()
   ft("toml"):fmt({
     cmd = "taplo",
     args = { "fmt" },
+    stdin = false,
+    fname = true,
+  })
+
+  ft("cmake"):fmt({
+    cmd = "gersemi",
+    args = { "-i" },
     stdin = false,
     fname = true,
   })
